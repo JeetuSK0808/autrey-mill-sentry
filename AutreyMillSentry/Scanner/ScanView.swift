@@ -74,7 +74,7 @@ struct ScanView: View {
         }
         .sensoryFeedback(.impact(weight: .medium), trigger: vm.lockHapticTick)
         .fullScreenCover(isPresented: $showResult, onDismiss: { vm.dismissResult() }) {
-            if let r = vm.result { ScanResultView(result: r) { vm.dismissResult() } }
+            if let r = vm.result { ScanResultView(result: r) { showResult = false } }
         }
         .alert("Camera problem", isPresented: Binding(get: { vm.errorMessage != nil }, set: { _ in })) {
             Button("OK") { vm.dismissResult() }
@@ -171,7 +171,7 @@ struct ScanView: View {
                 .padding(.horizontal, 24)
         }
         .padding(.bottom, 16)
-        .background(LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom).allowsHitTesting(false))
+        .background { LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom).allowsHitTesting(false) }
     }
 
     private func analyzingOverlay(_ vm: ScanViewModel) -> some View {
