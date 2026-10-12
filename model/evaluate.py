@@ -117,7 +117,7 @@ def main():
                   "maxSubjectFraction": 0.97, "maxMotion": 0.12}
     json.dump(thresholds, open(EVAL / f"{args.version}_thresholds.json", "w"), indent=1)
     if not args.no_bundle: json.dump(thresholds, open(RES / "thresholds.json", "w"), indent=1)
-    card = {"status": "evaluated", "modelVersion": args.version, "evaluatedOn": out["evaluatedOn"], "testObservations": int(len(set(Tst["paths"].tolist()))) if "paths" in Tst else None,
+    card = {"status": "evaluated", "modelVersion": args.version, "evaluatedOn": out["evaluatedOn"], "testObservations": int(len({pathlib.Path(str(x)).stem.split("_")[0] for x in Tst["paths"].tolist()})) if "paths" in Tst else None,
             "tier1": {**(t1m or {}), "precisionAtConfirm": prec_t, "coverageAtConfirm": cov_t, "confirmThreshold": best_thr},
             "tier2": {**(t2m or {}), "precisionAtConfirm": None, "coverageAtConfirm": None, "confirmThreshold": None},
             "ece": out["ece_test"], "notPlantRejectRate": reject, "hardestConfusions": hardest[:5],

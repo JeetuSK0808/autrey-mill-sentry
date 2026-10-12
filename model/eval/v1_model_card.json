@@ -2,7 +2,7 @@
  "status": "evaluated",
  "modelVersion": "v1",
  "evaluatedOn": "2026-10-12",
- "testObservations": 3234,
+ "testObservations": 2443,
  "tier1": {
   "classes": 14,
   "testImages": 772,
