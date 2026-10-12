@@ -17,7 +17,7 @@ class Wrapped(nn.Module):
     def forward(self, x): return torch.softmax(self.m((x - self.mean) / self.std) / self.T, dim=1)
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--version", default="v1"); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--version", default="v1"); ap.add_argument("--out", default=None, help="output .mlpackage path (default: the app bundle)"); args = ap.parse_args()
     ck = torch.load(MODEL / "checkpoints" / f"{args.version}_best.pt", map_location="cpu", weights_only=False)
     ev = json.load(open(EVAL / f"{args.version}_eval.json"))
     labels, size, T = ck["labels"], ck["size"], ev["temperature"]
@@ -33,7 +33,7 @@ def main():
     mlmodel.short_description = "Autrey Mill Sentry invasive plant classifier (calibrated softmax)."
     mlmodel.version = args.version
     mlmodel.license = "Student project. Trained on CC-licensed iNaturalist photos; see docs/LICENSES.md."
-    out = RES / "InvasiveClassifier.mlpackage"
+    out = pathlib.Path(args.out) if args.out else RES / "InvasiveClassifier.mlpackage"
     if out.exists():
         import shutil; shutil.rmtree(out)
     mlmodel.save(str(out))

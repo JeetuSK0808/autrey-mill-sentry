@@ -29,6 +29,7 @@ def main():
     ap.add_argument("--version", default="v1")
     ap.add_argument("--target-precision", type=float, default=0.95)
     ap.add_argument("--margin", type=float, default=0.30)
+    ap.add_argument("--no-bundle", action="store_true", help="do not overwrite the app's thresholds.json / model_card.json / MODEL_CARD.md")
     args = ap.parse_args()
     split = json.load(open(MODEL / "runs" / f"{args.version}_split.json"))
     labels, tiers = split["labels"], split["tiers"]
@@ -62,14 +63,15 @@ def main():
         if p >= args.target_precision and n >= 20:
             best_thr = float(thr); break
     if best_thr is None: best_thr = 0.95
-    # per-class: for each Tier 1 class, lowest threshold reaching target precision on val (min 15 confirmed), else global
+    # per-class: for each Tier 1 class, lowest threshold (floor 0.60) reaching target precision on val with
+    # at least 25 confirmed calls, else the global threshold applies
     per_class = {}
     for i in tier1_idx:
-        for thr in np.arange(0.50, 0.991, 0.01):
+        for thr in np.arange(0.60, 0.991, 0.01):
             top = Pv.argmax(1); conf = Pv.max(1); srt = np.sort(Pv, 1); margin = srt[:, -1] - srt[:, -2]
             sel = (top == i) & (conf >= thr) & (margin >= args.margin)
-            if sel.sum() >= 15 and (Yv[sel] == i).mean() >= args.target_precision:
-                per_class[labels[i]] = float(max(thr, 0.5)); break
+            if sel.sum() >= 25 and (Yv[sel] == i).mean() >= args.target_precision:
+                per_class[labels[i]] = float(round(thr, 2)); break
     prec_v, cov_v, n_v, _ = confirm_stats(Pv, Yv, best_thr, per_class)
     prec_t, cov_t, n_t, fcn_t = confirm_stats(Pt, Yt, best_thr, per_class)
     print(f"confirm threshold {best_thr:.2f} (+{len(per_class)} per-class) margin {args.margin}: val precision {prec_v:.3f} coverage {cov_v:.3f} | test precision {prec_t:.3f} coverage {cov_t:.3f} n={n_t}", flush=True)
@@ -102,7 +104,7 @@ def main():
         reject = float(((top[m] == npi) & (Pt[m].max(1) >= 0.5)).mean()) if m.any() else None
     overall = {"top1": float((top == Yt).mean()), "top3": float((np.argsort(-Pt, 1)[:, :3] == Yt[:, None]).any(1).mean()), "testImages": int(len(Yt))}
     out = {"version": args.version, "evaluatedOn": time.strftime("%Y-%m-%d"), "temperature": float(T), "ece_val_raw": ece(softmax(Lv), Yv), "ece_val": ece(Pv, Yv), "ece_test": ece(Pt, Yt),
-           "confirm": {"threshold": best_tr if (best_tr := best_thr) else best_thr, "margin": args.margin, "targetPrecision": args.target_precision, "perClass": per_class,
+           "confirm": {"threshold": best_thr, "margin": args.margin, "targetPrecision": args.target_precision, "perClass": per_class,
                        "val": {"precision": prec_v, "coverage": cov_v, "n": n_v}, "test": {"precision": prec_t, "coverage": cov_t, "n": n_t, "nativeFalseConfirmRate": fcn_t}},
            "overall": overall, "tier1": t1m, "tier2": t2m, "native": natm, "perClass": per, "hardestConfusions": hardest, "notPlantRejectRate": reject,
            "split": split["split_sizes"], "observers": {"train": split["train_observers"], "val": split["val_observers"], "test": split["test_observers"]},
@@ -113,16 +115,18 @@ def main():
                   "notPlantMinProbability": 0.50, "perClassConfirmMin": per_class, "lockOnWindow": 8, "lockOnAgreeCount": 5, "lockOnMeanProbability": 0.60,
                   "minSharpness": 40.0, "minMeanLuminance": 0.18, "maxMeanLuminance": 0.90, "maxClippedFraction": 0.25, "minSubjectFraction": 0.10,
                   "maxSubjectFraction": 0.97, "maxMotion": 0.12}
-    json.dump(thresholds, open(EVAL / "thresholds.json", "w"), indent=1)
-    json.dump(thresholds, open(RES / "thresholds.json", "w"), indent=1)
+    json.dump(thresholds, open(EVAL / f"{args.version}_thresholds.json", "w"), indent=1)
+    if not args.no_bundle: json.dump(thresholds, open(RES / "thresholds.json", "w"), indent=1)
     card = {"status": "evaluated", "modelVersion": args.version, "evaluatedOn": out["evaluatedOn"], "testObservations": int(len(set(Tst["paths"].tolist()))) if "paths" in Tst else None,
             "tier1": {**(t1m or {}), "precisionAtConfirm": prec_t, "coverageAtConfirm": cov_t, "confirmThreshold": best_thr},
             "tier2": {**(t2m or {}), "precisionAtConfirm": None, "coverageAtConfirm": None, "confirmThreshold": None},
             "ece": out["ece_test"], "notPlantRejectRate": reject, "hardestConfusions": hardest[:5],
             "fieldAccuracy": None, "fieldPhotos": None, "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split",
             "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."}
-    json.dump(card, open(RES / "model_card.json", "w"), indent=1)
-    write_model_card_md(out, card, labels, tiers)
+    json.dump(card, open(EVAL / f"{args.version}_model_card.json", "w"), indent=1)
+    if not args.no_bundle:
+        json.dump(card, open(RES / "model_card.json", "w"), indent=1)
+        write_model_card_md(out, card, labels, tiers)
     print("wrote", EVAL / f"{args.version}_eval.json")
 
 def write_model_card_md(o, card, labels, tiers):

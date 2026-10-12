@@ -1,0 +1,37 @@
+{
+ "status": "evaluated",
+ "modelVersion": "v1",
+ "evaluatedOn": "2026-10-12",
+ "testObservations": 3234,
+ "tier1": {
+  "classes": 14,
+  "testImages": 772,
+  "top1": 0.866580310880829,
+  "top3": 0.9300518134715026,
+  "precisionAtConfirm": 0.9637305699481865,
+  "coverageAtConfirm": 0.7227979274611399,
+  "confirmThreshold": 0.7600000000000002
+ },
+ "tier2": {
+  "classes": 84,
+  "testImages": 1832,
+  "top1": 0.8034934497816594,
+  "top3": 0.9088427947598253,
+  "precisionAtConfirm": null,
+  "coverageAtConfirm": null,
+  "confirmThreshold": null
+ },
+ "ece": 0.012165831621452745,
+ "notPlantRejectRate": 0.7575757575757576,
+ "hardestConfusions": [
+  "liriope_spicata -> liriope_muscari (7)",
+  "wisteria_sinensis -> wisteria_frutescens (6)",
+  "sonchus_oleraceus -> sonchus_asper (6)",
+  "other_plant -> toxicodendron_radicans (6)",
+  "ligustrum_lucidum -> ligustrum_japonicum (6)"
+ ],
+ "fieldAccuracy": null,
+ "fieldPhotos": null,
+ "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split",
+ "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."
+}
