@@ -1,0 +1,25 @@
+# Autrey Mill Sentry
+.DS_Store
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+# data: never commit training images, raw dumps or the preserve's map artwork
+data/images/
+data/raw/
+data/logs/
+data/cache/
+# model environment and checkpoints
+model/.venv/
+model/checkpoints/
+model/runs/
+*.pt
+*.pth
+*.ckpt
+# signing / secrets
+*.mobileprovision
+*.p12
+*.cer
+.env
