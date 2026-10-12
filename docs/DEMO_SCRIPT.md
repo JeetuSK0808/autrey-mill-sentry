@@ -1,0 +1,20 @@
+# Demo video script (target 2:45, hard limit 3:00)
+
+Format: phone screen recording (Settings > Control Center > Screen Recording) plus a few on-site clips shot on a second phone or by a friend. Voice-over recorded separately and laid over. Keep every claim to what the files show; numbers in [brackets] come from `model/eval/v1_eval.json` and the field test CSV or they are cut.
+
+| Time | On screen | Say (plain, first person) | Rubric row |
+|---|---|---|---|
+| 0:00 to 0:12 | On-site clip: trail at Autrey Mill, pan across a wall of privet. Title card "Autrey Mill Sentry". | "This is Autrey Mill Nature Preserve in Johns Creek. I live next to it. The preserve's own volunteers list 14 invasive plants here, and staff can't survey 46 acres every week." | Real problem |
+| 0:12 to 0:25 | Cut between a tiny privet seedling and a huge thicket. | "Small patches are cheap to remove. Big ones aren't. So the whole game is finding them early. My idea is that every visitor becomes a sentry." | Local impact |
+| 0:25 to 0:40 | Screen recording: open the app, onboarding page 2 (the promise). | "The loop is spot, verify, act, tell. No accounts, no tracking, nothing leaves your phone until you send it." | Responsible design |
+| 0:40 to 1:05 | Screen recording on the trail: Scan tab, move toward privet, guidance says "Move closer to the leaves", then "Plant in view, hold steady", frame locks on, haptic, tap, result "Chinese privet, confirmed invasive, [NN]% confidence". Tap Save. | "The scanner runs on the phone. It checks the shot is sharp and lit, finds the plant, and needs several frames to agree before it locks on. Then it tells me exactly what it thinks and how sure it is." | Functionality |
+| 1:05 to 1:20 | Deliberately blurry shot, then too far. Rescan screen with the specific instruction. Then a coral honeysuckle gets "Looks like native coral honeysuckle. No report needed." | "If the shot's bad it tells me why. If it isn't sure, it sends the report to expert review instead of guessing. And it knows the natives that look like invasives." | Functionality, Technical difficulty |
+| 1:20 to 1:35 | Map tab: the saved pin on the real trail map, tap it, detail sheet. | "Every report lands on a real map of the preserve, trails and creek from OpenStreetMap, with the pin shaped and coloured by status." | Design |
+| 1:35 to 2:00 | Settings > Ranger mode on. Ranger tab: ranked list, tap "How we rank", back, tap a report, mark Treated. Notification banner appears. | "Staff get a ranked work list. Small isolated patches near the creek go first, because that's early detection. When they mark one treated, the reporter gets told. The loop closes." | Staff value, Creativity |
+| 2:00 to 2:15 | Export work order PDF, show the page. | "One tap exports a work order with the top ten, map thumbnails and why each one ranked." | Staff value |
+| 2:15 to 2:35 | About > How accurate is this? card. Then a shot of the field test CSV or the model card. | "I trained the model on [N] licensed iNaturalist photos of [K] species, split by observer so test scores aren't inflated, and calibrated it. On held-out photos the confirmed call is [X]% precise. In the field with a volunteer checking labels it got [Z]% on [M] photos. That gap is in the model card, on purpose." | Technical difficulty, Code |
+| 2:35 to 2:45 | On-site clip: Jeetu on the trail, phone in hand. End card: "Autrey Mill Sentry. Built for Autrey Mill Nature Preserve by Jeetu SK." | "Spot, verify, act, tell. Every visitor a sentry." | Structure |
+
+What to film on site (one afternoon, daylight, no people in frame): privet wall, privet seedling, English ivy on a trunk, Japanese honeysuckle, coral honeysuckle if found, the creek, a trail sign, Jeetu walking. Screen record on the trail with location on. Record the Ranger section at home with the simulated location switch off (real reports from the walk).
+
+Do not say: "the preserve partnered with", "official", "approved", "kills millions of animals", any accuracy number not in a JSON file.
