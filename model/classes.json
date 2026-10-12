@@ -1,0 +1,1026 @@
+{
+ "generated": "2026-10-12",
+ "min_tier2_images": 80,
+ "classes": [
+  {
+   "label": "ligustrum_sinense",
+   "tier": "tier1",
+   "taxon_id": 128769,
+   "name": "Ligustrum sinense",
+   "common": "Chinese privet",
+   "ga": 2643,
+   "se": 8910
+  },
+  {
+   "label": "mahonia_bealei",
+   "tier": "tier1",
+   "taxon_id": 277657,
+   "name": "Mahonia bealei",
+   "common": "leatherleaf mahonia",
+   "ga": 2103,
+   "se": 4590
+  },
+  {
+   "label": "lonicera_japonica",
+   "tier": "tier1",
+   "taxon_id": 77835,
+   "name": "Lonicera japonica",
+   "common": "Japanese honeysuckle",
+   "ga": 2159,
+   "se": 9183
+  },
+  {
+   "label": "wisteria_sinensis",
+   "tier": "tier1",
+   "taxon_id": 127306,
+   "name": "Wisteria sinensis",
+   "common": "Chinese wisteria",
+   "ga": 332,
+   "se": 573
+  },
+  {
+   "label": "vinca_minor",
+   "tier": "tier1",
+   "taxon_id": 55844,
+   "name": "Vinca minor",
+   "common": "lesser periwinkle",
+   "ga": 344,
+   "se": 2695
+  },
+  {
+   "label": "elaeagnus_umbellata",
+   "tier": "tier1",
+   "taxon_id": 64697,
+   "name": "Elaeagnus umbellata",
+   "common": "autumn olive",
+   "ga": 532,
+   "se": 2326
+  },
+  {
+   "label": "elaeagnus_pungens",
+   "tier": "tier1",
+   "taxon_id": 162214,
+   "name": "Elaeagnus pungens",
+   "common": "thorny olive",
+   "ga": 1111,
+   "se": 1847
+  },
+  {
+   "label": "rosa_multiflora",
+   "tier": "tier1",
+   "taxon_id": 78882,
+   "name": "Rosa multiflora",
+   "common": "multiflora rose",
+   "ga": 698,
+   "se": 5501
+  },
+  {
+   "label": "hedera_helix",
+   "tier": "tier1",
+   "taxon_id": 55882,
+   "name": "Hedera helix",
+   "common": "common ivy",
+   "ga": 1397,
+   "se": 3963
+  },
+  {
+   "label": "albizia_julibrissin",
+   "tier": "tier1",
+   "taxon_id": 47443,
+   "name": "Albizia julibrissin",
+   "common": "Persian silk tree",
+   "ga": 1729,
+   "se": 6955
+  },
+  {
+   "label": "paulownia_tomentosa",
+   "tier": "tier1",
+   "taxon_id": 119792,
+   "name": "Paulownia tomentosa",
+   "common": "princess tree",
+   "ga": 744,
+   "se": 2464
+  },
+  {
+   "label": "microstegium_vimineum",
+   "tier": "tier1",
+   "taxon_id": 116710,
+   "name": "Microstegium vimineum",
+   "common": "Japanese stiltgrass",
+   "ga": 1004,
+   "se": 4893
+  },
+  {
+   "label": "pueraria_montana",
+   "tier": "tier1",
+   "taxon_id": 62671,
+   "name": "Pueraria montana",
+   "common": "kudzu",
+   "ga": 1531,
+   "se": 5225
+  },
+  {
+   "label": "nandina_domestica",
+   "tier": "tier1",
+   "taxon_id": 127010,
+   "name": "Nandina domestica",
+   "common": "Heavenly bamboo",
+   "ga": 1887,
+   "se": 5723
+  },
+  {
+   "label": "lonicera_sempervirens",
+   "tier": "native",
+   "taxon_id": 119809,
+   "name": "Lonicera sempervirens",
+   "common": "coral honeysuckle",
+   "ga": 470,
+   "se": 2672
+  },
+  {
+   "label": "wisteria_frutescens",
+   "tier": "native",
+   "taxon_id": 51266,
+   "name": "Wisteria frutescens",
+   "common": "American wisteria",
+   "ga": 76,
+   "se": 172
+  },
+  {
+   "label": "viburnum_acerifolium",
+   "tier": "native",
+   "taxon_id": 62997,
+   "name": "Viburnum acerifolium",
+   "common": "mapleleaf viburnum",
+   "ga": 437,
+   "se": 2339
+  },
+  {
+   "label": "viburnum_dentatum",
+   "tier": "native",
+   "taxon_id": 82247,
+   "name": "Viburnum dentatum",
+   "common": "southern arrowwood",
+   "ga": 20,
+   "se": 77
+  },
+  {
+   "label": "ilex_opaca",
+   "tier": "native",
+   "taxon_id": 60749,
+   "name": "Ilex opaca",
+   "common": "American holly",
+   "ga": 2083,
+   "se": 10204
+  },
+  {
+   "label": "toxicodendron_radicans",
+   "tier": "native",
+   "taxon_id": 58732,
+   "name": "Toxicodendron radicans",
+   "common": "eastern poison ivy",
+   "ga": 2370,
+   "se": 10667
+  },
+  {
+   "label": "parthenocissus_quinquefolia",
+   "tier": "native",
+   "taxon_id": 50278,
+   "name": "Parthenocissus quinquefolia",
+   "common": "Virginia creeper",
+   "ga": 2964,
+   "se": 10992
+  },
+  {
+   "label": "vitis_rotundifolia",
+   "tier": "native",
+   "taxon_id": 82529,
+   "name": "Vitis rotundifolia",
+   "common": "muscadine",
+   "ga": 3152,
+   "se": 6443
+  },
+  {
+   "label": "rosa_carolina",
+   "tier": "native",
+   "taxon_id": 129196,
+   "name": "Rosa carolina",
+   "common": "Carolina rose",
+   "ga": 65,
+   "se": 683
+  },
+  {
+   "label": "rubus_argutus",
+   "tier": "native",
+   "taxon_id": 1276041,
+   "name": "Rubus argutus",
+   "common": "Sawtooth Blackberry",
+   "ga": 12,
+   "se": 17
+  },
+  {
+   "label": "mitchella_repens",
+   "tier": "native",
+   "taxon_id": 83799,
+   "name": "Mitchella repens",
+   "common": "partridgeberry",
+   "ga": 1177,
+   "se": 8177
+  },
+  {
+   "label": "catalpa_bignonioides",
+   "tier": "native",
+   "taxon_id": 50859,
+   "name": "Catalpa bignonioides",
+   "common": "southern catalpa",
+   "ga": 52,
+   "se": 156
+  },
+  {
+   "label": "chasmanthium_latifolium",
+   "tier": "native",
+   "taxon_id": 84364,
+   "name": "Chasmanthium latifolium",
+   "common": "river oats",
+   "ga": 710,
+   "se": 2667
+  },
+  {
+   "label": "smilax_rotundifolia",
+   "tier": "native",
+   "taxon_id": 60746,
+   "name": "Smilax rotundifolia",
+   "common": "roundleaf greenbrier",
+   "ga": 472,
+   "se": 2356
+  },
+  {
+   "label": "ailanthus_altissima",
+   "tier": "tier2",
+   "taxon_id": 57278,
+   "name": "Ailanthus altissima",
+   "common": "tree-of-heaven",
+   "ga": 346,
+   "se": 2905
+  },
+  {
+   "label": "alternanthera_philoxeroides",
+   "tier": "tier2",
+   "taxon_id": 75386,
+   "name": "Alternanthera philoxeroides",
+   "common": "Alligatorweed",
+   "ga": 230,
+   "se": 733
+  },
+  {
+   "label": "dryopteris_erythrosora",
+   "tier": "tier2",
+   "taxon_id": 137722,
+   "name": "Dryopteris erythrosora",
+   "common": "autumn fern",
+   "ga": 920,
+   "se": 911
+  },
+  {
+   "label": "eichhornia_crassipes",
+   "tier": "tier2",
+   "taxon_id": 962637,
+   "name": "Eichhornia crassipes",
+   "common": "common water hyacinth",
+   "ga": 304,
+   "se": 502
+  },
+  {
+   "label": "lespedeza_bicolor",
+   "tier": "tier2",
+   "taxon_id": 129677,
+   "name": "Lespedeza bicolor",
+   "common": "shrub lespedeza",
+   "ga": 156,
+   "se": 1144
+  },
+  {
+   "label": "lespedeza_cuneata",
+   "tier": "tier2",
+   "taxon_id": 164566,
+   "name": "Lespedeza cuneata",
+   "common": "Chinese bushclover",
+   "ga": 979,
+   "se": 4966
+  },
+  {
+   "label": "lygodium_japonicum",
+   "tier": "tier2",
+   "taxon_id": 164985,
+   "name": "Lygodium japonicum",
+   "common": "Japanese climbing fern",
+   "ga": 680,
+   "se": 1594
+  },
+  {
+   "label": "melia_azedarach",
+   "tier": "tier2",
+   "taxon_id": 53720,
+   "name": "Melia azedarach",
+   "common": "Chinaberry",
+   "ga": 611,
+   "se": 1313
+  },
+  {
+   "label": "murdannia_keisak",
+   "tier": "tier2",
+   "taxon_id": 125685,
+   "name": "Murdannia keisak",
+   "common": "marsh dewflower",
+   "ga": 204,
+   "se": 536
+  },
+  {
+   "label": "triadica_sebifera",
+   "tier": "tier2",
+   "taxon_id": 79388,
+   "name": "Triadica sebifera",
+   "common": "Chinese Tallow",
+   "ga": 976,
+   "se": 2823
+  },
+  {
+   "label": "ardisia_crenata",
+   "tier": "tier2",
+   "taxon_id": 158586,
+   "name": "Ardisia crenata",
+   "common": "Coralberry",
+   "ga": 150,
+   "se": 155
+  },
+  {
+   "label": "crotalaria_spectabilis",
+   "tier": "tier2",
+   "taxon_id": 161150,
+   "name": "Crotalaria spectabilis",
+   "common": "Showy Rattlebox",
+   "ga": 210,
+   "se": 412
+  },
+  {
+   "label": "dioscorea_polystachya",
+   "tier": "tier2",
+   "taxon_id": 119141,
+   "name": "Dioscorea polystachya",
+   "common": "Chinese yam",
+   "ga": 365,
+   "se": 1022
+  },
+  {
+   "label": "leucanthemum_vulgare",
+   "tier": "tier2",
+   "taxon_id": 56057,
+   "name": "Leucanthemum vulgare",
+   "common": "oxeye daisy",
+   "ga": 518,
+   "se": 2365
+  },
+  {
+   "label": "ligustrum_lucidum",
+   "tier": "tier2",
+   "taxon_id": 77740,
+   "name": "Ligustrum lucidum",
+   "common": "tree privet",
+   "ga": 320,
+   "se": 1677
+  },
+  {
+   "label": "lonicera_maackii",
+   "tier": "tier2",
+   "taxon_id": 82342,
+   "name": "Lonicera maackii",
+   "common": "Amur honeysuckle",
+   "ga": 861,
+   "se": 4226
+  },
+  {
+   "label": "miscanthus_sinensis",
+   "tier": "tier2",
+   "taxon_id": 165474,
+   "name": "Miscanthus sinensis",
+   "common": "Chinese silver grass",
+   "ga": 42,
+   "se": 277
+  },
+  {
+   "label": "myriophyllum_aquaticum",
+   "tier": "tier2",
+   "taxon_id": 60202,
+   "name": "Myriophyllum aquaticum",
+   "common": "Parrot's feather",
+   "ga": 388,
+   "se": 1108
+  },
+  {
+   "label": "nasturtium_officinale",
+   "tier": "tier2",
+   "taxon_id": 78174,
+   "name": "Nasturtium officinale",
+   "common": "watercress",
+   "ga": 9,
+   "se": 121
+  },
+  {
+   "label": "phyllostachys_aurea",
+   "tier": "tier2",
+   "taxon_id": 78563,
+   "name": "Phyllostachys aurea",
+   "common": "fishpole bamboo",
+   "ga": 33,
+   "se": 135
+  },
+  {
+   "label": "sesbania_punicea",
+   "tier": "tier2",
+   "taxon_id": 79065,
+   "name": "Sesbania punicea",
+   "common": "Scarlet Sesbane",
+   "ga": 188,
+   "se": 621
+  },
+  {
+   "label": "spiraea_japonica",
+   "tier": "tier2",
+   "taxon_id": 125790,
+   "name": "Spiraea japonica",
+   "common": "Japanese Spirea",
+   "ga": 81,
+   "se": 594
+  },
+  {
+   "label": "vinca_major",
+   "tier": "tier2",
+   "taxon_id": 53326,
+   "name": "Vinca major",
+   "common": "greater periwinkle",
+   "ga": 772,
+   "se": 2528
+  },
+  {
+   "label": "vitex_rotundifolia",
+   "tier": "tier2",
+   "taxon_id": 126845,
+   "name": "Vitex rotundifolia",
+   "common": "Beach Vitex",
+   "ga": 6,
+   "se": 328
+  },
+  {
+   "label": "ajuga_reptans",
+   "tier": "tier2",
+   "taxon_id": 56099,
+   "name": "Ajuga reptans",
+   "common": "carpet bugle",
+   "ga": 250,
+   "se": 1552
+  },
+  {
+   "label": "ampelopsis_glandulosa",
+   "tier": "tier2",
+   "taxon_id": 204237,
+   "name": "Ampelopsis glandulosa",
+   "common": "Porcelain Berry",
+   "ga": 526,
+   "se": 1451
+  },
+  {
+   "label": "anthoxanthum_odoratum",
+   "tier": "tier2",
+   "taxon_id": 75475,
+   "name": "Anthoxanthum odoratum",
+   "common": "sweet vernal grass",
+   "ga": 38,
+   "se": 390
+  },
+  {
+   "label": "arundo_donax",
+   "tier": "tier2",
+   "taxon_id": 64017,
+   "name": "Arundo donax",
+   "common": "giant reed",
+   "ga": 16,
+   "se": 131
+  },
+  {
+   "label": "berberis_thunbergii",
+   "tier": "tier2",
+   "taxon_id": 58727,
+   "name": "Berberis thunbergii",
+   "common": "Japanese barberry",
+   "ga": 57,
+   "se": 827
+  },
+  {
+   "label": "broussonetia_papyrifera",
+   "tier": "tier2",
+   "taxon_id": 128032,
+   "name": "Broussonetia papyrifera",
+   "common": "Paper mulberry",
+   "ga": 164,
+   "se": 943
+  },
+  {
+   "label": "carduus_nutans",
+   "tier": "tier2",
+   "taxon_id": 76007,
+   "name": "Carduus nutans",
+   "common": "musk thistle",
+   "ga": 467,
+   "se": 1305
+  },
+  {
+   "label": "centaurea_cyanus",
+   "tier": "tier2",
+   "taxon_id": 933404,
+   "name": "Centaurea cyanus",
+   "common": "Cornflower",
+   "ga": 144,
+   "se": 800
+  },
+  {
+   "label": "citrus_trifoliata",
+   "tier": "tier2",
+   "taxon_id": 200071,
+   "name": "Citrus trifoliata",
+   "common": "trifoliate orange",
+   "ga": 381,
+   "se": 1214
+  },
+  {
+   "label": "clematis_terniflora",
+   "tier": "tier2",
+   "taxon_id": 62776,
+   "name": "Clematis terniflora",
+   "common": "autumn clematis",
+   "ga": 518,
+   "se": 1394
+  },
+  {
+   "label": "colocasia_esculenta",
+   "tier": "tier2",
+   "taxon_id": 122835,
+   "name": "Colocasia esculenta",
+   "common": "Taro",
+   "ga": 248,
+   "se": 547
+  },
+  {
+   "label": "daucus_carota",
+   "tier": "tier2",
+   "taxon_id": 76610,
+   "name": "Daucus carota",
+   "common": "wild carrot",
+   "ga": 422,
+   "se": 3379
+  },
+  {
+   "label": "euonymus_fortunei",
+   "tier": "tier2",
+   "taxon_id": 130893,
+   "name": "Euonymus fortunei",
+   "common": "fortune's spindle",
+   "ga": 272,
+   "se": 1974
+  },
+  {
+   "label": "hemerocallis_fulva",
+   "tier": "tier2",
+   "taxon_id": 126583,
+   "name": "Hemerocallis fulva",
+   "common": "orange day-lily",
+   "ga": 173,
+   "se": 735
+  },
+  {
+   "label": "hibiscus_syriacus",
+   "tier": "tier2",
+   "taxon_id": 126585,
+   "name": "Hibiscus syriacus",
+   "common": "common hibiscus",
+   "ga": 588,
+   "se": 1700
+  },
+  {
+   "label": "ligustrum_japonicum",
+   "tier": "tier2",
+   "taxon_id": 77739,
+   "name": "Ligustrum japonicum",
+   "common": "wax-leaf ligustrum",
+   "ga": 39,
+   "se": 128
+  },
+  {
+   "label": "liriope_muscari",
+   "tier": "tier2",
+   "taxon_id": 223938,
+   "name": "Liriope muscari",
+   "common": "Liriope",
+   "ga": 230,
+   "se": 306
+  },
+  {
+   "label": "lonicera_fragrantissima",
+   "tier": "tier2",
+   "taxon_id": 164763,
+   "name": "Lonicera fragrantissima",
+   "common": "Winter honeysuckle",
+   "ga": 87,
+   "se": 875
+  },
+  {
+   "label": "morus_alba",
+   "tier": "tier2",
+   "taxon_id": 56090,
+   "name": "Morus alba",
+   "common": "white mulberry",
+   "ga": 188,
+   "se": 347
+  },
+  {
+   "label": "paspalum_urvillei",
+   "tier": "tier2",
+   "taxon_id": 78356,
+   "name": "Paspalum urvillei",
+   "common": "Vasey Grass",
+   "ga": 74,
+   "se": 273
+  },
+  {
+   "label": "perilla_frutescens",
+   "tier": "tier2",
+   "taxon_id": 119136,
+   "name": "Perilla frutescens",
+   "common": "beefsteak plant",
+   "ga": 805,
+   "se": 2367
+  },
+  {
+   "label": "phragmites_australis",
+   "tier": "tier2",
+   "taxon_id": 64237,
+   "name": "Phragmites australis",
+   "common": "common reed",
+   "ga": 4,
+   "se": 336
+  },
+  {
+   "label": "pyrus_calleryana",
+   "tier": "tier2",
+   "taxon_id": 119793,
+   "name": "Pyrus calleryana",
+   "common": "Callery pear",
+   "ga": 760,
+   "se": 1665
+  },
+  {
+   "label": "rubus_armeniacus",
+   "tier": "tier2",
+   "taxon_id": 61317,
+   "name": "Rubus armeniacus",
+   "common": "Armenian Blackberry",
+   "ga": 70,
+   "se": 122
+  },
+  {
+   "label": "securigera_varia",
+   "tier": "tier2",
+   "taxon_id": 127186,
+   "name": "Securigera varia",
+   "common": "purple crownvetch",
+   "ga": 54,
+   "se": 1388
+  },
+  {
+   "label": "solanum_viarum",
+   "tier": "tier2",
+   "taxon_id": 169088,
+   "name": "Solanum viarum",
+   "common": "tropical soda-apple",
+   "ga": 46,
+   "se": 64
+  },
+  {
+   "label": "sorghum_halepense",
+   "tier": "tier2",
+   "taxon_id": 58387,
+   "name": "Sorghum halepense",
+   "common": "Johnson grass",
+   "ga": 75,
+   "se": 415
+  },
+  {
+   "label": "vernicia_fordii",
+   "tier": "tier2",
+   "taxon_id": 170171,
+   "name": "Vernicia fordii",
+   "common": "tung oil tree",
+   "ga": 85,
+   "se": 158
+  },
+  {
+   "label": "akebia_quinata",
+   "tier": "tier2",
+   "taxon_id": 126249,
+   "name": "Akebia quinata",
+   "common": "Five-leaf akebia",
+   "ga": 64,
+   "se": 96
+  },
+  {
+   "label": "allium_vineale",
+   "tier": "tier2",
+   "taxon_id": 75371,
+   "name": "Allium vineale",
+   "common": "wild garlic",
+   "ga": 376,
+   "se": 1483
+  },
+  {
+   "label": "artemisia_vulgaris",
+   "tier": "tier2",
+   "taxon_id": 52856,
+   "name": "Artemisia vulgaris",
+   "common": "common mugwort",
+   "ga": 59,
+   "se": 597
+  },
+  {
+   "label": "cirsium_vulgare",
+   "tier": "tier2",
+   "taxon_id": 52989,
+   "name": "Cirsium vulgare",
+   "common": "Bull Thistle",
+   "ga": 130,
+   "se": 811
+  },
+  {
+   "label": "euonymus_alatus",
+   "tier": "tier2",
+   "taxon_id": 117433,
+   "name": "Euonymus alatus",
+   "common": "winged euonymus",
+   "ga": 129,
+   "se": 1151
+  },
+  {
+   "label": "fatoua_villosa",
+   "tier": "tier2",
+   "taxon_id": 51636,
+   "name": "Fatoua villosa",
+   "common": "hairy crabweed",
+   "ga": 300,
+   "se": 635
+  },
+  {
+   "label": "firmiana_simplex",
+   "tier": "tier2",
+   "taxon_id": 162991,
+   "name": "Firmiana simplex",
+   "common": "Chinese parasol tree",
+   "ga": 89,
+   "se": 374
+  },
+  {
+   "label": "ilex_cornuta",
+   "tier": "tier2",
+   "taxon_id": 164038,
+   "name": "Ilex cornuta",
+   "common": "Chinese holly",
+   "ga": 1233,
+   "se": 2447
+  },
+  {
+   "label": "ilex_crenata",
+   "tier": "tier2",
+   "taxon_id": 133240,
+   "name": "Ilex crenata",
+   "common": "Japanese holly",
+   "ga": 41,
+   "se": 71
+  },
+  {
+   "label": "ipomoea_coccinea",
+   "tier": "tier2",
+   "taxon_id": 120518,
+   "name": "Ipomoea coccinea",
+   "common": "red morning glory",
+   "ga": 363,
+   "se": 984
+  },
+  {
+   "label": "ipomoea_purpurea",
+   "tier": "tier2",
+   "taxon_id": 52344,
+   "name": "Ipomoea purpurea",
+   "common": "common morning-glory",
+   "ga": 277,
+   "se": 1401
+  },
+  {
+   "label": "jacquemontia_tamnifolia",
+   "tier": "tier2",
+   "taxon_id": 164215,
+   "name": "Jacquemontia tamnifolia",
+   "common": "Hairy cluster-vine",
+   "ga": 536,
+   "se": 884
+  },
+  {
+   "label": "kummerowia_stipulacea",
+   "tier": "tier2",
+   "taxon_id": 143557,
+   "name": "Kummerowia stipulacea",
+   "common": "Korean bushclover",
+   "ga": 6,
+   "se": 82
+  },
+  {
+   "label": "kummerowia_striata",
+   "tier": "tier2",
+   "taxon_id": 143558,
+   "name": "Kummerowia striata",
+   "common": "Japanese Clover",
+   "ga": 217,
+   "se": 909
+  },
+  {
+   "label": "liriope_spicata",
+   "tier": "tier2",
+   "taxon_id": 319891,
+   "name": "Liriope spicata",
+   "common": "Creeping Lilyturf",
+   "ga": 22,
+   "se": 58
+  },
+  {
+   "label": "persicaria_longiseta",
+   "tier": "tier2",
+   "taxon_id": 143803,
+   "name": "Persicaria longiseta",
+   "common": "low smartweed",
+   "ga": 959,
+   "se": 4866
+  },
+  {
+   "label": "quercus_acutissima",
+   "tier": "tier2",
+   "taxon_id": 167634,
+   "name": "Quercus acutissima",
+   "common": "Sawtooth oak",
+   "ga": 74,
+   "se": 161
+  },
+  {
+   "label": "rosa_laevigata",
+   "tier": "tier2",
+   "taxon_id": 83066,
+   "name": "Rosa laevigata",
+   "common": "Three-leaved Rose",
+   "ga": 119,
+   "se": 140
+  },
+  {
+   "label": "rubus_phoenicolasius",
+   "tier": "tier2",
+   "taxon_id": 84227,
+   "name": "Rubus phoenicolasius",
+   "common": "wineberry",
+   "ga": 56,
+   "se": 1269
+  },
+  {
+   "label": "setaria_pumila",
+   "tier": "tier2",
+   "taxon_id": 48688,
+   "name": "Setaria pumila",
+   "common": "yellow foxtail",
+   "ga": 57,
+   "se": 180
+  },
+  {
+   "label": "sonchus_asper",
+   "tier": "tier2",
+   "taxon_id": 53269,
+   "name": "Sonchus asper",
+   "common": "prickly sowthistle",
+   "ga": 237,
+   "se": 767
+  },
+  {
+   "label": "sonchus_oleraceus",
+   "tier": "tier2",
+   "taxon_id": 53294,
+   "name": "Sonchus oleraceus",
+   "common": "Common Sow-thistle",
+   "ga": 29,
+   "se": 53
+  },
+  {
+   "label": "torilis_arvensis",
+   "tier": "tier2",
+   "taxon_id": 56846,
+   "name": "Torilis arvensis",
+   "common": "common hedge parsley",
+   "ga": 24,
+   "se": 330
+  },
+  {
+   "label": "verbascum_thapsus",
+   "tier": "tier2",
+   "taxon_id": 59029,
+   "name": "Verbascum thapsus",
+   "common": "great mullein",
+   "ga": 827,
+   "se": 3823
+  },
+  {
+   "label": "verbena_bonariensis",
+   "tier": "tier2",
+   "taxon_id": 79487,
+   "name": "Verbena bonariensis",
+   "common": "purpletop vervain",
+   "ga": 32,
+   "se": 121
+  },
+  {
+   "label": "buddleja_davidii",
+   "tier": "tier2",
+   "taxon_id": 75916,
+   "name": "Buddleja davidii",
+   "common": "Butterfly bush",
+   "ga": 244,
+   "se": 879
+  },
+  {
+   "label": "alliaria_petiolata",
+   "tier": "tier2",
+   "taxon_id": 56061,
+   "name": "Alliaria petiolata",
+   "common": "garlic mustard",
+   "ga": 26,
+   "se": 1448
+  },
+  {
+   "label": "achyranthes_japonica",
+   "tier": "tier2",
+   "taxon_id": 157962,
+   "name": "Achyranthes japonica",
+   "common": "Japanese Chaff Flower",
+   "ga": 452,
+   "se": 104
+  },
+  {
+   "label": "arthraxon_hispidus",
+   "tier": "tier2",
+   "taxon_id": 158727,
+   "name": "Arthraxon hispidus",
+   "common": "small carpetgrass",
+   "ga": 13,
+   "se": 169
+  },
+  {
+   "label": "celastrus_orbiculatus",
+   "tier": "tier2",
+   "taxon_id": 64540,
+   "name": "Celastrus orbiculatus",
+   "common": "Asian bittersweet",
+   "ga": 97,
+   "se": 1135
+  },
+  {
+   "label": "imperata_cylindrica",
+   "tier": "tier2",
+   "taxon_id": 164056,
+   "name": "Imperata cylindrica",
+   "common": "Cogon Grass",
+   "ga": 7,
+   "se": 189
+  },
+  {
+   "label": "reynoutria_japonica",
+   "tier": "tier2",
+   "taxon_id": 914922,
+   "name": "Reynoutria japonica",
+   "common": "Japanese knotweed",
+   "ga": 126,
+   "se": 548
+  },
+  {
+   "label": "other_plant",
+   "tier": "other",
+   "taxon_id": 47126,
+   "name": "Plantae (random Georgia plants, excluding all classes above)"
+  },
+  {
+   "label": "not_plant",
+   "tier": "other",
+   "taxon_id": null,
+   "name": "Fungi, insects, birds, reptiles, mammals and other non-plant observations in Georgia"
+  }
+ ]
+}
