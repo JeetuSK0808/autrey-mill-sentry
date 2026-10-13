@@ -52,6 +52,8 @@ final class ScanViewModel {
     var lockHapticTick = 0   // bumped once per fresh lock so the view can play haptics
 
     // Live-frame state lives on the camera's serial video queue.
+    @ObservationIgnored nonisolated(unsafe) private let liveClassifier: PlantClassifying
+    @ObservationIgnored nonisolated(unsafe) private let liveCatalog: SpeciesCatalog
     @ObservationIgnored nonisolated(unsafe) private var analyzer = QualityAnalyzer()
     @ObservationIgnored nonisolated(unsafe) private var tracker = LockOnTracker(thresholds: Config.scan)
     @ObservationIgnored nonisolated(unsafe) private var liveEnabled = false
@@ -64,6 +66,8 @@ final class ScanViewModel {
         self.location = location
         self.preserve = preserve
         self.settings = settings
+        self.liveClassifier = classifier
+        self.liveCatalog = catalog
         camera.onFrame = { [weak self] pb, orientation in self?.handleFrame(pb, orientation: orientation) }
     }
 
@@ -90,7 +94,7 @@ final class ScanViewModel {
             Task { @MainActor in self.applyLive(state: state, topName: nil, guidance: gate.liveHint, good: false, freshLock: false, autoCapture: false) }
             return
         }
-        guard let cls = try? classifier.classify(pixelBuffer: pb, orientation: orientation), let top = cls.top else { return }
+        guard let cls = try? liveClassifier.classify(pixelBuffer: pb, orientation: orientation), let top = cls.top else { return }
         if top.label == "not_plant" && top.probability >= Config.scan.notPlantMinProbability {
             let state = tracker.push(nil)
             wasLocked = false
@@ -98,7 +102,7 @@ final class ScanViewModel {
             return
         }
         let state = tracker.push(top)
-        let name = catalog.name(for: top.label)
+        let name = liveCatalog.name(for: top.label)
         var freshLock = false, auto = false
         switch state {
         case .locked:
@@ -111,7 +115,7 @@ final class ScanViewModel {
         }
         let guidance: String
         switch state {
-        case .locked(let label, _): guidance = "Locked on: \(catalog.name(for: label)). Tap to capture."
+        case .locked(let label, _): guidance = "Locked on: \(liveCatalog.name(for: label)). Tap to capture."
         case .tracking: guidance = "Plant in view, hold steady"
         case .idle: guidance = "Plant in view, tap to capture"
         }

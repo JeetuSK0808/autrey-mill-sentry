@@ -7,7 +7,7 @@ import Observation
 
 /// AVCaptureSession wrapper: live frames at about 4 fps on a background queue, plus full-resolution stills.
 @Observable
-final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate, @unchecked Sendable {
     let session = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "sentry.camera.session")
     private let videoQueue = DispatchQueue(label: "sentry.camera.video", qos: .userInitiated)
