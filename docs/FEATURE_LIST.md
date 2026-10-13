@@ -37,6 +37,14 @@ Status key: built = code exists; verified = seen working on device or Simulator;
 - Settings: Ranger mode, Field Test mode with CSV export, auto-capture, haptics, coordinate rounding on export, delete all data, privacy summary, About with the accuracy card read from `model_card.json` (built, verified on iPhone 17 simulator 13 Oct)
 - Privacy manifest, no analytics, no third-party code (built)
 
+## Motion and polish
+- Leaf-green launch sequence (leaf grows, midrib draws, eye opens, title fades, lifts away; plain fade under Reduce Motion) (built)
+- Scan: marching framing guide, lock-on ripple and shutter pulse, sliding guidance text, capture flash, pulsing leaf while identifying (built)
+- Result: staged reveal, confidence bar grows to its value with a counting label, badge pops, saved check bounces (built)
+- Map: pins spring in, status icons morph, trail banner and location hint slide (built)
+- Lists: staggered row appearance, badge and priority transitions, rank numbers roll (built)
+- Onboarding, Learn, Visit: symbol bounce, staggered content, gently swaying leaf illustration, pressable buttons; every effect checks Reduce Motion (built)
+
 ## Model
 - iNaturalist dataset builder with licence filter and attribution (built, ran)
 - Training (EfficientNet-B0 at 256 px, MPS, observer-level split, balanced sampling, augmentation), temperature calibration, threshold tuning, evaluation JSON, model card, Core ML export with a PyTorch comparison (built, ran for real: v2 bundled, see MODEL_CARD)
