@@ -4,6 +4,7 @@ import XCTest
 /// on the main screens. Any failure is a real finding; results are recorded in docs/DESIGN_CHECKLIST.md.
 final class AccessibilityAuditUITests: XCTestCase {
     private func audit(_ app: XCUIApplication, _ screen: String) throws {
+        sleep(2)   // let appear animations finish so the audit measures the settled layout
         try app.performAccessibilityAudit(for: .all) { issue in
             // Report everything except the known-noisy "sufficient element description" for decorative images we already hide.
             let text = "\(screen): [\(issue.auditType)] \(issue.compactDescription) on \(issue.element?.description ?? "?")"

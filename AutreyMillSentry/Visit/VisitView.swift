@@ -39,7 +39,7 @@ struct VisitView: View {
                                 Text("Hours").font(.headline)
                                 Label("Grounds and trails: \(v.groundsHours)", systemImage: "figure.walk")
                                 Label("Visitor Center and Farm Museum: \(v.visitorCenterHours)", systemImage: "door.left.hand.open")
-                                Text("From \(v.websiteURL), retrieved \(v.retrievedOn). Check the website before you go.").font(.caption).foregroundStyle(.secondary)
+                                Text("From \(v.websiteURL), retrieved \(v.retrievedOn). Check the website before you go.").font(.caption).foregroundStyle(Theme.muted)
                             }
                         }
                         Button { directions() } label: { Label("Directions in Apple Maps", systemImage: "car").frame(maxWidth: .infinity).padding(.vertical, 8) }

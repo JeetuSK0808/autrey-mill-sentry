@@ -3,6 +3,8 @@ import SwiftUI
 /// Bold, graphic, memorable: strong greens, confident type, native components underneath.
 enum Theme {
     static let forest = Color(red: 0.11, green: 0.42, blue: 0.29)
+    static let forestDeep = Color(red: 0.07, green: 0.34, blue: 0.23)   // toolbar text on glass
+    static let muted = Color.primary.opacity(0.72)                      // captions inside tinted cards
     static let leaf = Color(red: 0.55, green: 0.80, blue: 0.42)
     static let bark = Color(red: 0.36, green: 0.25, blue: 0.16)
     static let creek = Color(red: 0.16, green: 0.49, blue: 0.80)
