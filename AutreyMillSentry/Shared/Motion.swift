@@ -73,7 +73,28 @@ extension View {
     func primaryButton() -> some View { buttonStyle(PrimaryButtonStyle()) }
 }
 
-/// The app's mark, drawn in SwiftUI so it can animate: a leaf with a watchful eye.
+/// Map-pin teardrop: a circle whose tangents meet at the bottom tip.
+struct PinShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let r = rect.width / 2
+        let cx = rect.midX, cy = rect.minY + r
+        let tipY = rect.maxY
+        let a0 = acos(min(1, r / max(tipY - cy, r + 1)))
+        let start = Double.pi / 2 + a0, end = Double.pi / 2 - a0 + 2 * Double.pi
+        var p = Path()
+        let n = 120
+        for i in 0...n {
+            let a = start + (end - start) * Double(i) / Double(n)
+            let pt = CGPoint(x: cx + r * CGFloat(cos(a)), y: cy + r * CGFloat(sin(a)))
+            if i == 0 { p.move(to: pt) } else { p.addLine(to: pt) }
+        }
+        p.addLine(to: CGPoint(x: cx, y: tipY))
+        p.closeSubpath()
+        return p
+    }
+}
+
+/// Leaf outline used inside the pin.
 struct LeafShape: Shape {
     func path(in rect: CGRect) -> Path {
         var p = Path()
@@ -88,48 +109,59 @@ struct LeafShape: Shape {
     }
 }
 
-struct MidribShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        var p = Path()
-        let w = rect.width
-        p.move(to: CGPoint(x: rect.minX + w * 0.05, y: rect.midY))
-        p.addLine(to: CGPoint(x: rect.minX + w * 0.31, y: rect.midY))
-        p.move(to: CGPoint(x: rect.minX + w * 0.69, y: rect.midY))
-        p.addLine(to: CGPoint(x: rect.maxX - w * 0.05, y: rect.midY))
-        return p
-    }
-}
-
-/// Leaf + eye mark. `progress` 0...1 drives the midrib draw and eye opening; `scale` the leaf growth.
+/// The app's mark: a pin with a leaf inside and a location ping at the tip. All parts animate independently.
 struct SentryMark: View {
+    var pinOffset: CGFloat = 0      // vertical offset of the pin (drop-in)
+    var pinOpacity: Double = 1
     var leafScale: CGFloat = 1
-    var ribProgress: CGFloat = 1
-    var eyeOpen: CGFloat = 1
-    var tint: Color = Theme.leaf
+    var ping: CGFloat = 0           // 0 = no ring, 1 = ring fully expanded and faded
+    var ping2: CGFloat = 0
     var body: some View {
         GeometryReader { g in
             let w = g.size.width, h = g.size.height
+            let pinW = w * 0.56, pinH = h * 0.82
+            let headR = pinW / 2
             ZStack {
-                LeafShape()
-                    .fill(LinearGradient(colors: [tint, tint.opacity(0.75)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: w * 0.9, height: h * 0.5)
-                    .shadow(color: .black.opacity(0.25), radius: w * 0.04, y: w * 0.03)
-                MidribShape()
-                    .trim(from: 0, to: ribProgress)
-                    .stroke(Theme.forest.opacity(0.7), style: StrokeStyle(lineWidth: max(2, w * 0.02), lineCap: .round))
-                    .frame(width: w * 0.9, height: h * 0.5)
-                ZStack {
-                    Ellipse().fill(Color(red: 0.99, green: 0.99, blue: 0.96)).frame(width: w * 0.34, height: h * 0.2)
-                    Circle().fill(Theme.forest).frame(width: w * 0.14)
-                    Circle().fill(Color(red: 0.05, green: 0.1, blue: 0.07)).frame(width: w * 0.07)
-                    Circle().fill(.white).frame(width: w * 0.03).offset(x: w * 0.015, y: -w * 0.025)
+                // location pings at the tip
+                ForEach([ping, ping2], id: \.self) { pr in
+                    Ellipse()
+                        .stroke(Theme.leaf.opacity(Double(1 - pr) * 0.9), lineWidth: max(1.5, w * 0.012))
+                        .frame(width: w * 0.12 + w * 0.6 * pr, height: (w * 0.12 + w * 0.6 * pr) * 0.32)
+                        .position(x: w / 2, y: h * 0.91)
+                        .opacity(pr > 0 && pr < 1 ? 1 : 0)
                 }
-                .scaleEffect(y: max(0.02, eyeOpen))
+                ZStack {
+                    PinShape()
+                        .fill(Color(red: 0.93, green: 0.96, blue: 0.89))
+                        .shadow(color: .black.opacity(0.28), radius: w * 0.04, y: w * 0.03)
+                    Circle()
+                        .stroke(Color(red: 0.75, green: 0.89, blue: 0.63), lineWidth: max(1.5, w * 0.012))
+                        .frame(width: headR * 1.8, height: headR * 1.8)
+                        .position(x: pinW / 2, y: headR)
+                    ZStack {
+                        LeafShape().fill(Color(red: 0.13, green: 0.44, blue: 0.27))
+                        MidribShape().stroke(Theme.leaf, style: StrokeStyle(lineWidth: max(1.5, w * 0.015), lineCap: .round))
+                    }
+                    .frame(width: headR * 1.25, height: headR * 0.65)
+                    .rotationEffect(.degrees(-35))
+                    .position(x: pinW / 2, y: headR + headR * 0.02)
+                    .scaleEffect(leafScale)
+                }
+                .frame(width: pinW, height: pinH)
+                .position(x: w / 2, y: h * 0.47)
+                .offset(y: pinOffset)
+                .opacity(pinOpacity)
             }
-            .rotationEffect(.degrees(-28))
-            .scaleEffect(leafScale)
-            .frame(width: w, height: h)
         }
         .accessibilityHidden(true)
+    }
+}
+
+struct MidribShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: rect.minX + rect.width * 0.06, y: rect.midY))
+        p.addLine(to: CGPoint(x: rect.maxX - rect.width * 0.06, y: rect.midY))
+        return p
     }
 }
