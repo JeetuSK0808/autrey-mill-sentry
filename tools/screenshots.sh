@@ -4,11 +4,14 @@
 set -e
 export DEVELOPER_DIR=${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}
 cd "$(dirname "$0")/.."
-SIM=${1:-iPhone 17}; MODE=${2:-light}
-SLUG=$(echo "$SIM-$MODE" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+SIM=${1:-iPhone 17}; MODE=${2:-light}; SIZE=${3:-medium}
+SLUG=$(echo "$SIM-$MODE-$SIZE" | tr ' ' '-' | tr '[:upper:]' '[:lower:]' | sed 's/-medium$//')
 OUT=docs/screenshots/$SLUG; RES=build/screens-$SLUG.xcresult
 rm -rf "$RES" "$OUT"; mkdir -p "$OUT"
+xcrun simctl boot "$SIM" 2>/dev/null || true
+sleep 3
 xcrun simctl ui "$SIM" appearance "$MODE" 2>/dev/null || true
+xcrun simctl ui "$SIM" content_size "$SIZE" 2>/dev/null || true
 xcodebuild -project AutreyMillSentry.xcodeproj -scheme AutreyMillSentry -destination "platform=iOS Simulator,name=$SIM" -derivedDataPath build/DerivedData -resultBundlePath "$RES" -parallel-testing-enabled NO -only-testing:AutreyMillSentryUITests/ScreenshotUITests test 2>&1 | grep -E "Test Case|error:|passed|failed" | tail -20
 xcrun xcresulttool export attachments --path "$RES" --output-path "$OUT" >/dev/null
 # name files by attachment name
@@ -23,3 +26,5 @@ if m.exists():
             if src.exists(): shutil.move(src, dst)
 print(sorted(p.name for p in out.glob("*.png")))
 PY
+xcrun simctl ui "$SIM" content_size medium 2>/dev/null || true
+xcrun simctl ui "$SIM" appearance light 2>/dev/null || true

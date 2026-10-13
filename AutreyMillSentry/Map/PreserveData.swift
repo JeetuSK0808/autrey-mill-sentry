@@ -106,12 +106,16 @@ final class PreserveData {
         return Geo.contains(boundary, point: p) ? 0 : Geo.distanceMeters(from: p, toPolygonEdge: boundary)
     }
 
+    /// Nearest trail; a named trail wins over an unnamed one when it is within 1.5x the distance (and under 40 m).
     func nearestTrail(to p: GeoPoint) -> (name: String, distance: Double)? {
         var best: (String, Double)?
+        var bestNamed: (String, Double)?
         for t in trails {
             let d = Geo.distanceMeters(from: p, toPolyline: t.points)
             if best == nil || d < best!.1 { best = (t.name, d) }
+            if t.name != "Unnamed trail", bestNamed == nil || d < bestNamed!.1 { bestNamed = (t.name, d) }
         }
+        if let b = best, let n = bestNamed, b.0 == "Unnamed trail", n.1 <= max(40, b.1 * 1.5) { return n }
         return best
     }
 

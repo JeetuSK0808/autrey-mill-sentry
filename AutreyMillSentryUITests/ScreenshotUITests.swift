@@ -54,7 +54,7 @@ final class ScreenshotUITests: XCTestCase {
         app.buttons["result.done"].tap()
         app.tabBars.buttons["Ranger"].tap()
         sleep(1); shoot(app, "11-ranger")
-        app.cells.firstMatch.tap()
+        app.staticTexts["Chinese privet"].firstMatch.tap()
         sleep(1); shoot(app, "12-ranger-report")
         let treated = app.buttons["ranger.status.treated"]
         if treated.waitForExistence(timeout: 5) { treated.tap(); sleep(1); shoot(app, "13-ranger-treated") }
