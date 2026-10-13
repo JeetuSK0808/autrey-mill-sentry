@@ -103,7 +103,7 @@ def main():
         m = Yt == npi
         reject = float(((top[m] == npi) & (Pt[m].max(1) >= 0.5)).mean()) if m.any() else None
     overall = {"top1": float((top == Yt).mean()), "top3": float((np.argsort(-Pt, 1)[:, :3] == Yt[:, None]).any(1).mean()), "testImages": int(len(Yt))}
-    out = {"version": args.version, "evaluatedOn": time.strftime("%Y-%m-%d"), "temperature": float(T), "ece_val_raw": ece(softmax(Lv), Yv), "ece_val": ece(Pv, Yv), "ece_test": ece(Pt, Yt),
+    out = {"version": args.version, "arch": split.get("arch"), "inputSize": split.get("size"), "epochs": split.get("epochs"), "evaluatedOn": time.strftime("%Y-%m-%d"), "temperature": float(T), "ece_val_raw": ece(softmax(Lv), Yv), "ece_val": ece(Pv, Yv), "ece_test": ece(Pt, Yt),
            "confirm": {"threshold": best_thr, "margin": args.margin, "targetPrecision": args.target_precision, "perClass": per_class,
                        "val": {"precision": prec_v, "coverage": cov_v, "n": n_v}, "test": {"precision": prec_t, "coverage": cov_t, "n": n_t, "nativeFalseConfirmRate": fcn_t}},
            "overall": overall, "tier1": t1m, "tier2": t2m, "native": natm, "perClass": per, "hardestConfusions": hardest, "notPlantRejectRate": reject,
@@ -133,6 +133,7 @@ def write_model_card_md(o, card, labels, tiers):
     pct = lambda v: "n/a" if v is None else f"{100*v:.1f}%"
     L = ["# Model card: InvasiveClassifier " + o["version"], "",
          f"Evaluated {o['evaluatedOn']}. Every number here comes from `model/eval/{o['version']}_eval.json`, produced by `model/evaluate.py` on a held-out test split.", "",
+         f"Backbone: timm `{o.get('arch')}` (ImageNet pretrained), input {o.get('inputSize')} px, {o.get('epochs')} epochs, AdamW + one-cycle LR, label smoothing 0.1, class-balanced sampling, strong augmentation (random resized crops, flips, rotation, colour jitter, blur, erasing). Trained on Apple MPS.", "",
          "## Data and split",
          f"- Source: iNaturalist research-grade observations, photos licensed CC0 / CC-BY / CC-BY-NC only, Georgia first, then the south-eastern US, then the US. Attribution in `data/attribution.csv` (not committed) and `docs/LICENSES.md`.",
          f"- Split by observer (and therefore by observation): train {o['split']['train']} / val {o['split']['val']} / test {o['split']['test']} images from {o['observers']['train']} / {o['observers']['val']} / {o['observers']['test']} observers. No observer appears in two splits.",

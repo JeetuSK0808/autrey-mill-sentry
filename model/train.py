@@ -40,7 +40,7 @@ def main():
         train = [it for l in by for it in by[l][:args.max_per_class]]
     print(f"classes={len(present)} train={len(train)} val={len(val)} test={len(test)} device={device}", flush=True)
     (MODEL / "runs").mkdir(exist_ok=True); (MODEL / "checkpoints").mkdir(exist_ok=True); EVAL.mkdir(exist_ok=True)
-    json.dump({"labels": present, "tiers": {l: tiers[l] for l in present}, "counts": {l: counts[l] for l in present},
+    json.dump({"arch": args.arch, "size": args.size, "epochs": args.epochs, "labels": present, "tiers": {l: tiers[l] for l in present}, "counts": {l: counts[l] for l in present},
                "split_sizes": {"train": len(train), "val": len(val), "test": len(test)},
                "val_observers": len({it["observer"] for it in val}), "test_observers": len({it["observer"] for it in test}),
                "train_observers": len({it["observer"] for it in train})},

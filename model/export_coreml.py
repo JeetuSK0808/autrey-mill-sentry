@@ -55,7 +55,7 @@ def main():
         probs = pred[[k for k in pred if k != "classLabel"][0]]
         cm = np.array([probs[l] for l in labels])
         agree += int(cm.argmax() == pt.argmax()); maxdiff = max(maxdiff, float(np.abs(cm - pt).max()))
-    rep = {"version": args.version, "images_checked": len(paths), "top1_agreement": agree / len(paths), "max_abs_prob_diff": maxdiff, "size_mb": size_mb, "temperature": T, "note": "Same 224 px centre crop fed to both; differences come from FP16 and Core ML resampling only."}
+    rep = {"version": args.version, "images_checked": len(paths), "top1_agreement": agree / len(paths), "max_abs_prob_diff": maxdiff, "size_mb": size_mb, "temperature": T, "note": f"Same {size} px centre crop fed to both; differences come from FP16 and Core ML resampling only."}
     json.dump(rep, open(EVAL / f"{args.version}_coreml_check.json", "w"), indent=1)
     print(rep, flush=True)
 
