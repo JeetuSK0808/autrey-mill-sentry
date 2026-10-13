@@ -69,7 +69,7 @@ struct ReportRowView: View {
                 AdaptiveHStack(spacing: 6) {
                     StatusBadge(status: report.status).animation(Motion.snappy, value: report.status)
                     if report.isPractice { Text("Practice").font(.caption2.weight(.semibold)).padding(.horizontal, 6).padding(.vertical, 3).background(.quaternary, in: Capsule()) }
-                    if showPriority { Text("Priority \(Int(report.priorityScore.rounded()))").font(.caption2.weight(.bold)).foregroundStyle(Theme.forest).contentTransition(.numericText()).animation(Motion.gentle, value: report.priorityScore) }
+                    if showPriority { Text("Priority \(Int(report.priorityScore.rounded()))").font(.caption2.weight(.bold)).foregroundStyle(Theme.forest).animation(Motion.gentle, value: report.priorityScore) }
                 }
             }
             Spacer(minLength: 0)
@@ -99,8 +99,8 @@ struct SendSheet: View {
                 if app.settings.roundCoordinatesOnExport { Label("Coordinates rounded to about 100 m (Settings)", systemImage: "location.circle") }
                 Spacer()
                 if Config.rangerEmailIsSet && MailComposer.canSend {
-                    Button { showMail = true } label: { Label("Email the preserve", systemImage: "envelope").frame(maxWidth: .infinity).padding(.vertical, 8) }
-                        .buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
+                    Button { showMail = true } label: { Label("Email the preserve", systemImage: "envelope") }
+                        .primaryButton()
                 } else {
                     Text(Config.rangerEmailIsSet ? "Mail is not set up on this phone. Use Share instead." : "The preserve's report address is not set yet. Use Share to send it any way you like.")
                         .font(.footnote).foregroundStyle(.secondary)

@@ -1,88 +1,88 @@
-# Accessibility audit (XCTest performAccessibilityAudit, iPhone 17, 2026-10-13 00:56)
+# Accessibility audit (XCTest performAccessibilityAudit, iPhone 17, 2026-10-13 01:02)
 
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+User will not be able to change the font size of this SwiftUI.AccessibilityNode
+ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Ranked by early-detection value: small isolated patches near the creek first. Swipe a row to change its status." StaticText
+The size of this MKAttributionLabel is too small for user to interact.
+User will not be able to change the font size of this SwiftUI.AccessibilityNode
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
 result: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Calibrated confidence" StaticText
+Contrast failed for SwiftUI.AccessibilityNode
+ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "1" StaticText
+ranger: [XCUIAccessibilityAuditType(rawValue: 131072)] Text clipped on "How we rank" StaticText
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+User will not be able to change the font size of this SwiftUI.AccessibilityNode
+map: [XCUIAccessibilityAuditType(rawValue: 4)] Hit area is too small on "Legal" Link
+learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on ?
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+learn: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Tuned species (can be confirmed by the scanner)" StaticText
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
 settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
+learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
 Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
 learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
+reports: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "1 report(s). Nothing leaves your phone until you tap Send." StaticText
+User will not be able to change the font size of this SwiftUI.AccessibilityNode
+Contrast failed for SwiftUI.AccessibilityNode
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast failed for SwiftUI.AccessibilityNode
+visit: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on "From autreymill.org, retrieved 12 Oct 2026. Check the website before you go." StaticText
+Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
+User will not be able to change the font size of this SwiftUI.AccessibilityNode
+learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Tuned species (can be confirmed by the scanner)" StaticText
+ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Oct 13, 2026 at 1:02 AM · Unnamed trail" StaticText
 learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
+settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast failed for SwiftUI.AccessibilityNode
+ranger: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Ranked by early-detection value: small isolated patches near the creek first. Swipe a row to change its status." StaticText
+result: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "result.close" Button
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast failed for SwiftUI.AccessibilityNode
+learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
+User will not be able to change the font size of this SwiftUI.AccessibilityNode
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+ranger: [XCUIAccessibilityAuditType(rawValue: 131072)] Text clipped on "Map of all reports" StaticText
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+map: [XCUIAccessibilityAuditType(rawValue: 2)] Potentially inaccessible text on ?
+Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
+settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
 visit: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on "Directions in Apple Maps" StaticText
 learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on ?
 Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "1" StaticText
-result: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on "result.close" Button
-learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-map: [XCUIAccessibilityAuditType(rawValue: 4)] Hit area is too small on "Legal" Link
-ranger: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Oct 13, 2026 at 12:46 AM · Unnamed trail" StaticText
 Contrast failed for SwiftUI.AccessibilityNode
-User will not be able to change the font size of this SwiftUI.AccessibilityNode
+result: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Ligustrum sinense" StaticText
+ranger: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Oct 13, 2026 at 1:02 AM · Unnamed trail" StaticText
 settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-ranger: [XCUIAccessibilityAuditType(rawValue: 131072)] Text clipped on "Export work order (top 10)" StaticText
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Chinese privet" StaticText
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-map: [XCUIAccessibilityAuditType(rawValue: 2)] Potentially inaccessible text on ?
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-ranger: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Ranked by early-detection value: small isolated patches near the creek first. Swipe a row to change its status." StaticText
-learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-reports: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Oct 13, 2026 at 12:45 AM · Unnamed trail" StaticText
 ranger: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Priority work list" StaticText
-The size of this MKAttributionLabel is too small for user to interact.
 Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-ranger: [XCUIAccessibilityAuditType(rawValue: 131072)] Text clipped on "How we rank" StaticText
-learn: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Tuned species (can be confirmed by the scanner)" StaticText
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
 settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on "Done" Button
+result: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on "result.close" Button
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
 learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
-User will not be able to change the font size of this SwiftUI.AccessibilityNode
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Tuned species (can be confirmed by the scanner)" StaticText
-User will not be able to change the font size of this SwiftUI.AccessibilityNode
-Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-settings: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Done" Button
 result: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Near Unnamed trail" StaticText
 Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-Contrast failed for SwiftUI.AccessibilityNode
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+settings: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Done" Button
+Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
 settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
 User will not be able to change the font size of this SwiftUI.AccessibilityNode
-result: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "result.close" Button
-Contrast failed for SwiftUI.AccessibilityNode
-User will not be able to change the font size of this SwiftUI.AccessibilityNode
-learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on ?
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-User will not be able to change the font size of this SwiftUI.AccessibilityNode
-Contrast failed for SwiftUI.AccessibilityNode
-ranger: [XCUIAccessibilityAuditType(rawValue: 131072)] Text clipped on "Map of all reports" StaticText
-ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Oct 13, 2026 at 12:46 AM · Unnamed trail" StaticText
-Contrast failed for SwiftUI.AccessibilityNode
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
 This element appears to display text that should be represented using the accessibility API.
-settings: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
-User will not be able to change the font size of this SwiftUI.AccessibilityNode
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Ranked by early-detection value: small isolated patches near the creek first. Swipe a row to change its status." StaticText
-Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
-reports: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "1 report(s). Nothing leaves your phone until you tap Send." StaticText
-visit: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast failed on "From autreymill.org, retrieved 12 Oct 2026. Check the website before you go." StaticText
 result: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Top 3" StaticText
-result: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Ligustrum sinense" StaticText
-Contrast failed for SwiftUI.AccessibilityNode
+ranger: [XCUIAccessibilityAuditType(rawValue: 131072)] Text clipped on "Export work order (top 10)" StaticText
+ranger: [XCUIAccessibilityAuditType(rawValue: 65536)] Dynamic Type font sizes are partially unsupported on "Chinese privet" StaticText
+Contrast is not high enough for SwiftUI.AccessibilityNode unless font size is larger.
+reports: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on "Oct 13, 2026 at 1:01 AM · Unnamed trail" StaticText
+learn: [XCUIAccessibilityAuditType(rawValue: 1)] Contrast nearly passed on ?
 
 Issues above are the raw audit output. Each one is either fixed or explained in docs/DESIGN_CHECKLIST.md.

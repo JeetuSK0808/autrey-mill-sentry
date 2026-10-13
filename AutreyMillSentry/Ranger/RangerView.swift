@@ -22,10 +22,10 @@ struct RangerView: View {
         NavigationStack {
             List {
                 Section {
-                    NavigationLink { MapScreen(rangerMode: true) } label: { Label("Map of all reports", systemImage: "map") }
-                    NavigationLink { HowWeRankView() } label: { Label("How we rank", systemImage: "list.number") }
+                    NavigationLink { MapScreen(rangerMode: true) } label: { menuRow("Map of all reports", "map") }
+                    NavigationLink { HowWeRankView() } label: { menuRow("How we rank", "list.number") }
                     Button { Task { await makeWorkOrder() } } label: {
-                        HStack { Label("Export work order (top 10)", systemImage: "doc.text"); if generating { Spacer(); ProgressView() } }
+                        HStack { menuRow("Export work order (top 10)", "doc.text"); if generating { Spacer(); ProgressView() } }
                     }.disabled(ranked.isEmpty || generating)
                 }
                 Section {
@@ -35,8 +35,7 @@ struct RangerView: View {
                     ForEach(Array(ranked.enumerated()), id: \.element.id) { i, r in
                         NavigationLink { ReportDetailView(report: r, rangerMode: true) } label: {
                             HStack(spacing: 10) {
-                                Text("\(i + 1)").font(.title3.bold().monospacedDigit()).foregroundStyle(Theme.forest).frame(minWidth: 30)
-                                    .contentTransition(.numericText())
+                                Text("\(i + 1)").font(.title3.weight(.bold)).foregroundStyle(Theme.forest).frame(minWidth: 30)
                                 ReportRowView(report: r, showPriority: true)
                             }
                             .staggeredAppear(i)
@@ -65,6 +64,13 @@ struct RangerView: View {
             .sheet(isPresented: Binding(get: { workOrder != nil }, set: { if !$0 { workOrder = nil } })) { if let u = workOrder { ShareSheet(items: [u]) } }
             .alert("Could not export", isPresented: Binding(get: { errorText != nil }, set: { _ in errorText = nil })) { Button("OK") {} } message: { Text(errorText ?? "") }
             .onAppear { ReportStore.recomputePriorities(context: context, catalog: app.catalog) }
+        }
+    }
+
+    private func menuRow(_ title: String, _ symbol: String) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: symbol).foregroundStyle(Theme.forest).frame(width: 26)
+            Text(title).fixedSize(horizontal: false, vertical: true)
         }
     }
 

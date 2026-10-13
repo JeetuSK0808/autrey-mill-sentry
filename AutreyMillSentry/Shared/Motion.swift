@@ -20,6 +20,24 @@ struct PressableButtonStyle: ButtonStyle {
     }
 }
 
+/// Solid forest-green call to action: white bold text on an opaque fill, so contrast does not depend on glass.
+struct PrimaryButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.isEnabled) private var isEnabled
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.body.weight(.semibold))
+            .foregroundStyle(.white)
+            .padding(.vertical, 14)
+            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity)
+            .background(Theme.forest.opacity(isEnabled ? 1 : 0.5), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.97 : 1)
+            .opacity(configuration.isPressed ? 0.92 : 1)
+            .animation(Motion.snappy, value: configuration.isPressed)
+    }
+}
+
 /// Fades and slides a view in once, staggered by its index. With Reduce Motion it only fades.
 struct StaggeredAppear: ViewModifier {
     let index: Int
@@ -52,6 +70,7 @@ extension View {
     func staggeredAppear(_ index: Int) -> some View { modifier(StaggeredAppear(index: index)) }
     func popIn(delay: Double = 0) -> some View { modifier(PopIn(delay: delay)) }
     func pressable() -> some View { buttonStyle(PressableButtonStyle()) }
+    func primaryButton() -> some View { buttonStyle(PrimaryButtonStyle()) }
 }
 
 /// The app's mark, drawn in SwiftUI so it can animate: a leaf with a watchful eye.
@@ -72,8 +91,11 @@ struct LeafShape: Shape {
 struct MidribShape: Shape {
     func path(in rect: CGRect) -> Path {
         var p = Path()
-        p.move(to: CGPoint(x: rect.minX + rect.width * 0.04, y: rect.midY))
-        p.addLine(to: CGPoint(x: rect.maxX - rect.width * 0.04, y: rect.midY))
+        let w = rect.width
+        p.move(to: CGPoint(x: rect.minX + w * 0.05, y: rect.midY))
+        p.addLine(to: CGPoint(x: rect.minX + w * 0.31, y: rect.midY))
+        p.move(to: CGPoint(x: rect.minX + w * 0.69, y: rect.midY))
+        p.addLine(to: CGPoint(x: rect.maxX - w * 0.05, y: rect.midY))
         return p
     }
 }

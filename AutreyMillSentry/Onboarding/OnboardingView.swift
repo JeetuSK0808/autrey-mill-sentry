@@ -15,8 +15,8 @@ struct OnboardingView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-            Button { next() } label: { Text(page == 2 ? "Start scanning" : "Continue").frame(maxWidth: .infinity).padding(.vertical, 8).contentTransition(.opacity) }
-                .buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
+            Button { next() } label: { Text(page == 2 ? "Start scanning" : "Continue").contentTransition(.opacity) }
+                .primaryButton()
                 .animation(Motion.snappy, value: page)
                 .padding(.horizontal, 24).padding(.bottom, 16)
                 .accessibilityIdentifier("onboarding.next")

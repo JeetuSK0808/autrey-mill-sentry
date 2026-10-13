@@ -77,8 +77,8 @@ struct ScanResultView: View {
             Label(reason.title, systemImage: "arrow.triangle.2.circlepath").font(.title2.bold())
             Text(reason.instruction).font(.body)
             Text(ScanDecision.tip(for: reason, candidate: result.classification.top?.label, catalog: app.catalog)).font(.callout).foregroundStyle(.secondary)
-            Button { onDone() } label: { Text("Try again").frame(maxWidth: .infinity).padding(.vertical, 8) }
-                .buttonStyle(.borderedProminent).controlSize(.large).tint(Theme.forest)
+            Button { onDone() } label: { Text("Try again") }
+                .primaryButton()
                 .accessibilityIdentifier("result.tryAgain")
             if reason == .ambiguous && !reportAnyway {
                 VStack(alignment: .leading, spacing: 6) {
@@ -182,18 +182,18 @@ struct ScanResultView: View {
                 Label("Saved. It's on your map and in Reports.", systemImage: "checkmark.circle.fill").foregroundStyle(Theme.forest).font(.headline)
                     .symbolEffect(.bounce, value: saved.id)
                     .transition(.scale(scale: 0.9).combined(with: .opacity))
-                Button { onDone() } label: { Text("Done").frame(maxWidth: .infinity).padding(.vertical, 8) }.buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
+                Button { onDone() } label: { Text("Done") }.primaryButton()
                     .accessibilityIdentifier("result.done")
                 let _ = saved
             } else if let duplicate {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Same species was reported within \(Int(Config.duplicateRadiusMeters)) m in the last \(Config.duplicateWindowDays) days.").font(.subheadline)
-                    Button { addToExisting(duplicate) } label: { Text("Add to existing report").frame(maxWidth: .infinity).padding(.vertical, 8) }.buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
+                    Button { addToExisting(duplicate) } label: { Text("Add to existing report") }.primaryButton()
                     Button("Save as a new report") { save(force: true) }.buttonStyle(.bordered)
                 }
             } else {
-                Button { save(force: false) } label: { Text(saveTitle).frame(maxWidth: .infinity).padding(.vertical, 8) }
-                    .buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
+                Button { save(force: false) } label: { Text(saveTitle) }
+                    .primaryButton()
                     .accessibilityIdentifier("result.save")
                     .transition(.opacity)
             }
