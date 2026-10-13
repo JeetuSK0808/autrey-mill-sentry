@@ -43,7 +43,7 @@ struct ScanResultView: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(result.outcome.isRescan ? "Try again" : "Discard") { onDone() }.fontWeight(.semibold).tint(Theme.forestDeep).accessibilityIdentifier("result.close")
+                    Button(result.outcome.isRescan ? "Try again" : "Discard") { onDone() }.buttonStyle(.borderedProminent).tint(Theme.forestDeep).accessibilityIdentifier("result.close")
                 }
             }
             .alert("Could not save", isPresented: Binding(get: { errorText != nil }, set: { _ in errorText = nil })) { Button("OK") {} } message: { Text(errorText ?? "") }

@@ -7,7 +7,7 @@ final class AccessibilityAuditUITests: XCTestCase {
         sleep(2)   // let appear animations finish so the audit measures the settled layout
         try app.performAccessibilityAudit(for: .all) { issue in
             // Report everything except the known-noisy "sufficient element description" for decorative images we already hide.
-            let text = "\(screen): [\(issue.auditType)] \(issue.compactDescription) on \(issue.element?.description ?? "?")"
+            let text = "\(screen): [\(issue.auditType)] \(issue.compactDescription) on \(issue.element?.description ?? "?") :: \(issue.detailedDescription)"
             let attachment = XCTAttachment(string: text)
             attachment.name = "a11y-\(screen)"
             attachment.lifetime = .keepAlways
