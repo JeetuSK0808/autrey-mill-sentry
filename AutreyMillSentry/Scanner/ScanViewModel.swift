@@ -53,7 +53,7 @@ final class ScanViewModel {
 
     // Live-frame state lives on the camera's serial video queue.
     @ObservationIgnored nonisolated(unsafe) private let liveClassifier: PlantClassifying
-    @ObservationIgnored nonisolated(unsafe) private let liveCatalog: SpeciesCatalog
+    @ObservationIgnored nonisolated private let liveCatalog: SpeciesCatalog
     @ObservationIgnored nonisolated(unsafe) private var analyzer = QualityAnalyzer()
     @ObservationIgnored nonisolated(unsafe) private var tracker = LockOnTracker(thresholds: Config.scan)
     @ObservationIgnored nonisolated(unsafe) private var liveEnabled = false
