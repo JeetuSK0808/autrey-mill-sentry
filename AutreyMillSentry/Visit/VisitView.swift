@@ -28,7 +28,7 @@ struct VisitView: View {
                         Card {
                             VStack(alignment: .leading, spacing: 10) {
                                 Label(v.address, systemImage: "mappin.and.ellipse")
-                                Link(destination: URL(string: "tel:\(v.phone.filter { $0.isNumber })")!) { Label(v.phone, systemImage: "phone") }
+                                Link(destination: URL(string: "tel:\(v.phone.filter { $0.isNumber })")!) { Label(v.phone, systemImage: "phone").frame(minHeight: 44, alignment: .leading) }
                                 Label("\(v.acres) · \(v.admission)", systemImage: "leaf")
                                 Label(v.groups, systemImage: "person.3")
                                 Label(v.runBy, systemImage: "building.2")

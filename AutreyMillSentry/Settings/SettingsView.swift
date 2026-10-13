@@ -53,7 +53,8 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() }.fontWeight(.semibold) } }
             .confirmationDialog("Delete every report and photo on this phone? This cannot be undone.", isPresented: $confirmDelete, titleVisibility: .visible) {
                 Button("Delete all my data", role: .destructive) { ReportStore.deleteAll(context: context); deleted = true }
             }

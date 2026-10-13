@@ -35,10 +35,11 @@ struct RangerView: View {
                     ForEach(Array(ranked.enumerated()), id: \.element.id) { i, r in
                         NavigationLink { ReportDetailView(report: r, rangerMode: true) } label: {
                             HStack(spacing: 10) {
-                                Text("\(i + 1)").font(.title3.bold().monospacedDigit()).foregroundStyle(Theme.forest).frame(width: 30)
+                                Text("\(i + 1)").font(.title3.bold().monospacedDigit()).foregroundStyle(Theme.forest).frame(minWidth: 30)
                                 ReportRowView(report: r, showPriority: true)
                             }
                         }
+                        .accessibilityIdentifier("ranger.row.\(i)")
                         .swipeActions(edge: .trailing) {
                             Button { Task { await ReportStore.update(status: .treated, of: r, context: context, catalog: app.catalog) } } label: { Label("Treated", systemImage: "checkmark.seal") }.tint(Theme.forest)
                             Button { Task { await ReportStore.update(status: .confirmed, of: r, context: context, catalog: app.catalog) } } label: { Label("Confirm", systemImage: "diamond") }.tint(Theme.alert)

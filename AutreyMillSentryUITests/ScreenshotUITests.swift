@@ -54,10 +54,18 @@ final class ScreenshotUITests: XCTestCase {
         app.buttons["result.done"].tap()
         app.tabBars.buttons["Ranger"].tap()
         sleep(1); shoot(app, "11-ranger")
-        app.staticTexts["Chinese privet"].firstMatch.tap()
+        app.descendants(matching: .any)["ranger.row.0"].firstMatch.tap()
         sleep(1); shoot(app, "12-ranger-report")
         let treated = app.buttons["ranger.status.treated"]
-        if treated.waitForExistence(timeout: 5) { treated.tap(); sleep(1); shoot(app, "13-ranger-treated") }
+        if treated.waitForExistence(timeout: 5) {
+            addUIInterruptionMonitor(withDescription: "Notifications") { alert in
+                if alert.buttons["Allow"].exists { alert.buttons["Allow"].tap(); return true }
+                return false
+            }
+            treated.tap(); sleep(1)
+            app.navigationBars.firstMatch.tap()   // lets the interruption monitor handle the system prompt
+            sleep(1); shoot(app, "13-ranger-treated")
+        }
         app.navigationBars.buttons.firstMatch.tap()
         app.tabBars.buttons["Reports"].tap()
         app.navigationBars.buttons["Settings"].tap()

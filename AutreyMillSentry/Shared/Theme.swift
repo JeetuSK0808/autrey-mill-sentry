@@ -18,6 +18,24 @@ enum Theme {
         }
     }
 
+    /// Text colour for tinted badges: darker than the fill so it clears WCAG AA on the 18% tint.
+    static func badgeText(for status: ReportStatus) -> Color {
+        switch status {
+        case .new: return Color(red: 0.52, green: 0.30, blue: 0.0)
+        case .confirmed: return Color(red: 0.62, green: 0.14, blue: 0.10)
+        case .treated: return Color(red: 0.07, green: 0.34, blue: 0.23)
+        case .dismissed: return Color(red: 0.30, green: 0.30, blue: 0.32)
+        }
+    }
+    static func badgeText(for tier: SpeciesTier) -> Color {
+        switch tier {
+        case .tier1: return Color(red: 0.62, green: 0.14, blue: 0.10)
+        case .tier2: return Color(red: 0.52, green: 0.30, blue: 0.0)
+        case .native: return Color(red: 0.07, green: 0.34, blue: 0.23)
+        case .other: return Color(red: 0.30, green: 0.30, blue: 0.32)
+        }
+    }
+
     static func color(for tier: SpeciesTier) -> Color {
         switch tier {
         case .tier1: return alert
@@ -51,7 +69,22 @@ struct StatusBadge: View {
             .font(.caption.weight(.semibold))
             .padding(.horizontal, 8).padding(.vertical, 4)
             .background(Theme.color(for: status).opacity(0.18), in: Capsule())
-            .foregroundStyle(Theme.color(for: status))
+            .foregroundStyle(Theme.badgeText(for: status))
+            .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+/// HStack that becomes a VStack at accessibility text sizes so nothing truncates.
+struct AdaptiveHStack<Content: View>: View {
+    @Environment(\.dynamicTypeSize) private var size
+    var spacing: CGFloat = 8
+    @ViewBuilder var content: Content
+    var body: some View {
+        if size.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: spacing) { content }
+        } else {
+            HStack(spacing: spacing) { content }
+        }
     }
 }
 
@@ -69,7 +102,8 @@ struct TierBadge: View {
         Text(text).font(.caption2.weight(.bold))
             .padding(.horizontal, 6).padding(.vertical, 3)
             .background(Theme.color(for: tier).opacity(0.15), in: Capsule())
-            .foregroundStyle(Theme.color(for: tier))
+            .foregroundStyle(Theme.badgeText(for: tier))
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
 

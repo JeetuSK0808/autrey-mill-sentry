@@ -167,8 +167,10 @@ private struct GuidancePill: View {
 
 private struct ScanControls: View {
     @Environment(AppModel.self) private var app
+    @Environment(\.dynamicTypeSize) private var typeSize
     let vm: ScanViewModel
     @Binding var pickerItem: PhotosPickerItem?
+    private var compact: Bool { typeSize.isAccessibilitySize }
 
     var body: some View {
         @Bindable var settings = app.settings
@@ -192,11 +194,13 @@ private struct ScanControls: View {
                 autoToggle($settings)
             }
             .padding(.horizontal, 28)
-            Text(SafetyCopy.short)
-                .font(.caption)
-                .foregroundStyle(.white.opacity(0.9))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 24)
+            if !compact {
+                Text(SafetyCopy.short)
+                    .font(.caption)
+                    .foregroundStyle(.white.opacity(0.9))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+            }
         }
         .padding(.bottom, 16)
         .background { LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom).allowsHitTesting(false) }
@@ -206,9 +210,9 @@ private struct ScanControls: View {
         PhotosPicker(selection: $pickerItem, matching: .images) {
             VStack(spacing: 4) {
                 Image(systemName: "photo.on.rectangle").font(.title2)
-                Text("Photo").font(.caption2)
+                if !compact { Text("Photo").font(.caption2) }
             }
-            .frame(width: 64, height: 64)
+            .frame(minWidth: 64, minHeight: 64)
             .background(Color.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 14))
             .foregroundStyle(.white)
         }
@@ -233,12 +237,12 @@ private struct ScanControls: View {
         Toggle(isOn: settings.autoCapture) {
             VStack(spacing: 4) {
                 Image(systemName: "bolt.badge.automatic").font(.title2)
-                Text("Auto").font(.caption2)
+                if !compact { Text("Auto").font(.caption2) }
             }
         }
         .toggleStyle(.button)
         .tint(Theme.leaf)
-        .frame(width: 64, height: 64)
+        .frame(minWidth: 64, minHeight: 64)
         .background(Color.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 14))
         .foregroundStyle(.white)
         .accessibilityLabel("Auto capture when locked on")

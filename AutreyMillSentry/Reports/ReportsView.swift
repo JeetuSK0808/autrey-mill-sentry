@@ -61,12 +61,12 @@ struct ReportRowView: View {
             CGImageView(image: thumb).frame(width: 56, height: 56).clipShape(RoundedRectangle(cornerRadius: 10))
                 .task { thumb = PhotoStore.thumbnail(report.photoFileName, maxPixel: 160) }
             VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Text(report.speciesName).font(.headline).lineLimit(1)
+                HStack(alignment: .firstTextBaseline) {
+                    Text(report.speciesName).font(.headline)
                     if report.needsExpertReview { Image(systemName: "person.fill.questionmark").foregroundStyle(Theme.caution).accessibilityLabel("needs expert review") }
                 }
                 Text("\(report.createdAt.shortDescription)\(report.nearestTrailName.isEmpty ? "" : " · " + report.nearestTrailName)").font(.caption).foregroundStyle(.secondary)
-                HStack(spacing: 6) {
+                AdaptiveHStack(spacing: 6) {
                     StatusBadge(status: report.status)
                     if report.isPractice { Text("Practice").font(.caption2.weight(.semibold)).padding(.horizontal, 6).padding(.vertical, 3).background(.quaternary, in: Capsule()) }
                     if showPriority { Text("Priority \(Int(report.priorityScore.rounded()))").font(.caption2.weight(.bold)).foregroundStyle(Theme.forest) }

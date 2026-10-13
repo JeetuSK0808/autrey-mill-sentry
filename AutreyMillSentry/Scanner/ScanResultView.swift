@@ -36,9 +36,10 @@ struct ScanResultView: View {
             }
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(result.outcome.isRescan ? "Try again" : "Discard") { onDone() }.accessibilityIdentifier("result.close")
+                    Button(result.outcome.isRescan ? "Try again" : "Discard") { onDone() }.fontWeight(.semibold).accessibilityIdentifier("result.close")
                 }
             }
             .alert("Could not save", isPresented: Binding(get: { errorText != nil }, set: { _ in errorText = nil })) { Button("OK") {} } message: { Text(errorText ?? "") }
@@ -88,7 +89,7 @@ struct ScanResultView: View {
     private func speciesCard(label: String, confidence: Double, confirmed: Bool) -> some View {
         let s = app.catalog.species(for: label)
         return VStack(alignment: .leading, spacing: 10) {
-            HStack { Text(app.catalog.name(for: label)).font(.title.bold()); Spacer(); TierBadge(tier: app.catalog.tier(of: label)) }
+            AdaptiveHStack { Text(app.catalog.name(for: label)).font(.title.bold()); Spacer(minLength: 0); TierBadge(tier: app.catalog.tier(of: label)) }
             if let s { Text(s.scientificName).font(.subheadline.italic()).foregroundStyle(.secondary) }
             Text(confirmed ? "Confirmed invasive by the on-device model." : "Possible invasive.").font(.headline).foregroundStyle(confirmed ? Theme.alert : Theme.caution)
             ConfidenceBar(value: confidence)

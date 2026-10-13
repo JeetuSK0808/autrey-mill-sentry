@@ -78,10 +78,10 @@ struct ReportDetailView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Staff action").font(.headline)
                 Text("Treatment method is the staff's decision. The app does not recommend one.").font(.caption).foregroundStyle(.secondary)
-                HStack {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
                     ForEach(ReportStatus.allCases) { s in
                         Button { Task { await ReportStore.update(status: s, of: report, context: context, catalog: app.catalog) } } label: {
-                            Label(s.title, systemImage: s.symbolName).font(.caption.weight(.semibold)).frame(maxWidth: .infinity, minHeight: 44)
+                            Label(s.title, systemImage: s.symbolName).font(.subheadline.weight(.semibold)).frame(maxWidth: .infinity, minHeight: 44)
                         }
                         .buttonStyle(.bordered).tint(Theme.color(for: s))
                         .disabled(report.status == s)

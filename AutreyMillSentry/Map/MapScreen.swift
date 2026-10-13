@@ -106,8 +106,9 @@ struct MapScreen: View {
             }
         }
         .font(.footnote.weight(.semibold))
+        .foregroundStyle(.primary)
         .padding(.horizontal, 10).padding(.vertical, 6)
-        .background(.thinMaterial, in: Capsule())
+        .background(Color(.systemBackground).opacity(0.94), in: Capsule())
     }
 
     private var mapButtons: some View {
