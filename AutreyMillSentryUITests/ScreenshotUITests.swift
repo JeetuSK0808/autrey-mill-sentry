@@ -14,8 +14,10 @@ final class ScreenshotUITests: XCTestCase {
         app.launchArguments = ["-uiTesting", "-mockScan", "confirmed", "-simulateLocation", "-showLaunch"]
         app.launch()
         usleep(900_000); shoot(app, "00-launch")
+        sleep(2)   // let the launch animation lift before interacting
         let next = app.buttons["onboarding.next"]
         XCTAssertTrue(next.waitForExistence(timeout: 10))
+        shoot(app, "01-onboarding")
         next.tap(); shoot(app, "02-onboarding-promise")
         next.tap(); shoot(app, "03-onboarding-permissions")
         next.tap()
@@ -54,9 +56,14 @@ final class ScreenshotUITests: XCTestCase {
         app.buttons["result.done"].tap()
         app.tabBars.buttons["Ranger"].tap()
         sleep(1); shoot(app, "11-ranger")
-        app.descendants(matching: .any)["ranger.row.0"].firstMatch.tap()
+        let row = app.descendants(matching: .any)["ranger.row.0"].firstMatch
+        var scrolls = 0
+        while !row.exists && scrolls < 6 { app.swipeUp(); scrolls += 1 }
+        row.tap()
         sleep(1); shoot(app, "12-ranger-report")
         let treated = app.buttons["ranger.status.treated"]
+        var scrolls2 = 0
+        while !treated.exists && scrolls2 < 6 { app.swipeUp(); scrolls2 += 1 }
         if treated.waitForExistence(timeout: 5) {
             addUIInterruptionMonitor(withDescription: "Notifications") { alert in
                 if alert.buttons["Allow"].exists { alert.buttons["Allow"].tap(); return true }
