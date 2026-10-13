@@ -36,8 +36,10 @@ struct RangerView: View {
                         NavigationLink { ReportDetailView(report: r, rangerMode: true) } label: {
                             HStack(spacing: 10) {
                                 Text("\(i + 1)").font(.title3.bold().monospacedDigit()).foregroundStyle(Theme.forest).frame(minWidth: 30)
+                                    .contentTransition(.numericText())
                                 ReportRowView(report: r, showPriority: true)
                             }
+                            .staggeredAppear(i)
                         }
                         .accessibilityIdentifier("ranger.row.\(i)")
                         .swipeActions(edge: .trailing) {
@@ -52,6 +54,7 @@ struct RangerView: View {
                     Text("Ranked by early-detection value: small isolated patches near the creek first. Swipe a row to change its status.")
                 }
             }
+            .animation(Motion.spring, value: ranked.map(\.id))
             .navigationTitle("Ranger")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

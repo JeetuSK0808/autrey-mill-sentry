@@ -73,9 +73,11 @@ struct MapScreen: View {
             }
             .mapStyle(.standard(elevation: .flat, pointsOfInterest: .excludingAll, showsTraffic: false))
             .mapControls { MapCompass(); MapScaleView() }
-            .overlay(alignment: .topLeading) { locationHint.padding(12) }
+            .overlay(alignment: .topLeading) { locationHint.padding(12).transition(.move(edge: .top).combined(with: .opacity)) }
             .overlay(alignment: .bottomTrailing) { mapButtons.padding(12) }
-            .overlay(alignment: .top) { if let t = selectedTrail { trailBanner(t) } }
+            .overlay(alignment: .top) { if let t = selectedTrail { trailBanner(t).transition(.move(edge: .top).combined(with: .opacity)) } }
+            .animation(Motion.spring, value: selectedTrail)
+            .animation(Motion.gentle, value: app.location.current?.point)
             .navigationTitle(rangerMode ? "Ranger map" : "Map")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -113,8 +115,8 @@ struct MapScreen: View {
 
     private var mapButtons: some View {
         VStack(spacing: 10) {
-            Button { withAnimation { position = .region(MapScreen.preserveRegion) } } label: { Image(systemName: "tree").frame(width: 44, height: 44) }
-                .background(.thinMaterial, in: Circle()).accessibilityLabel("Recenter on the preserve")
+            Button { withAnimation(Motion.gentle) { position = .region(MapScreen.preserveRegion) } } label: { Image(systemName: "tree").frame(width: 44, height: 44) }
+                .background(.thinMaterial, in: Circle()).pressable().accessibilityLabel("Recenter on the preserve")
             if app.location.isAuthorized {
                 Button { withAnimation { position = .userLocation(fallback: .region(MapScreen.preserveRegion)) } } label: { Image(systemName: "location.fill").frame(width: 44, height: 44) }
                     .background(.thinMaterial, in: Circle()).accessibilityLabel("Center on my location")

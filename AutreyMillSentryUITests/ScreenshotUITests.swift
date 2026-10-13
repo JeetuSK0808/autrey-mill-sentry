@@ -11,9 +11,9 @@ final class ScreenshotUITests: XCTestCase {
 
     func testWalkthroughScreenshots() {
         let app = XCUIApplication()
-        app.launchArguments = ["-uiTesting", "-mockScan", "confirmed", "-simulateLocation"]
+        app.launchArguments = ["-uiTesting", "-mockScan", "confirmed", "-simulateLocation", "-showLaunch"]
         app.launch()
-        shoot(app, "01-onboarding")
+        usleep(900_000); shoot(app, "00-launch")
         let next = app.buttons["onboarding.next"]
         XCTAssertTrue(next.waitForExistence(timeout: 10))
         next.tap(); shoot(app, "02-onboarding-promise")

@@ -15,8 +15,9 @@ struct OnboardingView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-            Button { next() } label: { Text(page == 2 ? "Start scanning" : "Continue").frame(maxWidth: .infinity).padding(.vertical, 8) }
+            Button { next() } label: { Text(page == 2 ? "Start scanning" : "Continue").frame(maxWidth: .infinity).padding(.vertical, 8).contentTransition(.opacity) }
                 .buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
+                .animation(Motion.snappy, value: page)
                 .padding(.horizontal, 24).padding(.bottom, 16)
                 .accessibilityIdentifier("onboarding.next")
         }
@@ -24,7 +25,7 @@ struct OnboardingView: View {
     }
 
     private func next() {
-        if page < 2 { withAnimation { page += 1 } } else { app.settings.onboardingComplete = true }
+        if page < 2 { withAnimation(Motion.spring) { page += 1 } } else { withAnimation(Motion.gentle) { app.settings.onboardingComplete = true } }
     }
 
     private var pageOne: some View {
@@ -65,14 +66,18 @@ struct OnboardingPage<Content: View>: View {
     let symbol: String
     let title: String
     @ViewBuilder var content: Content
+    @State private var bounce = 0
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Image(systemName: symbol).font(.system(size: 56)).foregroundStyle(Theme.forest).frame(maxWidth: .infinity)
-                Text(title).font(.largeTitle.bold()).frame(maxWidth: .infinity, alignment: .leading)
-                content
+                    .symbolEffect(.bounce, value: bounce)
+                    .popIn()
+                Text(title).font(.largeTitle.bold()).frame(maxWidth: .infinity, alignment: .leading).staggeredAppear(1)
+                content.staggeredAppear(2)
             }
             .padding(24)
         }
+        .onAppear { bounce += 1 }
     }
 }

@@ -63,11 +63,24 @@ final class AppModel {
 
 struct RootView: View {
     @Environment(AppModel.self) private var app
+    @State private var showLaunch: Bool = {
+        let args = ProcessInfo.processInfo.arguments
+        return !args.contains("-uiTesting") || args.contains("-showLaunch")
+    }()
     var body: some View {
-        if app.settings.onboardingComplete {
-            RootTabView()
-        } else {
-            NavigationStack { OnboardingView() }
+        ZStack {
+            Group {
+                if app.settings.onboardingComplete {
+                    RootTabView().transition(.opacity.combined(with: .scale(scale: 0.98)))
+                } else {
+                    NavigationStack { OnboardingView() }.transition(.opacity)
+                }
+            }
+            .animation(Motion.gentle, value: app.settings.onboardingComplete)
+            if showLaunch {
+                LaunchOverlay { showLaunch = false }
+                    .zIndex(1)
+            }
         }
     }
 }

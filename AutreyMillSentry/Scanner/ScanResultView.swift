@@ -23,15 +23,19 @@ struct ScanResultView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     photo
-                    switch result.outcome {
-                    case .rescan(let reason): rescanCard(reason)
-                    case .confirmedInvasive(let label, let conf): speciesCard(label: label, confidence: conf, confirmed: true)
-                    case .possibleInvasive(let candidates): possibleCard(candidates)
-                    case .looksNative(let label, let conf): nativeCard(label: label, confidence: conf)
+                    Group {
+                        switch result.outcome {
+                        case .rescan(let reason): rescanCard(reason)
+                        case .confirmedInvasive(let label, let conf): speciesCard(label: label, confidence: conf, confirmed: true)
+                        case .possibleInvasive(let candidates): possibleCard(candidates)
+                        case .looksNative(let label, let conf): nativeCard(label: label, confidence: conf)
+                        }
                     }
-                    if !result.outcome.isRescan || reportAnyway { saveSection }
-                    AIHonestyFooter().padding(.horizontal)
+                    .staggeredAppear(1)
+                    if !result.outcome.isRescan || reportAnyway { saveSection.staggeredAppear(3).transition(.opacity) }
+                    AIHonestyFooter().padding(.horizontal).staggeredAppear(5)
                 }
+                .animation(Motion.gentle, value: reportAnyway)
                 .padding(.bottom, 24)
             }
             .navigationTitle(title)
@@ -89,7 +93,7 @@ struct ScanResultView: View {
     private func speciesCard(label: String, confidence: Double, confirmed: Bool) -> some View {
         let s = app.catalog.species(for: label)
         return VStack(alignment: .leading, spacing: 10) {
-            AdaptiveHStack { Text(app.catalog.name(for: label)).font(.title.bold()); Spacer(minLength: 0); TierBadge(tier: app.catalog.tier(of: label)) }
+            AdaptiveHStack { Text(app.catalog.name(for: label)).font(.title.bold()); Spacer(minLength: 0); TierBadge(tier: app.catalog.tier(of: label)).popIn(delay: 0.35) }
             if let s { Text(s.scientificName).font(.subheadline.italic()).foregroundStyle(.secondary) }
             Text(confirmed ? "Confirmed invasive by the on-device model." : "Possible invasive.").font(.headline).foregroundStyle(confirmed ? Theme.alert : Theme.caution)
             ConfidenceBar(value: confidence)
@@ -176,6 +180,8 @@ struct ScanResultView: View {
             if app.settings.fieldTestMode { fieldTestBlock }
             if let saved {
                 Label("Saved. It's on your map and in Reports.", systemImage: "checkmark.circle.fill").foregroundStyle(Theme.forest).font(.headline)
+                    .symbolEffect(.bounce, value: saved.id)
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
                 Button { onDone() } label: { Text("Done").frame(maxWidth: .infinity).padding(.vertical, 8) }.buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
                     .accessibilityIdentifier("result.done")
                 let _ = saved
@@ -189,8 +195,12 @@ struct ScanResultView: View {
                 Button { save(force: false) } label: { Text(saveTitle).frame(maxWidth: .infinity).padding(.vertical, 8) }
                     .buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
                     .accessibilityIdentifier("result.save")
+                    .transition(.opacity)
             }
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
+        .animation(Motion.spring, value: saved?.id)
+        .animation(Motion.spring, value: duplicate?.id)
     }
 
     private var fieldTestBlock: some View {

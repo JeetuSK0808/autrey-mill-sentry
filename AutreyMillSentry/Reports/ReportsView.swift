@@ -17,8 +17,8 @@ struct ReportsView: View {
                 } else {
                     List {
                         Section {
-                            ForEach(reports) { r in
-                                NavigationLink { ReportDetailView(report: r, rangerMode: false) } label: { ReportRowView(report: r) }
+                            ForEach(Array(reports.enumerated()), id: \.element.id) { i, r in
+                                NavigationLink { ReportDetailView(report: r, rangerMode: false) } label: { ReportRowView(report: r).staggeredAppear(i) }
                             }
                             .onDelete { idx in idx.map { reports[$0] }.forEach { ReportStore.delete($0, context: context, catalog: app.catalog) } }
                         } footer: {
@@ -67,9 +67,9 @@ struct ReportRowView: View {
                 }
                 Text("\(report.createdAt.shortDescription)\(report.nearestTrailName.isEmpty ? "" : " · " + report.nearestTrailName)").font(.caption).foregroundStyle(.secondary)
                 AdaptiveHStack(spacing: 6) {
-                    StatusBadge(status: report.status)
+                    StatusBadge(status: report.status).animation(Motion.snappy, value: report.status)
                     if report.isPractice { Text("Practice").font(.caption2.weight(.semibold)).padding(.horizontal, 6).padding(.vertical, 3).background(.quaternary, in: Capsule()) }
-                    if showPriority { Text("Priority \(Int(report.priorityScore.rounded()))").font(.caption2.weight(.bold)).foregroundStyle(Theme.forest) }
+                    if showPriority { Text("Priority \(Int(report.priorityScore.rounded()))").font(.caption2.weight(.bold)).foregroundStyle(Theme.forest).contentTransition(.numericText()).animation(Motion.gentle, value: report.priorityScore) }
                 }
             }
             Spacer(minLength: 0)

@@ -43,7 +43,7 @@ struct VisitView: View {
                             }
                         }
                         Button { directions() } label: { Label("Directions in Apple Maps", systemImage: "car").frame(maxWidth: .infinity).padding(.vertical, 8) }
-                            .buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large)
+                            .buttonStyle(.borderedProminent).tint(Theme.forest).controlSize(.large).staggeredAppear(2)
                         Button { showEvents = true } label: { Label("Events and programs", systemImage: "calendar").frame(maxWidth: .infinity).padding(.vertical, 8) }
                             .buttonStyle(.bordered).controlSize(.large)
                         Card {

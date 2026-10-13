@@ -54,10 +54,13 @@ struct StatusPin: View {
         Image(systemName: status.symbolName)
             .font(.system(size: size * 0.6, weight: .bold))
             .foregroundStyle(.white)
+            .contentTransition(.symbolEffect(.replace))
             .frame(width: size, height: size)
             .background(Theme.color(for: status), in: Circle())
             .overlay(Circle().stroke(.white, lineWidth: 2))
             .shadow(radius: 2)
+            .animation(Motion.snappy, value: status)
+            .popIn()
             .accessibilityLabel("\(status.title) report")
     }
 }
@@ -66,6 +69,7 @@ struct StatusBadge: View {
     let status: ReportStatus
     var body: some View {
         Label(status.title, systemImage: status.symbolName)
+            .contentTransition(.symbolEffect(.replace))
             .font(.caption.weight(.semibold))
             .padding(.horizontal, 8).padding(.vertical, 4)
             .background(Theme.color(for: status).opacity(0.18), in: Capsule())
@@ -109,21 +113,28 @@ struct TierBadge: View {
 
 struct ConfidenceBar: View {
     let value: Double
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown = 0.0
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text("Calibrated confidence").font(.caption).foregroundStyle(.secondary)
                 Spacer()
-                Text("\(Int((value * 100).rounded()))%").font(.caption.monospacedDigit().weight(.semibold))
+                Text("\(Int((shown * 100).rounded()))%").font(.caption.monospacedDigit().weight(.semibold))
+                    .contentTransition(.numericText(value: shown))
             }
             GeometryReader { g in
                 ZStack(alignment: .leading) {
                     Capsule().fill(.quaternary)
                     Capsule().fill(value >= 0.8 ? Theme.forest : value >= 0.5 ? Theme.caution : Theme.alert)
-                        .frame(width: max(6, g.size.width * value))
+                        .frame(width: max(6, g.size.width * shown))
                 }
             }.frame(height: 10)
         }
+        .onAppear {
+            if reduceMotion { shown = value } else { withAnimation(.easeOut(duration: 0.9).delay(0.15)) { shown = value } }
+        }
+        .onChange(of: value) { _, v in withAnimation(Motion.gentle) { shown = v } }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Calibrated confidence \(Int((value * 100).rounded())) percent")
     }

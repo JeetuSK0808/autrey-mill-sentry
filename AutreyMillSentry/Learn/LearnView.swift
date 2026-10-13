@@ -10,13 +10,13 @@ struct LearnView: View {
                         .font(.callout)
                 }
                 Section("Tuned species (can be confirmed by the scanner)") {
-                    ForEach(app.catalog.tier1) { s in
-                        NavigationLink { SpeciesDetailView(species: s) } label: { SpeciesRow(species: s) }
+                    ForEach(Array(app.catalog.tier1.enumerated()), id: \.element.id) { i, s in
+                        NavigationLink { SpeciesDetailView(species: s) } label: { SpeciesRow(species: s).staggeredAppear(i) }
                     }
                 }
                 Section("Native look-alikes (never reported)") {
-                    ForEach(app.catalog.natives) { s in
-                        NavigationLink { SpeciesDetailView(species: s) } label: { SpeciesRow(species: s) }
+                    ForEach(Array(app.catalog.natives.enumerated()), id: \.element.id) { i, s in
+                        NavigationLink { SpeciesDetailView(species: s) } label: { SpeciesRow(species: s).staggeredAppear(i) }
                     }
                 }
                 Section {
@@ -71,8 +71,8 @@ struct SpeciesDetailView: View {
                     Label("Documented at Autrey Mill by preserve volunteers (2012 list)", systemImage: "mappin.circle.fill").font(.footnote).foregroundStyle(Theme.forest)
                 }
                 LeafIllustration(tier: species.tier).frame(height: 120)
-                block("Why it matters", species.whyItMatters)
-                block("How to recognise it", species.howToRecognize)
+                block("Why it matters", species.whyItMatters).staggeredAppear(1)
+                block("How to recognise it", species.howToRecognize).staggeredAppear(2)
                 if !species.whatToPhotograph.isEmpty { block("What to photograph", species.whatToPhotograph) }
                 if let la = species.lookAlike {
                     Card {
@@ -102,7 +102,15 @@ struct SpeciesDetailView: View {
 /// A simple SwiftUI-drawn leaf so Learn has an illustration without any licensed photos.
 struct LeafIllustration: View {
     let tier: SpeciesTier
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var sway = false
     var body: some View {
+        illustration
+            .rotationEffect(.degrees(sway ? 2.5 : -2.5), anchor: .bottomLeading)
+            .onAppear { if !reduceMotion { withAnimation(.easeInOut(duration: 2.4).repeatForever(autoreverses: true)) { sway = true } } }
+            .popIn()
+    }
+    private var illustration: some View {
         GeometryReader { g in
             let w = g.size.width, h = g.size.height
             ZStack {

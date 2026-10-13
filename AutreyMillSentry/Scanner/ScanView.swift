@@ -75,8 +75,11 @@ private struct ScanContent: View {
             }
             if vm.phase == .capturing || vm.phase == .analyzing {
                 AnalyzingOverlay(capturing: vm.phase == .capturing, hint: vm.locationHint)
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
             }
+            CaptureFlash(trigger: vm.phase == .capturing)
         }
+        .animation(Motion.snappy, value: vm.phase)
     }
 
     private var isLocked: Bool {
@@ -133,16 +136,39 @@ private struct CameraDeniedView: View {
 private struct FramingGuide: View {
     let locked: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var dashPhase: CGFloat = 0
+    @State private var ripple = false
     var body: some View {
         GeometryReader { g in
             let side = min(g.size.width, g.size.height) * 0.72
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .strokeBorder(locked ? Theme.leaf : Color.white.opacity(0.8),
-                              style: StrokeStyle(lineWidth: locked ? 4 : 2, dash: locked ? [] : [14, 10]))
-                .frame(width: side, height: side)
-                .position(x: g.size.width / 2, y: g.size.height * 0.42)
-                .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: locked)
-                .accessibilityHidden(true)
+            let center = CGPoint(x: g.size.width / 2, y: g.size.height * 0.42)
+            ZStack {
+                // lock-on ripple
+                RoundedRectangle(cornerRadius: 28, style: .continuous)
+                    .stroke(Theme.leaf, lineWidth: 3)
+                    .frame(width: side, height: side)
+                    .scaleEffect(ripple ? 1.18 : 1)
+                    .opacity(ripple ? 0 : 0.9)
+                    .position(center)
+                    .opacity(locked ? 1 : 0)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .strokeBorder(locked ? Theme.leaf : Color.white.opacity(0.85),
+                                  style: StrokeStyle(lineWidth: locked ? 4 : 2, dash: locked ? [] : [14, 10], dashPhase: dashPhase))
+                    .frame(width: side, height: side)
+                    .scaleEffect(locked ? 1.03 : 1)
+                    .position(center)
+                    .animation(reduceMotion ? nil : Motion.spring, value: locked)
+            }
+            .accessibilityHidden(true)
+        }
+        .onAppear {
+            guard !reduceMotion else { return }
+            withAnimation(.linear(duration: 1.2).repeatForever(autoreverses: false)) { dashPhase = -24 }
+        }
+        .onChange(of: locked) { _, isLocked in
+            guard isLocked, !reduceMotion else { return }
+            ripple = false
+            withAnimation(.easeOut(duration: 0.7)) { ripple = true }
         }
     }
 }
@@ -150,16 +176,23 @@ private struct FramingGuide: View {
 private struct GuidancePill: View {
     let text: String
     let good: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: good ? "leaf.fill" : "arrow.triangle.2.circlepath")
+                .contentTransition(.symbolEffect(.replace))
             Text(text).font(.headline)
+                .contentTransition(.opacity)
+                .id(text)
+                .transition(reduceMotion ? .opacity : .move(edge: .top).combined(with: .opacity))
         }
         .foregroundStyle(.white)
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background((good ? Theme.forest : Color.black).opacity(0.7), in: Capsule())
         .padding(.top, 12)
+        .animation(Motion.snappy, value: text)
+        .animation(Motion.snappy, value: good)
         .accessibilityLabel("Guidance: \(text)")
         .accessibilityAddTraits(.updatesFrequently)
     }
@@ -182,6 +215,8 @@ private struct ScanControls: View {
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(Color.black.opacity(0.5), in: Capsule())
+                    .contentTransition(.opacity)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
             }
             if ProcessInfo.processInfo.arguments.contains("-uiTesting") {
                 SamplePhotoButton(vm: vm)
@@ -204,6 +239,7 @@ private struct ScanControls: View {
         }
         .padding(.bottom, 16)
         .background { LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom).allowsHitTesting(false) }
+        .animation(Motion.snappy, value: vm.liveTopName)
     }
 
     private var photoButton: some View {
@@ -221,12 +257,19 @@ private struct ScanControls: View {
     }
 
     private var shutter: some View {
-        Button { Task { await vm.capture() } } label: {
+        let locked: Bool = { if case .locked = vm.lockState { return true } else { return false } }()
+        return Button { Task { await vm.capture() } } label: {
             ZStack {
                 Circle().strokeBorder(Color.white, lineWidth: 5).frame(width: 84, height: 84)
+                    .scaleEffect(locked ? 1.08 : 1)
                 Circle().fill(vm.guidanceIsGood ? Theme.leaf : Color.white).frame(width: 68, height: 68)
+                    .scaleEffect(vm.phase == .capturing ? 0.8 : 1)
             }
+            .animation(Motion.bouncy, value: locked)
+            .animation(Motion.snappy, value: vm.phase)
+            .animation(Motion.snappy, value: vm.guidanceIsGood)
         }
+        .pressable()
         .disabled(vm.phase != .live || vm.cameraDenied)
         .accessibilityLabel("Capture")
         .accessibilityHint("Takes a photo and identifies the plant")
@@ -265,12 +308,36 @@ private struct SamplePhotoButton: View {
     }
 }
 
+/// Quick white flash when the shutter fires.
+private struct CaptureFlash: View {
+    let trigger: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var flash = false
+    var body: some View {
+        Color.white
+            .opacity(flash ? 0.7 : 0)
+            .ignoresSafeArea()
+            .allowsHitTesting(false)
+            .onChange(of: trigger) { _, firing in
+                guard firing, !reduceMotion else { return }
+                flash = true
+                withAnimation(.easeOut(duration: 0.35)) { flash = false }
+            }
+    }
+}
+
 private struct AnalyzingOverlay: View {
     let capturing: Bool
     let hint: String?
+    @State private var pulse = false
     var body: some View {
         VStack(spacing: 12) {
-            ProgressView().tint(.white).controlSize(.large)
+            Image(systemName: "leaf.fill")
+                .font(.system(size: 34))
+                .foregroundStyle(Theme.leaf)
+                .symbolEffect(.pulse.byLayer, options: .repeating, isActive: true)
+                .rotationEffect(.degrees(pulse ? 8 : -8))
+                .onAppear { withAnimation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true)) { pulse = true } }
             Text(capturing ? "Capturing…" : "Identifying…").font(.headline).foregroundStyle(.white)
             if let hint {
                 Text(hint).font(.footnote).foregroundStyle(.white.opacity(0.85)).multilineTextAlignment(.center)

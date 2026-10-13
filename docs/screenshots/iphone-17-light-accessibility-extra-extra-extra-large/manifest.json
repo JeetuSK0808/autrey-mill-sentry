@@ -5,81 +5,73 @@
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "7FE4CB07-0A23-43E5-AC34-B19B199052D2.png",
+        "exportedFileName" : "24991380-9887-47BE-B92B-649450AB027D.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "11-ranger_0_6A6464EA-AFCF-4352-906E-37A74FF4A652.png",
-        "timestamp" : 1791864457.242
+        "suggestedHumanReadableName" : "11-ranger_0_B885B818-AD6E-411B-8D39-679C6C4DBE63.png",
+        "timestamp" : 1791866677.085
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "EED92574-C758-4FA8-8AF8-4FA1556BBA87",
+        "exportedFileName" : "F3E0C041-CF2E-4325-AF77-9040E02C16D9",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.07.34 AM",
-        "timestamp" : 1791864454.407
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.44.34 AM",
+        "timestamp" : 1791866674.246
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "C43B1165-B0AA-44FB-B413-0BE232BDF4D9",
+        "exportedFileName" : "FA339964-9F63-4C4F-94A5-E5C7C7674E11",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.07.33 AM",
-        "timestamp" : 1791864453.715
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.44.33 AM",
+        "timestamp" : 1791866673.557
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "863EAAB7-1E8E-48F9-98CF-75DF36DC52B3",
+        "exportedFileName" : "AD414F29-3836-4E97-A31C-B6DB41EA9618",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.07.32 AM",
-        "timestamp" : 1791864452.267
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.44.32 AM",
+        "timestamp" : 1791866672.107
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "931A2454-12EB-4F41-AEB6-AF38AF69B42B",
+        "exportedFileName" : "A7C0582C-50C7-429E-9D75-DE6DEFBA3F26",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.07.30 AM",
-        "timestamp" : 1791864450.307
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-13 at 12.44.30 AM",
+        "timestamp" : 1791866670.111
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "0F45ED5F-2E58-448B-9CBD-214728BFB653.mp4",
+        "exportedFileName" : "7874E097-D785-4903-9E6F-4971079FE277.mp4",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Screen Recording 2026-10-13 at 12.07.24 AM.mp4",
-        "timestamp" : 1791864444.256
+        "suggestedHumanReadableName" : "Screen Recording 2026-10-13 at 12.44.24 AM.mp4",
+        "timestamp" : 1791866664.142
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "E562F6CE-8EB4-42E9-9E33-8A467BF33FCD.txt",
+        "exportedFileName" : "C0725BDC-B42A-4F2D-9422-4A68B0DE6049.txt",
         "isAssociatedWithFailure" : true,
-        "suggestedHumanReadableName" : "Complete Issue Description.txt"
+        "suggestedHumanReadableName" : "App UI hierarchy for com.jeetusk_0_394F147F-E4B6-487C-B025-330FD8A4B462.autreymillsentry",
+        "timestamp" : 1791866679.37
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "0B736BD3-260C-4DBB-9F69-30467B6B89D7.txt",
+        "exportedFileName" : "E57B591D-6159-48F4-A394-91B1DF5FF3F9",
         "isAssociatedWithFailure" : true,
-        "suggestedHumanReadableName" : "App UI hierarchy for com.jeetusk_0_04A57800-45CE-40B2-A292-792089F30ADC.autreymillsentry",
-        "timestamp" : 1791864459.421
-      },
-      {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
-        "deviceName" : "iPhone 17",
-        "exportedFileName" : "E2EC0029-A724-4793-9FA6-87C2B793D222",
-        "isAssociatedWithFailure" : true,
-        "suggestedHumanReadableName" : "UI Snapshot 2026-10-13 at 12.07.39 AM",
-        "timestamp" : 1791864459.421
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-13 at 12.44.39 AM",
+        "timestamp" : 1791866679.37
       }
     ],
     "testIdentifier" : "ScreenshotUITests/testRangerScreenshots()",
@@ -91,10 +83,10 @@
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "FFCAB65A-9BF6-424F-A9A6-72EE0BFE7B92.png",
+        "exportedFileName" : "A3219780-11BD-4A22-9318-861EE6077137.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "16-rescan-ambiguous_0_97E41515-49F3-4656-9F07-88945CA50E65.png",
-        "timestamp" : 1791864468.062
+        "suggestedHumanReadableName" : "16-rescan-ambiguous_0_E72F5957-1E4D-4B9A-8037-D09BA6A75925.png",
+        "timestamp" : 1791866687.972
       }
     ],
     "testIdentifier" : "ScreenshotUITests/testRescanScreenshot()",
@@ -106,91 +98,91 @@
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "905BC1AE-D032-42DA-8A28-F0761D5128DC.png",
+        "exportedFileName" : "C102F129-E9E4-4D02-84D1-1B9E179D74FA.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "10-visit_0_092EDD18-FA52-490A-B6FB-66D0D41CFFF1.png",
-        "timestamp" : 1791864494.844
+        "suggestedHumanReadableName" : "10-visit_0_83C6B82C-E87E-4307-BF00-E676CA6FC469.png",
+        "timestamp" : 1791866714.805
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "C5A5EAB2-45BA-4BDE-92AE-0DFF212556FA.png",
+        "exportedFileName" : "C0FE037C-957C-4414-86A9-4B33BF6EAC32.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "09-learn_0_7697723C-F991-4B12-94E0-FCE3E63F8EF6.png",
-        "timestamp" : 1791864491.747
+        "suggestedHumanReadableName" : "09-learn_0_0EB643DB-9ECA-4330-A646-7B5BE080BAA3.png",
+        "timestamp" : 1791866711.703
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "E7B73728-C26F-49DC-858B-9FC65F789553.png",
+        "exportedFileName" : "357208E7-687B-411D-9CF8-57ADA9D58B08.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "08-reports_0_4F847F29-61BD-4E10-85D3-079CA2DBE326.png",
-        "timestamp" : 1791864488.633
+        "suggestedHumanReadableName" : "08-reports_0_8DFF3EEA-7C37-479C-8A67-8466E8CBB9EF.png",
+        "timestamp" : 1791866708.594
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "9A4FF6B9-ACFF-4498-9614-A2328DCF98D2.png",
+        "exportedFileName" : "6EB28D63-DD51-4BA4-A9DB-4678209A928A.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "07-map_0_F3219BB5-23A0-4594-9FFC-C160D5166FED.png",
-        "timestamp" : 1791864485.451
+        "suggestedHumanReadableName" : "07-map_0_EF06AE09-0512-402A-99FA-7914DEFAE714.png",
+        "timestamp" : 1791866705.401
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "E00EEA6F-224A-47CF-AE60-A07044B5EF85.png",
+        "exportedFileName" : "E88697E9-2E15-484D-B0F5-471CA80B746F.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "06-result-saved_0_BE9AC21A-759C-48EB-BCF6-3DA4E3E80258.png",
-        "timestamp" : 1791864480.388
+        "suggestedHumanReadableName" : "06-result-saved_0_21123ACB-CAC9-4B3F-9496-EC1E2B0AF144.png",
+        "timestamp" : 1791866700.327
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "B73C9049-231A-4FD2-BC39-880802A028F8.png",
+        "exportedFileName" : "44265719-C57A-43F7-8620-F9789429E657.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "05-result-confirmed_0_0F71534F-5F1F-4D64-A779-0CFA293B3796.png",
-        "timestamp" : 1791864478.859
+        "suggestedHumanReadableName" : "05-result-confirmed_0_07D0D187-BC2F-43F8-BBFC-0365704AE992.png",
+        "timestamp" : 1791866698.803
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "30AD93BF-B475-4A5C-BB52-D52FA90B6C2B.png",
+        "exportedFileName" : "466FE94F-4203-42A5-8756-BF8DEA8CBCC1.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "04-scan_0_7A65660C-ACDD-49E0-B9E3-3463B2F99D1A.png",
-        "timestamp" : 1791864476.864
+        "suggestedHumanReadableName" : "04-scan_0_EF597F2A-25FF-45ED-B82D-D5ECDF8FF107.png",
+        "timestamp" : 1791866696.795
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "3AAA9CA9-FB88-4D43-8C4F-15403DB0C4E0.png",
+        "exportedFileName" : "65BF8980-7BB1-42B9-BF6F-8CC40E946B86.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "03-onboarding-permissions_0_876CEE9A-065B-42B3-BE96-EA84229B376A.png",
-        "timestamp" : 1791864475.407
+        "suggestedHumanReadableName" : "03-onboarding-permissions_0_FC528999-E9A1-4A9A-99F7-8A310710CFFD.png",
+        "timestamp" : 1791866695.331
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "416C0C56-D04C-4A66-A8EE-55D70A20602A.png",
+        "exportedFileName" : "7F1F7201-0AEF-4BDE-B70A-0EFAB60AC320.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "02-onboarding-promise_0_964FA256-50F6-42E5-B942-6BE0B12916D7.png",
-        "timestamp" : 1791864474.943
+        "suggestedHumanReadableName" : "02-onboarding-promise_0_F3D52662-F8A8-4A73-A7B2-FF3F6FD31202.png",
+        "timestamp" : 1791866694.865
       },
       {
         "configurationName" : "Test Scheme Action",
         "deviceId" : "6A448944-2771-4910-BE55-9DBD925673D0",
         "deviceName" : "iPhone 17",
-        "exportedFileName" : "52608BDB-6762-4DCE-A94F-4070D77AC499.png",
+        "exportedFileName" : "4E1C6CA1-3035-406C-906B-C94EEC266A40.png",
         "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "01-onboarding_0_8A16BA76-309C-416B-8925-051D8C722632.png",
-        "timestamp" : 1791864473.403
+        "suggestedHumanReadableName" : "01-onboarding_0_BAD3CA2E-C62A-4BD9-BB5D-536625AC8C66.png",
+        "timestamp" : 1791866693.34
       }
     ],
     "testIdentifier" : "ScreenshotUITests/testWalkthroughScreenshots()",
