@@ -12,7 +12,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     var simulated: GeoPoint?   // DEBUG: set to pretend the phone is at the preserve
 
     override init() {
-        authorization = manager.authorizationStatus
+        authorization = .notDetermined   // the delegate callback below delivers the real value right after init
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest

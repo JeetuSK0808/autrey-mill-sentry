@@ -45,6 +45,7 @@ final class AppModel {
         classifier = ClassifierFactory.make(catalog: catalog)
         modelCard = Bundle.main.url(forResource: "model_card", withExtension: "json").flatMap { try? Data(contentsOf: $0) }.flatMap { try? JSONDecoder().decode(ModelCard.self, from: $0) }
         visitInfo = Bundle.main.url(forResource: "visit_info", withExtension: "json").flatMap { try? Data(contentsOf: $0) }.flatMap { try? JSONDecoder().decode(VisitInfo.self, from: $0) }
+        if ProcessInfo.processInfo.arguments.contains("-uiTesting") { settings.resetAll() }
         if ProcessInfo.processInfo.arguments.contains("-skipOnboarding") { settings.onboardingComplete = true }
         if ProcessInfo.processInfo.arguments.contains("-simulateLocation") { settings.simulateLocation = true }
         if ProcessInfo.processInfo.arguments.contains("-rangerMode") { settings.rangerMode = true }

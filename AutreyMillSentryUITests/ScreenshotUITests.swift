@@ -62,7 +62,10 @@ final class ScreenshotUITests: XCTestCase {
         app.tabBars.buttons["Reports"].tap()
         app.navigationBars.buttons["Settings"].tap()
         sleep(1); shoot(app, "14-settings")
-        app.staticTexts["About, accuracy and credits"].tap()
+        let about = app.staticTexts["About, accuracy and credits"]
+        var tries = 0
+        while !about.isHittable && tries < 6 { app.swipeUp(); tries += 1 }
+        about.tap()
         sleep(1); shoot(app, "15-about-accuracy")
     }
 
