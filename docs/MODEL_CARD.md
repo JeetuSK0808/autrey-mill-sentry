@@ -38,6 +38,19 @@ Evaluated 2026-10-14 on the v3 test split (3400 images, 2562 observations, obser
 - ligustrum_japonicum -> ligustrum_lucidum (5)
 - leucanthemum_vulgare -> other_plant (5)
 
+## Cultivated and house plants (the false-positive test)
+
+300 fresh cultivated, house and garden plant photos from iNaturalist that no model trained on (`data/holdout_cultivated`, `model/eval_holdout.py`, `model/eval/holdout_cultivated_eval.json`). With the app's rules:
+
+| Model | Confirmed invasive (wrong) | Possible invasive (sent to expert review) | Not flagged |
+|---|---|---|---|
+| v2 | 1.0% | 33.0% | 66.0% |
+| v3 | 0.3% | 22.0% | 77.7% |
+| ensemble, possible bar 0.45 | 0.0% | 22.3% | 77.7% |
+| **ensemble, possible bar 0.55 (shipped)** | 0.0% | 16.7% | 83.3% |
+
+Without the similarity gate v2 would have sent 46.3% of these to expert review. The 0.55 bar costs coverage on true invasives: on the test set 83.9% of real invasive photos are flagged (87.2% at 0.45), natives are flagged 2.3% of the time and wild non-listed plants 10.8% (`model/eval/sweep_possible_ensemble.json`).
+
 ## Honest limits
 - These are iNaturalist photos, many of them clean close-ups by people who already knew the plant. Field accuracy on a phone in the preserve will be lower; Field Test mode measures it and no field number is claimed until then.
 - Tier 2 results are never shown as confirmed. Unknown plants are refused rather than guessed.

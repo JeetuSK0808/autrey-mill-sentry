@@ -1,7 +1,7 @@
 {
  "confirmMinProbability": 0.9000000000000004,
  "confirmMinMargin": 0.3,
- "possibleMinProbability": 0.45,
+ "possibleMinProbability": 0.55,
  "nativeMinProbability": 0.6,
  "notPlantMinProbability": 0.5,
  "perClassConfirmMin": {

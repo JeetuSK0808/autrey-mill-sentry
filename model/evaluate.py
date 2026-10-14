@@ -111,7 +111,7 @@ def main():
            "confusion_labels": labels, "confusion": cm.tolist()}
     EVAL.mkdir(exist_ok=True)
     json.dump(out, open(EVAL / f"{args.version}_eval.json", "w"), indent=1)
-    thresholds = {"confirmMinProbability": best_thr, "confirmMinMargin": args.margin, "possibleMinProbability": 0.45, "nativeMinProbability": 0.60,
+    thresholds = {"confirmMinProbability": best_thr, "confirmMinMargin": args.margin, "possibleMinProbability": 0.55, "nativeMinProbability": 0.60,
                   "notPlantMinProbability": 0.50, "perClassConfirmMin": per_class, "lockOnWindow": 8, "lockOnAgreeCount": 5, "lockOnMeanProbability": 0.60,
                   "minSharpness": 40.0, "minMeanLuminance": 0.18, "maxMeanLuminance": 0.90, "maxClippedFraction": 0.25, "minSubjectFraction": 0.10,
                   "maxSubjectFraction": 0.97, "maxMotion": 0.12, "maxEntropyForConfirm": 0.45, "liveEvidenceWeight": 0.35, "embeddingGateEnabled": True}
