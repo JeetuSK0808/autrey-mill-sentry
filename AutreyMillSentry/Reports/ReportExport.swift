@@ -71,8 +71,8 @@ enum ReportExport {
         var ty = y
         ty = PDFText.draw("\(r.speciesName)\(r.needsExpertReview ? " (needs expert review)" : "")", font: .boldSystemFont(ofSize: 14), at: tx, y: ty, width: width - 160)
         ty = PDFText.draw("Status: \(r.status.title)   Patch: \(r.patchSize.title)   Priority: \(String(format: "%.0f", r.priorityScore))/100", font: .systemFont(ofSize: 11), at: tx, y: ty + 2, width: width - 160)
-        ty = PDFText.draw(String(format: "Location: %.5f, %.5f (±%.0f m)%@", lat, lon, max(r.horizontalAccuracy, 0), r.lowAccuracy ? " low accuracy" : ""), font: .systemFont(ofSize: 11), at: tx, y: ty + 2, width: width - 160)
-        ty = PDFText.draw("Near: \(r.nearestTrailName.isEmpty ? "unknown trail" : r.nearestTrailName)   Creek: \(r.distanceToCreekMeters.map { "\(Int($0)) m" } ?? "n/a")   Reported: \(r.createdAt.shortDescription)", font: .systemFont(ofSize: 11), at: tx, y: ty + 2, width: width - 160)
+        ty = PDFText.draw(String(format: "Location: %.5f, %.5f (±%@)%@", lat, lon, Geo.feetDescription(max(r.horizontalAccuracy, 0)), r.lowAccuracy ? " low accuracy" : ""), font: .systemFont(ofSize: 11), at: tx, y: ty + 2, width: width - 160)
+        ty = PDFText.draw("Near: \(r.nearestTrailName.isEmpty ? "unknown trail" : r.nearestTrailName)   Creek: \(r.distanceToCreekMeters.map { Geo.roundedDistanceDescription($0) } ?? "n/a")   Reported: \(r.createdAt.shortDescription)", font: .systemFont(ofSize: 11), at: tx, y: ty + 2, width: width - 160)
         ty = PDFText.draw("Confidence \(Int((r.confidence * 100).rounded()))% (model \(r.modelVersion))\(r.isPractice ? "   PRACTICE (outside preserve)" : "")", font: .systemFont(ofSize: 11), at: tx, y: ty + 2, width: width - 160)
         if !r.note.isEmpty { ty = PDFText.draw("Note: \(r.note)", font: .italicSystemFont(ofSize: 11), at: tx, y: ty + 2, width: width - 160) }
         y = max(y + 114, ty)

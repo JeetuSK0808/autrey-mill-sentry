@@ -95,8 +95,8 @@ struct HowWeRankView: View {
             }
             Section("Factors") {
                 factor("Patch size", w.patchSize, "A few plants score full points, a patch 60%, a large stand 20%.")
-                factor("Isolation", w.isolation, "No other open reports within \(Int(Config.isolationRadiusMeters)) m scores full points.")
-                factor("Near the creek", w.creekProximity, "Full points within \(Int(w.creekFullPointsWithinMeters)) m of the creek, fading to zero at \(Int(w.creekZeroPointsBeyondMeters)) m. Water carries seeds downstream.")
+                factor("Isolation", w.isolation, "No other open reports within \(Geo.feetDescription(Config.isolationRadiusMeters)) scores full points.")
+                factor("Near the creek", w.creekProximity, "Full points within \(Geo.feetDescription(w.creekFullPointsWithinMeters)) of the creek, fading to zero at \(Geo.roundedDistanceDescription(w.creekZeroPointsBeyondMeters)). Water carries seeds downstream.")
                 factor("Model confidence", w.confidence, "Scales from 50% to 100% calibrated confidence. Reports needing expert review count little here.")
                 factor("Recent and unaddressed", w.recency, "Full points in the first \(Int(w.recencyFullPointsWithinDays)) days, fading to 30% at \(Int(w.recencyFloorAtDays)) days.")
                 factor("Aggressive spreader", w.speciesAggressiveness, "Per-species weight from the Georgia Forestry Commission Dirty Dozen list (acres occupied in Georgia forests).")

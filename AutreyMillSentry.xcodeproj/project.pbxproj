@@ -279,12 +279,12 @@
 				DEVELOPMENT_TEAM = A4C6J4YUTX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mill Sentry";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used to scan plants live. You can also choose a saved photo instead.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location, only while the app is open, pins reports on the preserve map so staff can find the plant. No background tracking.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_FILE = SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -314,12 +314,12 @@
 				DEVELOPMENT_TEAM = A4C6J4YUTX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mill Sentry";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used to scan plants live. You can also choose a saved photo instead.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location, only while the app is open, pins reports on the preserve map so staff can find the plant. No background tracking.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_FILE = SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

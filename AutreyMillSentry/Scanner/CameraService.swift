@@ -19,6 +19,9 @@ final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     private(set) var isRunning = false
     private(set) var lastError: String?
     private(set) var authorization: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+    private(set) var torchOn = false
+    private(set) var torchAvailable = false
+    @ObservationIgnored private var device: AVCaptureDevice?
 
     /// Called on the video queue. Keep it fast or drop frames.
     @ObservationIgnored var onFrame: ((CVPixelBuffer, CGImagePropertyOrientation) -> Void)?
@@ -45,6 +48,7 @@ final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     }
 
     func stop() {
+        setTorch(false)
         sessionQueue.async { [self] in
             guard session.isRunning else { return }
             session.stopRunning()
@@ -62,6 +66,9 @@ final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             return
         }
         session.addInput(input)
+        self.device = device
+        let hasTorch = device.hasTorch && device.isTorchAvailable
+        DispatchQueue.main.async { self.torchAvailable = hasTorch }
         do {
             try device.lockForConfiguration()
             if device.isFocusModeSupported(.continuousAutoFocus) { device.focusMode = .continuousAutoFocus }
@@ -82,6 +89,23 @@ final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             }
         }
         configured = true
+    }
+
+    // MARK: Torch
+    func setTorch(_ on: Bool) {
+        sessionQueue.async { [self] in
+            guard let device, device.hasTorch else { return }
+            do {
+                try device.lockForConfiguration()
+                if on && device.isTorchAvailable {
+                    try device.setTorchModeOn(level: min(AVCaptureDevice.maxAvailableTorchLevel, 0.8))
+                } else {
+                    device.torchMode = .off
+                }
+                device.unlockForConfiguration()
+                DispatchQueue.main.async { self.torchOn = on && device.isTorchAvailable }
+            } catch { }
+        }
     }
 
     // MARK: Live frames

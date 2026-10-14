@@ -167,7 +167,7 @@ struct ScanResultView: View {
             } else if isPractice {
                 Label("You're outside the preserve. Reports are saved as practice only and won't be ranked.", systemImage: "mappin.slash").font(.footnote).foregroundStyle(Theme.caution)
             } else if result.lowAccuracy {
-                Label("Low location accuracy (\(Int(result.horizontalAccuracy ?? 0)) m). Saved with a flag.", systemImage: "location.circle").font(.footnote).foregroundStyle(.secondary)
+                Label("Low location accuracy (\(Geo.feetDescription(result.horizontalAccuracy ?? 0))). Saved with a flag.", systemImage: "location.circle").font(.footnote).foregroundStyle(.secondary)
             } else if !result.nearestTrailName.isEmpty {
                 Label("Near \(result.nearestTrailName)", systemImage: "figure.walk").font(.footnote).foregroundStyle(.secondary)
             }
@@ -187,7 +187,7 @@ struct ScanResultView: View {
                 let _ = saved
             } else if let duplicate {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Same species was reported within \(Int(Config.duplicateRadiusMeters)) m in the last \(Config.duplicateWindowDays) days.").font(.subheadline)
+                    Text("Same species was reported within \(Geo.feetDescription(Config.duplicateRadiusMeters)) in the last \(Config.duplicateWindowDays) days.").font(.subheadline)
                     Button { addToExisting(duplicate) } label: { Text("Add to existing report") }.primaryButton()
                     Button("Save as a new report") { save(force: true) }.buttonStyle(.bordered)
                 }

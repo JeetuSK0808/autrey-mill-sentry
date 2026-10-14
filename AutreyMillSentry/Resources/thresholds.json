@@ -1,24 +1,23 @@
 {
- "confirmMinProbability": 0.8200000000000003,
+ "confirmMinProbability": 0.8900000000000003,
  "confirmMinMargin": 0.3,
  "possibleMinProbability": 0.35,
  "nativeMinProbability": 0.6,
  "notPlantMinProbability": 0.5,
  "perClassConfirmMin": {
   "ligustrum_sinense": 0.91,
-  "mahonia_bealei": 0.6,
-  "lonicera_japonica": 0.65,
-  "wisteria_sinensis": 0.92,
-  "vinca_minor": 0.65,
-  "elaeagnus_umbellata": 0.6,
-  "elaeagnus_pungens": 0.88,
-  "rosa_multiflora": 0.6,
-  "hedera_helix": 0.92,
-  "albizia_julibrissin": 0.77,
-  "paulownia_tomentosa": 0.82,
-  "microstegium_vimineum": 0.74,
-  "pueraria_montana": 0.71,
-  "nandina_domestica": 0.6
+  "mahonia_bealei": 0.75,
+  "lonicera_japonica": 0.87,
+  "vinca_minor": 0.86,
+  "elaeagnus_umbellata": 0.75,
+  "elaeagnus_pungens": 0.91,
+  "rosa_multiflora": 0.94,
+  "hedera_helix": 0.94,
+  "albizia_julibrissin": 0.93,
+  "paulownia_tomentosa": 0.95,
+  "microstegium_vimineum": 0.75,
+  "pueraria_montana": 0.75,
+  "nandina_domestica": 0.75
  },
  "lockOnWindow": 8,
  "lockOnAgreeCount": 5,
@@ -29,5 +28,7 @@
  "maxClippedFraction": 0.25,
  "minSubjectFraction": 0.1,
  "maxSubjectFraction": 0.97,
- "maxMotion": 0.12
+ "maxMotion": 0.12,
+ "maxEntropyForConfirm": 0.45,
+ "liveEvidenceWeight": 0.35
 }

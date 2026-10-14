@@ -51,6 +51,11 @@ final class ScanViewModel {
     private(set) var cameraDenied = false
     var lockHapticTick = 0   // bumped once per fresh lock so the view can play haptics
 
+    enum TorchMode: String { case auto, on, off }
+    private(set) var torchMode: TorchMode = .auto
+    var torchIsOn: Bool { camera.torchOn }
+    var torchAvailable: Bool { camera.torchAvailable }
+
     // Live-frame state lives on the camera's serial video queue.
     @ObservationIgnored nonisolated(unsafe) private let liveClassifier: PlantClassifying
     @ObservationIgnored nonisolated private let liveCatalog: SpeciesCatalog
@@ -59,6 +64,10 @@ final class ScanViewModel {
     @ObservationIgnored nonisolated(unsafe) private var liveEnabled = false
     @ObservationIgnored nonisolated(unsafe) private var autoCaptureArmed = true
     @ObservationIgnored nonisolated(unsafe) private var wasLocked = false
+    @ObservationIgnored nonisolated(unsafe) private var darkFrames = 0
+    @ObservationIgnored nonisolated(unsafe) private var brightFrames = 0
+    @ObservationIgnored nonisolated(unsafe) private var autoTorchOn = false
+    @ObservationIgnored nonisolated(unsafe) private var torchModeLive: TorchMode = .auto
 
     init(classifier: PlantClassifying, catalog: SpeciesCatalog, location: LocationService, preserve: PreserveData, settings: SettingsStore) {
         self.classifier = classifier
@@ -85,9 +94,32 @@ final class ScanViewModel {
 
     func stopLive() { liveEnabled = false; camera.stop(); location.stop() }
 
+    /// Flashlight: auto (on when the scene is dark), on, off. Tapping cycles on → off → auto.
+    func cycleTorch() {
+        switch torchMode {
+        case .auto: torchMode = .on
+        case .on: torchMode = .off
+        case .off: torchMode = .auto
+        }
+        torchModeLive = torchMode
+        switch torchMode {
+        case .on: camera.setTorch(true)
+        case .off: camera.setTorch(false); autoTorchOn = false
+        case .auto: autoTorchOn = false; camera.setTorch(false); darkFrames = 0; brightFrames = 0
+        }
+    }
+
+    nonisolated private func autoTorch(luminance: Double) {
+        guard torchModeLive == .auto else { return }
+        if luminance < 0.16 { darkFrames += 1; brightFrames = 0 } else if luminance > 0.45 { brightFrames += 1; darkFrames = 0 } else { darkFrames = 0; brightFrames = 0 }
+        if !autoTorchOn && darkFrames >= 6 { autoTorchOn = true; camera.setTorch(true) }
+        if autoTorchOn && brightFrames >= 24 { autoTorchOn = false; camera.setTorch(false) }
+    }
+
     nonisolated private func handleFrame(_ pb: CVPixelBuffer, orientation: CGImagePropertyOrientation) {
         guard liveEnabled else { return }
         let metrics = analyzer.analyze(pixelBuffer: pb, orientation: orientation, trackMotion: true)
+        autoTorch(luminance: metrics.meanLuminance)
         if let gate = ScanDecision.qualityGate(metrics) {
             let state = tracker.push(nil)
             wasLocked = false
@@ -101,7 +133,7 @@ final class ScanViewModel {
             Task { @MainActor in self.applyLive(state: state, topName: nil, guidance: RescanReason.noPlantFound.liveHint, good: false, freshLock: false, autoCapture: false) }
             return
         }
-        let state = tracker.push(top)
+        let state = tracker.push(top, distribution: cls.probabilities)
         let name = liveCatalog.name(for: top.label)
         var freshLock = false, auto = false
         switch state {
@@ -160,10 +192,20 @@ final class ScanViewModel {
         locationHint = nil
         let classifier = self.classifier
         let catalog = self.catalog
+        let live = source == .camera ? tracker.liveEvidence() : nil
+        let liveWeight = Config.scan.liveEvidenceWeight
         let work = Task.detached(priority: .userInitiated) { () -> (QualityMetrics, ClassificationResult)? in
             let q = overrideQuality ?? QualityAnalyzer().analyze(image, orientation: .up, trackMotion: false)
-            guard let c = try? classifier.classify(image, orientation: .up) else { return nil }
-            return (q, c)
+            // Test-time augmentation: the full frame, a tighter centre crop, a mirrored copy, and a slightly zoomed crop.
+            var passes: [[ClassProbability]] = []
+            var version = "coreml"
+            for variant in TestTimeAugmentation.variants(of: image) {
+                if let c = try? classifier.classify(variant, orientation: .up) { passes.append(c.probabilities); version = c.modelVersion }
+            }
+            guard !passes.isEmpty else { return nil }
+            var fused = Evidence.average(passes)
+            if let live, !live.isEmpty { fused = Evidence.average([fused, live], weights: [1 - liveWeight, liveWeight]) }
+            return (q, ClassificationResult(probabilities: fused, modelVersion: version))
         }
         guard let (quality, classification) = await work.value else {
             errorMessage = "The photo could not be analysed."; phase = .live; liveEnabled = true; camera.start(); return
@@ -175,7 +217,7 @@ final class ScanViewModel {
             locationHint = "Getting a precise location…"
             fix = await location.waitForFix()
             if let f = fix, f.accuracy > Config.goodAccuracyMeters {
-                locationHint = "Location accuracy is \(Int(f.accuracy)) m. The report will carry a low-accuracy flag."
+                locationHint = "Location accuracy is \(Geo.feetDescription(f.accuracy)). The report will carry a low-accuracy flag."
             } else { locationHint = nil }
         }
         let inside = fix.map { preserve.isInsidePreserve($0.point) } ?? false
@@ -195,5 +237,29 @@ final class ScanViewModel {
         liveEnabled = true
         phase = .live
         camera.start()
+    }
+}
+
+
+/// Cheap augmentations of the captured still. Four passes cost about 100 ms on a modern iPhone.
+enum TestTimeAugmentation {
+    static func variants(of image: CGImage) -> [CGImage] {
+        var out = [image]
+        if let c = crop(image, fraction: 0.85) { out.append(c) }
+        if let m = mirrored(image) { out.append(m) }
+        if let z = crop(image, fraction: 0.7) { out.append(z) }
+        return out
+    }
+    static func crop(_ image: CGImage, fraction: CGFloat) -> CGImage? {
+        let w = CGFloat(image.width), h = CGFloat(image.height)
+        let cw = w * fraction, ch = h * fraction
+        return image.cropping(to: CGRect(x: (w - cw) / 2, y: (h - ch) / 2, width: cw, height: ch))
+    }
+    static func mirrored(_ image: CGImage) -> CGImage? {
+        guard let ctx = CGContext(data: nil, width: image.width, height: image.height, bitsPerComponent: 8, bytesPerRow: 0,
+                                  space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue) else { return nil }
+        ctx.translateBy(x: CGFloat(image.width), y: 0); ctx.scaleBy(x: -1, y: 1)
+        ctx.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+        return ctx.makeImage()
     }
 }

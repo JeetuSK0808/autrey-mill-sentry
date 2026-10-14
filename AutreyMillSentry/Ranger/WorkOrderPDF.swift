@@ -44,7 +44,7 @@ enum WorkOrderPDF {
                 let tx: CGFloat = 252, tw: CGFloat = 324
                 var ty = y
                 ty = PDFText.draw("\(r.speciesName)\(r.needsExpertReview ? " (needs expert review)" : "") · \(r.patchSize.title) · score \(Int(r.priorityScore.rounded()))", font: .boldSystemFont(ofSize: 11), at: tx, y: ty, width: tw)
-                ty = PDFText.draw(String(format: "%.5f, %.5f · %@ · creek %@ · %@", r.latitude, r.longitude, r.nearestTrailName.isEmpty ? "trail unknown" : r.nearestTrailName, r.distanceToCreekMeters.map { "\(Int($0)) m" } ?? "n/a", r.createdAt.formatted(date: .abbreviated, time: .omitted)), font: .systemFont(ofSize: 9), at: tx, y: ty + 1, width: tw, color: .darkGray)
+                ty = PDFText.draw(String(format: "%.5f, %.5f · %@ · creek %@ · %@", r.latitude, r.longitude, r.nearestTrailName.isEmpty ? "trail unknown" : r.nearestTrailName, r.distanceToCreekMeters.map { Geo.roundedDistanceDescription($0) } ?? "n/a", r.createdAt.formatted(date: .abbreviated, time: .omitted)), font: .systemFont(ofSize: 9), at: tx, y: ty + 1, width: tw, color: .darkGray)
                 let factors = PriorityScore.score(ReportStore.rankingInput(for: r, all: all, catalog: catalog)).factors
                 let why = factors.sorted { $0.points > $1.points }.prefix(3).map { "\($0.name) \(Int($0.points.rounded()))" }.joined(separator: ", ")
                 ty = PDFText.draw("Why: \(why)", font: .italicSystemFont(ofSize: 9), at: tx, y: ty + 1, width: tw, color: .darkGray)

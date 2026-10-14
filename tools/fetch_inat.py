@@ -98,7 +98,7 @@ EXCLUDED_T2 = {  # name: reason (documented in model/CLASSES.md)
     "Poa annua": "turf grass", "Eragrostis curvula": "roadside grass", "Verbascum": "genus-only entry (used Verbascum thapsus)",
 }
 MIN_T2 = 80
-TARGETS = {"tier1": 600, "native": 350, "tier2": 220, "other_plant": 900, "not_plant": 900}
+TARGETS = {"tier1": 600, "native": 350, "tier2": 220, "other_plant": 3200, "not_plant": 1500}
 PHOTOS_PER_OBS = {"tier1": 2, "native": 2, "tier2": 2, "other_plant": 1, "not_plant": 1}
 
 # ---- http -------------------------------------------------------------------------------------
@@ -112,7 +112,8 @@ def api_get(path, params):
     key = CACHE / (urllib.parse.quote(url, safe="")[:200] + "_" + str(abs(hash(url)) % 10**8) + ".json")
     if key.exists():
         return json.loads(key.read_text())
-    for attempt in range(5):
+    attempt = 0
+    while True:
         with _lock:
             wait = 1.05 - (time.time() - _last[0])
             if wait > 0:
@@ -126,9 +127,12 @@ def api_get(path, params):
             key.write_bytes(body)
             return j
         except Exception as e:
-            print("  api retry", attempt, path, e, flush=True)
-            time.sleep(5 * (attempt + 1))
-    raise RuntimeError("API failed: " + url)
+            attempt += 1
+            delay = min(900, 10 * attempt * attempt)   # 10 s, 40 s, 90 s ... up to 15 min: the API has maintenance windows
+            print(f"  api retry {attempt} ({e}); sleeping {delay}s", flush=True)
+            if attempt >= 40:
+                raise RuntimeError("API failed: " + url)
+            time.sleep(delay)
 
 SYNONYMS = {  # GISC/preserve name -> iNaturalist accepted name
     "Mahonia bealei": "Berberis bealei",
@@ -284,7 +288,7 @@ def download():
         base = {"quality_grade": "research", "photos": "true", "photo_license": "cc0,cc-by,cc-by-nc"}
         if label == "other_plant":
             base.update({"taxon_id": 47126, "without_taxon_id": ",".join(map(str, all_taxa)), "rank": "species"})
-            place_plan = [(GEORGIA, target), (se_param, target)]
+            place_plan = [(GEORGIA, target), (se_param, target), (US, target)]
         elif label == "not_plant":
             base.update({"iconic_taxa": "Fungi,Insecta,Aves,Reptilia,Amphibia,Mammalia,Arachnida,Mollusca"})
             place_plan = [(GEORGIA, target)]
@@ -333,6 +337,38 @@ def download():
                     count -= 1
             futures = []
         print(f"[{label}] done: {len(list(d.glob('*.jpg')))} images", flush=True)
+    # Cultivated / house / garden plants into other_plant (what people point phones at indoors and in yards).
+    d = IMG / "other_plant"; d.mkdir(parents=True, exist_ok=True)
+    have_cult = len(list(d.glob("cult_*.jpg")))
+    target_cult = 900
+    if have_cult < target_cult:
+        print(f"[other_plant/cultivated] need {target_cult}, have {have_cult}", flush=True)
+        count = have_cult
+        for place_id in (GEORGIA, se_param, US):
+            if count >= target_cult: break
+            p = {"taxon_id": 47126, "without_taxon_id": ",".join(map(str, all_taxa)), "captive": "true", "photos": "true",
+                 "photo_license": "cc0,cc-by,cc-by-nc", "place_id": place_id, "rank": "species"}
+            futures = []
+            for o in iter_observations(p, limit=max(50, int((target_cult - count) * 1.3) + 50)):
+                if count >= target_cult: break
+                user = (o.get("user") or {}).get("login", "")
+                for ph in o.get("photos", [])[:1]:
+                    lic = (ph.get("license_code") or "").lower()
+                    if lic not in ALLOWED: continue
+                    pid = str(ph["id"])
+                    if pid in done_photos: continue
+                    url = ph["url"].replace("square", "medium")
+                    dest = d / f"cult_{o['id']}_{pid}.jpg"
+                    def job(url=url, dest=dest, row=["other_plant", o["id"], pid, user, lic, url, f"https://www.inaturalist.org/observations/{o['id']}", o.get("observed_on"), o.get("place_guess")]):
+                        if fetch_photo(url, dest):
+                            with _attr_lock:
+                                w.writerow(row); f.flush()
+                            return True
+                        return False
+                    futures.append(pool.submit(job)); done_photos.add(pid); count += 1
+            for fut in futures:
+                if not fut.result(): count -= 1
+        print(f"[other_plant/cultivated] done: {len(list(d.glob('cult_*.jpg')))} images", flush=True)
     pool.shutdown(wait=True)
     f.close()
 

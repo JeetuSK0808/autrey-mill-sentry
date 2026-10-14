@@ -6,11 +6,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 57278
  },
  {
   "label": "alternanthera_philoxeroides",
@@ -19,11 +20,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 75386
  },
  {
   "label": "dryopteris_erythrosora",
@@ -32,11 +34,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 137722
  },
  {
   "label": "eichhornia_crassipes",
@@ -45,11 +48,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 962637
  },
  {
   "label": "lespedeza_bicolor",
@@ -58,11 +62,12 @@
   "tier": "tier2",
   "aggressiveness": 0.8,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 129677
  },
  {
   "label": "lespedeza_cuneata",
@@ -71,11 +76,12 @@
   "tier": "tier2",
   "aggressiveness": 0.8,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 164566
  },
  {
   "label": "lygodium_japonicum",
@@ -84,11 +90,12 @@
   "tier": "tier2",
   "aggressiveness": 0.6,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 164985
  },
  {
   "label": "melia_azedarach",
@@ -97,11 +104,12 @@
   "tier": "tier2",
   "aggressiveness": 0.85,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 53720
  },
  {
   "label": "murdannia_keisak",
@@ -110,11 +118,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 125685
  },
  {
   "label": "triadica_sebifera",
@@ -123,11 +132,12 @@
   "tier": "tier2",
   "aggressiveness": 0.7,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 79388
  },
  {
   "label": "ardisia_crenata",
@@ -136,11 +146,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 158586
  },
  {
   "label": "crotalaria_spectabilis",
@@ -149,11 +160,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 161150
  },
  {
   "label": "dioscorea_polystachya",
@@ -162,11 +174,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 119141
  },
  {
   "label": "leucanthemum_vulgare",
@@ -175,11 +188,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 56057
  },
  {
   "label": "ligustrum_lucidum",
@@ -188,11 +202,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 77740
  },
  {
   "label": "lonicera_maackii",
@@ -201,11 +216,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 82342
  },
  {
   "label": "miscanthus_sinensis",
@@ -214,11 +230,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 165474
  },
  {
   "label": "myriophyllum_aquaticum",
@@ -227,11 +244,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 60202
  },
  {
   "label": "nasturtium_officinale",
@@ -240,11 +258,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 78174
  },
  {
   "label": "phyllostachys_aurea",
@@ -253,11 +272,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 78563
  },
  {
   "label": "sesbania_punicea",
@@ -266,11 +286,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 79065
  },
  {
   "label": "spiraea_japonica",
@@ -279,11 +300,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 125790
  },
  {
   "label": "vinca_major",
@@ -292,11 +314,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 53326
  },
  {
   "label": "vitex_rotundifolia",
@@ -305,11 +328,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 126845
  },
  {
   "label": "ajuga_reptans",
@@ -318,11 +342,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 56099
  },
  {
   "label": "ampelopsis_glandulosa",
@@ -331,11 +356,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 204237
  },
  {
   "label": "anthoxanthum_odoratum",
@@ -344,11 +370,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 75475
  },
  {
   "label": "arundo_donax",
@@ -357,11 +384,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 64017
  },
  {
   "label": "berberis_thunbergii",
@@ -370,11 +398,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 58727
  },
  {
   "label": "broussonetia_papyrifera",
@@ -383,11 +412,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 128032
  },
  {
   "label": "carduus_nutans",
@@ -396,11 +426,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 76007
  },
  {
   "label": "centaurea_cyanus",
@@ -409,11 +440,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 933404
  },
  {
   "label": "citrus_trifoliata",
@@ -422,11 +454,12 @@
   "tier": "tier2",
   "aggressiveness": 0.4,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 200071
  },
  {
   "label": "clematis_terniflora",
@@ -435,11 +468,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 62776
  },
  {
   "label": "colocasia_esculenta",
@@ -448,11 +482,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 122835
  },
  {
   "label": "daucus_carota",
@@ -461,11 +496,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 76610
  },
  {
   "label": "euonymus_fortunei",
@@ -474,11 +510,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 130893
  },
  {
   "label": "hemerocallis_fulva",
@@ -487,11 +524,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 126583
  },
  {
   "label": "hibiscus_syriacus",
@@ -500,11 +538,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 126585
  },
  {
   "label": "ligustrum_japonicum",
@@ -513,11 +552,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 77739
  },
  {
   "label": "liriope_muscari",
@@ -526,11 +566,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 223938
  },
  {
   "label": "lonicera_fragrantissima",
@@ -539,11 +580,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 164763
  },
  {
   "label": "morus_alba",
@@ -552,11 +594,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 56090
  },
  {
   "label": "paspalum_urvillei",
@@ -565,11 +608,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 78356
  },
  {
   "label": "perilla_frutescens",
@@ -578,11 +622,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 119136
  },
  {
   "label": "phragmites_australis",
@@ -591,11 +636,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 64237
  },
  {
   "label": "pyrus_calleryana",
@@ -604,11 +650,12 @@
   "tier": "tier2",
   "aggressiveness": 0.4,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 119793
  },
  {
   "label": "rubus_armeniacus",
@@ -617,11 +664,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 61317
  },
  {
   "label": "securigera_varia",
@@ -630,11 +678,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 127186
  },
  {
   "label": "solanum_viarum",
@@ -643,11 +692,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 169088
  },
  {
   "label": "sorghum_halepense",
@@ -656,11 +706,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 58387
  },
  {
   "label": "vernicia_fordii",
@@ -669,11 +720,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 170171
  },
  {
   "label": "akebia_quinata",
@@ -682,11 +734,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 126249
  },
  {
   "label": "allium_vineale",
@@ -695,11 +748,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 75371
  },
  {
   "label": "artemisia_vulgaris",
@@ -708,11 +762,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 52856
  },
  {
   "label": "cirsium_vulgare",
@@ -721,11 +776,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": true,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 52989
  },
  {
   "label": "euonymus_alatus",
@@ -734,11 +790,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 117433
  },
  {
   "label": "fatoua_villosa",
@@ -747,11 +804,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 51636
  },
  {
   "label": "firmiana_simplex",
@@ -760,11 +818,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 162991
  },
  {
   "label": "ilex_cornuta",
@@ -773,11 +832,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 164038
  },
  {
   "label": "ilex_crenata",
@@ -786,11 +846,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 133240
  },
  {
   "label": "ipomoea_coccinea",
@@ -799,11 +860,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 120518
  },
  {
   "label": "ipomoea_purpurea",
@@ -812,11 +874,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 52344
  },
  {
   "label": "jacquemontia_tamnifolia",
@@ -825,11 +888,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 164215
  },
  {
   "label": "kummerowia_stipulacea",
@@ -838,11 +902,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 143557
  },
  {
   "label": "kummerowia_striata",
@@ -851,11 +916,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 143558
  },
  {
   "label": "liriope_spicata",
@@ -864,11 +930,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 319891
  },
  {
   "label": "persicaria_longiseta",
@@ -877,11 +944,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 143803
  },
  {
   "label": "quercus_acutissima",
@@ -890,11 +958,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 167634
  },
  {
   "label": "rosa_laevigata",
@@ -903,11 +972,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 83066
  },
  {
   "label": "rubus_phoenicolasius",
@@ -916,11 +986,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 84227
  },
  {
   "label": "setaria_pumila",
@@ -929,11 +1000,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 48688
  },
  {
   "label": "sonchus_asper",
@@ -942,11 +1014,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 53269
  },
  {
   "label": "sonchus_oleraceus",
@@ -955,11 +1028,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 53294
  },
  {
   "label": "torilis_arvensis",
@@ -968,11 +1042,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 56846
  },
  {
   "label": "verbascum_thapsus",
@@ -981,11 +1056,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 59029
  },
  {
   "label": "verbena_bonariensis",
@@ -994,11 +1070,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 79487
  },
  {
   "label": "buddleja_davidii",
@@ -1007,11 +1084,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 75916
  },
  {
   "label": "alliaria_petiolata",
@@ -1020,11 +1098,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 56061
  },
  {
   "label": "achyranthes_japonica",
@@ -1033,11 +1112,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 157962
  },
  {
   "label": "arthraxon_hispidus",
@@ -1046,11 +1126,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 158727
  },
  {
   "label": "celastrus_orbiculatus",
@@ -1059,11 +1140,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 64540
  },
  {
   "label": "imperata_cylindrica",
@@ -1072,11 +1154,12 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 164056
  },
  {
   "label": "reynoutria_japonica",
@@ -1085,10 +1168,11 @@
   "tier": "tier2",
   "aggressiveness": 0.3,
   "documentedAtPreserve": false,
-  "whyItMatters": "On the Georgia Invasive Species Council plant list. Reports go to expert review.",
+  "whyItMatters": "On the Georgia Invasive Species Council invasive plant list. The scanner knows this species but always sends it to expert review, because it was trained on fewer photos than the tuned species.",
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/"
+  "sourceURL": "https://gainvasivespeciescouncil.org/list/invasive-plants/",
+  "inatTaxonID": 914922
  }
 ]

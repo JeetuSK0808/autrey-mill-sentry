@@ -113,9 +113,10 @@ enum ScanDecision {
         let invasiveCandidates = classification.top3.filter { catalog.tier(of: $0.label) == .tier1 || catalog.tier(of: $0.label) == .tier2 }
             .filter { $0.probability >= t.possibleMinProbability }
 
+        let entropy = Evidence.normalisedEntropy(classification.probabilities)
         switch catalog.tier(of: top.label) {
         case .tier1:
-            if top.probability >= t.confirmMin(for: top.label) && margin >= t.confirmMinMargin {
+            if top.probability >= t.confirmMin(for: top.label) && margin >= t.confirmMinMargin && entropy <= t.maxEntropyForConfirm {
                 return .confirmedInvasive(species: top.label, confidence: top.probability)
             }
             if top.probability >= t.possibleMinProbability { return .possibleInvasive(candidates: invasiveCandidates.isEmpty ? [top] : invasiveCandidates) }
@@ -146,6 +147,30 @@ enum ScanDecision {
     }
 }
 
+/// Combines several probability vectors (test-time augmentation passes, live evidence) into one, renormalised.
+enum Evidence {
+    static func average(_ distributions: [[ClassProbability]], weights: [Double]? = nil) -> [ClassProbability] {
+        guard !distributions.isEmpty else { return [] }
+        let w = weights ?? Array(repeating: 1.0, count: distributions.count)
+        var sums: [String: Double] = [:]
+        var total = 0.0
+        for (d, wi) in zip(distributions, w) {
+            for c in d { sums[c.label, default: 0] += c.probability * wi }
+            total += wi
+        }
+        return sums.map { ClassProbability(label: $0.key, probability: $0.value / max(total, 1e-9)) }.sorted { $0.probability > $1.probability }
+    }
+
+    /// Entropy of the top-k mass, normalised 0...1 (1 = flat). High entropy means "the model does not know".
+    static func normalisedEntropy(_ d: [ClassProbability], k: Int = 10) -> Double {
+        let top = d.prefix(k).map(\.probability)
+        let s = top.reduce(0, +)
+        guard s > 0, top.count > 1 else { return 0 }
+        let h = -top.map { $0 / s }.filter { $0 > 0 }.map { $0 * log($0) }.reduce(0, +)
+        return h / log(Double(top.count))
+    }
+}
+
 /// Requires agreement over a short window of live frames before the UI says "locked on".
 struct LockOnTracker: Sendable {
     enum State: Equatable, Sendable {
@@ -154,6 +179,7 @@ struct LockOnTracker: Sendable {
         case locked(label: String, meanProbability: Double)
     }
     private(set) var history: [ClassProbability] = []
+    private(set) var recentDistributions: [[ClassProbability]] = []
     let window: Int
     let agreeCount: Int
     let meanProbability: Double
@@ -162,12 +188,25 @@ struct LockOnTracker: Sendable {
         window = t.lockOnWindow; agreeCount = t.lockOnAgreeCount; meanProbability = t.lockOnMeanProbability
     }
 
-    mutating func reset() { history.removeAll() }
+    mutating func reset() { history.removeAll(); recentDistributions.removeAll() }
 
-    mutating func push(_ top: ClassProbability?) -> State {
-        guard let top else { history.removeAll(); return .idle }
+    /// Mean of the recent live distributions (top classes only), used as extra evidence for the captured still.
+    func liveEvidence(minFrames: Int = 4) -> [ClassProbability]? {
+        guard recentDistributions.count >= minFrames else { return nil }
+        var sums: [String: Double] = [:]
+        for d in recentDistributions { for c in d { sums[c.label, default: 0] += c.probability } }
+        let n = Double(recentDistributions.count)
+        return sums.map { ClassProbability(label: $0.key, probability: $0.value / n) }.sorted { $0.probability > $1.probability }
+    }
+
+    mutating func push(_ top: ClassProbability?, distribution: [ClassProbability] = []) -> State {
+        guard let top else { history.removeAll(); recentDistributions.removeAll(); return .idle }
         history.append(top)
         if history.count > window { history.removeFirst(history.count - window) }
+        if !distribution.isEmpty {
+            recentDistributions.append(Array(distribution.prefix(5)))
+            if recentDistributions.count > window { recentDistributions.removeFirst(recentDistributions.count - window) }
+        }
         let same = history.filter { $0.label == top.label }
         let mean = same.map(\.probability).reduce(0, +) / Double(same.count)
         if same.count >= agreeCount && mean >= meanProbability { return .locked(label: top.label, meanProbability: mean) }

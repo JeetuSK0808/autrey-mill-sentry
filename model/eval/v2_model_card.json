@@ -1,16 +1,16 @@
 {
  "status": "evaluated",
  "modelVersion": "v2",
- "evaluatedOn": "2026-10-12",
+ "evaluatedOn": "2026-10-14",
  "testObservations": 2443,
  "tier1": {
   "classes": 14,
   "testImages": 772,
   "top1": 0.8873056994818653,
   "top3": 0.9572538860103627,
-  "precisionAtConfirm": 0.9589905362776026,
-  "coverageAtConfirm": 0.7875647668393783,
-  "confirmThreshold": 0.8200000000000003
+  "precisionAtConfirm": 0.9794168096054888,
+  "coverageAtConfirm": 0.7396373056994818,
+  "confirmThreshold": 0.8900000000000003
  },
  "tier2": {
   "classes": 84,

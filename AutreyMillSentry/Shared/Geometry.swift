@@ -75,9 +75,12 @@ enum Geo {
         return distanceMeters(from: point, toPolygonEdge: polygon) <= bufferMeters
     }
 
-    /// Bearing-free "X m away" helper for hints.
+    /// US units for everything the user reads: feet under a tenth of a mile, miles above.
     static func roundedDistanceDescription(_ meters: Double) -> String {
-        if meters < 1000 { return "\(Int(meters.rounded())) m" }
-        return String(format: "%.1f km", meters / 1000)
+        let feet = meters * 3.28084
+        if feet < 528 { return "\(Int(feet.rounded())) ft" }
+        let miles = meters / 1609.344
+        return miles < 10 ? String(format: "%.1f mi", miles) : "\(Int(miles.rounded())) mi"
     }
+    static func feetDescription(_ meters: Double) -> String { "\(Int((meters * 3.28084).rounded())) ft" }
 }

@@ -34,7 +34,7 @@ enum PriorityScore {
 
         let iso: Double = r.nearbyReportCount == 0 ? 1.0 : r.nearbyReportCount <= 2 ? 0.6 : 0.2
         f.append(RankingFactor(name: "Isolation", points: iso * w.isolation, maxPoints: w.isolation,
-                               reason: r.nearbyReportCount == 0 ? "No other reports within \(Int(Config.isolationRadiusMeters)) m: an isolated outpost." : "\(r.nearbyReportCount) other report(s) nearby: part of a bigger infestation."))
+                               reason: r.nearbyReportCount == 0 ? "No other reports within \(Geo.feetDescription(Config.isolationRadiusMeters)): an isolated outpost." : "\(r.nearbyReportCount) other report(s) nearby: part of a bigger infestation."))
 
         var creek = 0.0
         var creekReason = "No waterway data."
@@ -42,7 +42,7 @@ enum PriorityScore {
             if d <= w.creekFullPointsWithinMeters { creek = 1 }
             else if d >= w.creekZeroPointsBeyondMeters { creek = 0 }
             else { creek = 1 - (d - w.creekFullPointsWithinMeters) / (w.creekZeroPointsBeyondMeters - w.creekFullPointsWithinMeters) }
-            creekReason = "\(Int(d.rounded())) m from the creek. Water carries seeds downstream."
+            creekReason = "\(Geo.roundedDistanceDescription(d)) from the creek. Water carries seeds downstream."
         }
         f.append(RankingFactor(name: "Near the creek", points: creek * w.creekProximity, maxPoints: w.creekProximity, reason: creekReason))
 

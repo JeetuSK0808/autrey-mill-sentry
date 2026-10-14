@@ -1,6 +1,6 @@
 # Model card: InvasiveClassifier v2
 
-Evaluated 2026-10-12. Every number here comes from `model/eval/v2_eval.json`, produced by `model/evaluate.py` on a held-out test split.
+Evaluated 2026-10-14. Every number here comes from `model/eval/v2_eval.json`, produced by `model/evaluate.py` on a held-out test split.
 
 Backbone: timm `efficientnet_b0` (ImageNet pretrained), input 256 px, 20 epochs, AdamW + one-cycle LR, label smoothing 0.1, class-balanced sampling, strong augmentation (random resized crops, flips, rotation, colour jitter, blur, erasing). Trained on Apple MPS.
 
@@ -21,9 +21,9 @@ Backbone: timm `efficientnet_b0` (ImageNet pretrained), input 256 px, 20 epochs,
 | Native look-alikes | 14 | 466 | 90.3% | 94.8% |
 
 ## The confirmed-invasive call
-- Target precision for `.confirmedInvasive`: 97.0%. Chosen on validation: global threshold 0.82, margin 0.30, 14 per-class thresholds.
-- Validation: precision 98.1%, coverage 74.4% (1040 confirmed calls).
-- **Test: precision 95.9%, coverage 78.8%** (634 confirmed calls). Coverage is the fraction of true Tier 1 photos the app confirms; the rest go to "needs expert review".
+- Target precision for `.confirmedInvasive`: 98.0%. Chosen on validation: global threshold 0.89, margin 0.30, 13 per-class thresholds.
+- Validation: precision 98.8%, coverage 69.4% (964 confirmed calls).
+- **Test: precision 97.9%, coverage 74.0%** (583 confirmed calls). Coverage is the fraction of true Tier 1 photos the app confirms; the rest go to "needs expert review".
 - Native or other plants wrongly confirmed as invasive on test: 0.8%.
 - not_plant photos rejected (top-1 not_plant with p >= 0.5): 74.2%.
 

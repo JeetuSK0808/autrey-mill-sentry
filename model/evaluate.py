@@ -64,10 +64,10 @@ def main():
             best_thr = float(thr); break
     if best_thr is None: best_thr = 0.95
     # per-class: for each Tier 1 class, lowest threshold (floor 0.60) reaching target precision on val with
-    # at least 25 confirmed calls, else the global threshold applies
+    # at least 25 confirmed calls, floor 0.75, else the global threshold applies
     per_class = {}
     for i in tier1_idx:
-        for thr in np.arange(0.60, 0.991, 0.01):
+        for thr in np.arange(0.75, 0.991, 0.01):
             top = Pv.argmax(1); conf = Pv.max(1); srt = np.sort(Pv, 1); margin = srt[:, -1] - srt[:, -2]
             sel = (top == i) & (conf >= thr) & (margin >= args.margin)
             if sel.sum() >= 25 and (Yv[sel] == i).mean() >= args.target_precision:
@@ -114,7 +114,7 @@ def main():
     thresholds = {"confirmMinProbability": best_thr, "confirmMinMargin": args.margin, "possibleMinProbability": 0.35, "nativeMinProbability": 0.60,
                   "notPlantMinProbability": 0.50, "perClassConfirmMin": per_class, "lockOnWindow": 8, "lockOnAgreeCount": 5, "lockOnMeanProbability": 0.60,
                   "minSharpness": 40.0, "minMeanLuminance": 0.18, "maxMeanLuminance": 0.90, "maxClippedFraction": 0.25, "minSubjectFraction": 0.10,
-                  "maxSubjectFraction": 0.97, "maxMotion": 0.12}
+                  "maxSubjectFraction": 0.97, "maxMotion": 0.12, "maxEntropyForConfirm": 0.45, "liveEvidenceWeight": 0.35}
     json.dump(thresholds, open(EVAL / f"{args.version}_thresholds.json", "w"), indent=1)
     if not args.no_bundle: json.dump(thresholds, open(RES / "thresholds.json", "w"), indent=1)
     card = {"status": "evaluated", "modelVersion": args.version, "evaluatedOn": out["evaluatedOn"], "testObservations": int(len({pathlib.Path(str(x)).stem.split("_")[0] for x in Tst["paths"].tolist()})) if "paths" in Tst else None,

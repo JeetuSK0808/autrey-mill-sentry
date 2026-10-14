@@ -43,6 +43,8 @@ struct ScanThresholds: Codable, Equatable {
     var nativeMinProbability: Double = 0.60
     var notPlantMinProbability: Double = 0.50
     var perClassConfirmMin: [String: Double] = [:] // optional per-species overrides, tuned on validation data
+    var maxEntropyForConfirm: Double = 0.45       // normalised top-10 entropy above this: never "confirmed"
+    var liveEvidenceWeight: Double = 0.35         // weight of the live-frame mean when fusing with the still
 
     // Lock-on over a short window of live frames
     var lockOnWindow: Int = 8

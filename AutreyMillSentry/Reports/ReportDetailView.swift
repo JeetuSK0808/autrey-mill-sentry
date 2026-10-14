@@ -32,8 +32,8 @@ struct ReportDetailView: View {
                         row("Reported", report.createdAt.shortDescription)
                         row("Patch size", report.patchSize.title)
                         row("Nearest trail", report.nearestTrailName.isEmpty ? "Unknown" : report.nearestTrailName)
-                        row("Distance to creek", report.distanceToCreekMeters.map { "\(Int($0)) m" } ?? "n/a")
-                        row("Location", String(format: "%.5f, %.5f (±%.0f m)%@", report.latitude, report.longitude, max(report.horizontalAccuracy, 0), report.lowAccuracy ? " low accuracy" : ""))
+                        row("Distance to creek", report.distanceToCreekMeters.map { Geo.roundedDistanceDescription($0) } ?? "n/a")
+                        row("Location", String(format: "%.5f, %.5f (±%@)%@", report.latitude, report.longitude, Geo.feetDescription(max(report.horizontalAccuracy, 0)), report.lowAccuracy ? " low accuracy" : ""))
                         row("Status updated", report.statusUpdatedAt.shortDescription)
                         if report.additionalSightings > 0 { row("Extra sightings", "\(report.additionalSightings)") }
                         if let sent = report.sentAt { row("Sent", sent.shortDescription) }

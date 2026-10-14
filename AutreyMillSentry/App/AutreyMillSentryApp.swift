@@ -93,13 +93,12 @@ struct RootTabView: View {
     var body: some View {
         TabView(selection: $tab) {
             MapScreen().tabItem { Label("Map", systemImage: "map") }.tag(Tab.map)
+            ReportsView().tabItem { Label("Reports", systemImage: "list.bullet.rectangle") }.tag(Tab.reports)
+            ScanView().tabItem { Label("Scan", systemImage: "camera.viewfinder") }.tag(Tab.scan)
+            LearnView().tabItem { Label("Learn", systemImage: "book") }.tag(Tab.learn)
             if app.settings.rangerMode {
                 RangerView().tabItem { Label("Ranger", systemImage: "person.badge.shield.checkmark") }.tag(Tab.ranger)
-            }
-            ScanView().tabItem { Label("Scan", systemImage: "camera.viewfinder") }.tag(Tab.scan)
-            ReportsView().tabItem { Label("Reports", systemImage: "list.bullet.rectangle") }.tag(Tab.reports)
-            LearnView().tabItem { Label("Learn", systemImage: "book") }.tag(Tab.learn)
-            if !app.settings.rangerMode {
+            } else {
                 VisitView().tabItem { Label("Visit", systemImage: "signpost.right") }.tag(Tab.visit)
             }
         }

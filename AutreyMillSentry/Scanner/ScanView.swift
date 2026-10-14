@@ -206,7 +206,6 @@ private struct ScanControls: View {
     private var compact: Bool { typeSize.isAccessibilitySize }
 
     var body: some View {
-        @Bindable var settings = app.settings
         VStack(spacing: 14) {
             if let name = vm.liveTopName, vm.guidanceIsGood {
                 Text("Seeing: \(name)")
@@ -226,7 +225,7 @@ private struct ScanControls: View {
                 Spacer()
                 shutter
                 Spacer()
-                autoToggle($settings)
+                torchButton
             }
             .padding(.horizontal, 28)
             if !compact {
@@ -276,19 +275,23 @@ private struct ScanControls: View {
         .accessibilityIdentifier("scan.shutter")
     }
 
-    private func autoToggle(_ settings: Bindable<SettingsStore>) -> some View {
-        Toggle(isOn: settings.autoCapture) {
+    private var torchButton: some View {
+        let on = vm.torchIsOn
+        let caption: String = { switch vm.torchMode { case .auto: return on ? "Auto · on" : "Auto"; case .on: return "On"; case .off: return "Off" } }()
+        return Button { vm.cycleTorch() } label: {
             VStack(spacing: 4) {
-                Image(systemName: "bolt.badge.automatic").font(.title2)
-                if !compact { Text("Auto").font(.caption2) }
+                Image(systemName: on ? "flashlight.on.fill" : "flashlight.off.fill").font(.title2)
+                    .contentTransition(.symbolEffect(.replace))
+                if !compact { Text(caption).font(.caption2) }
             }
+            .frame(minWidth: 64, minHeight: 64)
+            .background(on ? Theme.caution.opacity(0.85) : Color.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 14))
+            .foregroundStyle(.white)
+            .animation(Motion.snappy, value: on)
         }
-        .toggleStyle(.button)
-        .tint(Theme.leaf)
-        .frame(minWidth: 64, minHeight: 64)
-        .background(Color.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 14))
-        .foregroundStyle(.white)
-        .accessibilityLabel("Auto capture when locked on")
+        .pressable()
+        .accessibilityLabel("Flashlight, \(caption)")
+        .accessibilityHint("Automatic in the dark. Tap to force on, off, or back to automatic")
     }
 }
 
