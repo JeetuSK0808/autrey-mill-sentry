@@ -1,10 +1,11 @@
 # HANDOFF: Autrey Mill Sentry
 
-Updated 2026-10-13 (03:15). Project: `~/autrey-mill-sentry` (local git only, no remote). Deadline: CAC submission **Mon Oct 26, 2026, 12:00 pm ET**. Checkpoints: scanner on the phone **Oct 16**, feature complete Oct 20, polish and video Oct 24.
+Updated 2026-10-13 (23:30). Project: `~/autrey-mill-sentry` (local git only, no remote). Deadline: CAC submission **Mon Oct 26, 2026, 12:00 pm ET**. Checkpoints: scanner on the phone **Oct 16**, feature complete Oct 20, polish and video Oct 24.
 
 ## Status
 | Area | State |
 |---|---|
+| **Phone** | **Installed and running on Jeetu's iPhone 14 Plus (iOS 26.5) on 13 Oct at 23:23** via `xcodebuild -destination id=<udid> -allowProvisioningUpdates -allowProvisioningDeviceRegistration` + `devicectl device install/launch` (`tools/build_device.sh <udid>`; find the udid with `xcrun devicectl list devices`). Setup that was needed: Lightning data cable direct into the MacBook, phone's Wired Accessories set to allow, Developer Mode on, developer profile trusted in Settings > General > VPN & Device Management. **Free-ID build expires 7 days after install: reinstall on Oct 22 or later for the video.** Live camera checks pending Jeetu's first scans. |
 | Step 0 environment | Xcode 27.0 installed and licensed on 12 Oct 23:00 (use `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`; `xcode-select` still points at the CLT). iOS simulator runtime downloading. Earlier state: **Xcode was not installed** (only Command Line Tools at `/Library/Developer/CommandLineTools`); no `.xcodeproj` existed, no iPhone visible on USB. Swift 6.3.3 CLT, macOS 26.6.2, Python 3.14 (miniforge) and 3.12 (`~/.local/bin`), uv, Node 24, 395 GB free. QuantiPhy (`vmc.py` x3) is using all CPU, so training runs with `nice` and `VECLIB_MAXIMUM_THREADS=1`. |
 | Map data | Done. OSM via Overpass, clipped to the park polygon: 36 trail ways (Warsaw Trail, Mill Race, Perimeter Trail East, Forest Trail North, Forest Pass, Wetland Pass, Spur Trail + unnamed), boundary, Sal's Creek + pond, 23 POIs. Compared with the official 2024 map; discrepancies in `docs/MAP_NOTES.md`. |
 | Dataset | Done: 33,564 licensed iNaturalist photos across 114 classes (14 Tier 1 + 14 native + 84 Tier 2 + other_plant + not_plant), 4.5 GB in `data/images/` (not committed), attribution in `data/attribution.csv` and observer credits appended to `docs/LICENSES.md`. Re-run: `~/miniforge3/bin/python3 -I tools/fetch_inat.py download`. |
