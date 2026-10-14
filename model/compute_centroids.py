@@ -50,8 +50,21 @@ def main():
         fp_neg = (mask & neg).sum() / max(neg.sum(), 1)
         return float(prec), float(cov), int(mask.sum()), float(fp_neg)
     before, after = stats(confirmed), stats(gated)
+    # 'possible invasive' calls on negatives (natives, other_plant, not_plant): any invasive top-1 with p >= 0.35,
+    # and how many the gate turns into 'unknown' (sim < floor - 0.05)
+    inv = np.array([tiers[l] in ("tier1", "tier2") for l in labels])
+    neg = ~inv[Y]
+    possible = inv[top] & (conf >= 0.35)
+    unknown_by_gate = sim_top < (floor_vec - 0.05)
+    neg_possible_before = float((possible & neg).sum() / max(neg.sum(), 1))
+    neg_possible_after = float((possible & neg & ~unknown_by_gate).sum() / max(neg.sum(), 1))
+    # cost on true invasives: how many true Tier 1/2 photos the gate wrongly sends to unknown
+    pos = inv[Y]
+    pos_lost = float((pos & (top == Y) & unknown_by_gate).sum() / max(pos.sum(), 1))
+    print(f"negatives flagged as possible invasive: {neg_possible_before:.3f} -> {neg_possible_after:.3f} with gate; true invasives lost to 'unknown': {pos_lost:.3f}", flush=True)
     # how often negatives get *any* species label above the possible threshold: the gate as an 'unknown' detector
     rep = {"version": args.version, "dim": int(D), "keep": args.keep, "globalFloor": global_floor,
+           "negativesPossible": {"withoutGate": neg_possible_before, "withGate": neg_possible_after, "trueInvasivesLostToUnknown": pos_lost},
            "test": {"withoutGate": {"precision": before[0], "coverage": before[1], "n": before[2], "negativesConfirmed": before[3]},
                     "withGate": {"precision": after[0], "coverage": after[1], "n": after[2], "negativesConfirmed": after[3]}}}
     print(json.dumps(rep["test"], indent=1), flush=True)

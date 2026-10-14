@@ -1,7 +1,7 @@
 {
  "confirmMinProbability": 0.8900000000000003,
  "confirmMinMargin": 0.3,
- "possibleMinProbability": 0.35,
+ "possibleMinProbability": 0.45,
  "nativeMinProbability": 0.6,
  "notPlantMinProbability": 0.5,
  "perClassConfirmMin": {
@@ -30,5 +30,6 @@
  "maxSubjectFraction": 0.97,
  "maxMotion": 0.12,
  "maxEntropyForConfirm": 0.45,
- "liveEvidenceWeight": 0.35
+ "liveEvidenceWeight": 0.35,
+ "embeddingGateEnabled": true
 }

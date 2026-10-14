@@ -1,0 +1,61 @@
+import XCTest
+@testable import AutreyMillSentry
+
+/// Exercises the real bundled Core ML model (two outputs: probabilities + embedding) on bundled reference photos.
+final class CoreMLClassifierTests: XCTestCase {
+    func loadImage(_ name: String) throws -> CGImage {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: name, withExtension: "jpg"), "missing \(name).jpg")
+        return try XCTUnwrap(ImageLoading.cgImage(fromJPEGData: Data(contentsOf: url), maxDimension: 1200))
+    }
+
+    func testModelLoadsWithLabelsAndEmbeddingTable() throws {
+        let clf = try XCTUnwrap(CoreMLClassifier(), "InvasiveClassifier.mlmodelc should be bundled and loadable")
+        XCTAssertFalse(clf.isMock)
+        let table = EmbeddingTable()
+        XCTAssertTrue(table.isAvailable)
+        XCTAssertEqual(table.dimension, 1280)
+        XCTAssertNotNil(table.entries["ligustrum_sinense"])
+    }
+
+    func testPrivetReferencePhotoIsRecognisedWithEmbedding() throws {
+        let clf = try XCTUnwrap(CoreMLClassifier())
+        let img = try loadImage("learn_ligustrum_sinense")
+        let r = try clf.classify(img, orientation: .up)
+        XCTAssertGreaterThan(r.probabilities.count, 100, "one probability per class")
+        XCTAssertEqual(r.top?.label, "ligustrum_sinense")
+        XCTAssertGreaterThan(r.top?.probability ?? 0, 0.5)
+        let sum = r.probabilities.map(\.probability).reduce(0, +)
+        XCTAssertEqual(sum, 1.0, accuracy: 0.02, "calibrated softmax")
+        let emb = try XCTUnwrap(r.embedding)
+        XCTAssertEqual(emb.count, 1280)
+        let norm = sqrt(emb.map { $0 * $0 }.reduce(0, +))
+        XCTAssertEqual(Double(norm), 1.0, accuracy: 0.05, "L2-normalised embedding")
+        let table = EmbeddingTable()
+        let sim = try XCTUnwrap(table.similarity(of: emb, to: "ligustrum_sinense"))
+        XCTAssertGreaterThan(sim.value, sim.floor, "the reference photo should sit inside its own class radius")
+    }
+
+    func testDecisionOnReferencePhotoUsesRealThresholds() throws {
+        let clf = try XCTUnwrap(CoreMLClassifier())
+        let catalog = SpeciesCatalog(species: SpeciesCatalog.builtIn)
+        let img = try loadImage("learn_hedera_helix")
+        let r = try clf.classify(img, orientation: .up)
+        let table = EmbeddingTable()
+        let outcome = ScanDecision.decide(quality: .perfect, classification: r, catalog: catalog, similarity: { label in r.embedding.flatMap { table.similarity(of: $0, to: label) } })
+        switch outcome {
+        case .confirmedInvasive(let s, _): XCTAssertEqual(s, "hedera_helix")
+        case .possibleInvasive(let c): XCTAssertEqual(c.first?.label, "hedera_helix")
+        default: XCTFail("English ivy reference photo should be called invasive, got \(outcome)")
+        }
+    }
+
+    func testDrawnSampleLeafIsNotConfirmedInvasive() throws {
+        let clf = try XCTUnwrap(CoreMLClassifier())
+        let catalog = SpeciesCatalog(species: SpeciesCatalog.builtIn)
+        let img = try loadImage("sample_leaf")
+        let r = try clf.classify(img, orientation: .up)
+        let table = EmbeddingTable()
+        let outcome = ScanDecision.decide(quality: .perfect, classification: r, catalog: catalog, similarity: { label in r.embedding.flatMap { table.similarity(of: $0, to: label) } })
+        if case .confirmedInvasive = outcome { XCTFail("a cartoon leaf must never be a confirmed invasive: \(outcome)") }
+    }
+}

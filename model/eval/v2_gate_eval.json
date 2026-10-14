@@ -1,0 +1,25 @@
+{
+ "version": "v2",
+ "dim": 1280,
+ "keep": 0.9,
+ "globalFloor": 0.26324793696403503,
+ "negativesPossible": {
+  "withoutGate": 0.09047619047619047,
+  "withGate": 0.07777777777777778,
+  "trueInvasivesLostToUnknown": 0.026113671274961597
+ },
+ "test": {
+  "withoutGate": {
+   "precision": 0.9794168096054888,
+   "coverage": 0.7396373056994818,
+   "n": 583,
+   "negativesConfirmed": 0.007936507936507936
+  },
+  "withGate": {
+   "precision": 0.9793103448275862,
+   "coverage": 0.7357512953367875,
+   "n": 580,
+   "negativesConfirmed": 0.007936507936507936
+  }
+ }
+}

@@ -39,7 +39,7 @@ struct ScanThresholds: Codable, Equatable {
     // Decision
     var confirmMinProbability: Double = 0.80      // Tier 1 top class must be at least this calibrated probability
     var confirmMinMargin: Double = 0.30           // and lead the runner-up by this much
-    var possibleMinProbability: Double = 0.35     // below this nothing is claimed; the user may "report anyway"
+    var possibleMinProbability: Double = 0.45     // below this nothing is claimed; the user may "report anyway"
     var nativeMinProbability: Double = 0.60
     var notPlantMinProbability: Double = 0.50
     var perClassConfirmMin: [String: Double] = [:] // optional per-species overrides, tuned on validation data
