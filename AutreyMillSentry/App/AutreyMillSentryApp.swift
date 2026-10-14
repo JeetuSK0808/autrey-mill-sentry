@@ -19,6 +19,7 @@ struct AutreyMillSentryApp: App {
                 .environment(app)
                 .modelContainer(container)
                 .tint(Theme.forest)
+                .preferredColorScheme(app.settings.colorScheme)
         }
     }
 }

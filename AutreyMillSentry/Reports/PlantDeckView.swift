@@ -7,6 +7,7 @@ struct PlantDeckView: View {
     @Environment(AppModel.self) private var app
     @Environment(\.dismiss) private var dismiss
     @Query private var reports: [Report]
+    var embedded = false
     @State private var section: DeckSection = .tier1
     enum DeckSection: String, CaseIterable, Identifiable { case tier1 = "Tuned", natives = "Natives", tier2 = "Broad"; var id: String { rawValue } }
 
@@ -51,7 +52,7 @@ struct PlantDeckView: View {
         }
         .navigationTitle("Plant deck")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+        .toolbar { if !embedded { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } } }
     }
 }
 

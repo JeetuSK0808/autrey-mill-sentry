@@ -167,8 +167,8 @@ struct SpeciesDetailView: View {
             .frame(maxWidth: .infinity)
             .clipped()
             LinearGradient(colors: [.clear, .black.opacity(0.15), .black.opacity(0.75)], startPoint: .top, endPoint: .bottom)
-            VStack(alignment: .leading, spacing: 4) {
-                TierBadge(tier: species.tier)
+            VStack(alignment: .leading, spacing: 6) {
+                TierBadge(tier: species.tier, onPhoto: true)
                 Text(species.displayName).font(.largeTitle.bold()).foregroundStyle(.white)
                 Text(species.scientificName).font(.title3.italic()).foregroundStyle(.white.opacity(0.9))
             }

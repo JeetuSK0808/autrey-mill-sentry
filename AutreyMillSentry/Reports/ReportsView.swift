@@ -24,45 +24,17 @@ enum ReportSort: String, CaseIterable, Identifiable {
     }
 }
 
-/// How a report reads at a glance: confirmed invasive (dark red), needs expert review (amber), native or other (green).
-enum ReportKind {
-    case invasive, review, benign
-    static func of(_ r: Report, catalog: SpeciesCatalog) -> ReportKind {
-        if r.needsExpertReview { return .review }
-        return catalog.tier(of: r.species) == .tier1 ? .invasive : .benign
-    }
-    var tint: Color {
-        switch self {
-        case .invasive: return Color(red: 0.55, green: 0.10, blue: 0.08)
-        case .review: return Theme.caution
-        case .benign: return Theme.forest
-        }
-    }
-    var title: String {
-        switch self {
-        case .invasive: return "Invasive"
-        case .review: return "Expert review"
-        case .benign: return "Native or other"
-        }
-    }
-}
-
 struct ReportsView: View {
     @Environment(AppModel.self) private var app
     @Environment(\.modelContext) private var context
     @Query(sort: \Report.createdAt, order: .reverse) private var reports: [Report]
     @State private var shareItems: [URL]?
     @State private var showSettings = false
-    @State private var showDeck = false
     @State private var errorText: String?
     @State private var sort: ReportSort = .newest
-    @State private var statusFilter: ReportStatus? = nil
-    @State private var kindFilter: ReportKind? = nil
 
-    private var visible: [Report] {
-        var list = reports.filter { r in
-            (statusFilter == nil || r.status == statusFilter!) && (kindFilter == nil || ReportKind.of(r, catalog: app.catalog) == kindFilter!)
-        }
+    private var sorted: [Report] {
+        var list = reports
         switch sort {
         case .newest: list.sort { $0.createdAt > $1.createdAt }
         case .oldest: list.sort { $0.createdAt < $1.createdAt }
@@ -75,30 +47,27 @@ struct ReportsView: View {
 
     var body: some View {
         NavigationStack {
-            Group {
+            List {
+                Section {
+                    NavigationLink { PlantDeckView(embedded: true) } label: { DeckEntryCard(spotted: Set(reports.map(\.species)).count, total: app.catalog.tier1.count + app.catalog.natives.count + app.catalog.tier2.count) }
+                        .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                        .listRowBackground(Color.clear)
+                        .accessibilityIdentifier("reports.deck")
+                }
                 if reports.isEmpty {
-                    EmptyStateView(symbol: "leaf.circle", title: "No reports yet", message: "Scan a plant and save it. Your reports appear here and on the map.")
-                } else {
-                    List {
-                        Section {
-                            summary.listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16)).listRowBackground(Color.clear)
-                        }
-                        Section {
-                            filterChips.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)).listRowBackground(Color.clear)
-                        }
-                        Section {
-                            ForEach(Array(visible.enumerated()), id: \.element.id) { i, r in
-                                NavigationLink { ReportDetailView(report: r, rangerMode: false) } label: { ReportRowView(report: r).staggeredAppear(i) }
-                                    .listRowBackground(rowBackground(for: r))
-                            }
-                            .onDelete { idx in idx.map { visible[$0] }.forEach { ReportStore.delete($0, context: context, catalog: app.catalog) } }
-                        } header: {
-                            Text(visible.count == reports.count ? "\(reports.count) report(s)" : "\(visible.count) of \(reports.count) report(s)")
-                        } footer: {
-                            Text("Nothing leaves your phone until you tap Send.")
-                        }
+                    Section {
+                        EmptyStateView(symbol: "leaf.circle", title: "No reports yet", message: "Scan a plant and save it. Your reports appear here and on the map.")
+                            .listRowBackground(Color.clear)
                     }
-                    .animation(Motion.gentle, value: visible.map(\.id))
+                } else {
+                    Section {
+                        ForEach(Array(sorted.enumerated()), id: \.element.id) { i, r in
+                            NavigationLink { ReportDetailView(report: r, rangerMode: false) } label: { ReportRowView(report: r).staggeredAppear(i) }
+                        }
+                        .onDelete { idx in idx.map { sorted[$0] }.forEach { ReportStore.delete($0, context: context, catalog: app.catalog) } }
+                    } footer: {
+                        Text("\(reports.count) report(s). Nothing leaves your phone until you tap Send.")
+                    }
                 }
             }
             .navigationTitle("My Reports")
@@ -107,8 +76,6 @@ struct ReportsView: View {
                     Button { showSettings = true } label: { Label("Settings", systemImage: "gearshape") }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button { showDeck = true } label: { Label("Plant deck", systemImage: "square.grid.2x2") }
-                        .accessibilityIdentifier("reports.deck")
                     Menu {
                         Picker("Sort", selection: $sort) { ForEach(ReportSort.allCases) { Label($0.title, systemImage: $0.symbol).tag($0) } }
                     } label: { Label("Sort", systemImage: "arrow.up.arrow.down") }
@@ -118,71 +85,10 @@ struct ReportsView: View {
                 }
             }
             .sheet(isPresented: $showSettings) { SettingsView() }
-            .sheet(isPresented: $showDeck) { NavigationStack { PlantDeckView() } }
             .sheet(isPresented: Binding(get: { shareItems != nil }, set: { if !$0 { shareItems = nil } })) {
                 if let items = shareItems { SendSheet(items: items, reports: reports.filter { !$0.isPractice }) }
             }
             .alert("Could not export", isPresented: Binding(get: { errorText != nil }, set: { _ in errorText = nil })) { Button("OK") {} } message: { Text(errorText ?? "") }
-        }
-    }
-
-    private var summary: some View {
-        let invasive = reports.filter { ReportKind.of($0, catalog: app.catalog) == .invasive }.count
-        let review = reports.filter { $0.needsExpertReview }.count
-        let treated = reports.filter { $0.status == .treated }.count
-        let species = Set(reports.map(\.species)).count
-        return HStack(spacing: 10) {
-            statTile("\(invasive)", "invasive", ReportKind.invasive.tint)
-            statTile("\(review)", "to review", ReportKind.review.tint)
-            statTile("\(treated)", "treated", Theme.forest)
-            statTile("\(species)", species == 1 ? "species" : "species", Theme.bark)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(invasive) invasive, \(review) to review, \(treated) treated, \(species) species")
-    }
-
-    private func statTile(_ value: String, _ label: String, _ color: Color) -> some View {
-        VStack(spacing: 2) {
-            Text(value).font(.title2.bold().monospacedDigit()).foregroundStyle(color).contentTransition(.numericText())
-            Text(label).font(.caption2).foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, minHeight: 56)
-        .background(color.opacity(0.10), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-    }
-
-    private var filterChips: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                chip("All", selected: statusFilter == nil && kindFilter == nil, color: Theme.forest) { statusFilter = nil; kindFilter = nil }
-                chip("Invasive", selected: kindFilter == .invasive, color: ReportKind.invasive.tint) { kindFilter = kindFilter == .invasive ? nil : .invasive }
-                chip("Expert review", selected: kindFilter == .review, color: ReportKind.review.tint) { kindFilter = kindFilter == .review ? nil : .review }
-                ForEach(ReportStatus.allCases) { s in
-                    chip(s.title, selected: statusFilter == s, color: Theme.color(for: s)) { statusFilter = statusFilter == s ? nil : s }
-                }
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 2)
-        }
-    }
-
-    private func chip(_ title: String, selected: Bool, color: Color, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(title).font(.subheadline.weight(.semibold))
-                .padding(.horizontal, 12).padding(.vertical, 8)
-                .background(selected ? color : color.opacity(0.12), in: Capsule())
-                .foregroundStyle(selected ? .white : color)
-                .frame(minHeight: 44)
-        }
-        .buttonStyle(.plain)
-        .animation(Motion.snappy, value: selected)
-        .accessibilityAddTraits(selected ? .isSelected : [])
-    }
-
-    private func rowBackground(for r: Report) -> some View {
-        let kind = ReportKind.of(r, catalog: app.catalog)
-        return HStack(spacing: 0) {
-            Rectangle().fill(kind.tint).frame(width: 5)
-            Rectangle().fill(kind.tint.opacity(kind == .invasive ? 0.10 : 0.05))
         }
     }
 
@@ -192,20 +98,44 @@ struct ReportsView: View {
     }
 }
 
+/// The plant deck entry at the top of Reports.
+private struct DeckEntryCard: View {
+    let spotted: Int
+    let total: Int
+    var body: some View {
+        HStack(spacing: 14) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Theme.forest)
+                Image(systemName: "square.grid.2x2.fill").font(.title2).foregroundStyle(.white)
+            }
+            .frame(width: 52, height: 52)
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Plant deck").font(.headline)
+                Text("Spotted \(spotted) of \(total) species").font(.subheadline).foregroundStyle(.secondary)
+            }
+            Spacer()
+            ProgressRing(progress: total == 0 ? 0 : Double(spotted) / Double(total)).frame(width: 40, height: 40)
+            Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
+        }
+        .padding(14)
+        .background(.background.secondary, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).strokeBorder(Theme.forest.opacity(0.25), lineWidth: 1))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Plant deck, spotted \(spotted) of \(total) species")
+    }
+}
+
 struct ReportRowView: View {
-    @Environment(AppModel.self) private var app
     let report: Report
     var showPriority = false
     @State private var thumb: CGImage?
     var body: some View {
-        let kind = ReportKind.of(report, catalog: app.catalog)
         HStack(spacing: 12) {
             CGImageView(image: thumb).frame(width: 56, height: 56).clipShape(RoundedRectangle(cornerRadius: 10))
-                .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(kind.tint.opacity(0.6), lineWidth: kind == .invasive ? 2 : 0))
                 .task { thumb = PhotoStore.thumbnail(report.photoFileName, maxPixel: 160) }
             VStack(alignment: .leading, spacing: 4) {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(report.speciesName).font(.headline).foregroundStyle(kind == .invasive ? kind.tint : .primary)
+                    Text(report.speciesName).font(.headline)
                     if report.needsExpertReview { Image(systemName: "person.fill.questionmark").foregroundStyle(Theme.caution).accessibilityLabel("needs expert review") }
                 }
                 Text("\(report.createdAt.shortDescription)\(report.nearestTrailName.isEmpty ? "" : " · " + report.nearestTrailName)").font(.caption).foregroundStyle(.secondary)
@@ -213,7 +143,6 @@ struct ReportRowView: View {
                     StatusBadge(status: report.status).animation(Motion.snappy, value: report.status)
                     if report.isPractice { Text("Practice").font(.caption2.weight(.semibold)).padding(.horizontal, 6).padding(.vertical, 3).background(.quaternary, in: Capsule()) }
                     if showPriority { Text("Priority \(Int(report.priorityScore.rounded()))").font(.caption2.weight(.bold)).foregroundStyle(Theme.forest).animation(Motion.gentle, value: report.priorityScore) }
-                    if !showPriority && kind == .invasive { Text("Confidence \(Int((report.confidence * 100).rounded()))%").font(.caption2.weight(.semibold)).foregroundStyle(kind.tint) }
                 }
             }
             Spacer(minLength: 0)
@@ -254,7 +183,7 @@ struct SendSheet: View {
                     .buttonStyle(.bordered).controlSize(.large)
                 VStack(alignment: .leading, spacing: 4) {
                     Button { showStaffWaiver = true } label: { Label("Share with preserve staff", systemImage: "antenna.radiowaves.left.and.right").frame(maxWidth: .infinity).padding(.vertical, 8) }
-                        .buttonStyle(.bordered).tint(Theme.caution).controlSize(.large)
+                        .buttonStyle(.bordered).controlSize(.large)
                         .accessibilityIdentifier("reports.staffShare")
                     Text("Preview. A direct line to staff does not exist yet. Nothing is uploaded.").font(.caption2).foregroundStyle(.secondary)
                 }

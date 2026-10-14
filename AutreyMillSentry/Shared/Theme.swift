@@ -8,8 +8,8 @@ enum Theme {
     static let leaf = Color(red: 0.55, green: 0.80, blue: 0.42)
     static let bark = Color(red: 0.36, green: 0.25, blue: 0.16)
     static let creek = Color(red: 0.16, green: 0.49, blue: 0.80)
-    static let alert = Color(red: 0.80, green: 0.22, blue: 0.16)
-    static let caution = Color(red: 0.93, green: 0.58, blue: 0.10)
+    static let alert = Color(red: 0.47, green: 0.24, blue: 0.55)     // plum: invasive, confirmed
+    static let caution = Color(red: 0.27, green: 0.42, blue: 0.66)   // slate blue: new, needs review
 
     static func color(for status: ReportStatus) -> Color {
         switch status {
@@ -23,16 +23,16 @@ enum Theme {
     /// Text colour for tinted badges: darker than the fill so it clears WCAG AA on the 18% tint.
     static func badgeText(for status: ReportStatus) -> Color {
         switch status {
-        case .new: return Color(red: 0.52, green: 0.30, blue: 0.0)
-        case .confirmed: return Color(red: 0.62, green: 0.14, blue: 0.10)
+        case .new: return Color(red: 0.17, green: 0.29, blue: 0.50)
+        case .confirmed: return Color(red: 0.36, green: 0.16, blue: 0.44)
         case .treated: return Color(red: 0.07, green: 0.34, blue: 0.23)
         case .dismissed: return Color(red: 0.30, green: 0.30, blue: 0.32)
         }
     }
     static func badgeText(for tier: SpeciesTier) -> Color {
         switch tier {
-        case .tier1: return Color(red: 0.62, green: 0.14, blue: 0.10)
-        case .tier2: return Color(red: 0.52, green: 0.30, blue: 0.0)
+        case .tier1: return Color(red: 0.36, green: 0.16, blue: 0.44)
+        case .tier2: return Color(red: 0.17, green: 0.29, blue: 0.50)
         case .native: return Color(red: 0.07, green: 0.34, blue: 0.23)
         case .other: return Color(red: 0.30, green: 0.30, blue: 0.32)
         }
@@ -96,6 +96,7 @@ struct AdaptiveHStack<Content: View>: View {
 
 struct TierBadge: View {
     let tier: SpeciesTier
+    var onPhoto = false
     var text: String {
         switch tier {
         case .tier1: return "Tuned species"
@@ -105,10 +106,11 @@ struct TierBadge: View {
         }
     }
     var body: some View {
-        Text(text).font(.caption2.weight(.bold))
-            .padding(.horizontal, 6).padding(.vertical, 3)
-            .background(Theme.color(for: tier).opacity(0.15), in: Capsule())
+        Text(text).font(.caption.weight(.bold))
+            .padding(.horizontal, onPhoto ? 10 : 6).padding(.vertical, onPhoto ? 5 : 3)
+            .background(onPhoto ? Color.white : Theme.color(for: tier).opacity(0.15), in: Capsule())
             .foregroundStyle(Theme.badgeText(for: tier))
+            .shadow(color: onPhoto ? .black.opacity(0.25) : .clear, radius: 3, y: 1)
             .fixedSize(horizontal: false, vertical: true)
     }
 }

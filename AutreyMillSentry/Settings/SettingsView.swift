@@ -19,6 +19,13 @@ struct SettingsView: View {
                 } header: { Text("Roles") }
 
                 Section {
+                    Picker("Appearance", selection: $settings.appearance) {
+                        Text("System").tag("system"); Text("Light").tag("light"); Text("Dark").tag("dark")
+                    }
+                    .pickerStyle(.segmented)
+                } header: { Text("Appearance") }
+
+                Section {
                     Toggle("Auto-capture when locked on", isOn: $settings.autoCapture)
                     Toggle("Haptics", isOn: $settings.hapticsEnabled)
                 } header: { Text("Scanner") }

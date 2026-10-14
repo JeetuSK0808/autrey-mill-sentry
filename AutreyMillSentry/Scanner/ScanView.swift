@@ -287,7 +287,7 @@ private struct ScanControls: View {
                 if !compact { Text(caption).font(.caption2) }
             }
             .frame(minWidth: 64, minHeight: 64)
-            .background(on ? Theme.caution.opacity(0.85) : Color.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 14))
+            .background(on ? Theme.leaf.opacity(0.9) : Color.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 14))
             .foregroundStyle(.white)
             .animation(Motion.snappy, value: on)
         }
