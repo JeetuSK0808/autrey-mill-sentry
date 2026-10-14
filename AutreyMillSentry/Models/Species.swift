@@ -27,8 +27,10 @@ struct Species: Codable, Sendable, Identifiable, Hashable {
     var whatToPhotograph: String
     var lookAlike: LookAlike?
     var sourceURL: String
+    var inatTaxonID: Int? = nil
 
     var displayName: String { commonName.isEmpty ? scientificName : commonName }
+    var inatURL: URL? { inatTaxonID.flatMap { URL(string: "https://www.inaturalist.org/taxa/\($0)") } }
     var isInvasive: Bool { tier == .tier1 || tier == .tier2 }
 }
 

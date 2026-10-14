@@ -1,0 +1,1014 @@
+{
+ "source": "iNaturalist, research-grade observations; photo licences as listed",
+ "pickedBy": "model v2: most typical photo per class",
+ "photos": {
+  "ligustrum_sinense": {
+   "file": "learn_ligustrum_sinense.jpg",
+   "observer": "fireferret28",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/38063924/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/24617867",
+   "modelProbability": 0.992,
+   "tier": "tier1"
+  },
+  "mahonia_bealei": {
+   "file": "learn_mahonia_bealei.jpg",
+   "observer": "atlnature",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/36245139/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/23402996",
+   "modelProbability": 0.973,
+   "tier": "tier1"
+  },
+  "lonicera_japonica": {
+   "file": "learn_lonicera_japonica.jpg",
+   "observer": "yajapin",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/36725238/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/23729627",
+   "modelProbability": 0.999,
+   "tier": "tier1"
+  },
+  "wisteria_sinensis": {
+   "file": "learn_wisteria_sinensis.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/186647876/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/110626090",
+   "modelProbability": 0.996,
+   "tier": "tier1"
+  },
+  "vinca_minor": {
+   "file": "learn_vinca_minor.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/13930152/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/10106353",
+   "modelProbability": 0.971,
+   "tier": "tier1"
+  },
+  "elaeagnus_umbellata": {
+   "file": "learn_elaeagnus_umbellata.jpg",
+   "observer": "esummerbell",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/244890196/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/142801559",
+   "modelProbability": 0.863,
+   "tier": "tier1"
+  },
+  "elaeagnus_pungens": {
+   "file": "learn_elaeagnus_pungens.jpg",
+   "observer": "nonbinary-naturalist",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/186610929/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/110608226",
+   "modelProbability": 0.996,
+   "tier": "tier1"
+  },
+  "rosa_multiflora": {
+   "file": "learn_rosa_multiflora.jpg",
+   "observer": "terryschiff",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/15807930/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/11164685",
+   "modelProbability": 0.98,
+   "tier": "tier1"
+  },
+  "hedera_helix": {
+   "file": "learn_hedera_helix.jpg",
+   "observer": "charlie",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/201169/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/145653",
+   "modelProbability": 0.932,
+   "tier": "tier1"
+  },
+  "albizia_julibrissin": {
+   "file": "learn_albizia_julibrissin.jpg",
+   "observer": "atlnature",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/36036255/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/23258097",
+   "modelProbability": 0.959,
+   "tier": "tier1"
+  },
+  "paulownia_tomentosa": {
+   "file": "learn_paulownia_tomentosa.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/187153054/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/110901811",
+   "modelProbability": 0.977,
+   "tier": "tier1"
+  },
+  "microstegium_vimineum": {
+   "file": "learn_microstegium_vimineum.jpg",
+   "observer": "featherenthusiast",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/227401179/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/133499762",
+   "modelProbability": 0.952,
+   "tier": "tier1"
+  },
+  "pueraria_montana": {
+   "file": "learn_pueraria_montana.jpg",
+   "observer": "runcator",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/35976930/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/23217758",
+   "modelProbability": 0.991,
+   "tier": "tier1"
+  },
+  "nandina_domestica": {
+   "file": "learn_nandina_domestica.jpg",
+   "observer": "rangerjonah",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/61958585/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/39048857",
+   "modelProbability": 0.972,
+   "tier": "tier1"
+  },
+  "lonicera_sempervirens": {
+   "file": "learn_lonicera_sempervirens.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/264440428/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/153131950",
+   "modelProbability": 0.985,
+   "tier": "native"
+  },
+  "wisteria_frutescens": {
+   "file": "learn_wisteria_frutescens.jpg",
+   "observer": "bookfinch",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/194943373/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/115507248",
+   "modelProbability": 0.873,
+   "tier": "native"
+  },
+  "viburnum_acerifolium": {
+   "file": "learn_viburnum_acerifolium.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/279518612/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/161703371",
+   "modelProbability": 0.975,
+   "tier": "native"
+  },
+  "viburnum_dentatum": {
+   "file": "learn_viburnum_dentatum.jpg",
+   "observer": "kenkneidel",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/52172231/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/33228893",
+   "modelProbability": 0.992,
+   "tier": "native"
+  },
+  "ilex_opaca": {
+   "file": "learn_ilex_opaca.jpg",
+   "observer": "glmory",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/2221119/medium.JPG",
+   "observationURL": "https://www.inaturalist.org/observations/1829615",
+   "modelProbability": 0.92,
+   "tier": "native"
+  },
+  "toxicodendron_radicans": {
+   "file": "learn_toxicodendron_radicans.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/83040665/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/24811740",
+   "modelProbability": 0.968,
+   "tier": "native"
+  },
+  "parthenocissus_quinquefolia": {
+   "file": "learn_parthenocissus_quinquefolia.jpg",
+   "observer": "atlnature",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/16012746/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/11266160",
+   "modelProbability": 0.989,
+   "tier": "native"
+  },
+  "vitis_rotundifolia": {
+   "file": "learn_vitis_rotundifolia.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/61103922/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/16809332",
+   "modelProbability": 0.951,
+   "tier": "native"
+  },
+  "rosa_carolina": {
+   "file": "learn_rosa_carolina.jpg",
+   "observer": "kenkneidel",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/41008116/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/26411313",
+   "modelProbability": 0.929,
+   "tier": "native"
+  },
+  "rubus_argutus": {
+   "file": "learn_rubus_argutus.jpg",
+   "observer": "lauramorganclark",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/266302771/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/154140014",
+   "modelProbability": 0.886,
+   "tier": "native"
+  },
+  "mitchella_repens": {
+   "file": "learn_mitchella_repens.jpg",
+   "observer": "glmory",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/3839093/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/3323411",
+   "modelProbability": 0.949,
+   "tier": "native"
+  },
+  "catalpa_bignonioides": {
+   "file": "learn_catalpa_bignonioides.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/448278719/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/250627683",
+   "modelProbability": 0.862,
+   "tier": "native"
+  },
+  "chasmanthium_latifolium": {
+   "file": "learn_chasmanthium_latifolium.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/247023468/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/143979486",
+   "modelProbability": 0.933,
+   "tier": "native"
+  },
+  "smilax_rotundifolia": {
+   "file": "learn_smilax_rotundifolia.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/189558344/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/112230545",
+   "modelProbability": 0.967,
+   "tier": "native"
+  },
+  "ailanthus_altissima": {
+   "file": "learn_ailanthus_altissima.jpg",
+   "observer": "rebecca145",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/269889479/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/156102073",
+   "modelProbability": 0.932,
+   "tier": "tier2"
+  },
+  "alternanthera_philoxeroides": {
+   "file": "learn_alternanthera_philoxeroides.jpg",
+   "observer": "nonbinary-naturalist",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/378767913/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/214296978",
+   "modelProbability": 0.963,
+   "tier": "tier2"
+  },
+  "dryopteris_erythrosora": {
+   "file": "learn_dryopteris_erythrosora.jpg",
+   "observer": "atlnature",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/17335740/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/12087339",
+   "modelProbability": 0.973,
+   "tier": "tier2"
+  },
+  "eichhornia_crassipes": {
+   "file": "learn_eichhornia_crassipes.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/89645866/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/56261671",
+   "modelProbability": 0.948,
+   "tier": "tier2"
+  },
+  "lespedeza_bicolor": {
+   "file": "learn_lespedeza_bicolor.jpg",
+   "observer": "ngrauley",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/714121685/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/389836871",
+   "modelProbability": 0.958,
+   "tier": "tier2"
+  },
+  "lespedeza_cuneata": {
+   "file": "learn_lespedeza_cuneata.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/61076216/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/15239708",
+   "modelProbability": 0.946,
+   "tier": "tier2"
+  },
+  "lygodium_japonicum": {
+   "file": "learn_lygodium_japonicum.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/170352013/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/101962188",
+   "modelProbability": 0.903,
+   "tier": "tier2"
+  },
+  "melia_azedarach": {
+   "file": "learn_melia_azedarach.jpg",
+   "observer": "juditga",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/122008619/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/74636688",
+   "modelProbability": 1.0,
+   "tier": "tier2"
+  },
+  "murdannia_keisak": {
+   "file": "learn_murdannia_keisak.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/60918533/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/16183619",
+   "modelProbability": 0.931,
+   "tier": "tier2"
+  },
+  "triadica_sebifera": {
+   "file": "learn_triadica_sebifera.jpg",
+   "observer": "heypeggy",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/36187775/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/23360563",
+   "modelProbability": 0.946,
+   "tier": "tier2"
+  },
+  "ardisia_crenata": {
+   "file": "learn_ardisia_crenata.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/170357115/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/101965075",
+   "modelProbability": 0.923,
+   "tier": "tier2"
+  },
+  "crotalaria_spectabilis": {
+   "file": "learn_crotalaria_spectabilis.jpg",
+   "observer": "biophiliac55",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/25030745/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/16611251",
+   "modelProbability": 0.904,
+   "tier": "tier2"
+  },
+  "dioscorea_polystachya": {
+   "file": "learn_dioscorea_polystachya.jpg",
+   "observer": "esummerbell",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/342977371/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/195022130",
+   "modelProbability": 0.974,
+   "tier": "tier2"
+  },
+  "leucanthemum_vulgare": {
+   "file": "learn_leucanthemum_vulgare.jpg",
+   "observer": "glmory",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/3839332/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/3323502",
+   "modelProbability": 0.945,
+   "tier": "tier2"
+  },
+  "ligustrum_lucidum": {
+   "file": "learn_ligustrum_lucidum.jpg",
+   "observer": "nonbinary-naturalist",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/252668108/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/146899225",
+   "modelProbability": 0.991,
+   "tier": "tier2"
+  },
+  "lonicera_maackii": {
+   "file": "learn_lonicera_maackii.jpg",
+   "observer": "esummerbell",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/78614463/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/49521761",
+   "modelProbability": 0.984,
+   "tier": "tier2"
+  },
+  "miscanthus_sinensis": {
+   "file": "learn_miscanthus_sinensis.jpg",
+   "observer": "stinger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/170879088/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/102247810",
+   "modelProbability": 0.975,
+   "tier": "tier2"
+  },
+  "myriophyllum_aquaticum": {
+   "file": "learn_myriophyllum_aquaticum.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/330587994/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/188817597",
+   "modelProbability": 0.897,
+   "tier": "tier2"
+  },
+  "nasturtium_officinale": {
+   "file": "learn_nasturtium_officinale.jpg",
+   "observer": "dloarie",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/51851/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/29620",
+   "modelProbability": 0.962,
+   "tier": "tier2"
+  },
+  "phyllostachys_aurea": {
+   "file": "learn_phyllostachys_aurea.jpg",
+   "observer": "jbrichetto",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/183607799/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/108988801",
+   "modelProbability": 0.985,
+   "tier": "tier2"
+  },
+  "sesbania_punicea": {
+   "file": "learn_sesbania_punicea.jpg",
+   "observer": "calvertm",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/339604664/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/193329812",
+   "modelProbability": 0.962,
+   "tier": "tier2"
+  },
+  "spiraea_japonica": {
+   "file": "learn_spiraea_japonica.jpg",
+   "observer": "dogbowlbookpile",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/677877796/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/371030494",
+   "modelProbability": 0.97,
+   "tier": "tier2"
+  },
+  "vinca_major": {
+   "file": "learn_vinca_major.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/65683909/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/41408339",
+   "modelProbability": 0.992,
+   "tier": "tier2"
+  },
+  "vitex_rotundifolia": {
+   "file": "learn_vitex_rotundifolia.jpg",
+   "observer": "ggnature4",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/331116736/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/189078111",
+   "modelProbability": 0.99,
+   "tier": "tier2"
+  },
+  "ajuga_reptans": {
+   "file": "learn_ajuga_reptans.jpg",
+   "observer": "e-a",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/185892126/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/110217599",
+   "modelProbability": 0.947,
+   "tier": "tier2"
+  },
+  "ampelopsis_glandulosa": {
+   "file": "learn_ampelopsis_glandulosa.jpg",
+   "observer": "rangerjonah",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/91978122/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/57650032",
+   "modelProbability": 0.895,
+   "tier": "tier2"
+  },
+  "anthoxanthum_odoratum": {
+   "file": "learn_anthoxanthum_odoratum.jpg",
+   "observer": "biobabb",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/16722318/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/11704755",
+   "modelProbability": 0.979,
+   "tier": "tier2"
+  },
+  "arundo_donax": {
+   "file": "learn_arundo_donax.jpg",
+   "observer": "gillydilly",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/50852649/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/32423430",
+   "modelProbability": 0.959,
+   "tier": "tier2"
+  },
+  "berberis_thunbergii": {
+   "file": "learn_berberis_thunbergii.jpg",
+   "observer": "fcmstrail5",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/269511141/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/155888915",
+   "modelProbability": 0.96,
+   "tier": "tier2"
+  },
+  "broussonetia_papyrifera": {
+   "file": "learn_broussonetia_papyrifera.jpg",
+   "observer": "charlie",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/201099/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/145613",
+   "modelProbability": 0.978,
+   "tier": "tier2"
+  },
+  "carduus_nutans": {
+   "file": "learn_carduus_nutans.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/247363825/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/49091255",
+   "modelProbability": 0.944,
+   "tier": "tier2"
+  },
+  "centaurea_cyanus": {
+   "file": "learn_centaurea_cyanus.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/690086654/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/377373195",
+   "modelProbability": 0.859,
+   "tier": "tier2"
+  },
+  "citrus_trifoliata": {
+   "file": "learn_citrus_trifoliata.jpg",
+   "observer": "setaearmor",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/47679864/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/30515445",
+   "modelProbability": 0.976,
+   "tier": "tier2"
+  },
+  "clematis_terniflora": {
+   "file": "learn_clematis_terniflora.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/89644158/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/56260638",
+   "modelProbability": 0.959,
+   "tier": "tier2"
+  },
+  "colocasia_esculenta": {
+   "file": "learn_colocasia_esculenta.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/247028155/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/143982272",
+   "modelProbability": 0.866,
+   "tier": "tier2"
+  },
+  "daucus_carota": {
+   "file": "learn_daucus_carota.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/61073046/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/14302053",
+   "modelProbability": 0.977,
+   "tier": "tier2"
+  },
+  "euonymus_fortunei": {
+   "file": "learn_euonymus_fortunei.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/174466582/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/104141088",
+   "modelProbability": 0.997,
+   "tier": "tier2"
+  },
+  "hemerocallis_fulva": {
+   "file": "learn_hemerocallis_fulva.jpg",
+   "observer": "elenata",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/386113906/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/218212187",
+   "modelProbability": 0.938,
+   "tier": "tier2"
+  },
+  "hibiscus_syriacus": {
+   "file": "learn_hibiscus_syriacus.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/51529259/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/32835512",
+   "modelProbability": 0.987,
+   "tier": "tier2"
+  },
+  "ligustrum_japonicum": {
+   "file": "learn_ligustrum_japonicum.jpg",
+   "observer": "meganherrmann",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/359990091/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/203725407",
+   "modelProbability": 0.977,
+   "tier": "tier2"
+  },
+  "liriope_muscari": {
+   "file": "learn_liriope_muscari.jpg",
+   "observer": "wildlife_lore",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/453796494/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/253441602",
+   "modelProbability": 0.985,
+   "tier": "tier2"
+  },
+  "lonicera_fragrantissima": {
+   "file": "learn_lonicera_fragrantissima.jpg",
+   "observer": "yawwhite",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/357370744/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/202356296",
+   "modelProbability": 0.973,
+   "tier": "tier2"
+  },
+  "morus_alba": {
+   "file": "learn_morus_alba.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/503537341/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/280368964",
+   "modelProbability": 0.96,
+   "tier": "tier2"
+  },
+  "paspalum_urvillei": {
+   "file": "learn_paspalum_urvillei.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/325796483/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/186431190",
+   "modelProbability": 0.966,
+   "tier": "tier2"
+  },
+  "perilla_frutescens": {
+   "file": "learn_perilla_frutescens.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/83936207/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/16062072",
+   "modelProbability": 0.931,
+   "tier": "tier2"
+  },
+  "phragmites_australis": {
+   "file": "learn_phragmites_australis.jpg",
+   "observer": "carrieseltzer",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/314495683/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/180537661",
+   "modelProbability": 0.97,
+   "tier": "tier2"
+  },
+  "pyrus_calleryana": {
+   "file": "learn_pyrus_calleryana.jpg",
+   "observer": "decaturjosh",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/99501957/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/62127064",
+   "modelProbability": 0.945,
+   "tier": "tier2"
+  },
+  "rubus_armeniacus": {
+   "file": "learn_rubus_armeniacus.jpg",
+   "observer": "kenkneidel",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/301820634/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/173775427",
+   "modelProbability": 0.98,
+   "tier": "tier2"
+  },
+  "securigera_varia": {
+   "file": "learn_securigera_varia.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/206324223/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/121901513",
+   "modelProbability": 0.95,
+   "tier": "tier2"
+  },
+  "solanum_viarum": {
+   "file": "learn_solanum_viarum.jpg",
+   "observer": "nycticoraxnycticorax",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/173515020/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/103643497",
+   "modelProbability": 0.955,
+   "tier": "tier2"
+  },
+  "sorghum_halepense": {
+   "file": "learn_sorghum_halepense.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/517812149/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/287966551",
+   "modelProbability": 0.938,
+   "tier": "tier2"
+  },
+  "vernicia_fordii": {
+   "file": "learn_vernicia_fordii.jpg",
+   "observer": "nonbinary-naturalist",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/184200620/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/109305607",
+   "modelProbability": 0.991,
+   "tier": "tier2"
+  },
+  "akebia_quinata": {
+   "file": "learn_akebia_quinata.jpg",
+   "observer": "esummerbell",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/248937315/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/144971082",
+   "modelProbability": 0.926,
+   "tier": "tier2"
+  },
+  "allium_vineale": {
+   "file": "learn_allium_vineale.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/204208863/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/120721220",
+   "modelProbability": 0.957,
+   "tier": "tier2"
+  },
+  "artemisia_vulgaris": {
+   "file": "learn_artemisia_vulgaris.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/449793847/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/251385325",
+   "modelProbability": 0.857,
+   "tier": "tier2"
+  },
+  "cirsium_vulgare": {
+   "file": "learn_cirsium_vulgare.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/535551569/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/297375550",
+   "modelProbability": 0.842,
+   "tier": "tier2"
+  },
+  "euonymus_alatus": {
+   "file": "learn_euonymus_alatus.jpg",
+   "observer": "nat_t",
+   "license": "cc0",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/248298723/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/144643925",
+   "modelProbability": 0.933,
+   "tier": "tier2"
+  },
+  "fatoua_villosa": {
+   "file": "learn_fatoua_villosa.jpg",
+   "observer": "laalv1",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/98322599/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/61443095",
+   "modelProbability": 0.969,
+   "tier": "tier2"
+  },
+  "firmiana_simplex": {
+   "file": "learn_firmiana_simplex.jpg",
+   "observer": "leh_k",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/289396482/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/166912507",
+   "modelProbability": 0.934,
+   "tier": "tier2"
+  },
+  "ilex_cornuta": {
+   "file": "learn_ilex_cornuta.jpg",
+   "observer": "atlnature",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/36287707/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/23431987",
+   "modelProbability": 0.988,
+   "tier": "tier2"
+  },
+  "ilex_crenata": {
+   "file": "learn_ilex_crenata.jpg",
+   "observer": "sc_beetles",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/474857297/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/264428222",
+   "modelProbability": 0.989,
+   "tier": "tier2"
+  },
+  "ipomoea_coccinea": {
+   "file": "learn_ipomoea_coccinea.jpg",
+   "observer": "skitterbug",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/247505008/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/15300989",
+   "modelProbability": 0.99,
+   "tier": "tier2"
+  },
+  "ipomoea_purpurea": {
+   "file": "learn_ipomoea_purpurea.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/447483366/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/250234437",
+   "modelProbability": 0.939,
+   "tier": "tier2"
+  },
+  "jacquemontia_tamnifolia": {
+   "file": "learn_jacquemontia_tamnifolia.jpg",
+   "observer": "biophiliac55",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/49299293/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/31497029",
+   "modelProbability": 0.942,
+   "tier": "tier2"
+  },
+  "kummerowia_stipulacea": {
+   "file": "learn_kummerowia_stipulacea.jpg",
+   "observer": "zihaowang",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/25255201/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/16736085",
+   "modelProbability": 0.959,
+   "tier": "tier2"
+  },
+  "kummerowia_striata": {
+   "file": "learn_kummerowia_striata.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/229715569/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/134740924",
+   "modelProbability": 0.926,
+   "tier": "tier2"
+  },
+  "liriope_spicata": {
+   "file": "learn_liriope_spicata.jpg",
+   "observer": "manplanpanama",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/710914365/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/388179525",
+   "modelProbability": 0.985,
+   "tier": "tier2"
+  },
+  "persicaria_longiseta": {
+   "file": "learn_persicaria_longiseta.jpg",
+   "observer": "mfeaver",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/26909976/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/17660795",
+   "modelProbability": 0.985,
+   "tier": "tier2"
+  },
+  "quercus_acutissima": {
+   "file": "learn_quercus_acutissima.jpg",
+   "observer": "sblumen",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/319192015/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/183003878",
+   "modelProbability": 0.987,
+   "tier": "tier2"
+  },
+  "rosa_laevigata": {
+   "file": "learn_rosa_laevigata.jpg",
+   "observer": "jferrari444",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/416658903/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/234381023",
+   "modelProbability": 0.982,
+   "tier": "tier2"
+  },
+  "rubus_phoenicolasius": {
+   "file": "learn_rubus_phoenicolasius.jpg",
+   "observer": "ash2016",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/63760102/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/40141379",
+   "modelProbability": 0.967,
+   "tier": "tier2"
+  },
+  "setaria_pumila": {
+   "file": "learn_setaria_pumila.jpg",
+   "observer": "zanegreen",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/56742784/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/35941470",
+   "modelProbability": 0.96,
+   "tier": "tier2"
+  },
+  "sonchus_asper": {
+   "file": "learn_sonchus_asper.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/450450085/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/251716255",
+   "modelProbability": 0.97,
+   "tier": "tier2"
+  },
+  "sonchus_oleraceus": {
+   "file": "learn_sonchus_oleraceus.jpg",
+   "observer": "cray87sly",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/453083606/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/253077240",
+   "modelProbability": 0.971,
+   "tier": "tier2"
+  },
+  "torilis_arvensis": {
+   "file": "learn_torilis_arvensis.jpg",
+   "observer": "jaxworthy",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/78993486/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/49756104",
+   "modelProbability": 0.994,
+   "tier": "tier2"
+  },
+  "verbascum_thapsus": {
+   "file": "learn_verbascum_thapsus.jpg",
+   "observer": "supertiger",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/91271632/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/57240521",
+   "modelProbability": 0.977,
+   "tier": "tier2"
+  },
+  "verbena_bonariensis": {
+   "file": "learn_verbena_bonariensis.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/520021155/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/289138788",
+   "modelProbability": 0.956,
+   "tier": "tier2"
+  },
+  "buddleja_davidii": {
+   "file": "learn_buddleja_davidii.jpg",
+   "observer": "wbkemp",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/428819785/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/240674341",
+   "modelProbability": 0.971,
+   "tier": "tier2"
+  },
+  "alliaria_petiolata": {
+   "file": "learn_alliaria_petiolata.jpg",
+   "observer": "katieashdown",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/15153889/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/10818339",
+   "modelProbability": 0.956,
+   "tier": "tier2"
+  },
+  "achyranthes_japonica": {
+   "file": "learn_achyranthes_japonica.jpg",
+   "observer": "er1kksen",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/29132742/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/18999314",
+   "modelProbability": 0.996,
+   "tier": "tier2"
+  },
+  "arthraxon_hispidus": {
+   "file": "learn_arthraxon_hispidus.jpg",
+   "observer": "jfox16",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/232410525/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/136197906",
+   "modelProbability": 0.874,
+   "tier": "tier2"
+  },
+  "celastrus_orbiculatus": {
+   "file": "learn_celastrus_orbiculatus.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/450023881/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/251501704",
+   "modelProbability": 0.964,
+   "tier": "tier2"
+  },
+  "imperata_cylindrica": {
+   "file": "learn_imperata_cylindrica.jpg",
+   "observer": "farrengdell",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/60550723/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/38126018",
+   "modelProbability": 0.986,
+   "tier": "tier2"
+  },
+  "reynoutria_japonica": {
+   "file": "learn_reynoutria_japonica.jpg",
+   "observer": "kodiakgarden",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/486145361/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/270325927",
+   "modelProbability": 0.863,
+   "tier": "tier2"
+  }
+ }
+}
