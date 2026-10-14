@@ -116,7 +116,7 @@ def main():
             r = out[k]
             L.append(f"| {k} | {pct(r['top1_all'])} | {pct(r.get('top3_all'))} | {pct(r['tier1']['top1'])} | {pct(r['tier2']['top1'])} | {pct(r['native']['top1'])} | {pct(r['other_plant']['top1'])} | {pct(r['confirm_precision'])} | {pct(r['confirm_coverage_tier1'])} | {pct(r['flagged_natives'])} | {pct(r['flagged_other_plant_wild'])} | {pct(r['flagged_not_plant'])} |")
         L += ["", "'Flagged' = the app would show the photo as a confirmed or possible invasive (a false alarm when the photo is a native, another plant, or not a plant). 'Coverage' = the share of true Tier 1 photos that come back confirmed; the rest go to expert review.", "",
-              f"## Training data", f"- {b}: 29,075 train / 4,443 val / 3,400 test images, 114 classes, including 3,160 extra wild "other plant" photos and 900 cultivated, house and garden plants as negatives.",
+              f"## Training data", f"- {b}: 29,075 train / 4,443 val / 3,400 test images, 114 classes, including 3,160 extra wild 'other plant' photos and 900 cultivated, house and garden plants as negatives.",
               f"- {a}: 26,199 / 4,131 / 3,234 images of the same classes without the extra negatives.", "",
               "## Calibration", f"- Temperature scaling per model on validation; test ECE {evb['ece_test']:.4f} ({b}).", "",
               "## Hardest confusions (" + b + ", test, true -> predicted, count)"] + [f"- {h}" for h in evb["hardestConfusions"][:12]] + ["",
