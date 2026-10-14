@@ -115,7 +115,6 @@ private struct DeckEntryCard: View {
             }
             Spacer()
             ProgressRing(progress: total == 0 ? 0 : Double(spotted) / Double(total)).frame(width: 40, height: 40)
-            Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
         }
         .padding(14)
         .background(.background.secondary, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
