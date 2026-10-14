@@ -188,13 +188,13 @@ enum Evidence {
         return sums.map { ClassProbability(label: $0.key, probability: $0.value / max(total, 1e-9)) }.sorted { $0.probability > $1.probability }
     }
 
-    /// Entropy of the top-k mass, normalised 0...1 (1 = flat). High entropy means "the model does not know".
-    static func normalisedEntropy(_ d: [ClassProbability], k: Int = 10) -> Double {
-        let top = d.prefix(k).map(\.probability)
-        let s = top.reduce(0, +)
-        guard s > 0, top.count > 1 else { return 0 }
-        let h = -top.map { $0 / s }.filter { $0 > 0 }.map { $0 * log($0) }.reduce(0, +)
-        return h / log(Double(top.count))
+    /// Entropy of the whole distribution, normalised 0...1 by log(max(n, 10)). High means "the model does not know".
+    static func normalisedEntropy(_ d: [ClassProbability]) -> Double {
+        let p = d.map(\.probability)
+        let s = p.reduce(0, +)
+        guard s > 0, p.count > 1 else { return 0 }
+        let h = -p.map { $0 / s }.filter { $0 > 0 }.map { $0 * log($0) }.reduce(0, +)
+        return h / log(Double(max(p.count, 10)))
     }
 }
 

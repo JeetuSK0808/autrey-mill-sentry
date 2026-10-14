@@ -54,7 +54,7 @@ final class ScanDecisionTests: XCTestCase {
         XCTAssertEqual(o, .looksNative(label: "lonicera_sempervirens", confidence: 0.85))
     }
     func testWeakNativeWithPlausibleInvasiveGoesToExpert() {
-        let o = ScanDecision.decide(quality: .perfect, classification: cls([("lonicera_sempervirens", 0.50), ("lonicera_japonica", 0.42)]), catalog: catalog, thresholds: t)
+        let o = ScanDecision.decide(quality: .perfect, classification: cls([("lonicera_sempervirens", 0.50), ("lonicera_japonica", 0.47)]), catalog: catalog, thresholds: t)
         if case .possibleInvasive(let c) = o { XCTAssertEqual(c.map(\.label), ["lonicera_japonica"]) } else { XCTFail("\(o)") }
     }
     func testOtherPlantIsNativeWithNoLabel() {

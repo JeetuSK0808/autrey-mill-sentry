@@ -37,7 +37,11 @@ final class CoreMLClassifier: PlantClassifying {
     init?() {
         guard let url = Bundle.main.url(forResource: "InvasiveClassifier", withExtension: "mlmodelc") else { return nil }
         let config = MLModelConfiguration()
+        #if targetEnvironment(simulator)
+        config.computeUnits = .cpuOnly      // the simulator's GPU backend rejects this model; CPU is fine for tests
+        #else
         config.computeUnits = .all
+        #endif
         guard let model = try? MLModel(contentsOf: url, configuration: config), let vn = try? VNCoreMLModel(for: model) else { return nil }
         vnModel = vn
         let meta = model.modelDescription.metadata[.versionString] as? String
@@ -82,21 +86,9 @@ final class CoreMLClassifier: PlantClassifying {
     }
 
     private static func floats(_ arr: MLMultiArray) -> [Float] {
-        let n = arr.count
-        var out = [Float](repeating: 0, count: n)
-        switch arr.dataType {
-        case .float32:
-            let p = arr.dataPointer.bindMemory(to: Float.self, capacity: n)
-            for i in 0..<n { out[i] = p[i] }
-        case .float16:
-            for i in 0..<n { out[i] = arr[i].floatValue }
-        case .double:
-            let p = arr.dataPointer.bindMemory(to: Double.self, capacity: n)
-            for i in 0..<n { out[i] = Float(p[i]) }
-        default:
-            for i in 0..<n { out[i] = arr[i].floatValue }
-        }
-        return out
+        // MLShapedArray converts any dtype (float16 on the neural engine, float32, double) and respects strides.
+        let shaped = MLShapedArray<Float>(arr)
+        return shaped.scalars
     }
 }
 
