@@ -86,9 +86,18 @@ final class CoreMLClassifier: PlantClassifying {
     }
 
     private static func floats(_ arr: MLMultiArray) -> [Float] {
-        // MLShapedArray converts any dtype (float16 on the neural engine, float32, double) and respects strides.
-        let shaped = MLShapedArray<Float>(arr)
-        return shaped.scalars
+        // Outputs can arrive as float16 (neural engine / FP16 models), float32 or double. MLShapedArray must be
+        // initialised with the matching scalar type or it traps.
+        switch arr.dataType {
+        case .float16:
+            return MLShapedArray<Float16>(arr).scalars.map { Float($0) }
+        case .float32:
+            return MLShapedArray<Float>(arr).scalars
+        case .double:
+            return MLShapedArray<Double>(arr).scalars.map { Float($0) }
+        default:
+            return (0..<arr.count).map { arr[$0].floatValue }
+        }
     }
 }
 

@@ -30,7 +30,7 @@ def main():
     traced = torch.jit.trace(wrapped, example)
     # ImageType delivers pixels 0..255; scale to [0,1] here, exact per-channel normalisation lives inside the graph.
     mlmodel = ct.convert(traced, inputs=[ct.ImageType(name="image", shape=(1, 3, size, size), scale=1 / 255.0, color_layout=ct.colorlayout.RGB)],
-                         outputs=[ct.TensorType(name="probs"), ct.TensorType(name="embedding")],
+                         outputs=[ct.TensorType(name="probs", dtype=np.float32), ct.TensorType(name="embedding", dtype=np.float32)],
                          convert_to="mlprogram", compute_precision=ct.precision.FLOAT16, minimum_deployment_target=ct.target.iOS17)
     json.dump({"version": args.version, "labels": labels}, open(RES / "labels.json", "w"))
     mlmodel.author = "Jeetu SK"
