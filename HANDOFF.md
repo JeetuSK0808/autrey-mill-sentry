@@ -1,6 +1,6 @@
 # HANDOFF: Autrey Mill Sentry
 
-Updated 2026-10-14 (01:25). Project: `~/autrey-mill-sentry` (local git only, no remote). Deadline: CAC submission **Mon Oct 26, 2026, 12:00 pm ET**. Checkpoints: scanner on the phone **Oct 16**, feature complete Oct 20, polish and video Oct 24.
+Updated 2026-10-14 (01:50). Project: `~/autrey-mill-sentry` (local git only, no remote). Deadline: CAC submission **Mon Oct 26, 2026, 12:00 pm ET**. Checkpoints: scanner on the phone **Oct 16**, feature complete Oct 20, polish and video Oct 24.
 
 ## Status
 | Area | State |
@@ -20,7 +20,7 @@ Updated 2026-10-14 (01:25). Project: `~/autrey-mill-sentry` (local git only, no 
 - Tabs: Map, Reports, Scan (centre), Learn, Visit (Ranger replaces Visit in staff mode). Distances in feet and miles everywhere.
 - Scan: flashlight button (auto in the dark, tap for on / off / auto) replaced the auto-capture toggle (still in Settings). Accuracy: test-time augmentation (4 passes) on the still, fused with the live-frame evidence, entropy gate, stricter thresholds (98% precision target, per-class floor 0.75, "possible" bar 0.45), and an **embedding similarity gate**: the model now outputs an embedding, `Resources/embeddings.json` holds per-species centroids and floors (`model/compute_centroids.py --keep 0.90`), and calls below the floor are downgraded (confirmed -> possible -> unknown). On the test set the gate cuts invasive flags on non-invasive photos from 9.0% to 7.8% at a 2.6% cost in true invasives sent to "unknown" (`model/eval/v2_gate_eval.json`). The real fix for houseplants is **v3**: 2,300 more wild plants and 900 cultivated/house/garden plants into `other_plant`, 600 more `not_plant`; the fetch is waiting out an iNaturalist API outage (`data/logs/fetch_inat_v3.log`, auto-restarts), then `tools/run_training_chain.sh`-style: train v3 (EfficientNet-B0 @256, 20 epochs), evaluate, embed, centroids, export.
 - Learn: real reference photos for all 112 species (`tools/pick_learn_photos.py`: the model's most typical licensed iNaturalist photo per species, attribution in `learn_photos.json` and on each page), hero headers, side-by-side look-alike tiles, Tier 2 species pages with the GISC/GFC facts and an iNaturalist link, your own sightings on each page.
-- Reports: summary tiles, filter chips, sort menu, dark-red tint and left bar for confirmed invasives (amber for expert review, green otherwise), confidence on invasive rows. "Share with preserve staff" button shows a notice that it is not live (plan in `docs/BACKEND_PLAN.md`).
+- Reports: Jeetu found the tiles/chips/tints version too busy and broken on his phone, so it is back to the simple list, with the plant deck as a prominent card at the top and a sort menu in the toolbar. Palette: no red or orange anywhere now (plum = invasive/confirmed, slate blue = new/review, forest = treated/native). Settings has a System/Light/Dark appearance switch. Tier badges over species photos are white. "Share with preserve staff" button shows a notice that it is not live (plan in `docs/BACKEND_PLAN.md`).
 - Plant deck (Reports toolbar): every species as a card, spotted/not spotted, your photo on the card, progress ring.
 
 ## Blocked on Jeetu (do these, in order)
