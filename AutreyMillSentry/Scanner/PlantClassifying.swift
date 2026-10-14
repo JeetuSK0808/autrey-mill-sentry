@@ -19,7 +19,10 @@ enum ClassifierFactory {
         if let i = args.firstIndex(of: "-mockScan"), i + 1 < args.count {
             return MockClassifier(scenario: MockClassifier.Scenario(rawValue: args[i + 1]) ?? .cycle, catalog: catalog)
         }
-        if let real = CoreMLClassifier() { return real }
+        if let primary = CoreMLClassifier() {
+            if let secondary = CoreMLClassifier(resourceName: "InvasiveClassifierB") { return EnsembleClassifier(primary: primary, secondary: secondary) }
+            return primary
+        }
         return MockClassifier(scenario: .cycle, catalog: catalog)
     }
 }
@@ -34,8 +37,8 @@ final class CoreMLClassifier: PlantClassifying {
     private let vnModel: VNCoreMLModel
     private let labels: [String]
 
-    init?() {
-        guard let url = Bundle.main.url(forResource: "InvasiveClassifier", withExtension: "mlmodelc") else { return nil }
+    init?(resourceName: String = "InvasiveClassifier") {
+        guard let url = Bundle.main.url(forResource: resourceName, withExtension: "mlmodelc") else { return nil }
         let config = MLModelConfiguration()
         #if targetEnvironment(simulator)
         config.computeUnits = .cpuOnly      // the simulator's GPU backend rejects this model; CPU is fine for tests

@@ -20,7 +20,7 @@ class Wrapped(nn.Module):
         return torch.softmax(logits / self.T, dim=1), torch.nn.functional.normalize(f, dim=1)
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--version", default="v1"); ap.add_argument("--out", default=None, help="output .mlpackage path (default: the app bundle)"); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--version", default="v1"); ap.add_argument("--out", default=None, help="output .mlpackage path (default: the app bundle)"); ap.add_argument("--no-labels", action="store_true", help="do not overwrite labels.json (secondary model)"); args = ap.parse_args()
     ck = torch.load(MODEL / "checkpoints" / f"{args.version}_best.pt", map_location="cpu", weights_only=False)
     ev = json.load(open(EVAL / f"{args.version}_eval.json"))
     labels, size, T = ck["labels"], ck["size"], ev["temperature"]
@@ -32,7 +32,7 @@ def main():
     mlmodel = ct.convert(traced, inputs=[ct.ImageType(name="image", shape=(1, 3, size, size), scale=1 / 255.0, color_layout=ct.colorlayout.RGB)],
                          outputs=[ct.TensorType(name="probs", dtype=np.float32), ct.TensorType(name="embedding", dtype=np.float32)],
                          convert_to="mlprogram", compute_precision=ct.precision.FLOAT16, minimum_deployment_target=ct.target.iOS17)
-    json.dump({"version": args.version, "labels": labels}, open(RES / "labels.json", "w"))
+    if not args.no_labels: json.dump({"version": args.version, "labels": labels}, open(RES / "labels.json", "w"))
     mlmodel.author = "Jeetu SK"
     mlmodel.short_description = "Autrey Mill Sentry invasive plant classifier (calibrated softmax)."
     mlmodel.version = args.version

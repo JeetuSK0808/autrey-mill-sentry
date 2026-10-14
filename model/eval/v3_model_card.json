@@ -1,0 +1,37 @@
+{
+ "status": "evaluated",
+ "modelVersion": "v3",
+ "evaluatedOn": "2026-10-14",
+ "testObservations": 2562,
+ "tier1": {
+  "classes": 14,
+  "testImages": 772,
+  "top1": 0.8847150259067358,
+  "top3": 0.9481865284974094,
+  "precisionAtConfirm": 0.9715302491103203,
+  "coverageAtConfirm": 0.7072538860103627,
+  "confirmThreshold": 0.9000000000000004
+ },
+ "tier2": {
+  "classes": 84,
+  "testImages": 1832,
+  "top1": 0.8384279475982532,
+  "top3": 0.925764192139738,
+  "precisionAtConfirm": null,
+  "coverageAtConfirm": null,
+  "confirmThreshold": null
+ },
+ "ece": 0.016028168605397027,
+ "notPlantRejectRate": 0.7857142857142857,
+ "hardestConfusions": [
+  "sonchus_oleraceus -> sonchus_asper (8)",
+  "other_plant -> toxicodendron_radicans (7)",
+  "other_plant -> viburnum_acerifolium (6)",
+  "liriope_muscari -> liriope_spicata (6)",
+  "elaeagnus_umbellata -> elaeagnus_pungens (6)"
+ ],
+ "fieldAccuracy": null,
+ "fieldPhotos": null,
+ "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split",
+ "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."
+}

@@ -59,3 +59,19 @@ final class CoreMLClassifierTests: XCTestCase {
         if case .confirmedInvasive = outcome { XCTFail("a cartoon leaf must never be a confirmed invasive: \(outcome)") }
     }
 }
+
+final class EnsembleClassifierTests: XCTestCase {
+    func testEnsembleAveragesAndKeepsPrimaryEmbedding() throws {
+        let primary = try XCTUnwrap(CoreMLClassifier())
+        let secondary = try XCTUnwrap(CoreMLClassifier(resourceName: "InvasiveClassifierB"), "second model should be bundled")
+        let ens = EnsembleClassifier(primary: primary, secondary: secondary)
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "learn_ligustrum_sinense", withExtension: "jpg"))
+        let img = try XCTUnwrap(ImageLoading.cgImage(fromJPEGData: Data(contentsOf: url), maxDimension: 1200))
+        let r = try ens.classify(img, orientation: .up)
+        XCTAssertEqual(r.top?.label, "ligustrum_sinense")
+        XCTAssertEqual(r.probabilities.map(\.probability).reduce(0, +), 1.0, accuracy: 0.03)
+        XCTAssertEqual(r.embedding?.count, 1280)
+        XCTAssertTrue(r.modelVersion.contains("+"))
+        XCTAssertTrue(ClassifierFactory.make(catalog: SpeciesCatalog(species: SpeciesCatalog.builtIn)) is EnsembleClassifier)
+    }
+}

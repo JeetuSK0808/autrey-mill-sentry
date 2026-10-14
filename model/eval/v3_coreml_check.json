@@ -1,0 +1,9 @@
+{
+ "version": "v3",
+ "images_checked": 40,
+ "top1_agreement": 1.0,
+ "max_abs_prob_diff": 0.07266634702682495,
+ "size_mb": 8.410345,
+ "temperature": 0.8121142276408685,
+ "note": "Same 256 px centre crop fed to both; differences come from FP16 and Core ML resampling only."
+}
