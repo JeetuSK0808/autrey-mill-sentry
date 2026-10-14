@@ -39,6 +39,7 @@ final class ScanViewModel {
     let location: LocationService
     let preserve: PreserveData
     let settings: SettingsStore
+    var embeddings: EmbeddingTable? = nil
 
     private(set) var phase: Phase = .idle
     private(set) var guidance = "Point the camera at a plant"
@@ -199,18 +200,25 @@ final class ScanViewModel {
             // Test-time augmentation: the full frame, a tighter centre crop, a mirrored copy, and a slightly zoomed crop.
             var passes: [[ClassProbability]] = []
             var version = "coreml"
+            var firstEmbedding: [Float]? = nil
             for variant in TestTimeAugmentation.variants(of: image) {
-                if let c = try? classifier.classify(variant, orientation: .up) { passes.append(c.probabilities); version = c.modelVersion }
+                if let c = try? classifier.classify(variant, orientation: .up) {
+                    passes.append(c.probabilities); version = c.modelVersion
+                    if firstEmbedding == nil { firstEmbedding = c.embedding }
+                }
             }
             guard !passes.isEmpty else { return nil }
             var fused = Evidence.average(passes)
             if let live, !live.isEmpty { fused = Evidence.average([fused, live], weights: [1 - liveWeight, liveWeight]) }
-            return (q, ClassificationResult(probabilities: fused, modelVersion: version))
+            return (q, ClassificationResult(probabilities: fused, modelVersion: version, embedding: firstEmbedding))
         }
         guard let (quality, classification) = await work.value else {
             errorMessage = "The photo could not be analysed."; phase = .live; liveEnabled = true; camera.start(); return
         }
-        let outcome = ScanDecision.decide(quality: quality, classification: classification, catalog: catalog)
+        let table = embeddings
+        let gate: ((String) -> (value: Double, floor: Double)?)? = (table?.isAvailable == true && classification.embedding != nil)
+            ? { label in table!.similarity(of: classification.embedding!, to: label) } : nil
+        let outcome = ScanDecision.decide(quality: quality, classification: classification, catalog: catalog, similarity: gate)
 
         var fix: (point: GeoPoint, accuracy: Double)?
         if !outcome.isRescan, location.isAuthorized || location.simulated != nil {

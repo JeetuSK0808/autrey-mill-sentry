@@ -30,7 +30,9 @@ struct ScanView: View {
     }
 
     private func makeViewModel() {
-        vm = ScanViewModel(classifier: app.classifier, catalog: app.catalog, location: app.location, preserve: app.preserve, settings: app.settings)
+        let model = ScanViewModel(classifier: app.classifier, catalog: app.catalog, location: app.location, preserve: app.preserve, settings: app.settings)
+        model.embeddings = app.embeddings
+        vm = model
         app.applySimulatedLocation()
     }
 }

@@ -26,10 +26,13 @@ enum ClassifierFactory {
 
 // MARK: - Core ML through Vision
 
+/// Works with both model shapes: the two-output model (`probs` + `embedding`, labels from labels.json) and the
+/// older single-output classifier model.
 final class CoreMLClassifier: PlantClassifying {
     let modelVersion: String
     let isMock = false
     private let vnModel: VNCoreMLModel
+    private let labels: [String]
 
     init?() {
         guard let url = Bundle.main.url(forResource: "InvasiveClassifier", withExtension: "mlmodelc") else { return nil }
@@ -39,6 +42,12 @@ final class CoreMLClassifier: PlantClassifying {
         vnModel = vn
         let meta = model.modelDescription.metadata[.versionString] as? String
         modelVersion = meta ?? (model.modelDescription.metadata[.description] as? String) ?? "coreml"
+        if let lurl = Bundle.main.url(forResource: "labels", withExtension: "json"), let data = try? Data(contentsOf: lurl),
+           let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any], let l = obj["labels"] as? [String] {
+            labels = l
+        } else {
+            labels = []
+        }
     }
 
     func classify(_ image: CGImage, orientation: CGImagePropertyOrientation) throws -> ClassificationResult {
@@ -53,10 +62,41 @@ final class CoreMLClassifier: PlantClassifying {
         let request = VNCoreMLRequest(model: vnModel)
         request.imageCropAndScaleOption = .centerCrop
         try handler.perform([request])
-        let obs = (request.results as? [VNClassificationObservation]) ?? []
-        let probs = obs.map { ClassProbability(label: $0.identifier, probability: Double($0.confidence)) }
-            .sorted { $0.probability > $1.probability }
-        return ClassificationResult(probabilities: probs, modelVersion: modelVersion)
+        if let obs = request.results as? [VNClassificationObservation], !obs.isEmpty {
+            let probs = obs.map { ClassProbability(label: $0.identifier, probability: Double($0.confidence)) }.sorted { $0.probability > $1.probability }
+            return ClassificationResult(probabilities: probs, modelVersion: modelVersion)
+        }
+        var probs: [ClassProbability] = []
+        var embedding: [Float]? = nil
+        for o in (request.results as? [VNCoreMLFeatureValueObservation]) ?? [] {
+            guard let arr = o.featureValue.multiArrayValue else { continue }
+            let values = Self.floats(arr)
+            if o.featureName == "embedding" {
+                embedding = values
+            } else if o.featureName == "probs" || probs.isEmpty {
+                guard labels.count == values.count else { continue }
+                probs = zip(labels, values).map { ClassProbability(label: $0, probability: Double($1)) }.sorted { $0.probability > $1.probability }
+            }
+        }
+        return ClassificationResult(probabilities: probs, modelVersion: modelVersion, embedding: embedding)
+    }
+
+    private static func floats(_ arr: MLMultiArray) -> [Float] {
+        let n = arr.count
+        var out = [Float](repeating: 0, count: n)
+        switch arr.dataType {
+        case .float32:
+            let p = arr.dataPointer.bindMemory(to: Float.self, capacity: n)
+            for i in 0..<n { out[i] = p[i] }
+        case .float16:
+            for i in 0..<n { out[i] = arr[i].floatValue }
+        case .double:
+            let p = arr.dataPointer.bindMemory(to: Double.self, capacity: n)
+            for i in 0..<n { out[i] = Float(p[i]) }
+        default:
+            for i in 0..<n { out[i] = arr[i].floatValue }
+        }
+        return out
     }
 }
 

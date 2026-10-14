@@ -10,11 +10,14 @@ import os, sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *  # noqa: E402
 
 class Wrapped(nn.Module):
-    """Takes RGB in [0,1], applies exact per-channel ImageNet normalisation, the backbone, temperature and softmax."""
+    """RGB in [0,1] -> exact ImageNet normalisation -> backbone -> (calibrated softmax, L2-normalised embedding)."""
     def __init__(self, m, T):
         super().__init__(); self.m = m; self.T = T
         self.register_buffer("mean", torch.tensor(MEAN).view(1, 3, 1, 1)); self.register_buffer("std", torch.tensor(STD).view(1, 3, 1, 1))
-    def forward(self, x): return torch.softmax(self.m((x - self.mean) / self.std) / self.T, dim=1)
+    def forward(self, x):
+        f = self.m.forward_head(self.m.forward_features((x - self.mean) / self.std), pre_logits=True)
+        logits = self.m.get_classifier()(f)
+        return torch.softmax(logits / self.T, dim=1), torch.nn.functional.normalize(f, dim=1)
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--version", default="v1"); ap.add_argument("--out", default=None, help="output .mlpackage path (default: the app bundle)"); args = ap.parse_args()
@@ -27,8 +30,9 @@ def main():
     traced = torch.jit.trace(wrapped, example)
     # ImageType delivers pixels 0..255; scale to [0,1] here, exact per-channel normalisation lives inside the graph.
     mlmodel = ct.convert(traced, inputs=[ct.ImageType(name="image", shape=(1, 3, size, size), scale=1 / 255.0, color_layout=ct.colorlayout.RGB)],
-                         classifier_config=ct.ClassifierConfig(labels), convert_to="mlprogram", compute_precision=ct.precision.FLOAT16,
-                         minimum_deployment_target=ct.target.iOS17)
+                         outputs=[ct.TensorType(name="probs"), ct.TensorType(name="embedding")],
+                         convert_to="mlprogram", compute_precision=ct.precision.FLOAT16, minimum_deployment_target=ct.target.iOS17)
+    json.dump({"version": args.version, "labels": labels}, open(RES / "labels.json", "w"))
     mlmodel.author = "Jeetu SK"
     mlmodel.short_description = "Autrey Mill Sentry invasive plant classifier (calibrated softmax)."
     mlmodel.version = args.version
@@ -50,10 +54,9 @@ def main():
         # identical geometry for both: shorter side -> 256 (antialias), centre crop 224
         im2 = TV.CenterCrop(size)(TV.Resize(int(size * 1.14), antialias=True)(img))
         x = TV.ToDtype(torch.float32, scale=True)(TV.ToImage()(im2))[None]
-        with torch.no_grad(): pt = wrapped(x).numpy()[0]
+        with torch.no_grad(): pt = wrapped(x)[0].numpy()[0]
         pred = mlmodel.predict({"image": im2})
-        probs = pred[[k for k in pred if k != "classLabel"][0]]
-        cm = np.array([probs[l] for l in labels])
+        cm = np.array(pred["probs"]).reshape(-1)
         agree += int(cm.argmax() == pt.argmax()); maxdiff = max(maxdiff, float(np.abs(cm - pt).max()))
     rep = {"version": args.version, "images_checked": len(paths), "top1_agreement": agree / len(paths), "max_abs_prob_diff": maxdiff, "size_mb": size_mb, "temperature": T, "note": f"Same {size} px centre crop fed to both; differences come from FP16 and Core ML resampling only."}
     json.dump(rep, open(EVAL / f"{args.version}_coreml_check.json", "w"), indent=1)

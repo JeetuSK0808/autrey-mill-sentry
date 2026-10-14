@@ -32,6 +32,7 @@ final class AppModel {
     let preserve = PreserveData.shared
     let location = LocationService()
     let classifier: PlantClassifying
+    let embeddings = EmbeddingTable()
     let modelCard: ModelCard?
     let visitInfo: VisitInfo?
 

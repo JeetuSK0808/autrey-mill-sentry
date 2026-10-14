@@ -10,6 +10,8 @@ struct ClassificationResult: Codable, Equatable, Sendable {
     /// Sorted by probability, descending. Calibrated probabilities (temperature scaled).
     var probabilities: [ClassProbability]
     var modelVersion: String
+    /// L2-normalised penultimate features, when the model provides them (used by the similarity gate).
+    var embedding: [Float]? = nil
 
     var top: ClassProbability? { probabilities.first }
     var second: ClassProbability? { probabilities.count > 1 ? probabilities[1] : nil }
@@ -97,10 +99,35 @@ enum ScanDecision {
         return nil
     }
 
+    /// `similarity` returns the cosine similarity of the photo's embedding to a class centroid and that class's floor,
+    /// or nil when no embedding data exists. Below the floor the call is downgraded one level
+    /// (confirmed -> possible, possible -> "we can't recognise this one").
     static func decide(quality: QualityMetrics,
                        classification: ClassificationResult,
                        catalog: SpeciesCatalog,
-                       thresholds t: ScanThresholds = Config.scan) -> ScanOutcome {
+                       thresholds t: ScanThresholds = Config.scan,
+                       similarity: ((String) -> (value: Double, floor: Double)?)? = nil) -> ScanOutcome {
+        let raw = decideRaw(quality: quality, classification: classification, catalog: catalog, thresholds: t)
+        guard t.embeddingGateEnabled, let similarity else { return raw }
+        switch raw {
+        case .confirmedInvasive(let s, _):
+            if let sim = similarity(s), sim.value < sim.floor {
+                let cands = classification.top3.filter { catalog.tier(of: $0.label) == .tier1 || catalog.tier(of: $0.label) == .tier2 }
+                return .possibleInvasive(candidates: cands.isEmpty ? [classification.top!] : cands)
+            }
+            return raw
+        case .possibleInvasive(let cands):
+            if let first = cands.first, let sim = similarity(first.label), sim.value < sim.floor - 0.05 { return .rescan(.ambiguous) }
+            return raw
+        default:
+            return raw
+        }
+    }
+
+    static func decideRaw(quality: QualityMetrics,
+                          classification: ClassificationResult,
+                          catalog: SpeciesCatalog,
+                          thresholds t: ScanThresholds = Config.scan) -> ScanOutcome {
         if let gate = qualityGate(quality, thresholds: t) { return .rescan(gate) }
         guard let top = classification.top else { return .rescan(.ambiguous) }
         let secondProb = classification.second?.probability ?? 0

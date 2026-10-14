@@ -111,3 +111,42 @@ final class LockOnTrackerTests: XCTestCase {
         XCTAssertTrue(tr.history.isEmpty)
     }
 }
+
+final class EmbeddingGateTests: XCTestCase {
+    let catalog = SpeciesCatalog(species: SpeciesCatalog.builtIn)
+    let t = ScanThresholds.defaults
+    func cls(_ pairs: [(String, Double)]) -> ClassificationResult {
+        ClassificationResult(probabilities: pairs.map { ClassProbability(label: $0.0, probability: $0.1) }, modelVersion: "test", embedding: [1, 0, 0])
+    }
+    func testFarFromCentroidDowngradesConfirmedToPossible() {
+        let c = cls([("ligustrum_sinense", 0.95), ("viburnum_dentatum", 0.02)])
+        let o = ScanDecision.decide(quality: .perfect, classification: c, catalog: catalog, thresholds: t, similarity: { _ in (value: 0.40, floor: 0.62) })
+        if case .possibleInvasive(let cands) = o { XCTAssertEqual(cands.first?.label, "ligustrum_sinense") } else { XCTFail("\(o)") }
+    }
+    func testCloseToCentroidKeepsConfirmed() {
+        let c = cls([("ligustrum_sinense", 0.95), ("viburnum_dentatum", 0.02)])
+        let o = ScanDecision.decide(quality: .perfect, classification: c, catalog: catalog, thresholds: t, similarity: { _ in (value: 0.80, floor: 0.62) })
+        XCTAssertEqual(o, .confirmedInvasive(species: "ligustrum_sinense", confidence: 0.95))
+    }
+    func testVeryFarPossibleBecomesUnknown() {
+        let c = cls([("hedera_helix", 0.55), ("other_plant", 0.2)])
+        let o = ScanDecision.decide(quality: .perfect, classification: c, catalog: catalog, thresholds: t, similarity: { _ in (value: 0.30, floor: 0.62) })
+        XCTAssertEqual(o, .rescan(.ambiguous))
+    }
+    func testNoTableMeansNoGate() {
+        let c = cls([("ligustrum_sinense", 0.95), ("viburnum_dentatum", 0.02)])
+        XCTAssertEqual(ScanDecision.decide(quality: .perfect, classification: c, catalog: catalog, thresholds: t, similarity: nil), .confirmedInvasive(species: "ligustrum_sinense", confidence: 0.95))
+    }
+    func testGateCanBeDisabledByThresholds() {
+        var tt = t; tt.embeddingGateEnabled = false
+        let c = cls([("ligustrum_sinense", 0.95), ("viburnum_dentatum", 0.02)])
+        XCTAssertEqual(ScanDecision.decide(quality: .perfect, classification: c, catalog: catalog, thresholds: tt, similarity: { _ in (value: 0.1, floor: 0.6) }), .confirmedInvasive(species: "ligustrum_sinense", confidence: 0.95))
+    }
+    func testEvidenceAverageAndEntropy() {
+        let a = [ClassProbability(label: "x", probability: 0.8), ClassProbability(label: "y", probability: 0.2)]
+        let b = [ClassProbability(label: "x", probability: 0.4), ClassProbability(label: "y", probability: 0.6)]
+        let avg = Evidence.average([a, b])
+        XCTAssertEqual(avg.first?.label, "x"); XCTAssertEqual(avg.first!.probability, 0.6, accuracy: 1e-9)
+        XCTAssertLessThan(Evidence.normalisedEntropy(a), Evidence.normalisedEntropy([ClassProbability(label: "x", probability: 0.5), ClassProbability(label: "y", probability: 0.5)]))
+    }
+}
