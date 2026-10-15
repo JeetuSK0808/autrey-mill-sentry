@@ -90,8 +90,18 @@ struct RootView: View {
 
 struct RootTabView: View {
     @Environment(AppModel.self) private var app
+    @Environment(\.modelContext) private var context
+    @Environment(\.scenePhase) private var scenePhase
     @State private var tab: Tab = .scan
     enum Tab: Hashable { case map, scan, reports, learn, visit, ranger }
+
+    /// The Tell step: ask the dashboard whether staff changed anything on reports this phone sent.
+    private func refreshRemoteStatuses() async {
+        guard let dash = app.settings.dashboard else { return }
+        let sent = ReportStore.all(context).filter { $0.remoteID != nil }
+        guard !sent.isEmpty else { return }
+        _ = await dash.refreshStatuses(sent, catalog: app.catalog, context: context)
+    }
 
     var body: some View {
         TabView(selection: $tab) {
@@ -105,5 +115,7 @@ struct RootTabView: View {
                 VisitView().tabItem { Label("Visit", systemImage: "signpost.right") }.tag(Tab.visit)
             }
         }
+        .task { await refreshRemoteStatuses() }
+        .onChange(of: scenePhase) { _, phase in if phase == .active { Task { await refreshRemoteStatuses() } } }
     }
 }

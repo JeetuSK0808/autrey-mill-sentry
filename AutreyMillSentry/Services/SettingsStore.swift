@@ -17,7 +17,10 @@ final class SettingsStore {
         hapticsEnabled = defaults.object(forKey: "hapticsEnabled") as? Bool ?? true
         appearance = defaults.string(forKey: "appearance") ?? "system"
         scanDiagnostics = defaults.bool(forKey: "scanDiagnostics")
+        dashboardURL = defaults.string(forKey: "dashboardURL") ?? Config.defaultDashboardURL
     }
+    var dashboardURL: String { didSet { defaults.set(dashboardURL, forKey: "dashboardURL") } }
+    var dashboard: DashboardSync? { DashboardSync(address: dashboardURL) }
     var scanDiagnostics: Bool { didSet { defaults.set(scanDiagnostics, forKey: "scanDiagnostics") } }
     /// "system", "light" or "dark"
     var appearance: String { didSet { defaults.set(appearance, forKey: "appearance") } }
@@ -32,10 +35,10 @@ final class SettingsStore {
     var hapticsEnabled: Bool { didSet { defaults.set(hapticsEnabled, forKey: "hapticsEnabled") } }
 
     func resetAll() {
-        for key in ["onboardingComplete", "rangerMode", "fieldTestMode", "autoCapture", "roundCoordinatesOnExport", "simulateLocation", "hapticsEnabled", "appearance", "scanDiagnostics"] {
+        for key in ["onboardingComplete", "rangerMode", "fieldTestMode", "autoCapture", "roundCoordinatesOnExport", "simulateLocation", "hapticsEnabled", "appearance", "scanDiagnostics", "dashboardURL"] {
             defaults.removeObject(forKey: key)
         }
         onboardingComplete = false; rangerMode = false; fieldTestMode = false; autoCapture = false
-        roundCoordinatesOnExport = false; simulateLocation = false; hapticsEnabled = true; appearance = "system"; scanDiagnostics = false
+        roundCoordinatesOnExport = false; simulateLocation = false; hapticsEnabled = true; appearance = "system"; scanDiagnostics = false; dashboardURL = Config.defaultDashboardURL
     }
 }

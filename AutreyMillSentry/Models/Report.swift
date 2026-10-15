@@ -30,6 +30,9 @@ final class Report {
     var additionalSightings: Int   // "Add to existing report" taps
     var fieldTrueLabel: String?    // Field Test mode: label given by a person who knows the plant
     var fieldTrueLabelAt: Date?
+    var remoteID: String?          // id on the preserve dashboard once sent
+    var remoteStatus: String?
+    var lastRemoteCheck: Date?
 
     init(id: UUID = UUID(), createdAt: Date = .now, latitude: Double, longitude: Double, horizontalAccuracy: Double,
          photoFileName: String, species: String, speciesName: String, confidence: Double, top3: [ClassProbability],
@@ -61,6 +64,9 @@ final class Report {
         self.additionalSightings = 0
         self.fieldTrueLabel = nil
         self.fieldTrueLabelAt = nil
+        self.remoteID = nil
+        self.remoteStatus = nil
+        self.lastRemoteCheck = nil
     }
 
     var status: ReportStatus {

@@ -10,6 +10,8 @@ enum Config {
     /// TODO_RANGER_EMAIL: placeholder until preserve staff give an address. Never invent one.
     static let rangerEmail = "TODO_RANGER_EMAIL"
     static var rangerEmailIsSet: Bool { rangerEmail.contains("@") }
+    /// Preserve dashboard (dashboard/ in this repo on Vercel). Empty until deployed; editable in Settings > Developer.
+    static let defaultDashboardURL = ""
 
     // Preserve geography (centre of the OSM park polygon, way 589352774)
     static let preserveCenter = GeoPoint(latitude: 34.0199, longitude: -84.2326)

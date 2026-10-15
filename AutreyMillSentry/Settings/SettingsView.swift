@@ -48,6 +48,12 @@ struct SettingsView: View {
                 } header: { Text("Privacy") }
 
                 Section {
+                    TextField("Preserve dashboard address", text: $settings.dashboardURL)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                    Text(settings.dashboard == nil ? "Not set. Reports can only be exported by Share or Mail." : "Reports you send go to this dashboard, and staff status changes come back to your reports.").font(.caption).foregroundStyle(.secondary)
+                } header: { Text("Preserve link") }
+
+                Section {
                     Toggle("Scan diagnostics overlay", isOn: $settings.scanDiagnostics)
                     Text("Shows what the scanner measures on each frame (sharpness, light, subject size, motion, top guesses). Use it when a scan does not behave.").font(.caption).foregroundStyle(.secondary)
                     Button("Export scan diagnostics") { diagURL = app.diagnostics.exportSnapshot() }

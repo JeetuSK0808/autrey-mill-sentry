@@ -37,6 +37,7 @@ struct ReportDetailView: View {
                         row("Status updated", report.statusUpdatedAt.shortDescription)
                         if report.additionalSightings > 0 { row("Extra sightings", "\(report.additionalSightings)") }
                         if let sent = report.sentAt { row("Sent", sent.shortDescription) }
+                        if report.remoteID != nil { row("Preserve dashboard", "received" + (report.remoteStatus.map { ", staff status: \($0)" } ?? "")) }
                         row("Model", report.modelVersion)
                         if !report.note.isEmpty { row("Note", report.note) }
                         if let t = report.fieldTrueLabel { row("Field true label", app.catalog.name(for: t)) }

@@ -161,6 +161,8 @@ struct SendSheet: View {
     @State private var showShare = false
     @State private var showMail = false
     @State private var showStaffWaiver = false
+    @State private var sending = false
+    @State private var sendResult: String?
 
     var body: some View {
         NavigationStack {
@@ -181,10 +183,21 @@ struct SendSheet: View {
                 Button { showShare = true } label: { Label("Share…", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity).padding(.vertical, 8) }
                     .buttonStyle(.bordered).controlSize(.large)
                 VStack(alignment: .leading, spacing: 4) {
-                    Button { showStaffWaiver = true } label: { Label("Share with preserve staff", systemImage: "antenna.radiowaves.left.and.right").frame(maxWidth: .infinity).padding(.vertical, 8) }
-                        .buttonStyle(.bordered).controlSize(.large)
+                    if let dash = app.settings.dashboard {
+                        let pending = reports.filter { $0.remoteID == nil }.count
+                        Button { Task { await sendToStaff(dash) } } label: {
+                            Label(sending ? "Sending…" : pending == 0 ? "All sent to preserve staff" : "Send \(pending) to preserve staff", systemImage: "antenna.radiowaves.left.and.right")
+                        }
+                        .primaryButton().disabled(sending || pending == 0)
                         .accessibilityIdentifier("reports.staffShare")
-                    Text("Preview. A direct line to staff does not exist yet. Nothing is uploaded.").font(.caption2).foregroundStyle(.secondary)
+                        Text("Uploads the photo, location and details of each report to the preserve's review dashboard. Staff status changes come back to your reports.").font(.caption2).foregroundStyle(.secondary)
+                        if let sendResult { Text(sendResult).font(.footnote).foregroundStyle(Theme.forest) }
+                    } else {
+                        Button { showStaffWaiver = true } label: { Label("Share with preserve staff", systemImage: "antenna.radiowaves.left.and.right").frame(maxWidth: .infinity).padding(.vertical, 8) }
+                            .buttonStyle(.bordered).controlSize(.large)
+                            .accessibilityIdentifier("reports.staffShare")
+                        Text("The preserve's dashboard address is not set yet. Nothing is uploaded.").font(.caption2).foregroundStyle(.secondary)
+                    }
                 }
             }
             .padding()
@@ -194,11 +207,17 @@ struct SendSheet: View {
             .sheet(isPresented: $showMail, onDismiss: { ReportStore.markSent(reports, context: context) }) {
                 MailComposer(to: Config.rangerEmail, subject: "Invasive plant reports from Mill Sentry", body: "Attached: \(reports.count) report(s) from the Autrey Mill Sentry app.", attachments: items)
             }
-            .alert("Not live yet", isPresented: $showStaffWaiver) {
+            .alert("Not linked yet", isPresented: $showStaffWaiver) {
                 Button("OK") {}
             } message: {
-                Text("Direct sharing with preserve staff is planned (a free database the preserve can review). It is not built yet, so nothing was uploaded. Your reports stay on this phone. Use Share or Email to send the package.")
+                Text("The preserve dashboard address is not set on this phone (Settings > Preserve link). Nothing was uploaded. Use Share or Email to send the package.")
             }
         }
+    }
+
+    private func sendToStaff(_ dash: DashboardSync) async {
+        sending = true; defer { sending = false }
+        let r = await dash.sendAll(reports, catalog: app.catalog, context: context)
+        sendResult = r.failed == 0 ? "Sent \(r.sent) report(s) to the preserve." : "Sent \(r.sent), failed \(r.failed): \(r.lastError ?? "unknown error")"
     }
 }
