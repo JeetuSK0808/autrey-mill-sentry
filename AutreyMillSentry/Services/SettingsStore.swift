@@ -16,7 +16,9 @@ final class SettingsStore {
         simulateLocation = defaults.bool(forKey: "simulateLocation")
         hapticsEnabled = defaults.object(forKey: "hapticsEnabled") as? Bool ?? true
         appearance = defaults.string(forKey: "appearance") ?? "system"
+        scanDiagnostics = defaults.bool(forKey: "scanDiagnostics")
     }
+    var scanDiagnostics: Bool { didSet { defaults.set(scanDiagnostics, forKey: "scanDiagnostics") } }
     /// "system", "light" or "dark"
     var appearance: String { didSet { defaults.set(appearance, forKey: "appearance") } }
     var colorScheme: ColorScheme? { appearance == "light" ? .light : appearance == "dark" ? .dark : nil }
@@ -30,10 +32,10 @@ final class SettingsStore {
     var hapticsEnabled: Bool { didSet { defaults.set(hapticsEnabled, forKey: "hapticsEnabled") } }
 
     func resetAll() {
-        for key in ["onboardingComplete", "rangerMode", "fieldTestMode", "autoCapture", "roundCoordinatesOnExport", "simulateLocation", "hapticsEnabled", "appearance"] {
+        for key in ["onboardingComplete", "rangerMode", "fieldTestMode", "autoCapture", "roundCoordinatesOnExport", "simulateLocation", "hapticsEnabled", "appearance", "scanDiagnostics"] {
             defaults.removeObject(forKey: key)
         }
         onboardingComplete = false; rangerMode = false; fieldTestMode = false; autoCapture = false
-        roundCoordinatesOnExport = false; simulateLocation = false; hapticsEnabled = true; appearance = "system"
+        roundCoordinatesOnExport = false; simulateLocation = false; hapticsEnabled = true; appearance = "system"; scanDiagnostics = false
     }
 }

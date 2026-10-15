@@ -7,7 +7,7 @@ import ImageIO
 /// Computes QualityMetrics for a frame: sharpness (variance of Laplacian), exposure, subject size (Vision saliency),
 /// person presence (Vision human/face detection) and motion (difference from the previous frame).
 final class QualityAnalyzer {
-    private let side = 160
+    private let side = 256
     private var previousGray: [UInt8]?
     private lazy var grayContext: CGContext? = CGContext(data: nil, width: side, height: side, bitsPerComponent: 8, bytesPerRow: side,
                                                           space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.none.rawValue)

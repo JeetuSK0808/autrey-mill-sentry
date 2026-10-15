@@ -32,6 +32,8 @@ struct ScanView: View {
     private func makeViewModel() {
         let model = ScanViewModel(classifier: app.classifier, catalog: app.catalog, location: app.location, preserve: app.preserve, settings: app.settings)
         model.embeddings = app.embeddings
+        model.diagnostics = app.diagnostics
+        app.diagnostics.modelVersion = app.classifier.modelVersion
         vm = model
         app.applySimulatedLocation()
     }
@@ -80,6 +82,9 @@ private struct ScanContent: View {
                     .transition(.scale(scale: 0.9).combined(with: .opacity))
             }
             CaptureFlash(trigger: vm.phase == .capturing)
+            if app.settings.scanDiagnostics {
+                VStack { Spacer().frame(height: 70); DiagnosticsOverlay(text: app.diagnostics.overlayText); Spacer() }
+            }
         }
         .animation(Motion.snappy, value: vm.phase)
     }
@@ -116,6 +121,20 @@ private struct ScanContent: View {
             }
             pickerItem = nil
         }
+    }
+}
+
+private struct DiagnosticsOverlay: View {
+    let text: String
+    var body: some View {
+        Text(text)
+            .font(.system(size: 11, design: .monospaced))
+            .foregroundStyle(.white)
+            .padding(8)
+            .background(Color.black.opacity(0.65), in: RoundedRectangle(cornerRadius: 8))
+            .padding(.horizontal, 8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityHidden(true)
     }
 }
 

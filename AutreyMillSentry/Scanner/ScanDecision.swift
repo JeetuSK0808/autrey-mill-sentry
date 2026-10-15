@@ -87,16 +87,26 @@ enum ScanOutcome: Equatable, Sendable {
 
 /// Pure decision logic. No UI, no model, fully unit tested.
 enum ScanDecision {
-    /// Returns a reason to rescan if the frame fails a quality gate. Order matters: the most actionable problem first.
-    static func qualityGate(_ q: QualityMetrics, thresholds t: ScanThresholds = Config.scan) -> RescanReason? {
+    /// Hard gates: the only things that stop a scan outright. People (privacy) and frames that are essentially black or white.
+    static func hardGate(_ q: QualityMetrics, thresholds t: ScanThresholds = Config.scan) -> RescanReason? {
         if q.personDetected { return .personInFrame }
         if q.meanLuminance < t.minMeanLuminance { return .tooDark }
         if q.meanLuminance > t.maxMeanLuminance || q.clippedFraction > t.maxClippedFraction { return .overexposed }
+        return nil
+    }
+
+    /// Soft gates: explain why a result was ambiguous (and give live hints). They never block the classifier.
+    static func softGate(_ q: QualityMetrics, thresholds t: ScanThresholds = Config.scan) -> RescanReason? {
         if q.motion > t.maxMotion { return .blurry }
         if q.sharpness < t.minSharpness { return .blurry }
         if q.subjectFraction < t.minSubjectFraction { return .tooFar }
         if q.subjectFraction > t.maxSubjectFraction && q.subjectTouchesEdges { return .tooClose }
         return nil
+    }
+
+    /// Kept for callers and tests: hard gate first, then soft gate.
+    static func qualityGate(_ q: QualityMetrics, thresholds t: ScanThresholds = Config.scan) -> RescanReason? {
+        hardGate(q, thresholds: t) ?? softGate(q, thresholds: t)
     }
 
     /// `similarity` returns the cosine similarity of the photo's embedding to a class centroid and that class's floor,
@@ -128,8 +138,8 @@ enum ScanDecision {
                           classification: ClassificationResult,
                           catalog: SpeciesCatalog,
                           thresholds t: ScanThresholds = Config.scan) -> ScanOutcome {
-        if let gate = qualityGate(quality, thresholds: t) { return .rescan(gate) }
-        guard let top = classification.top else { return .rescan(.ambiguous) }
+        if let gate = hardGate(quality, thresholds: t) { return .rescan(gate) }
+        guard let top = classification.top else { return .rescan(softGate(quality, thresholds: t) ?? .ambiguous) }
         let secondProb = classification.second?.probability ?? 0
         let margin = top.probability - secondProb
 
@@ -147,10 +157,10 @@ enum ScanDecision {
                 return .confirmedInvasive(species: top.label, confidence: top.probability)
             }
             if top.probability >= t.possibleMinProbability { return .possibleInvasive(candidates: invasiveCandidates.isEmpty ? [top] : invasiveCandidates) }
-            return .rescan(.ambiguous)
+            return .rescan(softGate(quality, thresholds: t) ?? .ambiguous)
         case .tier2:
             if top.probability >= t.possibleMinProbability { return .possibleInvasive(candidates: invasiveCandidates.isEmpty ? [top] : invasiveCandidates) }
-            return .rescan(.ambiguous)
+            return .rescan(softGate(quality, thresholds: t) ?? .ambiguous)
         case .native, .other:
             // A plausible invasive runner-up wins over a weak "native" call: staff should look.
             if !invasiveCandidates.isEmpty && top.probability < t.nativeMinProbability { return .possibleInvasive(candidates: invasiveCandidates) }
@@ -158,7 +168,7 @@ enum ScanDecision {
                 return .looksNative(label: top.label == "other_plant" || top.label == "not_plant" ? nil : top.label, confidence: top.probability)
             }
             if !invasiveCandidates.isEmpty { return .possibleInvasive(candidates: invasiveCandidates) }
-            return .rescan(.ambiguous)
+            return .rescan(softGate(quality, thresholds: t) ?? .ambiguous)
         }
     }
 

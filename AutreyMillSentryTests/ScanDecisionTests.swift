@@ -18,13 +18,13 @@ final class ScanDecisionTests: XCTestCase {
         XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .personInFrame)
     }
     func testTooDark() { var q = QualityMetrics.perfect; q.meanLuminance = 0.05; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .tooDark) }
-    func testOverexposedByLuminance() { var q = QualityMetrics.perfect; q.meanLuminance = 0.95; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .overexposed) }
-    func testOverexposedByClipping() { var q = QualityMetrics.perfect; q.clippedFraction = 0.4; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .overexposed) }
+    func testOverexposedByLuminance() { var q = QualityMetrics.perfect; q.meanLuminance = 0.97; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .overexposed) }
+    func testOverexposedByClipping() { var q = QualityMetrics.perfect; q.clippedFraction = 0.5; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .overexposed) }
     func testBlurryBySharpness() { var q = QualityMetrics.perfect; q.sharpness = 5; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .blurry) }
-    func testBlurryByMotion() { var q = QualityMetrics.perfect; q.motion = 0.3; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .blurry) }
+    func testBlurryByMotion() { var q = QualityMetrics.perfect; q.motion = 0.4; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .blurry) }
     func testTooFar() { var q = QualityMetrics.perfect; q.subjectFraction = 0.03; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .tooFar) }
-    func testTooClose() { var q = QualityMetrics.perfect; q.subjectFraction = 0.99; q.subjectTouchesEdges = true; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .tooClose) }
-    func testLargeSubjectNotTouchingEdgesIsFine() { var q = QualityMetrics.perfect; q.subjectFraction = 0.99; XCTAssertNil(ScanDecision.qualityGate(q, thresholds: t)) }
+    func testTooClose() { var q = QualityMetrics.perfect; q.subjectFraction = 0.999; q.subjectTouchesEdges = true; XCTAssertEqual(ScanDecision.qualityGate(q, thresholds: t), .tooClose) }
+    func testLargeSubjectNotTouchingEdgesIsFine() { var q = QualityMetrics.perfect; q.subjectFraction = 0.999; XCTAssertNil(ScanDecision.qualityGate(q, thresholds: t)) }
     func testPerfectPasses() { XCTAssertNil(ScanDecision.qualityGate(.perfect, thresholds: t)) }
 
     // MARK: outcomes
@@ -69,10 +69,20 @@ final class ScanDecisionTests: XCTestCase {
         let o = ScanDecision.decide(quality: .perfect, classification: cls([("other_plant", 0.30), ("hedera_helix", 0.25), ("vinca_minor", 0.20)]), catalog: catalog, thresholds: t)
         XCTAssertEqual(o, .rescan(.ambiguous))
     }
-    func testQualityGateWinsOverClassifier() {
-        var q = QualityMetrics.perfect; q.sharpness = 1
+    func testHardGateWinsOverClassifier() {
+        var q = QualityMetrics.perfect; q.personDetected = true
         let o = ScanDecision.decide(quality: q, classification: cls([("ligustrum_sinense", 0.99)]), catalog: catalog, thresholds: t)
-        XCTAssertEqual(o, .rescan(.blurry))
+        XCTAssertEqual(o, .rescan(.personInFrame))
+    }
+    func testSoftGateDoesNotBlockAConfidentResult() {
+        var q = QualityMetrics.perfect; q.sharpness = 1; q.subjectFraction = 0.02
+        let o = ScanDecision.decide(quality: q, classification: cls([("ligustrum_sinense", 0.99), ("other_plant", 0.005)]), catalog: catalog, thresholds: t)
+        XCTAssertEqual(o, .confirmedInvasive(species: "ligustrum_sinense", confidence: 0.99))
+    }
+    func testSoftGateExplainsAnAmbiguousResult() {
+        var q = QualityMetrics.perfect; q.subjectFraction = 0.02
+        let o = ScanDecision.decide(quality: q, classification: cls([("other_plant", 0.30), ("hedera_helix", 0.25)]), catalog: catalog, thresholds: t)
+        XCTAssertEqual(o, .rescan(.tooFar))
     }
     func testEveryRescanReasonHasCopy() {
         for r in RescanReason.allCases { XCTAssertFalse(r.instruction.isEmpty); XCTAssertFalse(r.liveHint.isEmpty); XCTAssertFalse(r.title.isEmpty) }

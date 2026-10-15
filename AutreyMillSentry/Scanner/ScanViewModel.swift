@@ -40,6 +40,7 @@ final class ScanViewModel {
     let preserve: PreserveData
     let settings: SettingsStore
     var embeddings: EmbeddingTable? = nil
+    var diagnostics: ScanDiagnostics? = nil
 
     private(set) var phase: Phase = .idle
     private(set) var guidance = "Point the camera at a plant"
@@ -121,17 +122,27 @@ final class ScanViewModel {
         guard liveEnabled else { return }
         let metrics = analyzer.analyze(pixelBuffer: pb, orientation: orientation, trackMotion: true)
         autoTorch(luminance: metrics.meanLuminance)
-        if let gate = ScanDecision.qualityGate(metrics) {
+        let t = Config.scan
+        let now = Date().timeIntervalSince1970
+        if let hard = ScanDecision.hardGate(metrics, thresholds: t) {
             let state = tracker.push(nil)
             wasLocked = false
-            Task { @MainActor in self.applyLive(state: state, topName: nil, guidance: gate.liveHint, good: false, freshLock: false, autoCapture: false) }
+            let sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: metrics.personDetected, hard: hard.rawValue, soft: nil, top: [], lock: "idle")
+            Task { @MainActor in self.diagnostics?.record(live: sample); self.applyLive(state: state, topName: nil, guidance: hard.liveHint, good: false, freshLock: false, autoCapture: false) }
             return
         }
-        guard let cls = try? liveClassifier.classify(pixelBuffer: pb, orientation: orientation), let top = cls.top else { return }
-        if top.label == "not_plant" && top.probability >= Config.scan.notPlantMinProbability {
+        let soft = ScanDecision.softGate(metrics, thresholds: t)
+        guard let cls = try? liveClassifier.classify(pixelBuffer: pb, orientation: orientation), let top = cls.top else {
+            let sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: false, hard: nil, soft: soft?.rawValue, top: [], lock: "idle")
+            Task { @MainActor in self.diagnostics?.record(live: sample) }
+            return
+        }
+        let top3 = cls.top3.map { "\(liveCatalog.name(for: $0.label)) \(Int(($0.probability * 100).rounded()))" }
+        if top.label == "not_plant" && top.probability >= t.notPlantMinProbability {
             let state = tracker.push(nil)
             wasLocked = false
-            Task { @MainActor in self.applyLive(state: state, topName: nil, guidance: RescanReason.noPlantFound.liveHint, good: false, freshLock: false, autoCapture: false) }
+            let sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: false, hard: nil, soft: soft?.rawValue, top: top3, lock: "idle")
+            Task { @MainActor in self.diagnostics?.record(live: sample); self.applyLive(state: state, topName: nil, guidance: (soft ?? .noPlantFound).liveHint, good: false, freshLock: false, autoCapture: false) }
             return
         }
         let state = tracker.push(top, distribution: cls.probabilities)
@@ -147,12 +158,16 @@ final class ScanViewModel {
             autoCaptureArmed = true
         }
         let guidance: String
+        var good = true
         switch state {
         case .locked(let label, _): guidance = "Locked on: \(liveCatalog.name(for: label)). Tap to capture."
-        case .tracking: guidance = "Plant in view, hold steady"
+        case .tracking:
+            if let soft, soft != .tooClose { guidance = soft.liveHint; good = false } else { guidance = "Plant in view, hold steady" }
         case .idle: guidance = "Plant in view, tap to capture"
         }
-        Task { @MainActor in self.applyLive(state: state, topName: name, guidance: guidance, good: true, freshLock: freshLock, autoCapture: auto) }
+        let lockText: String = { switch state { case .locked: return "locked"; case .tracking(_, let a, let n): return "tracking \(a)/\(n)"; case .idle: return "idle" } }()
+        let sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: false, hard: nil, soft: soft?.rawValue, top: top3, lock: lockText)
+        Task { @MainActor in self.diagnostics?.record(live: sample); self.applyLive(state: state, topName: name, guidance: guidance, good: good, freshLock: freshLock, autoCapture: auto) }
     }
 
     private func applyLive(state: LockOnTracker.State, topName: String?, guidance g: String, good: Bool, freshLock: Bool, autoCapture: Bool) {
@@ -219,6 +234,13 @@ final class ScanViewModel {
         let gate: ((String) -> (value: Double, floor: Double)?)? = (table?.isAvailable == true && classification.embedding != nil)
             ? { label in table!.similarity(of: classification.embedding!, to: label) } : nil
         let outcome = ScanDecision.decide(quality: quality, classification: classification, catalog: catalog, similarity: gate)
+        if let diag = diagnostics {
+            let topLabel = classification.top?.label
+            let sim = topLabel.flatMap { gate?($0) }
+            let outcomeText: String = { switch outcome { case .confirmedInvasive(let s, let c): return "confirmed \(s) \(Int(c * 100))"; case .possibleInvasive(let c): return "possible \(c.first?.label ?? "?")"; case .looksNative(let l, let c): return "native \(l ?? "other") \(Int(c * 100))"; case .rescan(let r): return "rescan \(r.rawValue)" } }()
+            diag.record(still: ScanDiagnostics.StillSample(t: Date().timeIntervalSince1970, source: source == .camera ? "camera" : "photo", sharp: quality.sharpness, luma: quality.meanLuminance, clip: quality.clippedFraction, subject: quality.subjectFraction, person: quality.personDetected,
+                                                           top: classification.top3.map { "\(catalog.name(for: $0.label)) \(Int(($0.probability * 100).rounded()))" }, outcome: outcomeText, model: classification.modelVersion, similarity: sim?.value, floor: sim?.floor))
+        }
 
         var fix: (point: GeoPoint, accuracy: Double)?
         if !outcome.isRescan, location.isAuthorized || location.simulated != nil {

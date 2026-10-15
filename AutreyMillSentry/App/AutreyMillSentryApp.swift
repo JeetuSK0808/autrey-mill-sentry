@@ -34,6 +34,7 @@ final class AppModel {
     let location = LocationService()
     let classifier: PlantClassifying
     let embeddings = EmbeddingTable()
+    let diagnostics = ScanDiagnostics()
     let modelCard: ModelCard?
     let visitInfo: VisitInfo?
 

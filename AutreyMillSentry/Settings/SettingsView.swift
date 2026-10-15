@@ -7,6 +7,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var confirmDelete = false
     @State private var fieldCSV: URL?
+    @State private var diagURL: URL?
     @State private var deleted = false
 
     var body: some View {
@@ -46,13 +47,15 @@ struct SettingsView: View {
                     if deleted { Label("All reports and photos deleted.", systemImage: "checkmark").font(.footnote).foregroundStyle(Theme.forest) }
                 } header: { Text("Privacy") }
 
-                #if DEBUG
                 Section {
+                    Toggle("Scan diagnostics overlay", isOn: $settings.scanDiagnostics)
+                    Text("Shows what the scanner measures on each frame (sharpness, light, subject size, motion, top guesses). Use it when a scan does not behave.").font(.caption).foregroundStyle(.secondary)
+                    Button("Export scan diagnostics") { diagURL = app.diagnostics.exportSnapshot() }
+                    #if DEBUG
                     Toggle("Simulate location at the preserve", isOn: $settings.simulateLocation)
                         .onChange(of: app.settings.simulateLocation) { _, _ in app.applySimulatedLocation() }
-                    Text("Debug builds only. Lets the geofence and ranking be tested away from Johns Creek.").font(.caption).foregroundStyle(.secondary)
+                    #endif
                 } header: { Text("Developer") }
-                #endif
 
                 Section {
                     NavigationLink("About, accuracy and credits") { AboutView() }
@@ -66,6 +69,7 @@ struct SettingsView: View {
                 Button("Delete all my data", role: .destructive) { ReportStore.deleteAll(context: context); deleted = true }
             }
             .sheet(isPresented: Binding(get: { fieldCSV != nil }, set: { if !$0 { fieldCSV = nil } })) { if let u = fieldCSV { ShareSheet(items: [u]) } }
+            .sheet(isPresented: Binding(get: { diagURL != nil }, set: { if !$0 { diagURL = nil } })) { if let u = diagURL { ShareSheet(items: [u]) } }
         }
     }
 

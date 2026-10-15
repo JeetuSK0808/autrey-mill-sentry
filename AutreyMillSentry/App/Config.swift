@@ -53,13 +53,15 @@ struct ScanThresholds: Codable, Equatable {
     var lockOnMeanProbability: Double = 0.60
 
     // Quality gates (frame-level)
-    var minSharpness: Double = 40.0               // variance of Laplacian on a 256 px grey copy
-    var minMeanLuminance: Double = 0.18           // 0...1
-    var maxMeanLuminance: Double = 0.90
-    var maxClippedFraction: Double = 0.25         // fraction of pixels at the top of the range
-    var minSubjectFraction: Double = 0.10         // saliency box area / frame area
-    var maxSubjectFraction: Double = 0.97
-    var maxMotion: Double = 0.12                  // mean abs difference between consecutive frames, 0...1
+    // Quality gates. Only people and near-darkness block a scan outright; the other checks explain an
+    // ambiguous result ("too far", "blurry") instead of preventing the classifier from running.
+    var minSharpness: Double = 10.0               // variance of Laplacian on a 256 px grey copy (used only when ambiguous)
+    var minMeanLuminance: Double = 0.08           // 0...1: below this the frame is essentially black
+    var maxMeanLuminance: Double = 0.96
+    var maxClippedFraction: Double = 0.40         // fraction of pixels at the top of the range
+    var minSubjectFraction: Double = 0.04         // saliency box area / frame area (used only when ambiguous)
+    var maxSubjectFraction: Double = 0.995
+    var maxMotion: Double = 0.30                  // mean abs difference between consecutive frames, 0...1 (live hint only)
 
     static let defaults = ScanThresholds()
 
