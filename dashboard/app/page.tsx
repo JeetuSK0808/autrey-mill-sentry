@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { isStaff, configured } from "@/lib/auth";
+import { isStaff } from "@/lib/auth";
 import { getStore } from "@/lib/storage";
 import { score, fmtDate, PATCH_LABEL } from "@/lib/rank";
 import StatusBadge from "@/components/StatusBadge";
@@ -9,7 +9,6 @@ import ReportsMap from "@/components/ReportsMap";
 export const dynamic = "force-dynamic";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ status?: string; species?: string; sort?: string }> }) {
-  if (!configured()) return (<main className="wrap"><h1>Mill Sentry</h1><p className="notice">Set the STAFF_ACCESS_CODE environment variable on Vercel to turn on the staff dashboard.</p></main>);
   if (!(await isStaff())) redirect("/login");
   const { status, species, sort } = await searchParams;
   const all = await getStore().listReports();

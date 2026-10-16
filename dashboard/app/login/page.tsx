@@ -1,12 +1,15 @@
-import { configured } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { openMode } from "@/lib/auth";
+
+export const dynamic = "force-dynamic";
 
 export default async function Login({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+  if (openMode()) redirect("/");
   const { error } = await searchParams;
   return (
     <main className="wrap" style={{ maxWidth: 520 }}>
       <h1>Staff sign in</h1>
       <p className="sub">Enter the preserve's access code. Ask Jeetu SK if you do not have it.</p>
-      {!configured() && <p className="notice">The access code is not set up on this server yet (STAFF_ACCESS_CODE).</p>}
       {error && <p className="notice" style={{ borderColor: "rgba(120,57,140,.3)" }}>That code did not match. Try again.</p>}
       <form method="post" action="/api/login" className="card" style={{ display: "grid", gap: 12 }}>
         <label htmlFor="code">Access code</label>
