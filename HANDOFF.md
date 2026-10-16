@@ -14,7 +14,7 @@ Updated 2026-10-15 (morning). Project: `~/autrey-mill-sentry` (local git only, n
 | Docs | README, CLASSES, MAP_NOTES, SOURCES, RANKING, PRIVACY, LICENSES written. MODEL_CARD comes from the real eval. DESIGN_CHECKLIST, DEMO_SCRIPT, SHORT_ANSWERS, FEATURE_LIST: Step 5. |
 
 ## 15 Oct: repo on GitHub, dashboard on Vercel
-- Jeetu said "set everything up": private repo **github.com/JeetuSK0808/autrey-mill-sentry** created and `main` pushed (441 MB: models and screenshot history). Vercel project **mill-sentry** imported from it (root `dashboard`, Next.js), Hobby plan, deployed from Chrome. Still Jeetu's: add `STAFF_ACCESS_CODE` in Vercel > Settings > Environment Variables and redeploy; create the Blob store (Storage > Create > Blob) if Claude could not.
+- Jeetu said "set everything up": private repo **github.com/JeetuSK0808/autrey-mill-sentry** created and `main` pushed (441 MB: models and screenshot history). Vercel project **mill-sentry** imported from it (root `dashboard`, Next.js), Hobby plan, deployed from Chrome: **https://mill-sentry.vercel.app** (Next upgraded to 16.4.2 because Vercel blocks 15.3.2). The app's default dashboard address now points there. Still Jeetu's: add `STAFF_ACCESS_CODE` in Vercel > Settings > Environment Variables and redeploy; create the Blob store (Storage > Create > Blob) if Claude could not.
 - Local test dashboard runs on the Mac at the address in `dashboard/data-local/local-test-code.txt` (gitignored).
 
 ## 14 Oct evening: scanner gates + staff dashboard (Jeetu's preserve visit)

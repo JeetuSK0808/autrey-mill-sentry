@@ -8,11 +8,14 @@ A small Next.js site for preserve staff: every report sent from the app, ranked,
 - The app polls `GET /api/reports/{id}/status` (public, status only) when it comes to the foreground. When staff mark a report **treated**, the app updates the report and fires the local "Your privet report was treated" notification. That is the Tell step, for real.
 - Storage: Vercel Blob (free tier) in production, a local folder in development. No database to administer.
 
-## Jeetu: deploy it (about 10 minutes, no cost)
+## Deployed
+Live at **https://mill-sentry.vercel.app** (Vercel project `mill-sentry`, Hobby plan, root `dashboard`, deploys on every push to `main` of github.com/JeetuSK0808/autrey-mill-sentry). The app's default dashboard address is this URL (`Config.defaultDashboardURL`).
+
+## Jeetu: deploy it (about 10 minutes, no cost) — done 15 Oct except the two items marked below
 1. Push the repo to a **private** GitHub repository (your call per HANDOFF).
 2. On vercel.com: **Add New > Project > Import** that repository. Set **Root Directory** to `dashboard`. Framework: Next.js (auto). Deploy.
 3. In the project: **Storage > Create Database > Blob** (free). Connect it to the project. Vercel adds `BLOB_READ_WRITE_TOKEN` to the environment automatically.
-4. **Settings > Environment Variables**: add `STAFF_ACCESS_CODE` = the code staff will use (choose something a ranger can type; you give it to them in person). Redeploy once so both variables are live.
+4. **(Jeetu, still to do)** **Settings > Environment Variables**: add `STAFF_ACCESS_CODE` = the code staff will use (choose something a ranger can type; you give it to them in person). Redeploy once so both variables are live.
 5. Open the site, sign in with the code, you should see "No reports yet".
 6. Put the site address into the app: Reports > gear > **Preserve link > Preserve dashboard address** (for example `millsentry.vercel.app`). Then **Send to preserve staff** from the Send sheet. The report appears on the site within seconds.
 7. Tell Claude the address so it becomes the default in `Config.defaultDashboardURL` for every install.

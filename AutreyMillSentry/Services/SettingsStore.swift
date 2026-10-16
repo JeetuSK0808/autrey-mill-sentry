@@ -17,7 +17,7 @@ final class SettingsStore {
         hapticsEnabled = defaults.object(forKey: "hapticsEnabled") as? Bool ?? true
         appearance = defaults.string(forKey: "appearance") ?? "system"
         scanDiagnostics = defaults.bool(forKey: "scanDiagnostics")
-        dashboardURL = defaults.string(forKey: "dashboardURL") ?? Config.defaultDashboardURL
+        dashboardURL = { let v = defaults.string(forKey: "dashboardURL") ?? ""; return v.isEmpty ? Config.defaultDashboardURL : v }()
     }
     var dashboardURL: String { didSet { defaults.set(dashboardURL, forKey: "dashboardURL") } }
     var dashboard: DashboardSync? { DashboardSync(address: dashboardURL) }
