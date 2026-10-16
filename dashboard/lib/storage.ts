@@ -6,6 +6,7 @@ import type { StoredReport, ReportStatus } from "./types";
 export interface Store {
   putReport(report: StoredReport, photo: Buffer): Promise<void>;
   updateReport(report: StoredReport): Promise<void>;
+  deleteReport(id: string): Promise<void>;
   getReport(id: string): Promise<StoredReport | null>;
   listReports(): Promise<StoredReport[]>;
   getPhoto(id: string): Promise<Buffer | null>;
@@ -23,6 +24,7 @@ class LocalStore implements Store {
     await fs.writeFile(path.join(this.dir, "reports", `${report.id}.json`), JSON.stringify(report, null, 1));
   }
   async updateReport(report: StoredReport) { await this.ensure(); await fs.writeFile(path.join(this.dir, "reports", `${report.id}.json`), JSON.stringify(report, null, 1)); }
+  async deleteReport(id: string) { for (const f of [path.join(this.dir, "reports", `${id}.json`), path.join(this.dir, "photos", `${id}.jpg`)]) { try { await fs.unlink(f); } catch {} } }
   async getReport(id: string) {
     try { return JSON.parse(await fs.readFile(path.join(this.dir, "reports", `${id}.json`), "utf8")) as StoredReport; } catch { return null; }
   }
@@ -38,41 +40,45 @@ class LocalStore implements Store {
 
 class BlobStore implements Store {
   private async blob() { return await import("@vercel/blob"); }
-  private async fetchJSON(url: string) {
-    const r = await fetch(url, { cache: "no-store" }); if (!r.ok) return null; return (await r.json()) as StoredReport;
+  private async readText(pathname: string): Promise<string | null> {
+    const { get } = await this.blob();
+    const r = await get(pathname, { access: "private", useCache: false });
+    if (!r || r.statusCode !== 200 || !r.stream) return null;
+    return await new Response(r.stream).text();
   }
   async putReport(report: StoredReport, photo: Buffer) {
     const { put } = await this.blob();
-    await put(`photos/${report.id}.jpg`, photo, { access: "public", addRandomSuffix: false, contentType: "image/jpeg" });
-    await put(`reports/${report.id}.json`, JSON.stringify(report), { access: "public", addRandomSuffix: false, contentType: "application/json" });
+    await put(`photos/${report.id}.jpg`, photo, { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "image/jpeg" });
+    await put(`reports/${report.id}.json`, JSON.stringify(report), { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "application/json" });
   }
   async updateReport(report: StoredReport) {
     const { put } = await this.blob();
-    await put(`reports/${report.id}.json`, JSON.stringify(report), { access: "public", addRandomSuffix: false, contentType: "application/json" });
+    await put(`reports/${report.id}.json`, JSON.stringify(report), { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "application/json" });
+  }
+  async deleteReport(id: string) {
+    const { del } = await this.blob();
+    await del([`reports/${id}.json`, `photos/${id}.jpg`]);
   }
   async getReport(id: string) {
-    const { list } = await this.blob();
-    const res = await list({ prefix: `reports/${id}.json`, limit: 1 });
-    const b = res.blobs[0]; if (!b) return null;
-    return this.fetchJSON(b.url);
+    const t = await this.readText(`reports/${id}.json`);
+    try { return t ? (JSON.parse(t) as StoredReport) : null; } catch { return null; }
   }
   async listReports() {
     const { list } = await this.blob();
     const out: StoredReport[] = []; let cursor: string | undefined;
     do {
       const res = await list({ prefix: "reports/", cursor, limit: 1000 });
-      const items = await Promise.all(res.blobs.map((b) => this.fetchJSON(b.url)));
+      const items = await Promise.all(res.blobs.map(async (b) => { const t = await this.readText(b.pathname); try { return t ? (JSON.parse(t) as StoredReport) : null; } catch { return null; } }));
       for (const i of items) if (i) out.push(i);
       cursor = res.hasMore ? res.cursor : undefined;
     } while (cursor);
     return out.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   }
   async getPhoto(id: string) {
-    const { list } = await this.blob();
-    const res = await list({ prefix: `photos/${id}.jpg`, limit: 1 });
-    const b = res.blobs[0]; if (!b) return null;
-    const r = await fetch(b.url, { cache: "no-store" }); if (!r.ok) return null;
-    return Buffer.from(await r.arrayBuffer());
+    const { get } = await this.blob();
+    const r = await get(`photos/${id}.jpg`, { access: "private", useCache: false });
+    if (!r || r.statusCode !== 200 || !r.stream) return null;
+    return Buffer.from(await new Response(r.stream).arrayBuffer());
   }
 }
 

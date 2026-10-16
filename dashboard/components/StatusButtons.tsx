@@ -14,5 +14,12 @@ export default function StatusButtons({ id, current }: { id: string; current: st
   const b = (status: string, label: string, cls = "") => (
     <button key={status} className={`btn ${cls}`} disabled={current === status || busy !== null} onClick={() => set(status)}>{busy === status ? "Saving…" : label}</button>
   );
-  return (<div className="btnrow">{b("confirmed", "Mark confirmed", "primary")}{b("treated", "Mark treated", "primary")}{b("dismissed", "Dismiss", "danger")}{b("new", "Back to new")}</div>);
+  async function remove() {
+    if (!confirm("Delete this report and its photo? This cannot be undone.")) return;
+    setBusy("delete");
+    const r = await fetch(`/api/reports/${id}`, { method: "DELETE" });
+    setBusy(null);
+    if (r.ok) router.push("/"); else alert("Could not delete: " + (await r.text()));
+  }
+  return (<div className="btnrow">{b("confirmed", "Mark confirmed", "primary")}{b("treated", "Mark treated", "primary")}{b("dismissed", "Dismiss", "danger")}{b("new", "Back to new")}<button className="btn" disabled={busy !== null} onClick={remove} style={{ marginLeft: "auto" }}>{busy === "delete" ? "Deleting…" : "Delete"}</button></div>);
 }
