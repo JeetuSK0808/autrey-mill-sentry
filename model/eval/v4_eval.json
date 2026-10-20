@@ -4,43 +4,93 @@
  "inputSize": 256,
  "epochs": 24,
  "evaluatedOn": "2026-10-20",
- "temperature": 0.7791802641322582,
- "ece_val_raw": 0.10095835417248278,
- "ece_val": 0.011418583807353642,
- "ece_test": 0.014357128470755655,
+ "temperature": 0.8032585759271823,
+ "ece_val_raw": 0.08880397201250331,
+ "ece_val": 0.012428666984718966,
+ "ece_test": 0.011317238377311379,
  "confirm": {
-  "threshold": 0.8000000000000003,
+  "threshold": 0.8800000000000003,
   "margin": 0.3,
   "targetPrecision": 0.98,
   "perClass": {
-   "ligustrum_sinense": 0.75,
+   "ligustrum_sinense": 0.8,
    "mahonia_bealei": 0.75,
    "lonicera_japonica": 0.75,
-   "vinca_minor": 0.75,
-   "elaeagnus_umbellata": 0.81,
-   "elaeagnus_pungens": 0.75,
+   "vinca_minor": 0.77,
+   "elaeagnus_umbellata": 0.79,
+   "elaeagnus_pungens": 0.8,
    "rosa_multiflora": 0.97,
-   "hedera_helix": 0.92,
-   "albizia_julibrissin": 0.89,
-   "paulownia_tomentosa": 0.95,
-   "microstegium_vimineum": 0.78,
-   "pueraria_montana": 0.97,
+   "hedera_helix": 0.91,
+   "albizia_julibrissin": 0.91,
+   "paulownia_tomentosa": 0.94,
+   "microstegium_vimineum": 0.82,
+   "pueraria_montana": 0.96,
    "nandina_domestica": 0.75
   },
   "val": {
-   "precision": 0.9880304678998912,
-   "coverage": 0.662290299051787,
-   "n": 919,
+   "precision": 0.9835680751173709,
+   "coverage": 0.611232676878191,
+   "n": 1704,
    "cleanImages": 7542,
-   "degradedImages": 0
+   "degradedImages": 7540
   },
   "test": {
-   "precision": 0.9581151832460733,
-   "coverage": 0.711139896373057,
-   "n": 573,
-   "nativeFalseConfirmRate": 0.0036452004860267314
+   "precision": 0.9617486338797814,
+   "coverage": 0.6839378238341969,
+   "n": 549,
+   "nativeFalseConfirmRate": 0.003037667071688943
   },
-  "testField": null
+  "testField": {
+   "precision": 0.9524752475247524,
+   "coverage": 0.6230569948186528,
+   "n": 505,
+   "nativeFalseConfirmRate": 0.0030432136335970784,
+   "images": 5890,
+   "top1": 0.7765704584040747,
+   "ece": 0.02275844948792399,
+   "perCondition": {
+    "backlit": {
+     "precision": 0.96,
+     "coverage": 0.7619047619047619
+    },
+    "dappled": {
+     "precision": 0.9090909090909091,
+     "coverage": 0.6521739130434783
+    },
+    "defocus": {
+     "precision": 0.9795918367346939,
+     "coverage": 0.6153846153846154
+    },
+    "dim": {
+     "precision": 1.0,
+     "coverage": 0.6438356164383562
+    },
+    "dusk_noisy": {
+     "precision": 0.9791666666666666,
+     "coverage": 0.5053763440860215
+    },
+    "far": {
+     "precision": 0.8387096774193549,
+     "coverage": 0.3939393939393939
+    },
+    "lowres": {
+     "precision": 1.0,
+     "coverage": 0.7096774193548387
+    },
+    "motion_blur": {
+     "precision": 0.9629629629629629,
+     "coverage": 0.65
+    },
+    "overexposed": {
+     "precision": 0.9298245614035088,
+     "coverage": 0.6794871794871795
+    },
+    "torch_lit": {
+     "precision": 0.918918918918919,
+     "coverage": 0.6071428571428571
+    }
+   }
+  }
  },
  "overall": {
   "top1": 0.8281886024423338,
@@ -1209,7 +1259,7 @@
   "wisteria_frutescens -> wisteria_sinensis (4)",
   "phyllostachys_aurea -> arundinaria_gigantea (4)"
  ],
- "notPlantRejectRate": 0.5058823529411764,
+ "notPlantRejectRate": 0.49411764705882355,
  "split": {
   "train": 48603,
   "val": 7542,

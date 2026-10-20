@@ -1,37 +1,37 @@
 {
  "status": "evaluated",
- "modelVersion": "v3+v2 ensemble",
- "evaluatedOn": "2026-10-14",
- "testObservations": 2562,
+ "modelVersion": "v4",
+ "evaluatedOn": "2026-10-20",
+ "testObservations": 4405,
  "tier1": {
   "classes": 14,
   "testImages": 772,
-  "top1": 0.8911917098445595,
-  "top3": 0.9598445595854922,
-  "precisionAtConfirm": 0.9839285714285714,
-  "coverageAtConfirm": 0.7137305699481865,
-  "confirmThreshold": 0.9000000000000004
+  "top1": 0.8575129533678757,
+  "top3": 0.9378238341968912,
+  "precisionAtConfirm": 0.9617486338797814,
+  "coverageAtConfirm": 0.6839378238341969,
+  "confirmThreshold": 0.8800000000000003
  },
  "tier2": {
   "classes": 84,
   "testImages": 1832,
-  "top1": 0.8548034934497817,
-  "top3": 0.9394104803493449,
+  "top1": 0.8400655021834061,
+  "top3": 0.9295851528384279,
   "precisionAtConfirm": null,
   "coverageAtConfirm": null,
   "confirmThreshold": null
  },
- "ece": 0.016028168605397027,
- "notPlantRejectRate": 0.8095238095238095,
+ "ece": 0.011317238377311379,
+ "notPlantRejectRate": 0.49411764705882355,
  "hardestConfusions": [
-  "sonchus_oleraceus -> sonchus_asper (8)",
-  "other_plant -> toxicodendron_radicans (7)",
-  "other_plant -> viburnum_acerifolium (6)",
-  "liriope_muscari -> liriope_spicata (6)",
-  "elaeagnus_umbellata -> elaeagnus_pungens (6)"
+  "asimina_parviflora -> asimina_triloba (8)",
+  "sonchus_oleraceus -> sonchus_asper (6)",
+  "liriope_spicata -> liriope_muscari (6)",
+  "carpinus_caroliniana -> fagus_grandifolia (6)",
+  "paspalum_urvillei -> sorghum_halepense (5)"
  ],
  "fieldAccuracy": null,
  "fieldPhotos": null,
- "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split; two models averaged on the captured still",
+ "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split",
  "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."
 }
