@@ -89,3 +89,22 @@ final class LabelCoverageTests: XCTestCase {
         XCTAssertGreaterThan(app.catalog.natives.count, 14, "local native species should be loaded from local_species.json")
     }
 }
+
+/// Common natives must come back as "looks native", not as an invasive guess. Active once the bundled model knows
+/// them (v4 and later); skipped with older models.
+final class LocalNativeRecognitionTests: XCTestCase {
+    @MainActor func testSweetgumAndChristmasFernReferencePhotosReadAsNative() throws {
+        let app = AppModel()
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "labels", withExtension: "json"))
+        let labels = try XCTUnwrap((JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])?["labels"] as? [String])
+        try XCTSkipUnless(labels.contains("liquidambar_styraciflua"), "bundled model predates the local native classes")
+        let clf = try XCTUnwrap(CoreMLClassifier())
+        for label in ["liquidambar_styraciflua", "polystichum_acrostichoides"] {
+            let imgURL = try XCTUnwrap(Bundle.main.url(forResource: "learn_\(label)", withExtension: "jpg"))
+            let img = try XCTUnwrap(ImageLoading.cgImage(fromJPEGData: Data(contentsOf: imgURL), maxDimension: 1200))
+            let r = try clf.classify(img, orientation: .up)
+            let outcome = ScanDecision.decideRaw(quality: .perfect, classification: r, catalog: app.catalog)
+            if case .looksNative = outcome {} else { XCTFail("\(label): expected looksNative, got \(outcome); top \(r.top3.map { "\($0.label) \(Int($0.probability * 100))" })") }
+        }
+    }
+}
