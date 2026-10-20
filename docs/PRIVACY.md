@@ -39,3 +39,11 @@ OpenStreetMap data under ODbL with attribution in About; iNaturalist photos used
 - The address for `Config.rangerEmail` and who at the preserve receives report packages.
 - Whether reports should ever be published (if so, use the rounding option).
 - Retention: there is no automatic deletion; the user deletes reports individually or all at once in Settings.
+
+## Sending a report to preserve staff (added 15 Oct)
+- Nothing is uploaded until the visitor taps **Send to preserve staff**. The upload is the same report the Share and Mail exports contain: the EXIF-stripped JPEG, the species guess with its calibrated confidence, patch size, note, the coordinates the app recorded for the plant, nearest trail, and the app's own random report id. No name, email, device id, account or contact details exist in the app, so none can be sent.
+- The report goes to the preserve dashboard (`dashboard/`, a Next.js site on Vercel, address in Settings > Preserve link). Files live in a private Vercel Blob store under the random id; the site serves them to people who open the dashboard link (open mode) or sign in with the staff code when one is configured. Staff can delete a report from the dashboard; the app keeps its local copy until the visitor deletes it.
+- Afterwards the app polls only the public status endpoint (`GET /api/reports/{id}/status`), which returns the status and its timestamp, nothing else, so the "treated" notification can fire.
+
+## Scan diagnostics (added 14 Oct, developer setting)
+- Off by default. When on, the scanner overlays what the model sees and appends one line per captured still to a local JSON log (sharpness, light, subject size, top guesses, outcome, similarity). The log holds no photo and no location. **Export scan diagnostics** shares that file through the system share sheet; it leaves the phone only if the visitor sends it.

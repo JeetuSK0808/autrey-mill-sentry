@@ -19,6 +19,8 @@ PY
 cp model/eval/v4_thresholds.json $RES/thresholds.json
 $P model/compute_centroids.py --version v4 --keep 0.90 --bundle | tail -1
 $P model/compare_models.py v4b v4 --write-card | tail -1
+$P model/eval_holdout.py v4b v4 | tail -2 || true
+$P model/sweep_possible.py v4b v4 | tail -3 || true
 python3 -I tools/gen_local_species.py
 ~/miniforge3/bin/python3 -I tools/attribution_summary.py | tail -1
 tools/build_sim.sh test 2>&1 | grep -E 'error:|Executed .* tests|TEST (SUCC|FAIL)' | tail -2
