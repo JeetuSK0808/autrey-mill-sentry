@@ -30,11 +30,19 @@ def main():
     ap.add_argument("--target-precision", type=float, default=0.95)
     ap.add_argument("--margin", type=float, default=0.30)
     ap.add_argument("--no-bundle", action="store_true", help="do not overwrite the app's thresholds.json / model_card.json / MODEL_CARD.md")
+    ap.add_argument("--field-val", action="store_true", help="also fit the temperature and the confirm floors on <version>_logits_val_field.npz (degraded validation images from field_logits.py)")
+    ap.add_argument("--out-suffix", default="", help="write <version><suffix>_eval.json / _thresholds.json instead of overwriting")
     args = ap.parse_args()
     split = json.load(open(MODEL / "runs" / f"{args.version}_split.json"))
     labels, tiers = split["labels"], split["tiers"]
     V = np.load(EVAL / f"{args.version}_logits_val.npz"); Tst = np.load(EVAL / f"{args.version}_logits_test.npz")
     Lv, Yv, Lt, Yt = V["logits"], V["y"], Tst["logits"], Tst["y"]
+    field_val = EVAL / f"{args.version}_logits_val_field.npz"; field_test = EVAL / f"{args.version}_logits_test_field.npz"
+    n_clean_val = len(Yv)
+    if args.field_val and field_val.exists():
+        F = np.load(field_val); Lv = np.concatenate([Lv, F["logits"]]); Yv = np.concatenate([Yv, F["y"]])
+        print(f"val: {n_clean_val} clean + {len(F['y'])} degraded images for calibration and thresholds", flush=True)
+    FT = np.load(field_test) if field_test.exists() else None
 
     # 1. temperature scaling on val
     T = minimize_scalar(lambda t: nll(t, Lv, Yv), bounds=(0.5, 5.0), method="bounded").x
@@ -75,6 +83,12 @@ def main():
     prec_v, cov_v, n_v, _ = confirm_stats(Pv, Yv, best_thr, per_class)
     prec_t, cov_t, n_t, fcn_t = confirm_stats(Pt, Yt, best_thr, per_class)
     print(f"confirm threshold {best_thr:.2f} (+{len(per_class)} per-class) margin {args.margin}: val precision {prec_v:.3f} coverage {cov_v:.3f} | test precision {prec_t:.3f} coverage {cov_t:.3f} n={n_t}", flush=True)
+    test_field = None
+    if FT is not None:
+        Pf = softmax(FT["logits"] / T); prec_f, cov_f, n_f, fcn_f = confirm_stats(Pf, FT["y"], best_thr, per_class)
+        test_field = {"precision": prec_f, "coverage": cov_f, "n": n_f, "nativeFalseConfirmRate": fcn_f, "images": int(len(FT["y"])), "top1": float((Pf.argmax(1) == FT["y"]).mean()), "ece": ece(Pf, FT["y"]),
+                      "perCondition": {c: {"precision": confirm_stats(Pf[FT["condition"] == c], FT["y"][FT["condition"] == c], best_thr, per_class)[0], "coverage": confirm_stats(Pf[FT["condition"] == c], FT["y"][FT["condition"] == c], best_thr, per_class)[1]} for c in sorted(set(FT["condition"].tolist()))}}
+        print(f"degraded test ({len(FT['y'])} images): precision {prec_f:.3f} coverage {cov_f:.3f} n={n_f} top1 {test_field['top1']:.3f} ECE {test_field['ece']:.4f}", flush=True)
 
     # 3. per-class metrics on test
     top = Pt.argmax(1)
@@ -105,17 +119,17 @@ def main():
     overall = {"top1": float((top == Yt).mean()), "top3": float((np.argsort(-Pt, 1)[:, :3] == Yt[:, None]).any(1).mean()), "testImages": int(len(Yt))}
     out = {"version": args.version, "arch": split.get("arch"), "inputSize": split.get("size"), "epochs": split.get("epochs"), "evaluatedOn": time.strftime("%Y-%m-%d"), "temperature": float(T), "ece_val_raw": ece(softmax(Lv), Yv), "ece_val": ece(Pv, Yv), "ece_test": ece(Pt, Yt),
            "confirm": {"threshold": best_thr, "margin": args.margin, "targetPrecision": args.target_precision, "perClass": per_class,
-                       "val": {"precision": prec_v, "coverage": cov_v, "n": n_v}, "test": {"precision": prec_t, "coverage": cov_t, "n": n_t, "nativeFalseConfirmRate": fcn_t}},
+                       "val": {"precision": prec_v, "coverage": cov_v, "n": n_v, "cleanImages": int(n_clean_val), "degradedImages": int(len(Yv) - n_clean_val)}, "test": {"precision": prec_t, "coverage": cov_t, "n": n_t, "nativeFalseConfirmRate": fcn_t}, "testField": test_field},
            "overall": overall, "tier1": t1m, "tier2": t2m, "native": natm, "perClass": per, "hardestConfusions": hardest, "notPlantRejectRate": reject,
            "split": split["split_sizes"], "observers": {"train": split["train_observers"], "val": split["val_observers"], "test": split["test_observers"]},
            "confusion_labels": labels, "confusion": cm.tolist()}
     EVAL.mkdir(exist_ok=True)
-    json.dump(out, open(EVAL / f"{args.version}_eval.json", "w"), indent=1)
+    json.dump(out, open(EVAL / f"{args.version}{args.out_suffix}_eval.json", "w"), indent=1)
     thresholds = {"confirmMinProbability": best_thr, "confirmMinMargin": args.margin, "possibleMinProbability": 0.55, "nativeMinProbability": 0.60,
                   "notPlantMinProbability": 0.50, "perClassConfirmMin": per_class, "lockOnWindow": 8, "lockOnAgreeCount": 5, "lockOnMeanProbability": 0.60,
                   "minSharpness": 10.0, "minMeanLuminance": 0.08, "maxMeanLuminance": 0.96, "maxClippedFraction": 0.40, "minSubjectFraction": 0.04,
                   "maxSubjectFraction": 0.995, "maxMotion": 0.30, "maxEntropyForConfirm": 0.45, "liveEvidenceWeight": 0.35, "embeddingGateEnabled": True}
-    json.dump(thresholds, open(EVAL / f"{args.version}_thresholds.json", "w"), indent=1)
+    json.dump(thresholds, open(EVAL / f"{args.version}{args.out_suffix}_thresholds.json", "w"), indent=1)
     if not args.no_bundle: json.dump(thresholds, open(RES / "thresholds.json", "w"), indent=1)
     card = {"status": "evaluated", "modelVersion": args.version, "evaluatedOn": out["evaluatedOn"], "testObservations": int(len({pathlib.Path(str(x)).stem.split("_")[0] for x in Tst["paths"].tolist()})) if "paths" in Tst else None,
             "tier1": {**(t1m or {}), "precisionAtConfirm": prec_t, "coverageAtConfirm": cov_t, "confirmThreshold": best_thr},
@@ -123,7 +137,7 @@ def main():
             "ece": out["ece_test"], "notPlantRejectRate": reject, "hardestConfusions": hardest[:5],
             "fieldAccuracy": None, "fieldPhotos": None, "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split",
             "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."}
-    json.dump(card, open(EVAL / f"{args.version}_model_card.json", "w"), indent=1)
+    json.dump(card, open(EVAL / f"{args.version}{args.out_suffix}_model_card.json", "w"), indent=1)
     if not args.no_bundle:
         json.dump(card, open(RES / "model_card.json", "w"), indent=1)
         write_model_card_md(out, card, labels, tiers)

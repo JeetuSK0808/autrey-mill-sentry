@@ -16,6 +16,12 @@ ck = torch.load("model/checkpoints/v4_best.pt", map_location="cpu", weights_only
 json.dump({"version": "v4", "labels": ck["labels"]}, open("AutreyMillSentry/Resources/labels.json", "w"))
 print("labels.json", len(ck["labels"]))
 PY
+# field-aware calibration and confirm floors: degraded val/test logits, then re-evaluate both models with --field-val
+for V in v4 v4b; do
+  $P model/field_logits.py --version $V --split val | tail -1
+  $P model/field_logits.py --version $V --split test | tail -1
+  $P model/evaluate.py --version $V --target-precision 0.98 --no-bundle --field-val | grep -E 'temperature|confirm threshold|degraded test'
+done
 cp model/eval/v4_thresholds.json $RES/thresholds.json
 $P model/compute_centroids.py --version v4 --keep 0.90 --bundle | tail -1
 $P model/compare_models.py v4b v4 --write-card | tail -1
