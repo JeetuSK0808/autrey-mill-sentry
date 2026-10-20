@@ -87,8 +87,12 @@ class FarSubject:
     def __call__(self, img):
         if random.random() >= self.p: return img
         from PIL import ImageFilter, ImageEnhance
+        # work at ~360 px: the random resized crop that follows outputs 224-288 px anyway, and PIL blur on a
+        # full-size doubled copy was the most expensive step in the whole pipeline
+        if min(img.size) > 360:
+            f = 360 / min(img.size); img = img.resize((max(8, int(img.size[0] * f)), max(8, int(img.size[1] * f))))
         w, h = img.size
-        bg = img.resize((w * 2, h * 2)).crop((w // 2, h // 2, w // 2 + w, h // 2 + h)).filter(ImageFilter.GaussianBlur(random.uniform(3, 8)))
+        bg = img.resize((w * 2, h * 2)).crop((w // 2, h // 2, w // 2 + w, h // 2 + h)).filter(ImageFilter.GaussianBlur(random.uniform(2, 5)))
         bg = ImageEnhance.Brightness(bg).enhance(random.uniform(0.5, 0.9))
         s = random.uniform(0.3, 0.6); sm = img.resize((max(8, int(w * s)), max(8, int(h * s))))
         bg.paste(sm, (int((w - sm.size[0]) * random.uniform(0.15, 0.85)), int((h - sm.size[1]) * random.uniform(0.15, 0.85))))
