@@ -165,6 +165,12 @@ final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             sessionQueue.async { [self] in
                 guard session.isRunning else { cont.resume(throwing: CameraError.notRunning); return }
                 photoContinuation = cont
+                // Let focus and exposure settle (up to 0.4 s) so a shutter tap right after a tap-to-focus or a
+                // move is not a blurred or half-exposed frame.
+                var waited = 0
+                while let d = device, (d.isAdjustingFocus || d.isAdjustingExposure), waited < 8 {
+                    Thread.sleep(forTimeInterval: 0.05); waited += 1
+                }
                 let settings = AVCapturePhotoSettings()
                 settings.photoQualityPrioritization = .quality
                 photoOutput.capturePhoto(with: settings, delegate: self)

@@ -17,6 +17,11 @@ struct ModelCard: Codable {
     var testObservations: Int?
     var tier1: TierMetrics?
     var tier2: TierMetrics?
+    var native: TierMetrics?
+    /// From model/field_eval.py: held-out photos degraded like trail shots (dusk, backlight, blur, far subject...).
+    var fieldConditionsMeanTop1: Double?
+    var fieldConditionsCleanTop1: Double?
+    var fieldConditionsWorst: String?
     var ece: Double?
     var notPlantRejectRate: Double?
     var hardestConfusions: [String]?
@@ -61,6 +66,15 @@ struct AboutView: View {
                 metric("Tuned species (\(t.classes) classes)", t)
             }
             if let t = m.tier2 { metric("Broad coverage (\(t.classes) classes)", t) }
+            if let t = m.native { metric("Natives known by name (\(t.classes) classes, never reported)", t) }
+            if let f = m.fieldConditionsMeanTop1 {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Simulated trail conditions").font(.headline)
+                    if let c = m.fieldConditionsCleanTop1 { row("Top-1 on clean held-out photos", pct(c)) }
+                    row("Top-1 averaged over 15 degradations (dusk, backlight, blur, far, casts...)", pct(f))
+                    if let w = m.fieldConditionsWorst { Text("Weakest: \(w)").font(.footnote).foregroundStyle(.secondary) }
+                }
+            }
             if let ece = m.ece { row("Calibration error (ECE)", String(format: "%.3f", ece)) }
             if let r = m.notPlantRejectRate { row("Not-a-plant photos rejected", pct(r)) }
             if let n = m.testObservations { row("Held-out test set", "\(n) observations, split by observer") }

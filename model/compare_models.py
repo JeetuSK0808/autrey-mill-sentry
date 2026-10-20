@@ -106,10 +106,18 @@ def main():
                 "testObservations": len({os.path.basename(p).split("_")[0] for p in paths}),
                 "tier1": {"classes": sum(1 for l in labels if tiers[l] == "tier1"), "testImages": e["tier1"]["n"], "top1": e["tier1"]["top1"], "top3": e["tier1"]["top3"], "precisionAtConfirm": e["confirm_precision"], "coverageAtConfirm": e["confirm_coverage_tier1"], "confirmThreshold": e["confirm_threshold"]},
                 "tier2": {"classes": sum(1 for l in labels if tiers[l] == "tier2"), "testImages": e["tier2"]["n"], "top1": e["tier2"]["top1"], "top3": e["tier2"]["top3"], "precisionAtConfirm": None, "coverageAtConfirm": None, "confirmThreshold": None},
+                "native": {"classes": sum(1 for l in labels if tiers[l] == "native"), "testImages": e["native"]["n"], "top1": e["native"]["top1"], "top3": e["native"]["top3"], "precisionAtConfirm": None, "coverageAtConfirm": None, "confirmThreshold": None},
                 "ece": e["ece_primary"], "notPlantRejectRate": e["not_plant"]["top1"], "hardestConfusions": evb["hardestConfusions"][:5],
                 "fieldAccuracy": None, "fieldPhotos": None,
                 "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split; two models averaged on the captured still",
                 "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."}
+        fe = field.get(f"field_{b}+{a}")
+        if fe:
+            degraded = {k: v["top1"] for k, v in fe["conditions"].items() if k != "clean"}
+            worst = sorted(degraded.items(), key=lambda kv: kv[1])[:3]
+            card["fieldConditionsMeanTop1"] = fe["mean_over_degraded"]["top1"]
+            card["fieldConditionsCleanTop1"] = fe["conditions"]["clean"]["top1"]
+            card["fieldConditionsWorst"] = ", ".join(f"{k.replace('_', ' ')} {100*v:.0f}%" for k, v in worst)
         json.dump(card, open(RES / "model_card.json", "w"), indent=1)
         pct = lambda v: "n/a" if v is None else f"{100*v:.1f}%"
         L = [f"# Model card: InvasiveClassifier {b} + {a} ensemble", "",
