@@ -145,7 +145,7 @@ def main():
         if field:
             conds = list(next(iter(field.values()))["conditions"].keys())
             for c in conds:
-                L.append(f"| {c} | " + " | ".join(pct(f["conditions"][c]["top1"]) for f in field.values()) + " |")
+                L.append(f"| {c} | " + " | ".join(pct(f["conditions"].get(c, {}).get("top1")) for f in field.values()) + " |")
             L.append("| **mean over degraded** | " + " | ".join(pct(f["mean_over_degraded"]["top1"]) for f in field.values()) + " |")
         if before:
             L += ["", "## The preserve's common natives",

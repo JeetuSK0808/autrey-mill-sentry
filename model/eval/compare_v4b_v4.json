@@ -1,0 +1,135 @@
+{
+ "testSet": "v4 test split, 5896 images",
+ "results": {
+  "v4b": {
+   "top1_all": 0.8298846675712347,
+   "top3_all": 0.9168928086838535,
+   "tier1": {
+    "n": 772,
+    "top1": 0.883419689119171,
+    "top3": 0.9365284974093264
+   },
+   "tier2": {
+    "n": 1832,
+    "top1": 0.8362445414847162,
+    "top3": 0.9290393013100436
+   },
+   "native": {
+    "n": 3024,
+    "top1": 0.8558201058201058,
+    "top3": 0.9341931216931217
+   },
+   "other_plant": {
+    "n": 183,
+    "top1": 0.20218579234972678,
+    "top3": 0.4972677595628415
+   },
+   "not_plant": {
+    "n": 85,
+    "top1": 0.6352941176470588,
+    "top3": 0.7647058823529411
+   },
+   "cultivated": {
+    "n": 0,
+    "top1": null,
+    "top3": null
+   },
+   "confirm_precision": 0.968365553602812,
+   "confirm_coverage_tier1": 0.7137305699481865,
+   "confirm_n": 569,
+   "flagged_natives": 0.020833333333333332,
+   "confirmed_natives": 0.002976190476190476,
+   "flagged_other_plant_wild": 0.1092896174863388,
+   "confirmed_other_plant_wild": 0.0,
+   "flagged_cultivated": null,
+   "confirmed_cultivated": null,
+   "flagged_not_plant": 0.03529411764705882,
+   "confirmed_not_plant": 0.0,
+   "true_invasives_flagged": 0.8548387096774194
+  },
+  "v4": {
+   "top1_all": 0.8281886024423338,
+   "top3_all": 0.9148575305291723,
+   "tier1": {
+    "n": 772,
+    "top1": 0.8575129533678757,
+    "top3": 0.9378238341968912
+   },
+   "tier2": {
+    "n": 1832,
+    "top1": 0.8400655021834061,
+    "top3": 0.9295851528384279
+   },
+   "native": {
+    "n": 3024,
+    "top1": 0.8531746031746031,
+    "top3": 0.9279100529100529
+   },
+   "other_plant": {
+    "n": 183,
+    "top1": 0.2677595628415301,
+    "top3": 0.5355191256830601
+   },
+   "not_plant": {
+    "n": 85,
+    "top1": 0.6235294117647059,
+    "top3": 0.7411764705882353
+   },
+   "cultivated": {
+    "n": 0,
+    "top1": null,
+    "top3": null
+   },
+   "confirm_precision": 0.9652014652014652,
+   "confirm_coverage_tier1": 0.6826424870466321,
+   "confirm_n": 546,
+   "flagged_natives": 0.023809523809523808,
+   "confirmed_natives": 0.002976190476190476,
+   "flagged_other_plant_wild": 0.1092896174863388,
+   "confirmed_other_plant_wild": 0.0,
+   "flagged_cultivated": null,
+   "confirmed_cultivated": null,
+   "flagged_not_plant": 0.058823529411764705,
+   "confirmed_not_plant": 0.011764705882352941,
+   "true_invasives_flagged": 0.8490783410138248
+  },
+  "ensemble": {
+   "top1_all": 0.8436227951153324,
+   "top3_all": 0.9240162822252375,
+   "ece_primary": 0.011317238377311379,
+   "confirm_threshold": 0.8800000000000003,
+   "tier1": {
+    "n": 772,
+    "top1": 0.8847150259067358,
+    "top3": 0.944300518134715
+   },
+   "tier2": {
+    "n": 1832,
+    "top1": 0.8537117903930131,
+    "top3": 0.9405021834061136
+   },
+   "native": {
+    "n": 3024,
+    "top1": 0.8697089947089947,
+    "top3": 0.9378306878306878
+   },
+   "other_plant": {
+    "n": 183,
+    "top1": 0.22404371584699453,
+    "top3": 0.5081967213114754
+   },
+   "not_plant": {
+    "n": 85,
+    "top1": 0.6588235294117647,
+    "top3": 0.788235294117647
+   },
+   "confirm_precision": 0.9752851711026616,
+   "confirm_coverage_tier1": 0.6645077720207254,
+   "confirm_n": 526,
+   "flagged_natives": 0.018849206349206348,
+   "flagged_other_plant_wild": 0.09836065573770492,
+   "flagged_not_plant": 0.047058823529411764,
+   "true_invasives_flagged": 0.8598310291858678
+  }
+ }
+}

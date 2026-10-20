@@ -1,28 +1,37 @@
 {
  "status": "evaluated",
- "modelVersion": "v4",
+ "modelVersion": "v4+v4b ensemble",
  "evaluatedOn": "2026-10-20",
  "testObservations": 4405,
  "tier1": {
   "classes": 14,
   "testImages": 772,
-  "top1": 0.8575129533678757,
-  "top3": 0.9378238341968912,
-  "precisionAtConfirm": 0.9617486338797814,
-  "coverageAtConfirm": 0.6839378238341969,
+  "top1": 0.8847150259067358,
+  "top3": 0.944300518134715,
+  "precisionAtConfirm": 0.9752851711026616,
+  "coverageAtConfirm": 0.6645077720207254,
   "confirmThreshold": 0.8800000000000003
  },
  "tier2": {
   "classes": 84,
   "testImages": 1832,
-  "top1": 0.8400655021834061,
-  "top3": 0.9295851528384279,
+  "top1": 0.8537117903930131,
+  "top3": 0.9405021834061136,
+  "precisionAtConfirm": null,
+  "coverageAtConfirm": null,
+  "confirmThreshold": null
+ },
+ "native": {
+  "classes": 88,
+  "testImages": 3024,
+  "top1": 0.8697089947089947,
+  "top3": 0.9378306878306878,
   "precisionAtConfirm": null,
   "coverageAtConfirm": null,
   "confirmThreshold": null
  },
  "ece": 0.011317238377311379,
- "notPlantRejectRate": 0.49411764705882355,
+ "notPlantRejectRate": 0.6588235294117647,
  "hardestConfusions": [
   "asimina_parviflora -> asimina_triloba (8)",
   "sonchus_oleraceus -> sonchus_asper (6)",
@@ -32,6 +41,9 @@
  ],
  "fieldAccuracy": null,
  "fieldPhotos": null,
- "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split",
- "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."
+ "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split; two models averaged on the captured still",
+ "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet.",
+ "fieldConditionsMeanTop1": 0.8301,
+ "fieldConditionsCleanTop1": 0.8738,
+ "fieldConditionsWorst": "far 75%, far focus 78%, dusk noisy 79%"
 }
