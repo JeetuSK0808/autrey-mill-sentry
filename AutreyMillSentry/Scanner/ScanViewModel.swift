@@ -168,7 +168,8 @@ final class ScanViewModel {
         case .idle: guidance = "Plant in view, tap to capture"
         }
         let lockText: String = { switch state { case .locked: return "locked"; case .tracking(_, let a, let n): return "tracking \(a)/\(n)"; case .idle: return "idle" } }()
-        let sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: false, hard: nil, soft: soft?.rawValue, top: top3, lock: lockText)
+        var sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: false, hard: nil, soft: soft?.rawValue, top: top3, lock: lockText)
+        sample.focus = focus != nil; sample.lockP = lockTop.probability; sample.torch = autoTorchOn || torchModeLive == .on
         Task { @MainActor in self.diagnostics?.record(live: sample); self.applyLive(state: state, topName: name, guidance: guidance, good: good, freshLock: freshLock, autoCapture: auto) }
     }
 

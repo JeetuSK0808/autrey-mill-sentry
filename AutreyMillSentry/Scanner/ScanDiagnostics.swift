@@ -6,7 +6,13 @@ import Observation
 @MainActor
 @Observable
 final class ScanDiagnostics {
-    struct LiveSample: Codable { var t: Double; var sharp: Double; var luma: Double; var clip: Double; var subject: Double; var motion: Double; var person: Bool; var hard: String?; var soft: String?; var top: [String]; var lock: String }
+    struct LiveSample: Codable {
+        var t: Double; var sharp: Double; var luma: Double; var clip: Double; var subject: Double; var motion: Double; var person: Bool
+        var hard: String?; var soft: String?; var top: [String]; var lock: String
+        var focus: Bool = false      // the live pass also looked at the salient region
+        var lockP: Double = 0        // probability the lock-on tracked (top class, or combined native mass)
+        var torch: Bool = false
+    }
     struct StillSample: Codable { var t: Double; var source: String; var sharp: Double; var luma: Double; var clip: Double; var subject: Double; var person: Bool; var top: [String]; var outcome: String; var model: String; var similarity: Double?; var floor: Double? }
 
     private(set) var frames = 0
@@ -37,7 +43,7 @@ final class ScanDiagnostics {
         lines.append("model \(modelVersion)  frames \(frames)  classified \(classified)  \(cameraState)")
         if let l = lastLive {
             lines.append(String(format: "live sharp %.0f luma %.2f clip %.2f subj %.2f motion %.2f%@", l.sharp, l.luma, l.clip, l.subject, l.motion, l.person ? " PERSON" : ""))
-            lines.append("gate \(l.hard ?? "-")/\(l.soft ?? "-")  lock \(l.lock)")
+            lines.append(String(format: "gate %@/%@  lock %@ p %.2f%@%@", l.hard ?? "-", l.soft ?? "-", l.lock, l.lockP, l.focus ? " focus" : "", l.torch ? " torch" : ""))
             lines.append("top " + l.top.joined(separator: " | "))
         }
         if let s = lastStill {
