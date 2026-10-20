@@ -137,9 +137,9 @@ LOCAL_NATIVE = {
     "vaccinium_arboreum": ('Vaccinium arboreum', 81818, 'sparkleberry'),
     "juniperus_virginiana": ('Juniperus virginiana', 49399, 'eastern redcedar'),
     "impatiens_capensis": ('Impatiens capensis', 47888, 'common jewelweed'),
-    "quercus_alba": ('Quercus alba', 49001, None),
-    "arundinaria_gigantea": ('Arundinaria gigantea', 122631, None),
-    "vitis_aestivalis": ('Vitis aestivalis', 128751, None),
+    "quercus_alba": ('Quercus alba', 54779, 'white oak'),
+    "arundinaria_gigantea": ('Arundinaria gigantea', 121747, 'river cane'),
+    "vitis_aestivalis": ('Vitis aestivalis', 128931, 'summer grape'),
 }
 # Tier 2 candidates: the rest of the GISC plant list. Excluded by hand: submerged aquatics (not phone-scannable),
 # turf grasses, and genus-only entries. The survey keeps those with >= MIN_T2 licensed photos.
