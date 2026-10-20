@@ -48,7 +48,8 @@ struct SettingsView: View {
                 } header: { Text("Privacy") }
 
                 Section {
-                    TextField("Preserve dashboard address", text: $settings.dashboardURL)
+                    TextField("Preserve dashboard address", text: $settings.dashboardURL, axis: .vertical)
+                        .lineLimit(1...3)
                         .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
                     Text(settings.dashboard == nil ? "Not set. Reports can only be exported by Share or Mail." : "Reports you send go to this dashboard, and staff status changes come back to your reports.").font(.caption).foregroundStyle(.secondary)
                 } header: { Text("Preserve link") }
