@@ -1,0 +1,14 @@
+{
+ "model": "v4+v4b",
+ "photos": 1500,
+ "decisions": {
+  "native": 1421,
+  "rescan": 58,
+  "possible": 14,
+  "noplant": 5,
+  "confirmed": 2
+ },
+ "flaggedAsInvasive": 0.010666666666666666,
+ "confirmedInvasive": 0.0013333333333333333,
+ "namedCorrectly": 0.876
+}
