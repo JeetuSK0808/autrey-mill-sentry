@@ -94,7 +94,10 @@ def decide(p, labels, tiers, th):
     if tier == "tier2": return "possible" if pt >= th["possibleMinProbability"] else "rescan"
     if inv and pt < th["nativeMinProbability"]: return "possible"
     if pt >= th["nativeMinProbability"]: return "native"
-    return "possible" if inv else "rescan"
+    if inv: return "possible"
+    benign = sum(float(p[i]) for i, l in enumerate(labels) if l != "not_plant" and (l == "other_plant" or tiers[l] == "native"))
+    if benign >= th["nativeMinProbability"]: return "native"
+    return "rescan"
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--version", default="v3"); ap.add_argument("--ensemble", default=None, help="second checkpoint averaged on the still")

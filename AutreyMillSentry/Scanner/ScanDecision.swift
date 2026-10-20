@@ -188,6 +188,12 @@ enum ScanDecision {
                 return .looksNative(label: top.label == "other_plant" || top.label == "not_plant" ? nil : top.label, confidence: top.probability)
             }
             if !invasiveCandidates.isEmpty { return .possibleInvasive(candidates: invasiveCandidates) }
+            // With many named natives the mass can split between look-alikes (two oaks, two ferns). If the non-target
+            // classes together are convincing and no invasive is plausible, it is still a native: say so.
+            let benignMass = classification.probabilities.filter { $0.label != "not_plant" && ($0.label == "other_plant" || catalog.tier(of: $0.label) == .native) }.map(\.probability).reduce(0, +)
+            if benignMass >= t.nativeMinProbability {
+                return .looksNative(label: top.probability >= 0.35 && top.label != "other_plant" && top.label != "not_plant" ? top.label : nil, confidence: benignMass)
+            }
             return .rescan(softGate(quality, thresholds: t) ?? .ambiguous)
         }
     }

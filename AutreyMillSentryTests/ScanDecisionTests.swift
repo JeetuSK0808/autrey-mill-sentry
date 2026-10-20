@@ -182,3 +182,27 @@ final class FocusCropTests: XCTestCase {
         XCTAssertEqual(v.last!.width, 120, accuracy: 1); XCTAssertEqual(v.last!.height, 90, accuracy: 1)
     }
 }
+
+final class NativeMassTests: XCTestCase {
+    private var catalog: SpeciesCatalog {
+        var s = SpeciesCatalog.builtIn
+        for l in ["quercus_alba", "quercus_nigra", "quercus_rubra"] {
+            s.append(Species(label: l, scientificName: l, commonName: l, tier: .native, aggressiveness: 0, documentedAtPreserve: false, whyItMatters: "", howToRecognize: "", whatToPhotograph: "", lookAlike: nil, sourceURL: ""))
+        }
+        return SpeciesCatalog(species: s)
+    }
+
+    func testMassSplitBetweenSimilarNativesStillReadsAsNative() {
+        let c = ClassificationResult(probabilities: [.init(label: "quercus_alba", probability: 0.38), .init(label: "quercus_nigra", probability: 0.27), .init(label: "quercus_rubra", probability: 0.12), .init(label: "ligustrum_sinense", probability: 0.08), .init(label: "other_plant", probability: 0.05)], modelVersion: "t")
+        let out = ScanDecision.decideRaw(quality: .perfect, classification: c, catalog: catalog, thresholds: .defaults)
+        guard case .looksNative(let label, let conf) = out else { return XCTFail("expected looksNative, got \(out)") }
+        XCTAssertEqual(label, "quercus_alba"); XCTAssertEqual(conf, 0.82, accuracy: 1e-9)
+    }
+
+    func testPlausibleInvasiveStillWinsOverSplitNatives() {
+        let c = ClassificationResult(probabilities: [.init(label: "ligustrum_sinense", probability: 0.56), .init(label: "quercus_alba", probability: 0.22), .init(label: "quercus_nigra", probability: 0.2)], modelVersion: "t")
+        if case .looksNative = ScanDecision.decideRaw(quality: .perfect, classification: c, catalog: catalog, thresholds: .defaults) { XCTFail("an invasive at 0.56 must go to staff") }
+        let d = ClassificationResult(probabilities: [.init(label: "quercus_alba", probability: 0.3), .init(label: "ligustrum_sinense", probability: 0.25), .init(label: "quercus_nigra", probability: 0.2)], modelVersion: "t")
+        if case .looksNative = ScanDecision.decideRaw(quality: .perfect, classification: d, catalog: catalog, thresholds: .defaults) { XCTFail("benign mass 0.50 is below the 0.60 bar: this must stay ambiguous") }
+    }
+}
