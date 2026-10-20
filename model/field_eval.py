@@ -59,12 +59,21 @@ def motion_blur(img, rng):   # hand shake: 13 px line kernel at a random angle
     x = torch.from_numpy(a).permute(2, 0, 1)[None]; kk = torch.from_numpy(ker)[None, None].repeat(3, 1, 1, 1)
     y = F.conv2d(F.pad(x, (c, c, c, c), mode="reflect"), kk, groups=3)[0].permute(1, 2, 0).numpy(); return _pil(y)
 def defocus(img, rng): return img.filter(ImageFilter.GaussianBlur(2.6))
-def far(img, rng):           # subject at 42% of the frame on a blurred darker copy of its own surroundings
+def _far(img, rng):
     w, h = img.size
     bg = img.resize((w * 2, h * 2), Image.BILINEAR).crop((w // 2, h // 2, w // 2 + w, h // 2 + h)).filter(ImageFilter.GaussianBlur(6))
     bg = ImageEnhance.Brightness(bg).enhance(0.7)
     s = 0.42; sm = img.resize((max(8, int(w * s)), max(8, int(h * s))), Image.LANCZOS)
-    bg.paste(sm, (int((w - sm.size[0]) * rng.uniform(0.3, 0.7)), int((h - sm.size[1]) * rng.uniform(0.3, 0.7)))); return bg
+    x0, y0 = int((w - sm.size[0]) * rng.uniform(0.3, 0.7)), int((h - sm.size[1]) * rng.uniform(0.3, 0.7))
+    bg.paste(sm, (x0, y0)); return bg, (x0, y0, sm.size[0], sm.size[1])
+def far(img, rng):           # subject at 42% of the frame on a blurred darker copy of its own surroundings
+    return _far(img, rng)[0]
+def far_focus(img, rng):     # the same, but the app's focus crop found it: padded square crop around the subject box,
+    out, (x0, y0, bw, bh) = _far(img, rng)   # averaged with the full frame by the harness (see probs_focus)
+    w, h = out.size; px, py = bw * 0.25, bh * 0.25
+    side = max(bw + 2 * px, bh + 2 * py); cx, cy = x0 + bw / 2, y0 + bh / 2
+    box = (max(0, cx - side / 2), max(0, cy - side / 2)); box = (int(box[0]), int(box[1]), int(min(w, box[0] + side)), int(min(h, box[1] + side)))
+    return (out, out.crop(box))
 def zoomed(img, rng):        # too close: centre 55 %
     w, h = img.size; cw, ch = int(w * 0.55), int(h * 0.55)
     return img.crop(((w - cw) // 2, (h - ch) // 2, (w - cw) // 2 + cw, (h - ch) // 2 + ch)).resize((w, h), Image.BILINEAR)
@@ -76,7 +85,7 @@ def rot90(img, rng): return img.transpose(Image.ROTATE_90)
 def lowres(img, rng):
     w, h = img.size; return img.resize((96, int(96 * h / w)), Image.BILINEAR).resize((w, h), Image.BILINEAR)
 
-CONDITIONS = [clean, dim, dusk_noisy, torch_lit, backlit, overexposed, dappled, motion_blur, defocus, far, zoomed, cool_cast, warm_cast, jpeg30, rot90, lowres]
+CONDITIONS = [clean, dim, dusk_noisy, torch_lit, backlit, overexposed, dappled, motion_blur, defocus, far, far_focus, zoomed, cool_cast, warm_cast, jpeg30, rot90, lowres]
 
 def entropy_norm(p):
     p = p[p > 0]; return float(-(p * np.log(p)).sum() / math.log(max(len(p), 10)))
@@ -119,6 +128,9 @@ def main():
     from torchvision.transforms import v2 as TV
     prep = TV.Compose([TV.Resize(int(size * 1.14), antialias=True), TV.CenterCrop(size), TV.ToImage(), TV.ToDtype(torch.float32, scale=True), TV.Normalize(MEAN, STD)])
     def probs(imgs):
+        # a (full, crop) pair means "average the two views", like the app's focus crop
+        if imgs and isinstance(imgs[0], tuple):
+            return (probs([a for a, _ in imgs]) + probs([b for _, b in imgs])) / 2
         x = torch.stack([prep(i) for i in imgs]).to(device)
         with torch.no_grad():
             p = torch.softmax(model(x).float() / T, 1)
