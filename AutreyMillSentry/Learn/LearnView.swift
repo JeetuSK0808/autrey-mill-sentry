@@ -74,7 +74,7 @@ private struct LearnHeroCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Spot · Verify · Act · Tell").font(.caption.weight(.bold)).foregroundStyle(.white.opacity(0.85)).tracking(1.5)
             Text("Know the invaders. Know their look-alikes.").font(.title2.bold()).foregroundStyle(.white)
-            Text("Every species here is on the Georgia Invasive Species Council list or is a native it gets mistaken for. The photos are real, from iNaturalist observers in the Southeast.")
+            Text("Every species here is on the Georgia Invasive Species Council list, a native it gets mistaken for, or a common native of the preserve's own neighbourhood. The photos are real, from iNaturalist observers in the Southeast.")
                 .font(.subheadline).foregroundStyle(.white.opacity(0.9))
         }
         .padding(18)
