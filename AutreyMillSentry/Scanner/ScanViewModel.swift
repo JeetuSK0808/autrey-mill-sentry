@@ -114,7 +114,7 @@ final class ScanViewModel {
     nonisolated private func autoTorch(luminance: Double) {
         guard torchModeLive == .auto else { return }
         if luminance < 0.16 { darkFrames += 1; brightFrames = 0 } else if luminance > 0.45 { brightFrames += 1; darkFrames = 0 } else { darkFrames = 0; brightFrames = 0 }
-        if !autoTorchOn && darkFrames >= 6 { autoTorchOn = true; camera.setTorch(true) }
+        if !autoTorchOn && darkFrames >= 4 { autoTorchOn = true; camera.setTorch(true) }
         if autoTorchOn && brightFrames >= 24 { autoTorchOn = false; camera.setTorch(false) }
     }
 
