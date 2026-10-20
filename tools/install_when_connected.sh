@@ -14,11 +14,16 @@ while true; do
   if xcodebuild -project AutreyMillSentry.xcodeproj -scheme AutreyMillSentry -configuration Debug -destination "id=$UDID" \
        -derivedDataPath build/DerivedData-device -allowProvisioningUpdates -destination-timeout 90 build >"$LOG" 2>&1; then
     APP=build/DerivedData-device/Build/Products/Debug-iphoneos/AutreyMillSentry.app
-    if xcrun devicectl device install app --device "$UDID" "$APP" 2>&1 | tail -2 && \
-       xcrun devicectl device process launch --terminate-existing --device "$UDID" "$BUNDLE" 2>&1 | tail -1; then
-      echo "INSTALLED AND LAUNCHED $(date). Free-ID build expires in 7 days."; exit 0
+    if xcrun devicectl device install app --device "$UDID" "$APP" > build/device_install_out.txt 2>&1; then
+      echo "INSTALLED $(date). Free-ID build expires in 7 days."
+      if xcrun devicectl device process launch --terminate-existing --device "$UDID" "$BUNDLE" > build/device_launch_out.txt 2>&1; then
+        echo "LAUNCHED $(date)"
+      else
+        echo "installed but not launched (phone locked?): $(grep -m1 -o 'Unable to launch[^.]*' build/device_launch_out.txt). Open the app by hand."
+      fi
+      exit 0
     fi
-    echo "install/launch failed $(date), retrying"
+    echo "install failed $(date): $(tail -1 build/device_install_out.txt | cut -c1-160), retrying"
   else
     echo "build failed $(date): $(grep -m1 -E 'error:|ERROR' "$LOG" | cut -c1-160)"
   fi
