@@ -1,29 +1,29 @@
 {
  "holdout": "data/holdout_cultivated (fresh cultivated/house/garden plants, no model trained on them)",
  "results": {
-  "v2": {
-   "n": 300,
-   "confirmedInvasive": 0.01,
-   "possibleInvasive": 0.33,
-   "notFlagged": 0.66,
-   "confirmed_without_gate": 0.013333333333333334,
-   "possible_without_gate": 0.4633333333333333
-  },
-  "v3": {
+  "v4b": {
    "n": 300,
    "confirmedInvasive": 0.0033333333333333335,
-   "possibleInvasive": 0.22,
-   "notFlagged": 0.7766666666666666,
+   "possibleInvasive": 0.14333333333333334,
+   "notFlagged": 0.8533333333333334,
    "confirmed_without_gate": 0.0033333333333333335,
-   "possible_without_gate": 0.24666666666666667
+   "possible_without_gate": 0.17
+  },
+  "v4": {
+   "n": 300,
+   "confirmedInvasive": 0.006666666666666667,
+   "possibleInvasive": 0.12333333333333334,
+   "notFlagged": 0.87,
+   "confirmed_without_gate": 0.006666666666666667,
+   "possible_without_gate": 0.14666666666666667
   },
   "ensemble": {
    "n": 300,
    "confirmedInvasive": 0.0,
-   "possibleInvasive": 0.22333333333333333,
-   "notFlagged": 0.7766666666666666,
+   "possibleInvasive": 0.11,
+   "notFlagged": 0.89,
    "confirmed_without_gate": 0.0,
-   "possible_without_gate": 0.26
+   "possible_without_gate": 0.12333333333333334
   }
  }
 }
