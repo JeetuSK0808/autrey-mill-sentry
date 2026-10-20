@@ -1,6 +1,6 @@
 {
  "source": "iNaturalist, research-grade observations; photo licences as listed",
- "pickedBy": "resolution, licence, aspect and Georgia origin (no model)",
+ "pickedBy": "112 invasive and look-alike species: model v2's most typical photo per class; 74 common natives nearby: best resolution, licence, aspect and Georgia origin (no model)",
  "photos": {
   "ligustrum_sinense": {
    "file": "learn_ligustrum_sinense.jpg",
