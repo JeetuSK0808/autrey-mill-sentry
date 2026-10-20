@@ -1,0 +1,37 @@
+{
+ "status": "evaluated",
+ "modelVersion": "v4",
+ "evaluatedOn": "2026-10-20",
+ "testObservations": 4405,
+ "tier1": {
+  "classes": 14,
+  "testImages": 772,
+  "top1": 0.8575129533678757,
+  "top3": 0.9378238341968912,
+  "precisionAtConfirm": 0.9581151832460733,
+  "coverageAtConfirm": 0.711139896373057,
+  "confirmThreshold": 0.8000000000000003
+ },
+ "tier2": {
+  "classes": 84,
+  "testImages": 1832,
+  "top1": 0.8400655021834061,
+  "top3": 0.9295851528384279,
+  "precisionAtConfirm": null,
+  "coverageAtConfirm": null,
+  "confirmThreshold": null
+ },
+ "ece": 0.014357128470755655,
+ "notPlantRejectRate": 0.5058823529411764,
+ "hardestConfusions": [
+  "asimina_parviflora -> asimina_triloba (8)",
+  "sonchus_oleraceus -> sonchus_asper (6)",
+  "liriope_spicata -> liriope_muscari (6)",
+  "carpinus_caroliniana -> fagus_grandifolia (6)",
+  "paspalum_urvillei -> sorghum_halepense (5)"
+ ],
+ "fieldAccuracy": null,
+ "fieldPhotos": null,
+ "dataSource": "iNaturalist research-grade photos (CC0/CC-BY/CC-BY-NC), observer-level split",
+ "notes": "Held-out accuracy on iNaturalist photos. Field accuracy will be lower and is not measured yet."
+}
