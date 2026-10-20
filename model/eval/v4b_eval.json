@@ -4,42 +4,92 @@
  "inputSize": 288,
  "epochs": 18,
  "evaluatedOn": "2026-10-20",
- "temperature": 0.7672412064491427,
- "ece_val_raw": 0.10724628391250618,
- "ece_val": 0.014420427700982825,
- "ece_test": 0.015077667423844155,
+ "temperature": 0.7891590956723562,
+ "ece_val_raw": 0.09801804244630913,
+ "ece_val": 0.013939651524618249,
+ "ece_test": 0.011000121482700364,
  "confirm": {
-  "threshold": 0.7800000000000002,
+  "threshold": 0.8300000000000003,
   "margin": 0.3,
   "targetPrecision": 0.98,
   "perClass": {
-   "ligustrum_sinense": 0.75,
+   "ligustrum_sinense": 0.98,
    "mahonia_bealei": 0.75,
-   "lonicera_japonica": 0.78,
+   "lonicera_japonica": 0.87,
    "vinca_minor": 0.75,
    "elaeagnus_umbellata": 0.75,
-   "elaeagnus_pungens": 0.84,
-   "hedera_helix": 0.88,
-   "albizia_julibrissin": 0.76,
-   "paulownia_tomentosa": 0.94,
+   "elaeagnus_pungens": 0.83,
+   "hedera_helix": 0.9,
+   "albizia_julibrissin": 0.83,
+   "paulownia_tomentosa": 0.93,
    "microstegium_vimineum": 0.82,
-   "pueraria_montana": 0.76,
+   "pueraria_montana": 0.75,
    "nandina_domestica": 0.75
   },
   "val": {
-   "precision": 0.987792472024415,
-   "coverage": 0.7082421590080233,
-   "n": 983,
+   "precision": 0.9851002865329513,
+   "coverage": 0.6269146608315098,
+   "n": 1745,
    "cleanImages": 7542,
-   "degradedImages": 0
+   "degradedImages": 7540
   },
   "test": {
-   "precision": 0.9562398703403565,
-   "coverage": 0.7642487046632125,
-   "n": 617,
-   "nativeFalseConfirmRate": 0.00425273390036452
+   "precision": 0.9686956521739131,
+   "coverage": 0.7215025906735751,
+   "n": 575,
+   "nativeFalseConfirmRate": 0.0027339003645200487
   },
-  "testField": null
+  "testField": {
+   "precision": 0.9580152671755725,
+   "coverage": 0.6502590673575129,
+   "n": 524,
+   "nativeFalseConfirmRate": 0.002434570906877663,
+   "images": 5890,
+   "top1": 0.7843803056027164,
+   "ece": 0.017275075392043385,
+   "perCondition": {
+    "backlit": {
+     "precision": 0.9615384615384616,
+     "coverage": 0.7936507936507936
+    },
+    "dappled": {
+     "precision": 0.9411764705882353,
+     "coverage": 0.6956521739130435
+    },
+    "defocus": {
+     "precision": 0.9795918367346939,
+     "coverage": 0.6153846153846154
+    },
+    "dim": {
+     "precision": 0.9803921568627451,
+     "coverage": 0.684931506849315
+    },
+    "dusk_noisy": {
+     "precision": 0.9807692307692307,
+     "coverage": 0.5483870967741935
+    },
+    "far": {
+     "precision": 0.8918918918918919,
+     "coverage": 0.5
+    },
+    "lowres": {
+     "precision": 0.9722222222222222,
+     "coverage": 0.7526881720430108
+    },
+    "motion_blur": {
+     "precision": 0.9795918367346939,
+     "coverage": 0.6
+    },
+    "overexposed": {
+     "precision": 0.9464285714285714,
+     "coverage": 0.6794871794871795
+    },
+    "torch_lit": {
+     "precision": 0.9210526315789473,
+     "coverage": 0.625
+    }
+   }
+  }
  },
  "overall": {
   "top1": 0.8298846675712347,

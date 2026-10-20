@@ -4,22 +4,22 @@
  "keep": 0.9,
  "globalFloor": 0.29271261394023895,
  "negativesPossible": {
-  "withoutGate": 0.04374240583232078,
-  "withGate": 0.037363304981773995,
+  "withoutGate": 0.042831105710814096,
+  "withGate": 0.03675577156743621,
   "trueInvasivesLostToUnknown": 0.021121351766513058
  },
  "test": {
   "withoutGate": {
-   "precision": 0.9581151832460733,
-   "coverage": 0.711139896373057,
-   "n": 573,
-   "negativesConfirmed": 0.0036452004860267314
+   "precision": 0.9617486338797814,
+   "coverage": 0.6839378238341969,
+   "n": 549,
+   "negativesConfirmed": 0.003037667071688943
   },
   "withGate": {
-   "precision": 0.9614035087719298,
-   "coverage": 0.7098445595854922,
-   "n": 570,
-   "negativesConfirmed": 0.0036452004860267314
+   "precision": 0.9652014652014652,
+   "coverage": 0.6826424870466321,
+   "n": 546,
+   "negativesConfirmed": 0.003037667071688943
   }
  }
 }
