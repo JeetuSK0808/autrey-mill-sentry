@@ -1652,29 +1652,29 @@
   {
    "label": "quercus_alba",
    "tier": "native",
-   "taxon_id": 49001,
+   "taxon_id": 54779,
    "name": "Quercus alba",
-   "common": null,
-   "ga": 0,
-   "se": 0
+   "common": "white oak",
+   "ga": 1181,
+   "se": 4536
   },
   {
    "label": "arundinaria_gigantea",
    "tier": "native",
-   "taxon_id": 122631,
+   "taxon_id": 121747,
    "name": "Arundinaria gigantea",
-   "common": null,
-   "ga": 0,
-   "se": 0
+   "common": "river cane",
+   "ga": 253,
+   "se": 1309
   },
   {
    "label": "vitis_aestivalis",
    "tier": "native",
-   "taxon_id": 128751,
+   "taxon_id": 128931,
    "name": "Vitis aestivalis",
-   "common": null,
-   "ga": 0,
-   "se": 0
+   "common": "summer grape",
+   "ga": 46,
+   "se": 163
   },
   {
    "label": "other_plant",

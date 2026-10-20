@@ -24,3 +24,5 @@ model/runs/
 *.cer
 .env
 model/eval/*_logits_*.npz
+__pycache__/
+*.pyc
