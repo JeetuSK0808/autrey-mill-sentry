@@ -23,9 +23,10 @@ def main():
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--max-per-class", type=int, default=0, help="debug: cap training images per class")
     ap.add_argument("--field-aug", action="store_true", help="trail-camera augmentation (common.make_transforms field=True)")
+    ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
 
-    torch.manual_seed(0); random.seed(0); np.random.seed(0)
+    torch.manual_seed(args.seed); random.seed(args.seed); np.random.seed(args.seed)
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     labels, tiers, cls = load_classes()
     items, counts = build_index(labels)
@@ -41,7 +42,7 @@ def main():
         train = [it for l in by for it in by[l][:args.max_per_class]]
     print(f"classes={len(present)} train={len(train)} val={len(val)} test={len(test)} device={device}", flush=True)
     (MODEL / "runs").mkdir(exist_ok=True); (MODEL / "checkpoints").mkdir(exist_ok=True); EVAL.mkdir(exist_ok=True)
-    json.dump({"arch": args.arch, "size": args.size, "epochs": args.epochs, "field_aug": args.field_aug, "labels": present, "tiers": {l: tiers[l] for l in present}, "counts": {l: counts[l] for l in present},
+    json.dump({"arch": args.arch, "size": args.size, "epochs": args.epochs, "field_aug": args.field_aug, "seed": args.seed, "labels": present, "tiers": {l: tiers[l] for l in present}, "counts": {l: counts[l] for l in present},
                "split_sizes": {"train": len(train), "val": len(val), "test": len(test)},
                "val_observers": len({it["observer"] for it in val}), "test_observers": len({it["observer"] for it in test}),
                "train_observers": len({it["observer"] for it in train})},
