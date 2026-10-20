@@ -1,0 +1,97 @@
+{
+ "model": "v3+v2 ensemble (shipped 14 Oct)",
+ "photos": 1500,
+ "decisions": {
+  "native": 516,
+  "rescan": 734,
+  "possible": 233,
+  "noplant": 8,
+  "confirmed": 9
+ },
+ "flaggedAsInvasive": 0.16133333333333333,
+ "confirmedInvasive": 0.006,
+ "blamed": [
+  [
+   "dryopteris_erythrosora",
+   26
+  ],
+  [
+   "quercus_acutissima",
+   21
+  ],
+  [
+   "leucanthemum_vulgare",
+   13
+  ],
+  [
+   "artemisia_vulgaris",
+   10
+  ],
+  [
+   "dioscorea_polystachya",
+   9
+  ],
+  [
+   "pyrus_calleryana",
+   8
+  ],
+  [
+   "torilis_arvensis",
+   7
+  ],
+  [
+   "murdannia_keisak",
+   7
+  ],
+  [
+   "ipomoea_coccinea",
+   7
+  ],
+  [
+   "ligustrum_sinense",
+   7
+  ]
+ ],
+ "worstNatives": [
+  [
+   "erigeron_philadelphicus",
+   14,
+   21
+  ],
+  [
+   "juglans_nigra",
+   7,
+   11
+  ],
+  [
+   "athyrium_asplenioides",
+   11,
+   18
+  ],
+  [
+   "ambrosia_artemisiifolia",
+   14,
+   24
+  ],
+  [
+   "amauropelta_noveboracensis",
+   8,
+   18
+  ],
+  [
+   "eupatorium_serotinum",
+   9,
+   24
+  ],
+  [
+   "lindera_benzoin",
+   7,
+   19
+  ],
+  [
+   "diospyros_virginiana",
+   11,
+   30
+  ]
+ ]
+}
