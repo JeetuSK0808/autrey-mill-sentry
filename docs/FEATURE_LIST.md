@@ -15,6 +15,12 @@ Status key: built = code exists; verified = seen working on device or Simulator;
 - Duplicate handling: same species within 10 m in 7 days offers "Add to existing report" (built, unit tested)
 - Geofence: outside the boundary plus 60 m is saved as practice and not ranked (built, unit tested against the real boundary)
 - Works offline (model, overlays and store are on the device) (built)
+- **19 Oct scanner v4 work**: camera metered at the centre with continuous auto-exposure, low-light boost and exposures up to 1/15 s; tap the preview to focus and expose on a leaf; auto flashlight after one second of dark frames (built)
+- Live pass looks at the whole frame and at the salient region (Vision region of interest) and averages the two; stills add a crop around the salient box when the plant is small (built, unit tested)
+- Lock-on and the still decision count the combined native mass, so two look-alike natives splitting the vote still read as "looks native" (built, unit tested)
+- 74 common natives of the preserve's neighbourhood known by name (iNaturalist species counts within 4 km), listed in Learn as "Common natives nearby" with photos; every model label has a catalog entry (built, unit tested)
+- Field-conditions evaluation harness (`model/field_eval.py`) and trail-camera training augmentation; v4 models trained with it (numbers in `docs/MODEL_CARD.md` when the chain finishes)
+- Scan diagnostics overlay and JSON export for field debugging: live guesses, gates, lock probability, focus pass, torch (built)
 
 ## Map (Act)
 - Bundled OpenStreetMap trails, boundary, Sal's Creek and pond, parking, pavilions, benches, toilets, gate (built, verified on iPhone 17 simulator 13 Oct)
