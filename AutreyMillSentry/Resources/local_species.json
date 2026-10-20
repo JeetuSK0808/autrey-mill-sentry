@@ -996,7 +996,7 @@
  {
   "label": "quercus_alba",
   "scientificName": "Quercus alba",
-  "commonName": "Quercus alba",
+  "commonName": "White oak",
   "tier": "native",
   "aggressiveness": 0.0,
   "documentedAtPreserve": false,
@@ -1004,13 +1004,13 @@
   "howToRecognize": "White oak: leaves with rounded lobes, pale underneath; light grey flaky bark.",
   "whatToPhotograph": "One leaf flat on.",
   "lookAlike": null,
-  "sourceURL": "https://www.inaturalist.org/taxa/49001",
-  "inatTaxonID": 49001
+  "sourceURL": "https://www.inaturalist.org/taxa/54779",
+  "inatTaxonID": 54779
  },
  {
   "label": "arundinaria_gigantea",
   "scientificName": "Arundinaria gigantea",
-  "commonName": "Arundinaria gigantea",
+  "commonName": "River cane",
   "tier": "native",
   "aggressiveness": 0.0,
   "documentedAtPreserve": false,
@@ -1018,13 +1018,13 @@
   "howToRecognize": "River cane: native bamboo in dense stands along creeks, with narrow leaves on woody jointed stems.",
   "whatToPhotograph": "A stem with leaves.",
   "lookAlike": null,
-  "sourceURL": "https://www.inaturalist.org/taxa/122631",
-  "inatTaxonID": 122631
+  "sourceURL": "https://www.inaturalist.org/taxa/121747",
+  "inatTaxonID": 121747
  },
  {
   "label": "vitis_aestivalis",
   "scientificName": "Vitis aestivalis",
-  "commonName": "Vitis aestivalis",
+  "commonName": "Summer grape",
   "tier": "native",
   "aggressiveness": 0.0,
   "documentedAtPreserve": false,
@@ -1032,7 +1032,7 @@
   "howToRecognize": "",
   "whatToPhotograph": "",
   "lookAlike": null,
-  "sourceURL": "https://www.inaturalist.org/taxa/128751",
-  "inatTaxonID": 128751
+  "sourceURL": "https://www.inaturalist.org/taxa/128931",
+  "inatTaxonID": 128931
  }
 ]
