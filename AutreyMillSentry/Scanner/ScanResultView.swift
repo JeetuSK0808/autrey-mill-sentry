@@ -129,6 +129,12 @@ struct ScanResultView: View {
                     Text(la.tellThemApart).font(.callout).foregroundStyle(.secondary)
                 }
             }
+            if let label, let s = app.catalog.species(for: label), s.lookAlike == nil, !s.howToRecognize.isEmpty {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Field marks to check").font(.subheadline.weight(.semibold))
+                    Text(s.howToRecognize).font(.callout).foregroundStyle(.secondary)
+                }
+            }
             top3
             Text("Think the model is wrong? You can still send it to staff.").font(.footnote).foregroundStyle(.secondary)
         }.padding(.horizontal)
