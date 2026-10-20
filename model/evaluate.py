@@ -141,7 +141,7 @@ def main():
     if not args.no_bundle:
         json.dump(card, open(RES / "model_card.json", "w"), indent=1)
         write_model_card_md(out, card, labels, tiers)
-    print("wrote", EVAL / f"{args.version}_eval.json")
+    print("wrote", EVAL / f"{args.version}{args.out_suffix}_eval.json")
 
 def write_model_card_md(o, card, labels, tiers):
     pct = lambda v: "n/a" if v is None else f"{100*v:.1f}%"
