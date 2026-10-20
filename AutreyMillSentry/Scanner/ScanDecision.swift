@@ -28,6 +28,26 @@ struct QualityMetrics: Codable, Equatable, Sendable {
     var subjectTouchesEdges: Bool = false
     var personDetected: Bool = false
     var motion: Double = 0             // mean abs frame difference 0...1
+    /// Union of Vision's salient objects, normalised, origin bottom-left (Vision convention). nil when nothing stood out.
+    var subjectBox: SubjectBox? = nil
+
+    struct SubjectBox: Codable, Equatable, Sendable {
+        var x: Double, y: Double, width: Double, height: Double
+        var area: Double { width * height }
+        var visionRect: CGRect { CGRect(x: x, y: y, width: width, height: height) }
+        /// Padded box for a focused crop, still in Vision coordinates. Returns nil when the subject already fills the frame.
+        func focusRegion(padding: Double = 0.25, maxArea: Double = 0.5, minArea: Double = 0.01) -> CGRect? {
+            guard area < maxArea, area >= minArea else { return nil }
+            let px = width * padding, py = height * padding
+            let r = CGRect(x: x - px, y: y - py, width: width + 2 * px, height: height + 2 * py).intersection(CGRect(x: 0, y: 0, width: 1, height: 1))
+            // keep it roughly square so the model's centre crop does not throw the subject away
+            let side = max(r.width, r.height)
+            var sq = CGRect(x: r.midX - side / 2, y: r.midY - side / 2, width: side, height: side)
+            if sq.minX < 0 { sq.origin.x = 0 }; if sq.minY < 0 { sq.origin.y = 0 }
+            if sq.maxX > 1 { sq.origin.x = 1 - sq.width }; if sq.maxY > 1 { sq.origin.y = 1 - sq.height }
+            return sq.intersection(CGRect(x: 0, y: 0, width: 1, height: 1))
+        }
+    }
 
     static let perfect = QualityMetrics(sharpness: 500, meanLuminance: 0.5, clippedFraction: 0, subjectFraction: 0.5, subjectTouchesEdges: false, personDetected: false, motion: 0)
 }

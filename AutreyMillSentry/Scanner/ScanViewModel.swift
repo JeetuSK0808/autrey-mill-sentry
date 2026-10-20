@@ -132,7 +132,8 @@ final class ScanViewModel {
             return
         }
         let soft = ScanDecision.softGate(metrics, thresholds: t)
-        guard let cls = try? liveClassifier.classifyLive(pixelBuffer: pb, orientation: orientation), let top = cls.top else {
+        let focus = metrics.subjectBox?.focusRegion()
+        guard let cls = try? liveClassifier.classifyLive(pixelBuffer: pb, orientation: orientation, focus: focus), let top = cls.top else {
             let sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: false, hard: nil, soft: soft?.rawValue, top: [], lock: "idle")
             Task { @MainActor in self.diagnostics?.record(live: sample) }
             return
@@ -212,11 +213,12 @@ final class ScanViewModel {
         let liveWeight = Config.scan.liveEvidenceWeight
         let work = Task.detached(priority: .userInitiated) { () -> (QualityMetrics, ClassificationResult)? in
             let q = overrideQuality ?? QualityAnalyzer().analyze(image, orientation: .up, trackMotion: false)
-            // Test-time augmentation: the full frame, a tighter centre crop, a mirrored copy, and a slightly zoomed crop.
+            // Test-time augmentation: the full frame, a tighter centre crop, a mirrored copy, a slightly zoomed crop,
+            // and a crop around the salient region when the plant is small in the frame.
             var passes: [[ClassProbability]] = []
             var version = "coreml"
             var firstEmbedding: [Float]? = nil
-            for variant in TestTimeAugmentation.variants(of: image) {
+            for variant in TestTimeAugmentation.variants(of: image, focus: q.subjectBox?.focusRegion()) {
                 if let c = try? classifier.classify(variant, orientation: .up) {
                     passes.append(c.probabilities); version = c.modelVersion
                     if firstEmbedding == nil { firstEmbedding = c.embedding }
@@ -273,12 +275,22 @@ final class ScanViewModel {
 
 /// Cheap augmentations of the captured still. Four passes cost about 100 ms on a modern iPhone.
 enum TestTimeAugmentation {
-    static func variants(of image: CGImage) -> [CGImage] {
+    /// `focus` is a Vision-normalised rect (origin bottom-left) around the salient subject; when given, a crop of it is
+    /// added so a small far-away plant still gets a close look.
+    static func variants(of image: CGImage, focus: CGRect? = nil) -> [CGImage] {
         var out = [image]
         if let c = crop(image, fraction: 0.85) { out.append(c) }
         if let m = mirrored(image) { out.append(m) }
         if let z = crop(image, fraction: 0.7) { out.append(z) }
+        if let focus, let f = crop(image, visionRect: focus) { out.append(f) }
         return out
+    }
+    /// Crop by a Vision-normalised rect (origin bottom-left) converted to CGImage pixels (origin top-left).
+    static func crop(_ image: CGImage, visionRect r: CGRect) -> CGImage? {
+        let w = CGFloat(image.width), h = CGFloat(image.height)
+        let px = CGRect(x: r.minX * w, y: (1 - r.maxY) * h, width: r.width * w, height: r.height * h).integral
+        guard px.width >= 32, px.height >= 32 else { return nil }
+        return image.cropping(to: px)
     }
     static func crop(_ image: CGImage, fraction: CGFloat) -> CGImage? {
         let w = CGFloat(image.width), h = CGFloat(image.height)

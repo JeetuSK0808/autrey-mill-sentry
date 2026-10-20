@@ -58,6 +58,11 @@ struct SpeciesCatalog: Sendable {
     var tier1: [Species] { species.filter { $0.tier == .tier1 } }
     var tier2: [Species] { species.filter { $0.tier == .tier2 } }
     var natives: [Species] { species.filter { $0.tier == .native } }
+    /// The hand-written native look-alikes (each paired with an invasive it is confused with).
+    var lookAlikeNatives: [Species] { natives.filter { Self.builtInLabels.contains($0.label) } }
+    /// Common natives of the preserve's neighbourhood from `local_species.json` (known by name so they are never flagged).
+    var localNatives: [Species] { natives.filter { !Self.builtInLabels.contains($0.label) } }
+    static let builtInLabels: Set<String> = Set(builtIn.map(\.label))
     var aggressiveness: [String: Double] { Dictionary(uniqueKeysWithValues: species.map { ($0.label, $0.aggressiveness) }) }
 
     static let gisc = "https://gainvasivespeciescouncil.org/list/invasive-plants/"

@@ -38,6 +38,7 @@ final class QualityAnalyzer {
         if let obs = saliency.results?.first, let boxes = obs.salientObjects, !boxes.isEmpty {
             let union = boxes.map(\.boundingBox).reduce(boxes[0].boundingBox) { $0.union($1) }
             m.subjectFraction = Double(union.width * union.height)
+            m.subjectBox = QualityMetrics.SubjectBox(x: Double(union.minX), y: Double(union.minY), width: Double(union.width), height: Double(union.height))
             let edges = [union.minX <= 0.02, union.minY <= 0.02, union.maxX >= 0.98, union.maxY >= 0.98].filter { $0 }.count
             m.subjectTouchesEdges = edges >= 3
         } else {

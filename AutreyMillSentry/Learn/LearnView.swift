@@ -5,9 +5,11 @@ struct LearnView: View {
     @Environment(AppModel.self) private var app
     @State private var query = ""
 
-    private var filteredTier2: [Species] {
-        query.isEmpty ? app.catalog.tier2 : app.catalog.tier2.filter { $0.displayName.localizedCaseInsensitiveContains(query) || $0.scientificName.localizedCaseInsensitiveContains(query) }
+    private func filtered(_ list: [Species]) -> [Species] {
+        query.isEmpty ? list : list.filter { $0.displayName.localizedCaseInsensitiveContains(query) || $0.scientificName.localizedCaseInsensitiveContains(query) }
     }
+    private var filteredTier2: [Species] { filtered(app.catalog.tier2) }
+    private var filteredLocal: [Species] { filtered(app.catalog.localNatives) }
 
     var body: some View {
         NavigationStack {
@@ -25,11 +27,20 @@ struct LearnView: View {
                     sectionHeader("Tuned species", "The scanner can confirm these", Theme.alert)
                 }
                 Section {
-                    ForEach(Array(app.catalog.natives.enumerated()), id: \.element.id) { i, s in
+                    ForEach(Array(app.catalog.lookAlikeNatives.enumerated()), id: \.element.id) { i, s in
                         NavigationLink { SpeciesDetailView(species: s) } label: { SpeciesRow(species: s).staggeredAppear(i) }
                     }
                 } header: {
                     sectionHeader("Native look-alikes", "Never reported, often confused", Theme.forest)
+                }
+                if !app.catalog.localNatives.isEmpty {
+                    Section {
+                        ForEach(filteredLocal) { s in
+                            NavigationLink { SpeciesDetailView(species: s) } label: { SpeciesRow(species: s, compact: true) }
+                        }
+                    } header: {
+                        sectionHeader("Common natives nearby", "\(app.catalog.localNatives.count) plants the scanner knows by name, never reported", Theme.forest)
+                    }
                 }
                 Section {
                     ForEach(filteredTier2) { s in
@@ -40,7 +51,7 @@ struct LearnView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search the \(app.catalog.tier2.count) broad-coverage species")
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search \(app.catalog.tier2.count + app.catalog.localNatives.count) species")
             .navigationTitle("Learn")
         }
     }

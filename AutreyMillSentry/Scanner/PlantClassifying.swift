@@ -10,19 +10,20 @@ protocol PlantClassifying: AnyObject {
     var isMock: Bool { get }
     func classify(_ image: CGImage, orientation: CGImagePropertyOrientation) throws -> ClassificationResult
     func classify(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult
-    /// Live-frame pass at two scales when the classifier supports it; defaults to the single pass.
-    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult
+    /// Live-frame pass at two scales when the classifier supports it (full frame + `focus`, the salient region in Vision
+    /// coordinates, or a centre region when nil); defaults to the single pass.
+    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, focus: CGRect?) throws -> ClassificationResult
 }
 
 extension PlantClassifying {
-    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult {
+    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, focus: CGRect?) throws -> ClassificationResult {
         try classify(pixelBuffer: pixelBuffer, orientation: orientation)
     }
 }
 
 extension CoreMLClassifier {
-    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult {
-        try classifyMultiScale(pixelBuffer: pixelBuffer, orientation: orientation)
+    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, focus: CGRect?) throws -> ClassificationResult {
+        try classifyMultiScale(pixelBuffer: pixelBuffer, orientation: orientation, focus: focus)
     }
 }
 
@@ -81,11 +82,12 @@ final class CoreMLClassifier: PlantClassifying {
 
     /// Two looks at one live frame: the full centre crop and a tighter centre region (small, far-away subjects), averaged.
     /// Vision runs the second pass on a region of interest, so the cost is one extra model call, no extra copies.
-    func classifyMultiScale(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, innerFraction: CGFloat = 0.68) throws -> ClassificationResult {
+    func classifyMultiScale(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, focus: CGRect? = nil, innerFraction: CGFloat = 0.68) throws -> ClassificationResult {
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:])
         let full = try run(handler: handler)
         let inset = (1 - innerFraction) / 2
-        let inner = try run(handler: handler, region: CGRect(x: inset, y: inset, width: innerFraction, height: innerFraction))
+        let region = focus ?? CGRect(x: inset, y: inset, width: innerFraction, height: innerFraction)
+        let inner = try run(handler: handler, region: region)
         guard !inner.probabilities.isEmpty else { return full }
         return ClassificationResult(probabilities: Evidence.average([full.probabilities, inner.probabilities]), modelVersion: full.modelVersion, embedding: full.embedding)
     }

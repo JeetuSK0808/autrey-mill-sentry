@@ -160,3 +160,25 @@ final class EmbeddingGateTests: XCTestCase {
         XCTAssertLessThan(Evidence.normalisedEntropy(a), Evidence.normalisedEntropy([ClassProbability(label: "x", probability: 0.5), ClassProbability(label: "y", probability: 0.5)]))
     }
 }
+
+final class FocusCropTests: XCTestCase {
+    func testSmallSubjectGetsAPaddedSquareFocusRegionAndBigSubjectNone() {
+        let small = QualityMetrics.SubjectBox(x: 0.6, y: 0.2, width: 0.2, height: 0.15)
+        let r = try! XCTUnwrap(small.focusRegion())
+        XCTAssertEqual(r.width, r.height, accuracy: 1e-6)
+        XCTAssertGreaterThan(r.width, 0.2); XCTAssertLessThanOrEqual(r.maxX, 1); XCTAssertGreaterThanOrEqual(r.minY, 0)
+        XCTAssertTrue(r.contains(CGPoint(x: 0.7, y: 0.275)), "region keeps the subject centre")
+        XCTAssertNil(QualityMetrics.SubjectBox(x: 0.1, y: 0.1, width: 0.8, height: 0.8).focusRegion(), "a subject that fills the frame needs no focus crop")
+        XCTAssertNil(QualityMetrics.SubjectBox(x: 0.5, y: 0.5, width: 0.05, height: 0.05).focusRegion(), "specks are ignored")
+    }
+
+    func testVariantsAddAFocusCropOnlyWhenGiven() {
+        let ctx = CGContext(data: nil, width: 400, height: 300, bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)!
+        ctx.setFillColor(CGColor(red: 0.2, green: 0.5, blue: 0.2, alpha: 1)); ctx.fill(CGRect(x: 0, y: 0, width: 400, height: 300))
+        let img = ctx.makeImage()!
+        XCTAssertEqual(TestTimeAugmentation.variants(of: img).count, 4)
+        let v = TestTimeAugmentation.variants(of: img, focus: CGRect(x: 0.5, y: 0.5, width: 0.3, height: 0.3))
+        XCTAssertEqual(v.count, 5)
+        XCTAssertEqual(v.last!.width, 120, accuracy: 1); XCTAssertEqual(v.last!.height, 90, accuracy: 1)
+    }
+}
