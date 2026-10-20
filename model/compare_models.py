@@ -93,6 +93,15 @@ def main():
     json.dump({"testSet": f"{b} test split, {len(paths)} images", "results": out}, open(EVAL / f"compare_{a}_{b}.json", "w"), indent=1)
     if "--write-card" in sys.argv:
         e = out["ensemble"]; evb = json.load(open(EVAL / f"{b}_eval.json"))
+        sa = json.load(open(MODEL / "runs" / f"{a}_split.json")); sb = json.load(open(MODEL / "runs" / f"{b}_split.json"))
+        arch = {"efficientnet_b0": "EfficientNet-B0", "efficientnet_b2": "EfficientNet-B2", "mobilenetv3_large_100": "MobileNetV3-Large"}
+        desc = lambda sp: f"{arch.get(sp['arch'], sp['arch'])}, {sp['size']} px"
+        field = {}
+        for name in (f"field_{b}+{a}", f"field_{b}", f"field_{a}", "field_v3+v2"):
+            fp = EVAL / f"{name}.json"
+            if fp.exists(): field[name] = json.load(open(fp))
+        before = EVAL / "local_natives_before_v3+v2.json"
+        before = json.load(open(before)) if before.exists() else None
         card = {"status": "evaluated", "modelVersion": f"{b}+{a} ensemble", "evaluatedOn": __import__("time").strftime("%Y-%m-%d"),
                 "testObservations": len({os.path.basename(p).split("_")[0] for p in paths}),
                 "tier1": {"classes": sum(1 for l in labels if tiers[l] == "tier1"), "testImages": e["tier1"]["n"], "top1": e["tier1"]["top1"], "top3": e["tier1"]["top3"], "precisionAtConfirm": e["confirm_precision"], "coverageAtConfirm": e["confirm_coverage_tier1"], "confirmThreshold": e["confirm_threshold"]},
@@ -106,8 +115,8 @@ def main():
         L = [f"# Model card: InvasiveClassifier {b} + {a} ensemble", "",
              f"Evaluated {card['evaluatedOn']} on the {b} test split ({len(paths)} images, {card['testObservations']} observations, observers disjoint from training). Every number comes from `model/eval/compare_{a}_{b}.json` (`model/compare_models.py`), `model/eval/{b}_eval.json` and `model/eval/{a}_eval.json`.", "",
              "## What runs on the phone",
-             f"- Live view: {b} alone (EfficientNet-B0, 256 px) at about 4 frames per second.",
-             f"- Captured still: {b} and {a} (both EfficientNet-B0, 256 px) each run on 4 augmented views; the calibrated probabilities are averaged. {b} also supplies an embedding that is compared with per-species centroids (`Resources/embeddings.json`); a call below its species' similarity floor is downgraded.",
+             f"- Live view: {b} alone ({desc(sb)}) at about 4 frames per second, on the whole frame and on the salient region.",
+             f"- Captured still: {b} ({desc(sb)}) and {a} ({desc(sa)}) each run on 4 to 5 augmented views (full frame, two centre crops, mirror, and a crop around the salient box when the plant is small); the calibrated probabilities are averaged. {b} also supplies an embedding that is compared with per-species centroids (`Resources/embeddings.json`); a call below its species' similarity floor is downgraded.",
              f"- Confirm rule: Tier 1 top class, calibrated probability at least {card['tier1']['confirmThreshold']:.2f} (per-species floors from validation), margin 0.30 over the runner-up, low entropy, inside the similarity floor.", "",
              "## Head to head on the same images", "",
              "| Model | Top-1 | Top-3 | Tier 1 top-1 | Tier 2 top-1 | Natives top-1 | Other plant | Confirm precision | Confirm coverage | Flagged: natives | Flagged: wild other plants | Flagged: not a plant |",
@@ -116,10 +125,23 @@ def main():
             r = out[k]
             L.append(f"| {k} | {pct(r['top1_all'])} | {pct(r.get('top3_all'))} | {pct(r['tier1']['top1'])} | {pct(r['tier2']['top1'])} | {pct(r['native']['top1'])} | {pct(r['other_plant']['top1'])} | {pct(r['confirm_precision'])} | {pct(r['confirm_coverage_tier1'])} | {pct(r['flagged_natives'])} | {pct(r['flagged_other_plant_wild'])} | {pct(r['flagged_not_plant'])} |")
         L += ["", "'Flagged' = the app would show the photo as a confirmed or possible invasive (a false alarm when the photo is a native, another plant, or not a plant). 'Coverage' = the share of true Tier 1 photos that come back confirmed; the rest go to expert review.", "",
-              f"## Training data", f"- {b}: 29,075 train / 4,443 val / 3,400 test images, 114 classes, including 3,160 extra wild 'other plant' photos and 900 cultivated, house and garden plants as negatives.",
-              f"- {a}: 26,199 / 4,131 / 3,234 images of the same classes without the extra negatives.", "",
+              f"## Training data", f"- {b}: {sb['split_sizes']['train']:,} train / {sb['split_sizes']['val']:,} val / {sb['split_sizes']['test']:,} test images, {len(sb['labels'])} classes ({sum(1 for l in sb['labels'] if sb['tiers'][l]=='tier1')} Tier 1, {sum(1 for l in sb['labels'] if sb['tiers'][l]=='tier2')} Tier 2, {sum(1 for l in sb['labels'] if sb['tiers'][l]=='native')} natives, other_plant, not_plant); trail-camera augmentation {'on' if sb.get('field_aug') else 'off'}.",
+              f"- {a}: {sa['split_sizes']['train']:,} / {sa['split_sizes']['val']:,} / {sa['split_sizes']['test']:,} images, {len(sa['labels'])} classes; trail-camera augmentation {'on' if sa.get('field_aug') else 'off'}.", "",
               "## Calibration", f"- Temperature scaling per model on validation; test ECE {evb['ece_test']:.4f} ({b}).", "",
               "## Hardest confusions (" + b + ", test, true -> predicted, count)"] + [f"- {h}" for h in evb["hardestConfusions"][:12]] + ["",
+              "## Field conditions (held-out test photos degraded like trail shots)",
+              "Measured by `model/field_eval.py`: dim understory, dusk with sensor noise, flashlight, backlight, harsh sun, dappled canopy light, hand-shake and focus blur, a small far-away subject, a tight zoom, colour casts, JPEG, rotation, low resolution. Top-1 per condition:", "",
+              "| Condition | " + " | ".join(field.keys()) + " |", "|---|" + "---|" * len(field)]
+        if field:
+            conds = list(next(iter(field.values()))["conditions"].keys())
+            for c in conds:
+                L.append(f"| {c} | " + " | ".join(pct(f["conditions"][c]["top1"]) for f in field.values()) + " |")
+            L.append("| **mean over degraded** | " + " | ".join(pct(f["mean_over_degraded"]["top1"]) for f in field.values()) + " |")
+        if before:
+            L += ["", "## The preserve's common natives",
+                  f"- Before (shipped v3+v2 on {before['photos']} held-out photos of the 74 common natives nearby): native {pct(before['decisions'].get('native',0)/before['photos'])}, not sure {pct(before['decisions'].get('rescan',0)/before['photos'])}, flagged as invasive {pct(before['flaggedAsInvasive'])} (`model/eval/local_natives_before_v3+v2.json`).",
+                  f"- Now: these species are named classes; their held-out accuracy is in the per-class table of `model/eval/{b}_eval.json`, and the 'Flagged: natives' column above includes them."]
+        L += ["",
               "## Honest limits",
               "- These are iNaturalist photos, many of them clean close-ups by people who already knew the plant. Field accuracy on a phone in the preserve will be lower; Field Test mode measures it and no field number is claimed until then.",
               "- Tier 2 results are never shown as confirmed. Unknown plants are refused rather than guessed.",
