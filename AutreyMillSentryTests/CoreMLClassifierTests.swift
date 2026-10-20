@@ -108,3 +108,15 @@ final class LocalNativeRecognitionTests: XCTestCase {
         }
     }
 }
+
+final class BundledModelCardTests: XCTestCase {
+    @MainActor func testModelCardCarriesEnsembleNativesAndFieldNumbers() throws {
+        let card = try XCTUnwrap(AppModel().modelCard, "model_card.json must decode")
+        XCTAssertEqual(card.status, "evaluated")
+        XCTAssertTrue(card.modelVersion?.contains("+") == true, "ensemble card expected, got \(card.modelVersion ?? "nil")")
+        XCTAssertGreaterThan(card.native?.classes ?? 0, 14)
+        XCTAssertNotNil(card.native?.top1)
+        XCTAssertNotNil(card.fieldConditionsMeanTop1)
+        XCTAssertNotNil(card.tier1?.precisionAtConfirm)
+    }
+}
