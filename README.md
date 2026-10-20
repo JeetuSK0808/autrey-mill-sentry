@@ -21,7 +21,7 @@ Requirements: Xcode 16 or newer (iOS 17 SDK), a free Apple ID for device signing
 Debug builds have a "Simulate location at the preserve" switch in Settings. Launch arguments for automation: `-uiTesting -skipOnboarding -mockScan confirmed|possible|native|ambiguous|notplant|tier2 -simulateLocation`.
 
 ## Model
-`model/` holds the training pipeline (PyTorch on Apple MPS, EfficientNet-B0 at 256 px, observer-level split, temperature calibration, threshold tuning, Core ML export). `model/CLASSES.md` explains the species tiers; `docs/MODEL_CARD.md` holds the measured results. The app shows only numbers produced by `model/evaluate.py`. Training images are iNaturalist CC-licensed photos and are not included in the repository.
+`model/` holds the training pipeline (PyTorch on Apple MPS, EfficientNet-B0 at 256 px, observer-level split, trail-camera augmentation, temperature calibration, threshold tuning, Core ML export) and `model/field_eval.py`, which measures the scanner's decisions on held-out photos degraded like trail shots (dusk, backlight, blur, far subject). `dashboard/` is the preserve staff site (Next.js on Vercel): reports sent from the app land there, ranked and on a map, and a status change comes back to the visitor's phone. `model/CLASSES.md` explains the species tiers; `docs/MODEL_CARD.md` holds the measured results. The app shows only numbers produced by `model/evaluate.py`. Training images are iNaturalist CC-licensed photos and are not included in the repository.
 
 ## Repository layout
 - `AutreyMillSentry/` app source (App, Scanner, Map, Reports, Ranger, Learn, Visit, Onboarding, Settings, Services, Shared, Resources)

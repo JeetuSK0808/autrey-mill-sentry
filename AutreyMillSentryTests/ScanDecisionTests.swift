@@ -222,3 +222,15 @@ final class LockProbabilityTests: XCTestCase {
         XCTAssertEqual(ScanDecision.lockProbability(notPlant, catalog: catalog), 0.45, accuracy: 1e-9)
     }
 }
+
+/// The bundled thresholds.json must decode; otherwise Config.scan silently falls back to defaults and the
+/// per-species confirm floors tuned on validation data are lost.
+final class BundledThresholdsTests: XCTestCase {
+    func testBundledThresholdsDecodeWithPerClassFloors() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "thresholds", withExtension: "json"))
+        let t = try JSONDecoder().decode(ScanThresholds.self, from: Data(contentsOf: url))
+        XCTAssertFalse(t.perClassConfirmMin.isEmpty)
+        XCTAssertEqual(Config.scan, t, "Config.scan should be the bundled thresholds, not the defaults")
+        XCTAssertGreaterThanOrEqual(t.confirmMinProbability, 0.75)
+    }
+}
