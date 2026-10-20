@@ -9,7 +9,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Star-shaped leaves with five pointed lobes, fragrant when crushed; spiky round 'gumballs' hang from the twigs and litter the ground.",
   "whatToPhotograph": "One leaf flat on, and a gumball if you can find one.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "pueraria_montana",
+   "name": "Kudzu",
+   "tellThemApart": "Sweetgum is a tree with star-shaped single leaves and spiky gumballs; kudzu is a vine with three-leaflet leaves draped over everything."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/49658",
   "inatTaxonID": 49658
  },
@@ -51,7 +55,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Big glossy evergreen leaves, rusty-brown and fuzzy underneath; huge white flowers in early summer and cone-like seed heads.",
   "whatToPhotograph": "A leaf showing the brown underside.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "elaeagnus_pungens",
+   "name": "Thorny olive",
+   "tellThemApart": "Southern magnolia leaves are large, glossy and rusty-brown underneath; thorny olive leaves are smaller, wavy-edged and silvery with brown speckles underneath, on a thorny sprawling shrub."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/83074",
   "inatTaxonID": 83074
  },
@@ -191,7 +199,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Small understory tree. Leaves in opposite pairs with veins that curve toward the tip; big four-petalled white blooms in spring; red berries in autumn.",
   "whatToPhotograph": "A twig with the opposite leaves.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "ligustrum_sinense",
+   "name": "Chinese privet",
+   "tellThemApart": "Dogwood leaves are much larger with veins that curve toward the tip, and the tree has four-petalled white spring blooms; privet leaves are fingernail-sized with hairy twigs."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/54777",
   "inatTaxonID": 54777
  },
@@ -205,7 +217,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Climbing vine with leaves in pairs ending in a tendril; orange-red trumpet flowers in spring.",
   "whatToPhotograph": "A leaf pair with its tendril.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "lonicera_japonica",
+   "name": "Japanese honeysuckle",
+   "tellThemApart": "Crossvine leaves come in pairs that end in a tendril, and its flowers are orange-red trumpets; Japanese honeysuckle has no tendrils and white-to-yellow paired flowers."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/67823",
   "inatTaxonID": 67823
  },
@@ -233,7 +249,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Vigorous vine with compound leaves of toothed leaflets and big orange trumpet flowers in summer.",
   "whatToPhotograph": "A flower and one compound leaf.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "wisteria_sinensis",
+   "name": "Chinese wisteria",
+   "tellThemApart": "Both are woody vines with compound leaves, but trumpet vine leaflets are toothed and its flowers are orange trumpets; wisteria leaflets are smooth-edged and its flowers hang in purple clusters."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/75995",
   "inatTaxonID": 75995
  },
@@ -303,7 +323,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Tree with narrow glossy leaves with fine teeth; crushed twigs smell of almond; dark scaly bark; white flower spikes then small black cherries.",
   "whatToPhotograph": "A twig with leaves.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "elaeagnus_umbellata",
+   "name": "Autumn olive",
+   "tellThemApart": "Black cherry leaves are glossy with fine teeth and the twigs smell of almond when scratched; autumn olive leaves are silvery underneath and smooth-edged, with red speckled berries."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/54834",
   "inatTaxonID": 54834
  },
@@ -317,7 +341,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Open shrub with green four-angled stems and opposite leaves; the bumpy red seed capsules split open to show orange seeds ('hearts-a-bustin').",
   "whatToPhotograph": "The green stems and a capsule if present.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "euonymus_fortunei",
+   "name": "Winter creeper",
+   "tellThemApart": "Strawberry bush is an upright shrub with green four-angled stems and bumpy red capsules; winter creeper is a creeping or climbing evergreen vine with glossy leaves and pale veins."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/83150",
   "inatTaxonID": 83150
  },
@@ -401,7 +429,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Maple that does not look like one: compound leaves with three to five leaflets, opposite on green twigs. Often mistaken for poison ivy.",
   "whatToPhotograph": "A twig showing leaves in opposite pairs.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "hedera_helix",
+   "name": "English ivy",
+   "tellThemApart": "Box elder's three-leaflet leaves sit in opposite pairs on green twigs and the plant is a tree; neither ivy nor poison ivy has opposite leaves. Treat any three-leaflet vine as poison ivy until sure."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/47726",
   "inatTaxonID": 47726
  },
@@ -415,7 +447,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Shrub with opposite oval leaves and tight clusters of bright magenta berries around the stem in autumn.",
   "whatToPhotograph": "A stem with the berry clusters.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "ligustrum_sinense",
+   "name": "Chinese privet",
+   "tellThemApart": "Both have leaves in opposite pairs, but beautyberry leaves are large, toothed and soft, and its berries are bright magenta in tight rings around the stem; privet leaves are small, smooth-edged and its berries are blue-black."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/49193",
   "inatTaxonID": 49193
  },
@@ -471,7 +507,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Oak with small spoon-shaped leaves, widest near the tip, often held through winter; small acorns.",
   "whatToPhotograph": "A twig with several leaves.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "quercus_acutissima",
+   "name": "Sawtooth oak",
+   "tellThemApart": "Water oak leaves are small and spoon-shaped with a broad tip; sawtooth oak leaves are long with bristle-tipped teeth along both edges like a chestnut leaf."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/53640",
   "inatTaxonID": 53640
  },
@@ -499,7 +539,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Shrub whose leaves and twigs smell spicy when crushed; tiny yellow flowers before the leaves; red berries.",
   "whatToPhotograph": "A twig with leaves.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "elaeagnus_umbellata",
+   "name": "Autumn olive",
+   "tellThemApart": "Spicebush leaves smell spicy when crushed and are plain green underneath; autumn olive leaves are silvery-scaly underneath."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/54793",
   "inatTaxonID": 54793
  },
@@ -779,7 +823,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Shrub with big oak-shaped lobed leaves and cone-shaped white flower clusters; peeling cinnamon bark.",
   "whatToPhotograph": "One leaf.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "paulownia_tomentosa",
+   "name": "Princess tree",
+   "tellThemApart": "Oakleaf hydrangea is a shrub with lobed leaves and peeling bark; princess tree is a fast tree with huge heart-shaped fuzzy leaves and purple trumpet flowers."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/83156",
   "inatTaxonID": 83156
  },
@@ -807,7 +855,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "Evergreen holly with small oval leaves with rounded teeth, no spines; red berries.",
   "whatToPhotograph": "A twig with leaves.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "ligustrum_sinense",
+   "name": "Chinese privet",
+   "tellThemApart": "Yaupon leaves alternate along the twig and have small rounded teeth; privet leaves sit in opposite pairs with smooth edges. Yaupon berries are red, privet's blue-black."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/119955",
   "inatTaxonID": 119955
  },
@@ -947,7 +999,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "",
   "whatToPhotograph": "",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "lonicera_japonica",
+   "name": "Japanese honeysuckle",
+   "tellThemApart": "Both are twining vines with opposite leaves. Yellow jessamine leaves are glossy and lance-shaped with yellow trumpet flowers; Japanese honeysuckle leaves are dull, often hairy, with paired white-then-yellow flowers."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/83070",
   "inatTaxonID": 83070
  },
@@ -1017,7 +1073,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "River cane: native bamboo in dense stands along creeks, with narrow leaves on woody jointed stems.",
   "whatToPhotograph": "A stem with leaves.",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "phyllostachys_aurea",
+   "name": "Golden bamboo",
+   "tellThemApart": "River cane is a slender native bamboo with papery sheaths that stay on the stem and grows in patches along creeks; golden bamboo is thicker, yellow-stemmed with compressed lower joints."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/121747",
   "inatTaxonID": 121747
  },
@@ -1031,7 +1091,11 @@
   "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
   "howToRecognize": "",
   "whatToPhotograph": "",
-  "lookAlike": null,
+  "lookAlike": {
+   "label": "pueraria_montana",
+   "name": "Kudzu",
+   "tellThemApart": "Grape leaves are single, lobed and toothed, with forked tendrils; kudzu leaves are three big untoothed leaflets on a hairy stem, and kudzu has no tendrils."
+  },
   "sourceURL": "https://www.inaturalist.org/taxa/128931",
   "inatTaxonID": 128931
  }

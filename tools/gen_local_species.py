@@ -68,6 +68,25 @@ LOCAL_NOTES = {  # label: (how to recognise, what to photograph). Plain field ma
  "thalictrum_thalictroides": ("Rue anemone: small spring wildflower with white petal-like sepals and rounded three-lobed leaflets.", "A flower with leaves."),
  "trillium_cuneatum_note": ("", ""),
 }
+# Native -> the invasive it is most often confused with (label of the invasive class, name shown, how to tell them apart).
+LOOKALIKES = {
+ "callicarpa_americana": ("ligustrum_sinense", "Chinese privet", "Both have leaves in opposite pairs, but beautyberry leaves are large, toothed and soft, and its berries are bright magenta in tight rings around the stem; privet leaves are small, smooth-edged and its berries are blue-black."),
+ "cornus_florida": ("ligustrum_sinense", "Chinese privet", "Dogwood leaves are much larger with veins that curve toward the tip, and the tree has four-petalled white spring blooms; privet leaves are fingernail-sized with hairy twigs."),
+ "ilex_vomitoria": ("ligustrum_sinense", "Chinese privet", "Yaupon leaves alternate along the twig and have small rounded teeth; privet leaves sit in opposite pairs with smooth edges. Yaupon berries are red, privet's blue-black."),
+ "gelsemium_sempervirens": ("lonicera_japonica", "Japanese honeysuckle", "Both are twining vines with opposite leaves. Yellow jessamine leaves are glossy and lance-shaped with yellow trumpet flowers; Japanese honeysuckle leaves are dull, often hairy, with paired white-then-yellow flowers."),
+ "bignonia_capreolata": ("lonicera_japonica", "Japanese honeysuckle", "Crossvine leaves come in pairs that end in a tendril, and its flowers are orange-red trumpets; Japanese honeysuckle has no tendrils and white-to-yellow paired flowers."),
+ "campsis_radicans": ("wisteria_sinensis", "Chinese wisteria", "Both are woody vines with compound leaves, but trumpet vine leaflets are toothed and its flowers are orange trumpets; wisteria leaflets are smooth-edged and its flowers hang in purple clusters."),
+ "vitis_aestivalis": ("pueraria_montana", "Kudzu", "Grape leaves are single, lobed and toothed, with forked tendrils; kudzu leaves are three big untoothed leaflets on a hairy stem, and kudzu has no tendrils."),
+ "arundinaria_gigantea": ("phyllostachys_aurea", "Golden bamboo", "River cane is a slender native bamboo with papery sheaths that stay on the stem and grows in patches along creeks; golden bamboo is thicker, yellow-stemmed with compressed lower joints."),
+ "quercus_nigra": ("quercus_acutissima", "Sawtooth oak", "Water oak leaves are small and spoon-shaped with a broad tip; sawtooth oak leaves are long with bristle-tipped teeth along both edges like a chestnut leaf."),
+ "euonymus_americanus": ("euonymus_fortunei", "Winter creeper", "Strawberry bush is an upright shrub with green four-angled stems and bumpy red capsules; winter creeper is a creeping or climbing evergreen vine with glossy leaves and pale veins."),
+ "acer_negundo": ("hedera_helix", "English ivy", "Box elder's three-leaflet leaves sit in opposite pairs on green twigs and the plant is a tree; neither ivy nor poison ivy has opposite leaves. Treat any three-leaflet vine as poison ivy until sure."),
+ "prunus_serotina": ("elaeagnus_umbellata", "Autumn olive", "Black cherry leaves are glossy with fine teeth and the twigs smell of almond when scratched; autumn olive leaves are silvery underneath and smooth-edged, with red speckled berries."),
+ "lindera_benzoin": ("elaeagnus_umbellata", "Autumn olive", "Spicebush leaves smell spicy when crushed and are plain green underneath; autumn olive leaves are silvery-scaly underneath."),
+ "magnolia_grandiflora": ("elaeagnus_pungens", "Thorny olive", "Southern magnolia leaves are large, glossy and rusty-brown underneath; thorny olive leaves are smaller, wavy-edged and silvery with brown speckles underneath, on a thorny sprawling shrub."),
+ "hydrangea_quercifolia": ("paulownia_tomentosa", "Princess tree", "Oakleaf hydrangea is a shrub with lobed leaves and peeling bark; princess tree is a fast tree with huge heart-shaped fuzzy leaves and purple trumpet flowers."),
+ "liquidambar_styraciflua": ("pueraria_montana", "Kudzu", "Sweetgum is a tree with star-shaped single leaves and spiky gumballs; kudzu is a vine with three-leaflet leaves draped over everything."),
+}
 out = []
 for c in classes:
     if c["tier"] != "native" or c["label"] in builtin: continue
@@ -78,7 +97,8 @@ for c in classes:
     out.append({"label": c["label"], "scientificName": c["name"], "commonName": common, "tier": "native", "aggressiveness": 0.0,
                 "documentedAtPreserve": False,
                 "whyItMatters": "Native to the Georgia Piedmont and among the most-photographed plants within a few kilometres of the preserve on iNaturalist. Not a target: the scanner knows it so it is not mistaken for an invasive.",
-                "howToRecognize": notes[0], "whatToPhotograph": notes[1], "lookAlike": None,
+                "howToRecognize": notes[0], "whatToPhotograph": notes[1],
+                "lookAlike": ({"label": LOOKALIKES[c["label"]][0], "name": LOOKALIKES[c["label"]][1], "tellThemApart": LOOKALIKES[c["label"]][2]} if c["label"] in LOOKALIKES else None),
                 "sourceURL": f"https://www.inaturalist.org/taxa/{c['taxon_id']}", "inatTaxonID": c["taxon_id"]})
 (RES / "local_species.json").write_text(json.dumps(out, indent=1))
 print("local_species.json:", len(out), "entries;", sum(1 for o in out if o["howToRecognize"]), "with field notes")

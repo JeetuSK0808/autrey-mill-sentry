@@ -1648,6 +1648,33 @@
    "observationURL": "https://www.inaturalist.org/observations/13951101",
    "modelProbability": 1.0,
    "tier": "native"
+  },
+  "quercus_alba": {
+   "file": "learn_quercus_alba.jpg",
+   "observer": "charlie",
+   "license": "cc-by",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/201103/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/145614",
+   "modelProbability": 1.0,
+   "tier": "native"
+  },
+  "arundinaria_gigantea": {
+   "file": "learn_arundinaria_gigantea.jpg",
+   "observer": "stockslager",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/424616396/medium.jpeg",
+   "observationURL": "https://www.inaturalist.org/observations/238501904",
+   "modelProbability": 1.0,
+   "tier": "native"
+  },
+  "vitis_aestivalis": {
+   "file": "learn_vitis_aestivalis.jpg",
+   "observer": "camga24",
+   "license": "cc-by-nc",
+   "photoURL": "https://inaturalist-open-data.s3.amazonaws.com/photos/196228405/medium.jpg",
+   "observationURL": "https://www.inaturalist.org/observations/116257542",
+   "modelProbability": 1.0,
+   "tier": "native"
   }
  }
 }
