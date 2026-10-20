@@ -203,13 +203,19 @@ enum ScanDecision {
         classification.probabilities.filter { $0.label != "not_plant" && ($0.label == "other_plant" || catalog.tier(of: $0.label) == .native) }.map(\.probability).reduce(0, +)
     }
 
-    /// The probability the live lock-on should track for this frame: the top class, or, for a native/other top class
-    /// whose look-alikes share the mass, the combined benign mass (mirrors the still decision).
-    static func lockProbability(_ classification: ClassificationResult, catalog: SpeciesCatalog) -> Double {
-        guard let top = classification.top else { return 0 }
+    /// What the live lock-on should track for this frame. Invasives lock on their own label and probability. A native
+    /// or other-plant top class whose look-alikes share the mass (two oaks, two ferns) locks on the shared key
+    /// `nativeLockLabel` with the combined benign mass, so the lock does not flicker between sister species.
+    static let nativeLockLabel = "__native__"
+    static func lockTarget(_ classification: ClassificationResult, catalog: SpeciesCatalog) -> ClassProbability {
+        guard let top = classification.top else { return ClassProbability(label: "", probability: 0) }
         let tier = catalog.tier(of: top.label)
-        guard tier == .native || tier == .other, top.label != "not_plant" else { return top.probability }
-        return max(top.probability, benignMass(classification, catalog: catalog))
+        guard tier == .native || tier == .other, top.label != "not_plant" else { return top }
+        let mass = benignMass(classification, catalog: catalog)
+        return mass > top.probability ? ClassProbability(label: nativeLockLabel, probability: mass) : top
+    }
+    static func lockProbability(_ classification: ClassificationResult, catalog: SpeciesCatalog) -> Double {
+        lockTarget(classification, catalog: catalog).probability
     }
 
     /// A specific tip for what to photograph next, based on the best candidate species.

@@ -216,6 +216,16 @@ final class LockProbabilityTests: XCTestCase {
         let catalog = SpeciesCatalog(species: s)
         let oaks = ClassificationResult(probabilities: [.init(label: "quercus_alba", probability: 0.4), .init(label: "quercus_nigra", probability: 0.3), .init(label: "ligustrum_sinense", probability: 0.2), .init(label: "not_plant", probability: 0.1)], modelVersion: "t")
         XCTAssertEqual(ScanDecision.lockProbability(oaks, catalog: catalog), 0.7, accuracy: 1e-9)
+        XCTAssertEqual(ScanDecision.lockTarget(oaks, catalog: catalog).label, ScanDecision.nativeLockLabel)
+        // sister natives alternating on top still lock, because they share one lock key
+        var tracker = LockOnTracker(thresholds: .defaults)
+        var state = LockOnTracker.State.idle
+        for i in 0..<6 {
+            let a = i % 2 == 0 ? 0.42 : 0.3, b = i % 2 == 0 ? 0.3 : 0.42
+            let frame = ClassificationResult(probabilities: [.init(label: "quercus_alba", probability: a), .init(label: "quercus_nigra", probability: b), .init(label: "other_plant", probability: 0.1)], modelVersion: "t")
+            state = tracker.push(ScanDecision.lockTarget(frame, catalog: catalog), distribution: frame.probabilities)
+        }
+        if case .locked(let label, let p) = state { XCTAssertEqual(label, ScanDecision.nativeLockLabel); XCTAssertEqual(p, 0.82, accuracy: 1e-6) } else { XCTFail("expected a lock, got \(state)") }
         let privet = ClassificationResult(probabilities: [.init(label: "ligustrum_sinense", probability: 0.5), .init(label: "quercus_alba", probability: 0.3), .init(label: "quercus_nigra", probability: 0.2)], modelVersion: "t")
         XCTAssertEqual(ScanDecision.lockProbability(privet, catalog: catalog), 0.5, accuracy: 1e-9)
         let notPlant = ClassificationResult(probabilities: [.init(label: "not_plant", probability: 0.45), .init(label: "quercus_alba", probability: 0.3), .init(label: "other_plant", probability: 0.25)], modelVersion: "t")

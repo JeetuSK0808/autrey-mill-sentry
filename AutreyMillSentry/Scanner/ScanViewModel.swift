@@ -146,7 +146,7 @@ final class ScanViewModel {
             Task { @MainActor in self.diagnostics?.record(live: sample); self.applyLive(state: state, topName: nil, guidance: (soft ?? .noPlantFound).liveHint, good: false, freshLock: false, autoCapture: false) }
             return
         }
-        let lockTop = ClassProbability(label: top.label, probability: ScanDecision.lockProbability(cls, catalog: liveCatalog))
+        let lockTop = ScanDecision.lockTarget(cls, catalog: liveCatalog)
         let state = tracker.push(lockTop, distribution: cls.probabilities)
         let name = liveCatalog.name(for: top.label)
         var freshLock = false, auto = false
@@ -162,7 +162,7 @@ final class ScanViewModel {
         let guidance: String
         var good = true
         switch state {
-        case .locked(let label, _): guidance = "Locked on: \(liveCatalog.name(for: label)). Tap to capture."
+        case .locked(let label, _): guidance = "Locked on: \(liveCatalog.name(for: label == ScanDecision.nativeLockLabel ? top.label : label)). Tap to capture."
         case .tracking:
             if let soft, soft != .tooClose { guidance = soft.liveHint; good = false } else { guidance = "Plant in view, hold steady" }
         case .idle: guidance = "Plant in view, tap to capture"
