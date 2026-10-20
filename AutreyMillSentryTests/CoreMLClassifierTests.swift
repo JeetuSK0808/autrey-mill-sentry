@@ -75,3 +75,17 @@ final class EnsembleClassifierTests: XCTestCase {
         XCTAssertTrue(ClassifierFactory.make(catalog: SpeciesCatalog(species: SpeciesCatalog.builtIn)) is EnsembleClassifier)
     }
 }
+
+/// Every label the bundled model can output must be a species the app knows (name, tier, Learn page), or one of the
+/// two catch-all labels. Otherwise a scan could show a raw label like "liquidambar_styraciflua".
+final class LabelCoverageTests: XCTestCase {
+    @MainActor func testEveryModelLabelIsInTheCatalog() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "labels", withExtension: "json"))
+        let obj = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
+        let labels = try XCTUnwrap(obj["labels"] as? [String])
+        let app = AppModel()
+        let missing = labels.filter { app.catalog.species(for: $0) == nil && $0 != "other_plant" && $0 != "not_plant" }
+        XCTAssertTrue(missing.isEmpty, "labels without catalog entries: \(missing)")
+        XCTAssertGreaterThan(app.catalog.natives.count, 14, "local native species should be loaded from local_species.json")
+    }
+}

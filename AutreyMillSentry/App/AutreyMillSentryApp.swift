@@ -44,6 +44,11 @@ final class AppModel {
            let t2 = try? JSONDecoder().decode([Species].self, from: data) {
             species += t2
         }
+        if let url = Bundle.main.url(forResource: "local_species", withExtension: "json"), let data = try? Data(contentsOf: url),
+           let locals = try? JSONDecoder().decode([Species].self, from: data) {
+            let known = Set(species.map(\.label))
+            species += locals.filter { !known.contains($0.label) }
+        }
         catalog = SpeciesCatalog(species: species)
         classifier = ClassifierFactory.make(catalog: catalog)
         modelCard = Bundle.main.url(forResource: "model_card", withExtension: "json").flatMap { try? Data(contentsOf: $0) }.flatMap { try? JSONDecoder().decode(ModelCard.self, from: $0) }

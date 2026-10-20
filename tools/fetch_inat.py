@@ -61,6 +61,86 @@ NATIVE = {
     "chasmanthium_latifolium": "Chasmanthium latifolium",  # river oats vs stiltgrass
     "smilax_rotundifolia": "Smilax rotundifolia",          # greenbrier (common native vine)
 }
+# Common native plants of the preserve's own neighbourhood: the most-observed research-grade plant species on
+# iNaturalist within 4 km of Autrey Mill (data/raw/inat_local_species.json, 19 Oct 2026), natives only, plus a few
+# Piedmont staples. Named classes so the scanner can say 'sweetgum, not a target' instead of guessing. Values are
+# (iNaturalist accepted name, taxon id, common name).
+LOCAL_NATIVE = {
+    "liquidambar_styraciflua": ('Liquidambar styraciflua', 49658, 'American sweetgum'),
+    "polystichum_acrostichoides": ('Polystichum acrostichoides', 54412, 'Christmas fern'),
+    "podophyllum_peltatum": ('Podophyllum peltatum', 49288, 'mayapple'),
+    "magnolia_grandiflora": ('Magnolia grandiflora', 83074, 'southern magnolia'),
+    "phoradendron_leucarpum": ('Phoradendron leucarpum', 49668, 'American Mistletoe'),
+    "liriodendron_tulipifera": ('Liriodendron tulipifera', 53582, 'American tuliptree'),
+    "trillium_cuneatum": ('Trillium cuneatum', 123634, 'Little Sweet Betsy'),
+    "andersonglossum_virginianum": ('Andersonglossum virginianum', 769248, 'wild comfrey'),
+    "phytolacca_americana": ('Phytolacca americana', 48599, 'American pokeweed'),
+    "fagus_grandifolia": ('Fagus grandifolia', 49202, 'American beech'),
+    "packera_glabella": ('Packera glabella', 54921, 'Butterweed'),
+    "verbesina_occidentalis": ('Verbesina occidentalis', 136384, 'Yellow Crownbeard'),
+    "asimina_parviflora": ('Asimina parviflora', 158769, 'Small-Flower Pawpaw'),
+    "cornus_florida": ('Cornus florida', 54777, 'flowering dogwood'),
+    "bignonia_capreolata": ('Bignonia capreolata', 67823, 'cross vine'),
+    "solanum_carolinense": ('Solanum carolinense', 52899, 'Carolina horsenettle'),
+    "campsis_radicans": ('Campsis radicans', 75995, 'American trumpet vine'),
+    "diospyros_virginiana": ('Diospyros virginiana', 83435, 'American persimmon'),
+    "tipularia_discolor": ('Tipularia discolor', 121490, 'crane-fly orchid'),
+    "acer_rubrum": ('Acer rubrum', 48098, 'red maple'),
+    "eupatorium_serotinum": ('Eupatorium serotinum', 52934, 'late boneset'),
+    "prunus_serotina": ('Prunus serotina', 54834, 'black cherry'),
+    "euonymus_americanus": ('Euonymus americanus', 83150, 'strawberry bush'),
+    "thalictrum_thalictroides": ('Thalictrum thalictroides', 118548, 'rue anemone'),
+    "erechtites_hieraciifolius": ('Erechtites hieraciifolius', 130888, 'American burnweed'),
+    "eupatorium_capillifolium": ('Eupatorium capillifolium', 131154, 'dogfennel'),
+    "athyrium_asplenioides": ('Athyrium asplenioides', 204244, 'southern lady fern'),
+    "cypripedium_acaule": ('Cypripedium acaule', 47588, "pink lady's slipper"),
+    "acer_negundo": ('Acer negundo', 47726, 'box elder'),
+    "callicarpa_americana": ('Callicarpa americana', 49193, 'American beautyberry'),
+    "chimaphila_maculata": ('Chimaphila maculata', 82358, 'striped wintergreen'),
+    "woodwardia_areolata": ('Woodwardia areolata', 118731, 'netted chain fern'),
+    "cercis_canadensis": ('Cercis canadensis', 48502, 'eastern redbud'),
+    "quercus_nigra": ('Quercus nigra', 53640, 'water oak'),
+    "carpinus_caroliniana": ('Carpinus caroliniana', 54768, 'American hornbeam'),
+    "lindera_benzoin": ('Lindera benzoin', 54793, 'northern spicebush'),
+    "erigeron_philadelphicus": ('Erigeron philadelphicus', 67820, 'Philadelphia fleabane'),
+    "aesculus_pavia": ('Aesculus pavia', 81708, 'Red Buckeye'),
+    "asplenium_platyneuron": ('Asplenium platyneuron', 122056, 'ebony spleenwort'),
+    "diodia_virginiana": ('Diodia virginiana', 131003, 'buttonweed'),
+    "elephantopus_tomentosus": ('Elephantopus tomentosus', 152133, "common elephant's-foot"),
+    "amauropelta_noveboracensis": ('Amauropelta noveboracensis', 1398911, 'New York fern'),
+    "asarum_arifolium": ('Asarum arifolium', 1455147, 'Little Brown Jugs'),
+    "kalmia_latifolia": ('Kalmia latifolia', 49397, 'mountain laurel'),
+    "asimina_triloba": ('Asimina triloba', 50897, 'common pawpaw'),
+    "passiflora_incarnata": ('Passiflora incarnata', 51453, 'purple passionflower'),
+    "magnolia_tripetala": ('Magnolia tripetala', 84790, 'umbrella magnolia'),
+    "ambrosia_artemisiifolia": ('Ambrosia artemisiifolia', 53587, 'common ragweed'),
+    "juglans_nigra": ('Juglans nigra', 54504, 'eastern black walnut'),
+    "sassafras_albidum": ('Sassafras albidum', 54795, 'sassafras'),
+    "pinus_taeda": ('Pinus taeda', 59921, 'loblolly pine'),
+    "goodyera_pubescens": ('Goodyera pubescens', 62406, 'downy rattlesnake plantain'),
+    "packera_anonyma": ('Packera anonyma', 67825, "Small's ragwort"),
+    "oxalis_violacea": ('Oxalis violacea', 81796, 'violet woodsorrel'),
+    "onoclea_sensibilis": ('Onoclea sensibilis', 82576, 'sensitive fern'),
+    "hydrangea_quercifolia": ('Hydrangea quercifolia', 83156, 'oakleaf hydrangea'),
+    "verbesina_alternifolia": ('Verbesina alternifolia', 117442, 'Wingstem'),
+    "ilex_vomitoria": ('Ilex vomitoria', 119955, 'Yaupon Holly'),
+    "houstonia_pusilla": ('Houstonia pusilla', 125101, 'tiny bluet'),
+    "melothria_pendula": ('Melothria pendula', 131557, 'creeping cucumber'),
+    "persicaria_virginiana": ('Persicaria virginiana', 144047, 'American jumpseed'),
+    "arnoglossum_atriplicifolium": ('Arnoglossum atriplicifolium', 146715, 'pale Indian plantain'),
+    "pleopeltis_michauxiana": ('Pleopeltis michauxiana', 698726, 'resurrection fern'),
+    "acer_floridanum": ('Acer floridanum', 48079, 'southern sugar maple'),
+    "quercus_rubra": ('Quercus rubra', 49005, 'northern red oak'),
+    "quercus_falcata": ('Quercus falcata', 61324, 'southern red oak'),
+    "sambucus_canadensis": ('Sambucus canadensis', 84300, 'American black elderberry'),
+    "gelsemium_sempervirens": ('Gelsemium sempervirens', 83070, 'yellow jessamine'),
+    "vaccinium_arboreum": ('Vaccinium arboreum', 81818, 'sparkleberry'),
+    "juniperus_virginiana": ('Juniperus virginiana', 49399, 'eastern redcedar'),
+    "impatiens_capensis": ('Impatiens capensis', 47888, 'common jewelweed'),
+    "quercus_alba": ('Quercus alba', 49001, None),
+    "arundinaria_gigantea": ('Arundinaria gigantea', 122631, None),
+    "vitis_aestivalis": ('Vitis aestivalis', 128751, None),
+}
 # Tier 2 candidates: the rest of the GISC plant list. Excluded by hand: submerged aquatics (not phone-scannable),
 # turf grasses, and genus-only entries. The survey keeps those with >= MIN_T2 licensed photos.
 TIER2_CANDIDATES = [
@@ -179,12 +259,18 @@ def survey():
             print("place", s, res["places"][s], flush=True)
     se_ids = [res["places"][s] for s in SE_STATES if res["places"][s]]
     se_param = ",".join(str(i) for i in se_ids)
-    groups = [("tier1", TIER1), ("native", NATIVE), ("tier2", {n.lower().replace(" ", "_").replace("_x_", "_"): n for n in TIER2_CANDIDATES})]
+    groups = [("tier1", TIER1), ("native", NATIVE), ("tier2", {n.lower().replace(" ", "_").replace("_x_", "_"): n for n in TIER2_CANDIDATES}),
+              ("native", LOCAL_NATIVE)]
     for tier, d in groups:
-        for key, name in d.items():
+        for key, spec in d.items():
             if key in res["taxa"] and res["taxa"][key].get("taxon_id"):
                 continue
-            t = resolve_taxon(name)
+            if isinstance(spec, tuple):   # known taxon id: no autocomplete round trip
+                name, tid, com = spec
+                t = {"id": tid, "name": name, "preferred_common_name": com}
+            else:
+                name = spec
+                t = resolve_taxon(name)
             if not t:
                 res["taxa"][key] = {"name": name, "tier": tier, "taxon_id": None, "ga": 0, "se": 0, "us": 0}
                 print("NOT FOUND", name, flush=True)

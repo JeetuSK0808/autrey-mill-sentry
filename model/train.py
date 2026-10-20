@@ -22,6 +22,7 @@ def main():
     ap.add_argument("--version", default="v1")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--max-per-class", type=int, default=0, help="debug: cap training images per class")
+    ap.add_argument("--field-aug", action="store_true", help="trail-camera augmentation (common.make_transforms field=True)")
     args = ap.parse_args()
 
     torch.manual_seed(0); random.seed(0); np.random.seed(0)
@@ -40,7 +41,7 @@ def main():
         train = [it for l in by for it in by[l][:args.max_per_class]]
     print(f"classes={len(present)} train={len(train)} val={len(val)} test={len(test)} device={device}", flush=True)
     (MODEL / "runs").mkdir(exist_ok=True); (MODEL / "checkpoints").mkdir(exist_ok=True); EVAL.mkdir(exist_ok=True)
-    json.dump({"arch": args.arch, "size": args.size, "epochs": args.epochs, "labels": present, "tiers": {l: tiers[l] for l in present}, "counts": {l: counts[l] for l in present},
+    json.dump({"arch": args.arch, "size": args.size, "epochs": args.epochs, "field_aug": args.field_aug, "labels": present, "tiers": {l: tiers[l] for l in present}, "counts": {l: counts[l] for l in present},
                "split_sizes": {"train": len(train), "val": len(val), "test": len(test)},
                "val_observers": len({it["observer"] for it in val}), "test_observers": len({it["observer"] for it in test}),
                "train_observers": len({it["observer"] for it in train})},
@@ -51,7 +52,7 @@ def main():
     w = 1.0 / np.sqrt(np.maximum(freq, 1))
     sample_w = torch.tensor([w[it["label_idx"]] for it in train], dtype=torch.double)
     sampler = WeightedRandomSampler(sample_w, num_samples=len(train), replacement=True)
-    tr_ds = ImageListDataset(train, make_transforms(args.size, True))
+    tr_ds = ImageListDataset(train, make_transforms(args.size, True, field=args.field_aug))
     va_ds = ImageListDataset(val, make_transforms(args.size, False))
     te_ds = ImageListDataset(test, make_transforms(args.size, False))
     tr = DataLoader(tr_ds, batch_size=args.batch, sampler=sampler, num_workers=args.workers, persistent_workers=True, drop_last=True)

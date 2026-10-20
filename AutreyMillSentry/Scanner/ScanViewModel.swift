@@ -132,7 +132,7 @@ final class ScanViewModel {
             return
         }
         let soft = ScanDecision.softGate(metrics, thresholds: t)
-        guard let cls = try? liveClassifier.classify(pixelBuffer: pb, orientation: orientation), let top = cls.top else {
+        guard let cls = try? liveClassifier.classifyLive(pixelBuffer: pb, orientation: orientation), let top = cls.top else {
             let sample = ScanDiagnostics.LiveSample(t: now, sharp: metrics.sharpness, luma: metrics.meanLuminance, clip: metrics.clippedFraction, subject: metrics.subjectFraction, motion: metrics.motion, person: false, hard: nil, soft: soft?.rawValue, top: [], lock: "idle")
             Task { @MainActor in self.diagnostics?.record(live: sample) }
             return

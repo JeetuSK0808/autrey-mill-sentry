@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-12",
+ "generated": "2026-10-19",
  "min_tier2_images": 80,
  "classes": [
   {
@@ -1009,6 +1009,672 @@
    "common": "Japanese knotweed",
    "ga": 126,
    "se": 548
+  },
+  {
+   "label": "liquidambar_styraciflua",
+   "tier": "native",
+   "taxon_id": 49658,
+   "name": "Liquidambar styraciflua",
+   "common": "American sweetgum",
+   "ga": 4596,
+   "se": 16417
+  },
+  {
+   "label": "polystichum_acrostichoides",
+   "tier": "native",
+   "taxon_id": 54412,
+   "name": "Polystichum acrostichoides",
+   "common": "Christmas fern",
+   "ga": 3614,
+   "se": 16757
+  },
+  {
+   "label": "podophyllum_peltatum",
+   "tier": "native",
+   "taxon_id": 49288,
+   "name": "Podophyllum peltatum",
+   "common": "mayapple",
+   "ga": 1418,
+   "se": 9034
+  },
+  {
+   "label": "magnolia_grandiflora",
+   "tier": "native",
+   "taxon_id": 83074,
+   "name": "Magnolia grandiflora",
+   "common": "southern magnolia",
+   "ga": 2665,
+   "se": 6065
+  },
+  {
+   "label": "phoradendron_leucarpum",
+   "tier": "native",
+   "taxon_id": 49668,
+   "name": "Phoradendron leucarpum",
+   "common": "American Mistletoe",
+   "ga": 671,
+   "se": 1254
+  },
+  {
+   "label": "liriodendron_tulipifera",
+   "tier": "native",
+   "taxon_id": 53582,
+   "name": "Liriodendron tulipifera",
+   "common": "American tuliptree",
+   "ga": 3209,
+   "se": 14198
+  },
+  {
+   "label": "trillium_cuneatum",
+   "tier": "native",
+   "taxon_id": 123634,
+   "name": "Trillium cuneatum",
+   "common": "Little Sweet Betsy",
+   "ga": 869,
+   "se": 3431
+  },
+  {
+   "label": "andersonglossum_virginianum",
+   "tier": "native",
+   "taxon_id": 769248,
+   "name": "Andersonglossum virginianum",
+   "common": "wild comfrey",
+   "ga": 432,
+   "se": 3426
+  },
+  {
+   "label": "phytolacca_americana",
+   "tier": "native",
+   "taxon_id": 48599,
+   "name": "Phytolacca americana",
+   "common": "American pokeweed",
+   "ga": 3205,
+   "se": 13198
+  },
+  {
+   "label": "fagus_grandifolia",
+   "tier": "native",
+   "taxon_id": 49202,
+   "name": "Fagus grandifolia",
+   "common": "American beech",
+   "ga": 2028,
+   "se": 8200
+  },
+  {
+   "label": "packera_glabella",
+   "tier": "native",
+   "taxon_id": 54921,
+   "name": "Packera glabella",
+   "common": "Butterweed",
+   "ga": 1386,
+   "se": 2766
+  },
+  {
+   "label": "verbesina_occidentalis",
+   "tier": "native",
+   "taxon_id": 136384,
+   "name": "Verbesina occidentalis",
+   "common": "Yellow Crownbeard",
+   "ga": 693,
+   "se": 3376
+  },
+  {
+   "label": "asimina_parviflora",
+   "tier": "native",
+   "taxon_id": 158769,
+   "name": "Asimina parviflora",
+   "common": "Small-Flower Pawpaw",
+   "ga": 1277,
+   "se": 1426
+  },
+  {
+   "label": "cornus_florida",
+   "tier": "native",
+   "taxon_id": 54777,
+   "name": "Cornus florida",
+   "common": "flowering dogwood",
+   "ga": 1445,
+   "se": 7545
+  },
+  {
+   "label": "bignonia_capreolata",
+   "tier": "native",
+   "taxon_id": 67823,
+   "name": "Bignonia capreolata",
+   "common": "cross vine",
+   "ga": 1717,
+   "se": 6402
+  },
+  {
+   "label": "solanum_carolinense",
+   "tier": "native",
+   "taxon_id": 52899,
+   "name": "Solanum carolinense",
+   "common": "Carolina horsenettle",
+   "ga": 2035,
+   "se": 7709
+  },
+  {
+   "label": "campsis_radicans",
+   "tier": "native",
+   "taxon_id": 75995,
+   "name": "Campsis radicans",
+   "common": "American trumpet vine",
+   "ga": 1959,
+   "se": 8287
+  },
+  {
+   "label": "diospyros_virginiana",
+   "tier": "native",
+   "taxon_id": 83435,
+   "name": "Diospyros virginiana",
+   "common": "American persimmon",
+   "ga": 1841,
+   "se": 6251
+  },
+  {
+   "label": "tipularia_discolor",
+   "tier": "native",
+   "taxon_id": 121490,
+   "name": "Tipularia discolor",
+   "common": "crane-fly orchid",
+   "ga": 1674,
+   "se": 10562
+  },
+  {
+   "label": "acer_rubrum",
+   "tier": "native",
+   "taxon_id": 48098,
+   "name": "Acer rubrum",
+   "common": "red maple",
+   "ga": 1499,
+   "se": 6210
+  },
+  {
+   "label": "eupatorium_serotinum",
+   "tier": "native",
+   "taxon_id": 52934,
+   "name": "Eupatorium serotinum",
+   "common": "late boneset",
+   "ga": 1349,
+   "se": 3192
+  },
+  {
+   "label": "prunus_serotina",
+   "tier": "native",
+   "taxon_id": 54834,
+   "name": "Prunus serotina",
+   "common": "black cherry",
+   "ga": 1396,
+   "se": 2998
+  },
+  {
+   "label": "euonymus_americanus",
+   "tier": "native",
+   "taxon_id": 83150,
+   "name": "Euonymus americanus",
+   "common": "strawberry bush",
+   "ga": 1510,
+   "se": 7527
+  },
+  {
+   "label": "thalictrum_thalictroides",
+   "tier": "native",
+   "taxon_id": 118548,
+   "name": "Thalictrum thalictroides",
+   "common": "rue anemone",
+   "ga": 1189,
+   "se": 6508
+  },
+  {
+   "label": "erechtites_hieraciifolius",
+   "tier": "native",
+   "taxon_id": 130888,
+   "name": "Erechtites hieraciifolius",
+   "common": "American burnweed",
+   "ga": 1350,
+   "se": 4863
+  },
+  {
+   "label": "eupatorium_capillifolium",
+   "tier": "native",
+   "taxon_id": 131154,
+   "name": "Eupatorium capillifolium",
+   "common": "dogfennel",
+   "ga": 1925,
+   "se": 5047
+  },
+  {
+   "label": "athyrium_asplenioides",
+   "tier": "native",
+   "taxon_id": 204244,
+   "name": "Athyrium asplenioides",
+   "common": "southern lady fern",
+   "ga": 967,
+   "se": 3891
+  },
+  {
+   "label": "cypripedium_acaule",
+   "tier": "native",
+   "taxon_id": 47588,
+   "name": "Cypripedium acaule",
+   "common": "pink lady's slipper",
+   "ga": 586,
+   "se": 3455
+  },
+  {
+   "label": "acer_negundo",
+   "tier": "native",
+   "taxon_id": 47726,
+   "name": "Acer negundo",
+   "common": "box elder",
+   "ga": 1460,
+   "se": 5130
+  },
+  {
+   "label": "callicarpa_americana",
+   "tier": "native",
+   "taxon_id": 49193,
+   "name": "Callicarpa americana",
+   "common": "American beautyberry",
+   "ga": 2956,
+   "se": 8241
+  },
+  {
+   "label": "chimaphila_maculata",
+   "tier": "native",
+   "taxon_id": 82358,
+   "name": "Chimaphila maculata",
+   "common": "striped wintergreen",
+   "ga": 2237,
+   "se": 10149
+  },
+  {
+   "label": "woodwardia_areolata",
+   "tier": "native",
+   "taxon_id": 118731,
+   "name": "Woodwardia areolata",
+   "common": "netted chain fern",
+   "ga": 992,
+   "se": 3390
+  },
+  {
+   "label": "cercis_canadensis",
+   "tier": "native",
+   "taxon_id": 48502,
+   "name": "Cercis canadensis",
+   "common": "eastern redbud",
+   "ga": 2007,
+   "se": 8892
+  },
+  {
+   "label": "quercus_nigra",
+   "tier": "native",
+   "taxon_id": 53640,
+   "name": "Quercus nigra",
+   "common": "water oak",
+   "ga": 1908,
+   "se": 3593
+  },
+  {
+   "label": "carpinus_caroliniana",
+   "tier": "native",
+   "taxon_id": 54768,
+   "name": "Carpinus caroliniana",
+   "common": "American hornbeam",
+   "ga": 327,
+   "se": 1437
+  },
+  {
+   "label": "lindera_benzoin",
+   "tier": "native",
+   "taxon_id": 54793,
+   "name": "Lindera benzoin",
+   "common": "northern spicebush",
+   "ga": 342,
+   "se": 2577
+  },
+  {
+   "label": "erigeron_philadelphicus",
+   "tier": "native",
+   "taxon_id": 67820,
+   "name": "Erigeron philadelphicus",
+   "common": "Philadelphia fleabane",
+   "ga": 1231,
+   "se": 2364
+  },
+  {
+   "label": "aesculus_pavia",
+   "tier": "native",
+   "taxon_id": 81708,
+   "name": "Aesculus pavia",
+   "common": "Red Buckeye",
+   "ga": 823,
+   "se": 2784
+  },
+  {
+   "label": "asplenium_platyneuron",
+   "tier": "native",
+   "taxon_id": 122056,
+   "name": "Asplenium platyneuron",
+   "common": "ebony spleenwort",
+   "ga": 1290,
+   "se": 6457
+  },
+  {
+   "label": "diodia_virginiana",
+   "tier": "native",
+   "taxon_id": 131003,
+   "name": "Diodia virginiana",
+   "common": "buttonweed",
+   "ga": 777,
+   "se": 2156
+  },
+  {
+   "label": "elephantopus_tomentosus",
+   "tier": "native",
+   "taxon_id": 152133,
+   "name": "Elephantopus tomentosus",
+   "common": "common elephant's-foot",
+   "ga": 1015,
+   "se": 1127
+  },
+  {
+   "label": "amauropelta_noveboracensis",
+   "tier": "native",
+   "taxon_id": 1398911,
+   "name": "Amauropelta noveboracensis",
+   "common": "New York fern",
+   "ga": 597,
+   "se": 2197
+  },
+  {
+   "label": "asarum_arifolium",
+   "tier": "native",
+   "taxon_id": 1455147,
+   "name": "Asarum arifolium",
+   "common": "Little Brown Jugs",
+   "ga": 2393,
+   "se": 9009
+  },
+  {
+   "label": "kalmia_latifolia",
+   "tier": "native",
+   "taxon_id": 49397,
+   "name": "Kalmia latifolia",
+   "common": "mountain laurel",
+   "ga": 1802,
+   "se": 8830
+  },
+  {
+   "label": "asimina_triloba",
+   "tier": "native",
+   "taxon_id": 50897,
+   "name": "Asimina triloba",
+   "common": "common pawpaw",
+   "ga": 603,
+   "se": 5206
+  },
+  {
+   "label": "passiflora_incarnata",
+   "tier": "native",
+   "taxon_id": 51453,
+   "name": "Passiflora incarnata",
+   "common": "purple passionflower",
+   "ga": 2044,
+   "se": 7204
+  },
+  {
+   "label": "magnolia_tripetala",
+   "tier": "native",
+   "taxon_id": 84790,
+   "name": "Magnolia tripetala",
+   "common": "umbrella magnolia",
+   "ga": 447,
+   "se": 1840
+  },
+  {
+   "label": "ambrosia_artemisiifolia",
+   "tier": "native",
+   "taxon_id": 53587,
+   "name": "Ambrosia artemisiifolia",
+   "common": "common ragweed",
+   "ga": 573,
+   "se": 2487
+  },
+  {
+   "label": "juglans_nigra",
+   "tier": "native",
+   "taxon_id": 54504,
+   "name": "Juglans nigra",
+   "common": "eastern black walnut",
+   "ga": 441,
+   "se": 2197
+  },
+  {
+   "label": "sassafras_albidum",
+   "tier": "native",
+   "taxon_id": 54795,
+   "name": "Sassafras albidum",
+   "common": "sassafras",
+   "ga": 1280,
+   "se": 7809
+  },
+  {
+   "label": "pinus_taeda",
+   "tier": "native",
+   "taxon_id": 59921,
+   "name": "Pinus taeda",
+   "common": "loblolly pine",
+   "ga": 989,
+   "se": 2621
+  },
+  {
+   "label": "goodyera_pubescens",
+   "tier": "native",
+   "taxon_id": 62406,
+   "name": "Goodyera pubescens",
+   "common": "downy rattlesnake plantain",
+   "ga": 941,
+   "se": 6833
+  },
+  {
+   "label": "packera_anonyma",
+   "tier": "native",
+   "taxon_id": 67825,
+   "name": "Packera anonyma",
+   "common": "Small's ragwort",
+   "ga": 1248,
+   "se": 1606
+  },
+  {
+   "label": "oxalis_violacea",
+   "tier": "native",
+   "taxon_id": 81796,
+   "name": "Oxalis violacea",
+   "common": "violet woodsorrel",
+   "ga": 655,
+   "se": 3244
+  },
+  {
+   "label": "onoclea_sensibilis",
+   "tier": "native",
+   "taxon_id": 82576,
+   "name": "Onoclea sensibilis",
+   "common": "sensitive fern",
+   "ga": 969,
+   "se": 3346
+  },
+  {
+   "label": "hydrangea_quercifolia",
+   "tier": "native",
+   "taxon_id": 83156,
+   "name": "Hydrangea quercifolia",
+   "common": "oakleaf hydrangea",
+   "ga": 686,
+   "se": 2172
+  },
+  {
+   "label": "verbesina_alternifolia",
+   "tier": "native",
+   "taxon_id": 117442,
+   "name": "Verbesina alternifolia",
+   "common": "Wingstem",
+   "ga": 348,
+   "se": 3134
+  },
+  {
+   "label": "ilex_vomitoria",
+   "tier": "native",
+   "taxon_id": 119955,
+   "name": "Ilex vomitoria",
+   "common": "Yaupon Holly",
+   "ga": 890,
+   "se": 4023
+  },
+  {
+   "label": "houstonia_pusilla",
+   "tier": "native",
+   "taxon_id": 125101,
+   "name": "Houstonia pusilla",
+   "common": "tiny bluet",
+   "ga": 923,
+   "se": 2589
+  },
+  {
+   "label": "melothria_pendula",
+   "tier": "native",
+   "taxon_id": 131557,
+   "name": "Melothria pendula",
+   "common": "creeping cucumber",
+   "ga": 637,
+   "se": 1188
+  },
+  {
+   "label": "persicaria_virginiana",
+   "tier": "native",
+   "taxon_id": 144047,
+   "name": "Persicaria virginiana",
+   "common": "American jumpseed",
+   "ga": 464,
+   "se": 2487
+  },
+  {
+   "label": "arnoglossum_atriplicifolium",
+   "tier": "native",
+   "taxon_id": 146715,
+   "name": "Arnoglossum atriplicifolium",
+   "common": "pale Indian plantain",
+   "ga": 443,
+   "se": 606
+  },
+  {
+   "label": "pleopeltis_michauxiana",
+   "tier": "native",
+   "taxon_id": 698726,
+   "name": "Pleopeltis michauxiana",
+   "common": "resurrection fern",
+   "ga": 1569,
+   "se": 4925
+  },
+  {
+   "label": "acer_floridanum",
+   "tier": "native",
+   "taxon_id": 48079,
+   "name": "Acer floridanum",
+   "common": "southern sugar maple",
+   "ga": 230,
+   "se": 812
+  },
+  {
+   "label": "quercus_rubra",
+   "tier": "native",
+   "taxon_id": 49005,
+   "name": "Quercus rubra",
+   "common": "northern red oak",
+   "ga": 290,
+   "se": 1157
+  },
+  {
+   "label": "quercus_falcata",
+   "tier": "native",
+   "taxon_id": 61324,
+   "name": "Quercus falcata",
+   "common": "southern red oak",
+   "ga": 573,
+   "se": 2188
+  },
+  {
+   "label": "sambucus_canadensis",
+   "tier": "native",
+   "taxon_id": 84300,
+   "name": "Sambucus canadensis",
+   "common": "American black elderberry",
+   "ga": 1292,
+   "se": 3737
+  },
+  {
+   "label": "gelsemium_sempervirens",
+   "tier": "native",
+   "taxon_id": 83070,
+   "name": "Gelsemium sempervirens",
+   "common": "yellow jessamine",
+   "ga": 1515,
+   "se": 3364
+  },
+  {
+   "label": "vaccinium_arboreum",
+   "tier": "native",
+   "taxon_id": 81818,
+   "name": "Vaccinium arboreum",
+   "common": "sparkleberry",
+   "ga": 1002,
+   "se": 1740
+  },
+  {
+   "label": "juniperus_virginiana",
+   "tier": "native",
+   "taxon_id": 49399,
+   "name": "Juniperus virginiana",
+   "common": "eastern redcedar",
+   "ga": 1107,
+   "se": 7897
+  },
+  {
+   "label": "impatiens_capensis",
+   "tier": "native",
+   "taxon_id": 47888,
+   "name": "Impatiens capensis",
+   "common": "common jewelweed",
+   "ga": 1406,
+   "se": 7100
+  },
+  {
+   "label": "quercus_alba",
+   "tier": "native",
+   "taxon_id": 49001,
+   "name": "Quercus alba",
+   "common": null,
+   "ga": 0,
+   "se": 0
+  },
+  {
+   "label": "arundinaria_gigantea",
+   "tier": "native",
+   "taxon_id": 122631,
+   "name": "Arundinaria gigantea",
+   "common": null,
+   "ga": 0,
+   "se": 0
+  },
+  {
+   "label": "vitis_aestivalis",
+   "tier": "native",
+   "taxon_id": 128751,
+   "name": "Vitis aestivalis",
+   "common": null,
+   "ga": 0,
+   "se": 0
   },
   {
    "label": "other_plant",

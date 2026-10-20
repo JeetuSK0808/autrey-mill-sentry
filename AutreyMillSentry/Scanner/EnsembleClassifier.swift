@@ -27,4 +27,8 @@ final class EnsembleClassifier: PlantClassifying {
     func classify(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult {
         try primary.classify(pixelBuffer: pixelBuffer, orientation: orientation)
     }
+
+    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult {
+        try primary.classifyMultiScale(pixelBuffer: pixelBuffer, orientation: orientation)
+    }
 }

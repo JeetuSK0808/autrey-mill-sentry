@@ -69,7 +69,7 @@ private struct ScanContent: View {
             if vm.cameraDenied {
                 CameraDeniedView()
             } else {
-                CameraPreviewView(session: vm.camera.session).ignoresSafeArea(edges: .bottom)
+                CameraPreviewView(session: vm.camera.session, onTap: { vm.camera.focus(at: $0) }).ignoresSafeArea(edges: .bottom)
                 FramingGuide(locked: isLocked)
             }
             VStack {

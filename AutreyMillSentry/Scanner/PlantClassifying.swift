@@ -10,6 +10,20 @@ protocol PlantClassifying: AnyObject {
     var isMock: Bool { get }
     func classify(_ image: CGImage, orientation: CGImagePropertyOrientation) throws -> ClassificationResult
     func classify(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult
+    /// Live-frame pass at two scales when the classifier supports it; defaults to the single pass.
+    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult
+}
+
+extension PlantClassifying {
+    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult {
+        try classify(pixelBuffer: pixelBuffer, orientation: orientation)
+    }
+}
+
+extension CoreMLClassifier {
+    func classifyLive(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws -> ClassificationResult {
+        try classifyMultiScale(pixelBuffer: pixelBuffer, orientation: orientation)
+    }
 }
 
 enum ClassifierFactory {
@@ -65,9 +79,21 @@ final class CoreMLClassifier: PlantClassifying {
         try run(handler: VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:]))
     }
 
-    private func run(handler: VNImageRequestHandler) throws -> ClassificationResult {
+    /// Two looks at one live frame: the full centre crop and a tighter centre region (small, far-away subjects), averaged.
+    /// Vision runs the second pass on a region of interest, so the cost is one extra model call, no extra copies.
+    func classifyMultiScale(pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, innerFraction: CGFloat = 0.68) throws -> ClassificationResult {
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: orientation, options: [:])
+        let full = try run(handler: handler)
+        let inset = (1 - innerFraction) / 2
+        let inner = try run(handler: handler, region: CGRect(x: inset, y: inset, width: innerFraction, height: innerFraction))
+        guard !inner.probabilities.isEmpty else { return full }
+        return ClassificationResult(probabilities: Evidence.average([full.probabilities, inner.probabilities]), modelVersion: full.modelVersion, embedding: full.embedding)
+    }
+
+    private func run(handler: VNImageRequestHandler, region: CGRect? = nil) throws -> ClassificationResult {
         let request = VNCoreMLRequest(model: vnModel)
         request.imageCropAndScaleOption = .centerCrop
+        if let region { request.regionOfInterest = region }
         try handler.perform([request])
         if let obs = request.results as? [VNClassificationObservation], !obs.isEmpty {
             let probs = obs.map { ClassProbability(label: $0.identifier, probability: Double($0.confidence)) }.sorted { $0.probability > $1.probability }

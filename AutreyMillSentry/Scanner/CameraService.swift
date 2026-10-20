@@ -71,12 +71,20 @@ final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         DispatchQueue.main.async { self.torchAvailable = hasTorch }
         do {
             try device.lockForConfiguration()
-            if device.isFocusModeSupported(.continuousAutoFocus) { device.focusMode = .continuousAutoFocus }
+            Self.applyContinuousFocusAndExposure(device, at: CGPoint(x: 0.5, y: 0.5))
             #if os(iOS)
             if device.isAutoFocusRangeRestrictionSupported { device.autoFocusRangeRestriction = .near }
+            if device.isLowLightBoostSupported { device.automaticallyEnablesLowLightBoostWhenAvailable = true }
             #endif
+            // Let auto-exposure use up to 1/15 s in deep shade: brighter, less noisy frames for the classifier.
+            let fps15 = CMTime(value: 1, timescale: 15)
+            if device.activeFormat.videoSupportedFrameRateRanges.contains(where: { $0.maxFrameDuration >= fps15 }) {
+                device.activeVideoMaxFrameDuration = fps15
+            }
+            device.isSubjectAreaChangeMonitoringEnabled = true
             device.unlockForConfiguration()
-        } catch { /* focus defaults are fine */ }
+        } catch { /* focus and exposure defaults are fine */ }
+        NotificationCenter.default.addObserver(self, selector: #selector(subjectAreaChanged), name: .AVCaptureDeviceSubjectAreaDidChange, object: device)
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
         videoOutput.alwaysDiscardsLateVideoFrames = true
         videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
@@ -89,6 +97,41 @@ final class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             }
         }
         configured = true
+    }
+
+    // MARK: Focus and exposure
+    /// Continuous focus and exposure, metered around `point` (0...1, capture-device coordinates).
+    private static func applyContinuousFocusAndExposure(_ device: AVCaptureDevice, at point: CGPoint) {
+        if device.isFocusPointOfInterestSupported { device.focusPointOfInterest = point }
+        if device.isFocusModeSupported(.continuousAutoFocus) { device.focusMode = .continuousAutoFocus }
+        if device.isExposurePointOfInterestSupported { device.exposurePointOfInterest = point }
+        if device.isExposureModeSupported(.continuousAutoExposure) { device.exposureMode = .continuousAutoExposure }
+    }
+
+    /// Tap to focus: one-shot focus and exposure on the tapped point (device coordinates from the preview layer).
+    /// The camera returns to continuous mode by itself when the scene changes (subject-area monitoring).
+    func focus(at devicePoint: CGPoint) {
+        sessionQueue.async { [self] in
+            guard let device else { return }
+            do {
+                try device.lockForConfiguration()
+                if device.isFocusPointOfInterestSupported, device.isFocusModeSupported(.autoFocus) {
+                    device.focusPointOfInterest = devicePoint; device.focusMode = .autoFocus
+                }
+                if device.isExposurePointOfInterestSupported, device.isExposureModeSupported(.autoExpose) {
+                    device.exposurePointOfInterest = devicePoint; device.exposureMode = .autoExpose
+                }
+                device.unlockForConfiguration()
+            } catch { }
+        }
+    }
+
+    @objc private func subjectAreaChanged() {
+        sessionQueue.async { [self] in
+            guard let device, (try? device.lockForConfiguration()) != nil else { return }
+            Self.applyContinuousFocusAndExposure(device, at: CGPoint(x: 0.5, y: 0.5))
+            device.unlockForConfiguration()
+        }
     }
 
     // MARK: Torch
