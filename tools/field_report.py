@@ -18,7 +18,7 @@ if live:
     print(" soft gate:", dict(collections.Counter(s.get("soft") or "-" for s in live)))
     print(" lock     :", dict(collections.Counter((s.get("lock") or "").split(" ")[0] for s in live)), f" median lock p {st.median(q('lockP')) if q('lockP') else 'n/a'}")
     print(" torch    :", sum(bool(s.get("torch")) for s in live), " focus pass:", sum(bool(s.get("focus")) for s in live))
-    tops = collections.Counter(t.split(" ")[0] if t else "-" for s in live for t in s.get("top", [])[:1])
+    tops = collections.Counter(t.rsplit(" ", 1)[0] if t else "-" for s in live for t in s.get("top", [])[:1])
     print(" top guess:", tops.most_common(8))
 if stills:
     print(f"\nSTILLS ({len(stills)})")
