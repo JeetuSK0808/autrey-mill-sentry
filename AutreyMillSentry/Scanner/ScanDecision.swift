@@ -190,12 +190,26 @@ enum ScanDecision {
             if !invasiveCandidates.isEmpty { return .possibleInvasive(candidates: invasiveCandidates) }
             // With many named natives the mass can split between look-alikes (two oaks, two ferns). If the non-target
             // classes together are convincing and no invasive is plausible, it is still a native: say so.
-            let benignMass = classification.probabilities.filter { $0.label != "not_plant" && ($0.label == "other_plant" || catalog.tier(of: $0.label) == .native) }.map(\.probability).reduce(0, +)
+            let benignMass = Self.benignMass(classification, catalog: catalog)
             if benignMass >= t.nativeMinProbability {
                 return .looksNative(label: top.probability >= 0.35 && top.label != "other_plant" && top.label != "not_plant" ? top.label : nil, confidence: benignMass)
             }
             return .rescan(softGate(quality, thresholds: t) ?? .ambiguous)
         }
+    }
+
+    /// Probability mass on "nothing to report" plant classes: every native plus other_plant (not_plant excluded).
+    static func benignMass(_ classification: ClassificationResult, catalog: SpeciesCatalog) -> Double {
+        classification.probabilities.filter { $0.label != "not_plant" && ($0.label == "other_plant" || catalog.tier(of: $0.label) == .native) }.map(\.probability).reduce(0, +)
+    }
+
+    /// The probability the live lock-on should track for this frame: the top class, or, for a native/other top class
+    /// whose look-alikes share the mass, the combined benign mass (mirrors the still decision).
+    static func lockProbability(_ classification: ClassificationResult, catalog: SpeciesCatalog) -> Double {
+        guard let top = classification.top else { return 0 }
+        let tier = catalog.tier(of: top.label)
+        guard tier == .native || tier == .other, top.label != "not_plant" else { return top.probability }
+        return max(top.probability, benignMass(classification, catalog: catalog))
     }
 
     /// A specific tip for what to photograph next, based on the best candidate species.
