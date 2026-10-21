@@ -151,10 +151,10 @@ AutreyMillSentry/           iOS app (Swift, SwiftUI)        5,400 lines
   Resources/  two Core ML models, labels, thresholds, embeddings, GeoJSON, species JSON
 AutreyMillSentryTests/      75 unit tests (decision, lock-on, rank, geometry, store, real Core ML)
 AutreyMillSentryUITests/    happy path, screenshot walkthroughs, accessibility audit
-model/                      training pipeline (Python): fetch index, train, evaluate, calibrate,
-                            embeddings, Core ML export, field-conditions eval, model comparison
+model/                      training pipeline (Python, 2,200 lines with tools/): train, evaluate,
+                            calibrate, embeddings, Core ML export, field-conditions eval, comparison
 tools/                      iNaturalist fetch, map clipping, Learn photo picker, device install
-dashboard/                  staff site (TypeScript, Next.js, Vercel Blob)
+dashboard/                  staff site (TypeScript, Next.js, Vercel Blob)   1,100 lines
 docs/                       model card, privacy, ranking, sources, licences, demo and video scripts
 ```
 
