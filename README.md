@@ -155,10 +155,10 @@ model/                      training pipeline (Python, 2,200 lines with tools/):
                             calibrate, embeddings, Core ML export, field-conditions eval, comparison
 tools/                      iNaturalist fetch, map clipping, Learn photo picker, device install
 dashboard/                  staff site (TypeScript, Next.js, Vercel Blob)   1,100 lines
-docs/                       model card, privacy, ranking, sources, licences, demo and video scripts
+docs/                       model card, privacy, ranking, sources, licences, map, dashboard
 ```
 
-Start with [`docs/README.md`](docs/README.md) for the document index and [`HANDOFF.md`](HANDOFF.md) for the build log.
+Start with [`docs/README.md`](docs/README.md) for the document index.
 
 ## Build and run
 

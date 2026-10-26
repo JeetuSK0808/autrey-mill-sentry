@@ -1,6 +1,6 @@
 # Privacy, legal and safety: what was built
 
-Standard followed: Apple App Review Guidelines 5.1 (privacy) and the Human Interface Guidelines, even though this build is installed with a free Apple ID and not submitted to the App Store. Items needing a human decision are listed at the end and in `HANDOFF.md`.
+Standard followed: Apple App Review Guidelines 5.1 (privacy) and the Human Interface Guidelines, even though this build is installed with a free Apple ID and not submitted to the App Store. Open decisions are listed at the end.
 
 ## Data minimisation
 - No accounts, no name, email or phone number, no advertising identifier, no analytics, no third-party SDKs, no tracking. Only first-party Apple frameworks plus the bundled Core ML model.

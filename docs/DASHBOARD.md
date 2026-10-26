@@ -15,7 +15,7 @@ Live at **https://mill-sentry.vercel.app** (Vercel project `mill-sentry`, Hobby 
 By default the site is **open**: anyone with the unlisted link can view reports and change statuses. Jeetu asked for it to work with no setup, and the data is plant sightings inside a public park with no identity attached. To require a code later: Vercel > `mill-sentry` > Settings > Environment Variables > add `STAFF_ACCESS_CODE` (4+ characters, something a ranger can type) > Redeploy. The site then shows a sign-in page and keeps staff signed in per device for 90 days. Remove the variable and redeploy to go back to open mode.
 
 ## Jeetu: deploy it (about 10 minutes, no cost) — done 15 Oct
-1. Push the repo to a **private** GitHub repository (your call per HANDOFF).
+1. Push the repo to a **private** GitHub repository.
 2. On vercel.com: **Add New > Project > Import** that repository. Set **Root Directory** to `dashboard`. Framework: Next.js (auto). Deploy.
 3. In the project: **Storage > Create Database > Blob** (free). Connect it to the project. Vercel adds `BLOB_READ_WRITE_TOKEN` to the environment automatically.
 4. Optional: **Settings > Environment Variables**: add `STAFF_ACCESS_CODE` to require a code (see Access above). Not set as of 15 Oct: open mode.

@@ -1,7 +1,7 @@
 # Licenses and attribution
 
 ## This app
-Autrey Mill Sentry, a student project by Jeetu SK built for Autrey Mill Nature Preserve. Source code license: to be chosen by Jeetu before submission (MIT suggested; see HANDOFF.md). The preserve has not endorsed or approved the app.
+Autrey Mill Sentry, a student project by Kishan, Tushar and Jeetu for visitors to Autrey Mill Nature Preserve. Source code © 2026 the team, all rights reserved. The preserve has not endorsed or approved the app.
 
 ## Map data
 Map data © OpenStreetMap contributors, available under the Open Database License (ODbL 1.0), https://www.openstreetmap.org/copyright . Retrieved 2026-10-12 via the Overpass API and Nominatim. Base map tiles © Apple Maps (MapKit).
