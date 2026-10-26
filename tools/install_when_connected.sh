@@ -3,7 +3,7 @@
 # (the build needs the phone unlocked for its first minute). Usage: tools/install_when_connected.sh [udid]
 export DEVELOPER_DIR=${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}
 cd "$(dirname "$0")/.."
-UDID=${1:-00008110-000948AA2299401E}
+UDID=${1:?usage: tools/install_when_connected.sh <device-udid>}
 BUNDLE=com.jeetusk.autreymillsentry
 LOG=build/device_install.log
 mkdir -p build
